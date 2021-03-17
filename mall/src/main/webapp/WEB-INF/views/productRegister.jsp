@@ -78,7 +78,7 @@ ${result }<br>
 		
 		product_name = arr_subname[getRandomInt(0, arr_subname.length-1)] + arr_name[getRandomInt(0, arr_name.length-1)];
 		document.getElementById('no').value = getRandomInt(1, 9999);
-		document.getElementById('category').value = arr_category[getRandomInt(0, 5];
+		document.getElementById('category').value = arr_category[getRandomInt(0, 5)];
 		document.getElementById('stock').value = 99;
 		document.getElementById('title').value = product_name;
 		document.getElementById('subtitle').value = (product_name + '의 소제목');
