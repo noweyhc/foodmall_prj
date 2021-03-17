@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+  <select id="register">
+    insert into TB_PRODUCT values(#{no}, #{category}, #{stock}, #{title}, #{subtitle}, #{mainImg},
+     #{caloies}, #{origin}, #{storage}, #{detailImg1}, #{detailImg2}, #{detailText}, #{ingredient}, 
+     #{price}, sysdate)
+  </select>
+</mapper>
