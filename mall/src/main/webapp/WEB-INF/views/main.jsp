@@ -215,7 +215,7 @@
 	</footer>
 	<!-- 푸터 영역 종료 -->
    
-<script type="text/javascript" src="static/js/eventbanner.js"></script>
+<script type="text/javascript" src="/static/js/eventbanner.js"></script>
 <meta http-equiv="Expires" content="-1">
 </body>
 </html>
