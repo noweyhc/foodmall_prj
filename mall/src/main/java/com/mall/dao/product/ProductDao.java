@@ -1,10 +1,10 @@
-package com.mall.product.dao;
+package com.mall.dao.product;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
-import com.mall.product.vo.ProductVo;
+import com.mall.vo.product.ProductVo;
 
 @Repository
 public class ProductDao {

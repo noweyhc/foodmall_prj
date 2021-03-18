@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mall.product.dao.ProductDao;
-import com.mall.product.vo.ProductVo;
-import com.mall.user.dao.UserDAO;
+import com.mall.dao.product.ProductDao;
+import com.mall.dao.user.UserDAO;
+import com.mall.vo.product.ProductVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,20 +26,16 @@ public class AdminController {
 	private final ProductDao dao;
 
 	@RequestMapping("")
-	public ModelAndView adminMainpage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adminMain");
-		return mav;
+	public String adminMainpage() {
+		return "/admin/adminMain";
 	}
 	
 	@RequestMapping(value = "/product-register", method = RequestMethod.GET)
-	public ModelAndView registerProductForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("productRegister");
-		return mav;
+	public String registerProductForm() {
+		return "/admin/productRegister";
 	}
 
-	@RequestMapping(value = "/productregister", method = RequestMethod.POST)
+	@RequestMapping(value = "/product-register", method = RequestMethod.POST)
 	public ModelAndView registerProduct(ProductVo pv, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		String path = request.getRealPath("/img");
@@ -100,7 +96,7 @@ public class AdminController {
 			mav.addObject("result", "등록 실패");			
 		}
 		
-		mav.setViewName("productRegister");
+		mav.setViewName("/admin/productRegister");
 		return mav;
 	}
 	
