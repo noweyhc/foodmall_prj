@@ -14,18 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.mall.product.dao.ProductDao;
 import com.sist.mall.product.vo.ProductVo;
+import com.sist.mall.user.dao.UserDAO;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminController {
 	
-	@Autowired
-	private ProductDao dao;
-	
-	public void setDao(ProductDao dao) {
-		this.dao = dao;
-	}
-	
+	private final ProductDao dao;
+
 	@RequestMapping("")
 	public ModelAndView adminMainpage() {
 		ModelAndView mav = new ModelAndView();

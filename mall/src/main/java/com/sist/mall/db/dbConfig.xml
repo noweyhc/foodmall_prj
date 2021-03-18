@@ -20,5 +20,6 @@
   </environments>
   <mappers>
     <mapper resource="com/sist/mall/db/productMapper.xml"/>
+    <mapper resource="com/sist/mall/db/userMapper.xml"/>
   </mappers>
 </configuration>
