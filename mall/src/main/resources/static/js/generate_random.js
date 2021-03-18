@@ -18,16 +18,16 @@ function getRandomInt(min, max) {
 randomBtn.addEventListener('click', () => {
 	
 	product_name = arr_subname[getRandomInt(0, arr_subname.length-1)] + arr_name[getRandomInt(0, arr_name.length-1)];
-	document.getElementById('no').value = getRandomInt(1, 9999);
-	document.getElementById('category').value = arr_category[getRandomInt(0, 4)];
-	document.getElementById('stock').value = 99;
-	document.getElementById('title').value = product_name;
-	document.getElementById('subtitle').value = (product_name + '의 소제목');
-	document.getElementById('caloies').value = getRandomInt(10, 100) * 10;
-	document.getElementById('origin').value = arr_origin[getRandomInt(0, 1)];
-	document.getElementById('storage').value = arr_storage[getRandomInt(0, 1)];
-	document.getElementById('detailText').value = (product_name +'의 상세글 내용');
-	document.getElementById('ingredient').value = (product_name +'의 재료들');
-	document.getElementById('price').value = getRandomInt(1, 500) * 100;
+	document.getElementById('product_no').value = getRandomInt(1, 9999);
+	document.getElementById('product_category').value = arr_category[getRandomInt(0, 4)];
+	document.getElementById('product_stock').value = 99;
+	document.getElementById('product_title').value = product_name;
+	document.getElementById('product_subtitle').value = (product_name + '의 소제목');
+	document.getElementById('product_caloies').value = getRandomInt(10, 100) * 10;
+	document.getElementById('product_origin').value = arr_origin[getRandomInt(0, 1)];
+	document.getElementById('product_storage').value = arr_storage[getRandomInt(0, 1)];
+	document.getElementById('product_detail_text').value = (product_name +'의 상세글 내용');
+	document.getElementById('product_ingredient').value = (product_name +'의 재료들');
+	document.getElementById('product_price').value = getRandomInt(1, 500) * 100;
 });
 

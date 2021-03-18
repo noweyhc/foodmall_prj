@@ -49,10 +49,10 @@ public class AdminController {
 		String detailImgName2 = "";
 		
 		try {
-			mainImgName =("product" + String.valueOf(pv.getNo()) + uploadImg.getOriginalFilename().substring(uploadImg.getOriginalFilename().indexOf(".")));
-			detailImgName1 =("product" + String.valueOf(pv.getNo()) + "_detail1" + uploadDetailImg1.getOriginalFilename().substring(uploadDetailImg1.getOriginalFilename().indexOf(".")));
+			mainImgName =("product" + String.valueOf(pv.getProduct_no()) + uploadImg.getOriginalFilename().substring(uploadImg.getOriginalFilename().indexOf(".")));
+			detailImgName1 =("product" + String.valueOf(pv.getProduct_no()) + "_detail1" + uploadDetailImg1.getOriginalFilename().substring(uploadDetailImg1.getOriginalFilename().indexOf(".")));
 			if(uploadDetailImg2.getSize() != 0) {
-				detailImgName2 =("product" + String.valueOf(pv.getNo()) + "_detail2" + uploadDetailImg2.getOriginalFilename().substring(uploadDetailImg2.getOriginalFilename().indexOf(".")));							
+				detailImgName2 =("product" + String.valueOf(pv.getProduct_no()) + "_detail2" + uploadDetailImg2.getOriginalFilename().substring(uploadDetailImg2.getOriginalFilename().indexOf(".")));							
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -61,9 +61,9 @@ public class AdminController {
 			return mav;
 		}
 		
-		pv.setMainImg(mainImgName);
-		pv.setDetailImg1(detailImgName1);
-		pv.setDetailImg2(detailImgName2);
+		pv.setProduct_main_img(mainImgName);
+		pv.setProduct_detail_img1(detailImgName1);
+		pv.setProduct_detail_img2(detailImgName2);
 
 		try {
 			byte []data = uploadImg.getBytes();
