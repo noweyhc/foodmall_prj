@@ -1,4 +1,4 @@
-package com.sist.mall.controller;
+package com.mall.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sist.mall.product.dao.ProductDao;
-import com.sist.mall.product.vo.ProductVo;
-import com.sist.mall.user.dao.UserDAO;
+import com.mall.product.dao.ProductDao;
+import com.mall.product.vo.ProductVo;
+import com.mall.user.dao.UserDAO;
 
 import lombok.RequiredArgsConstructor;
 

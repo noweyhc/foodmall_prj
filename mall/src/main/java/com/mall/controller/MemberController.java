@@ -1,4 +1,4 @@
-package com.sist.mall.controller;
+package com.mall.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sist.mall.user.dao.UserDAO;
-import com.sist.mall.user.vo.UserVO;
+import com.mall.user.dao.UserDAO;
+import com.mall.user.vo.UserVO;
 
 import lombok.RequiredArgsConstructor;
 

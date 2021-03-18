@@ -1,4 +1,4 @@
-package com.sist.mall.db;
+package com.mall.db;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -14,7 +14,7 @@ public class SqlSessionFactoryBean {
 	
 	static {
 		if(sessionFactory == null) {
-			try(Reader reader = Resources.getResourceAsReader("com/sist/mall/db/dbConfig.xml")){
+			try(Reader reader = Resources.getResourceAsReader("com/mall/db/dbConfig.xml")){
 				sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			}catch(IOException e) {
 				e.printStackTrace();

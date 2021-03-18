@@ -1,4 +1,4 @@
-package com.sist.mall;
+package com.mall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

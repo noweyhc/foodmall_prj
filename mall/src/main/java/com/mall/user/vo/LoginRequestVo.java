@@ -1,4 +1,4 @@
-package com.sist.mall.user.vo;
+package com.mall.user.vo;
 
 import lombok.Getter;
 import lombok.Setter;

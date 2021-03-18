@@ -1,4 +1,4 @@
-package com.sist.mall.product.vo;
+package com.mall.product.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 

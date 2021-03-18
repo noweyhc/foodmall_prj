@@ -1,12 +1,12 @@
-package com.sist.mall.user.dao;
+package com.mall.user.dao;
 
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.sist.mall.db.SqlSessionFactoryBean;
-import com.sist.mall.user.vo.UserVO;
+import com.mall.db.SqlSessionFactoryBean;
+import com.mall.user.vo.UserVO;
 
 
 @Repository
