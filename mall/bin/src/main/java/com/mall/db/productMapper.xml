@@ -19,11 +19,4 @@
   <select id="findAll" resultType="productVo">
   	select * from TB_PRODUCT
   </select>
-  
-<!--   
-  <select id="selectCategory" resultType="productVo">
-  	select * from TB_PRODUCT
-  </select> 
--->
-  
 </mapper>
