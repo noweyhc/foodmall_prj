@@ -1,12 +1,16 @@
 package com.mall.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -131,9 +135,38 @@ public class AdminController {
 		return mav;
 	}
 	
+	//url : /admin/product-edit/상품번호
+	@RequestMapping("/product-edit/{productNo}")
+	public ModelAndView editProductFormDetail(@PathVariable String productNo) {
+		ModelAndView mav = new ModelAndView();
+		int no = Integer.parseInt(productNo);
+		mav.addObject("product", dao.selectOne(no));
+		mav.setViewName("/admin/productEditDetail");
+		return mav;
+	}
+	
 	//url : /admin/product-edit/delete?no=값
 	@RequestMapping("/product-edit/delete")
-	public String deleteProduct(int no) {
+	public String deleteProduct(int no, HttpServletRequest request) {
+		//서버에서 해당 상품의 관련 이미지를 삭제
+		ProductVo pv = dao.selectOne(no);
+		
+		//해당 상품의 이미지 경로를 배열에 담고, 차례로 삭제
+		List<String> imgList = new ArrayList<>();
+		imgList.add(request.getRealPath("/img") + "/" + pv.getProduct_main_img());
+		imgList.add(request.getRealPath("/img") + "/" + pv.getProduct_detail_img1());
+		if(pv.getProduct_detail_img2() != null) {
+			imgList.add(request.getRealPath("/img") + "/" + pv.getProduct_detail_img2());			
+		}
+		
+		for(String path : imgList) {
+			File file = new File(path);
+			if(file.exists()) {
+				file.delete();
+			}
+		}
+		
+		//DB에서 해당 상품의 데이터를 삭제
 		dao.deleteProduct(no);
 		return "redirect:/admin/product-edit";
 	}

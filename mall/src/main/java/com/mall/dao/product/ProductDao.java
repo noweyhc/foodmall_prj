@@ -18,7 +18,6 @@ public class ProductDao {
 	}
 	
 	public int registerProduct(ProductVo pv) {
-		System.out.println(pv);
 		int re = sqlSession.update("products.register", pv);
 		if (re == 1) {
 			sqlSession.commit();
@@ -44,6 +43,12 @@ public class ProductDao {
 			sqlSession.commit();
 		}
 		return re;
+	}
+	
+	//상품번호 no로 한 상품의 전체 데이터를 가져옵니다
+	public ProductVo selectOne(int no) {
+		ProductVo pv = sqlSession.selectOne("products.select", no);
+		return pv;
 	}
 	
 	public void commit() {

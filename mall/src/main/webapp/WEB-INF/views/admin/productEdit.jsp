@@ -29,7 +29,7 @@
 				<td id="${p.product_no }">${p.product_no }</td>
 				<td>${p.product_category }</td>
 				<td>${p.product_title }</td>
-				<td><input type="button" value="수정"></td>
+				<td><input type="button" value="수정" onclick="location.href='/admin/product-edit/${p.product_no }'"></td>
 				<td><input type="button" value="삭제" onclick="deleteConfirm('${p.product_no }','${p.product_title }')"></td>
 			</tr>
 		</c:forEach>

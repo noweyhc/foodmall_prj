@@ -16,10 +16,12 @@
 <body>
 	<div id="side-menu" class="side-menu">
 		<div class="goto-admin-main">
-		메인으로
+		<a href="">메인으로</a>
 		</div>
 		<div class="list">
-		상품 관리
+		상품 관리<br>
+		<a href="/admin/product-register">상품 등록</a><br>
+		<a href="/admin/product-edit">상품 수정 및 삭제</a>
 		</div>
 		<hr class = "divider">
 		<div class= "list">
