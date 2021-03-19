@@ -3,13 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
   <properties resource="com/mall/db/db.properties"/>
   <typeAliases>
   	<typeAlias type="com.mall.vo.product.ProductVo" alias="productVo"/>
   </typeAliases>
-  
-  
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -24,7 +21,5 @@
   <mappers>
     <mapper resource="com/mall/db/productMapper.xml"/>
     <mapper resource="com/mall/db/userMapper.xml"/>
-    <mapper resource="com/mall/db/faqMapper.xml"/>
-    
   </mappers>
 </configuration>

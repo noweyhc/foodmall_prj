@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+  
+  <!-- <update id="updateStep">
+  	update tb_faq set b_step = b_step +1 where b_ref=#{b_ref} and b_step > #{b_step}
+  </update>
+  
+  <select id="totBoard" resultType="java.lang.Integer">
+  	select count(*) from tb_faq
+  </select>
+
+  <update id="update">
+  	update tb_faq set title=#{title},content=#{content},fname=#{fname},fsize=#{fsize} where no=#{no} and pwd=#{pwd}
+  </update>
+
+  <delete id="delete">
+  	delete tb_faq where no=#{no} and pwd=#{pwd}  
+  </delete>
+  
+  <select id="nextNo" resultType="java.lang.Integer">
+  	select nvl(max(no),0)+1 from tb_faq
+  </select>
+  
+  
+  <insert id="insert">
+  	insert into tb_faq values(#{no},#{writer},#{pwd},#{title},#{content},#{ip},sysdate,0,#{fname},#{fsize},#{b_ref},#{b_step},#{b_level})
+  </insert>
+
+  
+  <select id="getBoard" resultType="boardVo">
+  	select * from tb_faq where no=#{no}
+  </select> 
+  
+  <select id="findAll" resultType="FAQVo">
+    select faq_no,faq_title,faq_content,faq_regdate,faq_hit,faq_manager from (select rownum num, faq_no,faq_title,faq_content,faq_regdate,faq_hit,faq_manager from 
+	(select * from tb_faq order by b_ref desc,b_step)) 
+	where num between #{start} and #{end}
+  </select> -->
+  
+   <select id="findAll" resultType="faqVo">
+  	select * from tb_faq
+  </select>
+</mapper>
