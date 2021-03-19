@@ -37,6 +37,15 @@ public class ProductDao {
 		return list;
 	}
 	
+	//상품번호 no 제품을 상품정보 테이블에서 삭제하고 성공 여부를 반환합니다
+	public int deleteProduct(int no) {
+		int re = sqlSession.delete("products.delete", no);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
 	public void commit() {
     	sqlSession.commit();
     }

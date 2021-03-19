@@ -10,6 +10,11 @@
     #{product_detail_text}, #{product_ingredient}, #{product_price}, sysdate)
   </select>
   
+  <select id="delete">
+  	delete from TB_PRODUCT
+  	where product_no = #{no}
+  </select>
+  
   <select id="selectProducts" resultType="productVo">
  	select product_no, product_category, product_title, product_price, 
     		product_main_img, product_detail_img1, product_detail_img2

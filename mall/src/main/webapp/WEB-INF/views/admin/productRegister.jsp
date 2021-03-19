@@ -11,7 +11,7 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
-<div class="body-wrapper">
+<div class="admin-body-wrapper">
 
 	<input type="button" value="관리자 메인" onclick='location.href = "/admin"'>
 	<hr>
@@ -58,7 +58,7 @@
 			<hr>
 			<br>
 			<input type="submit" value="등록">
-			<input type="reset" value="취소">
+			<input type="reset" value="재작성">
 	</form>
 
 </div>
