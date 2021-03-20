@@ -10,19 +10,6 @@
     #{product_detail_text}, #{product_ingredient}, #{product_price}, sysdate)
   </select>
   
-  <select id="delete">
-  	delete from TB_PRODUCT
-  	where product_no = #{no}
-  </select>
-  
-  <select id="select" resultType="productVo">
-  	select product_no, product_category, product_stock, product_title, product_title,
-  		product_main_img, product_caloies, product_origin, product_storage,
-  		product_detail_img1, product_detail_img2, product_detail_text, product_ingredient, product_price, product_regdate
-  	from TB_PRODUCT where product_no = #{no}
-  	
-  </select>
-  
   <select id="selectProducts" resultType="productVo">
  	select product_no, product_category, product_title, product_price, 
     		product_main_img, product_detail_img1, product_detail_img2
@@ -32,11 +19,4 @@
   <select id="findAll" resultType="productVo">
   	select * from TB_PRODUCT
   </select>
-  
-<!--   
-  <select id="selectCategory" resultType="productVo">
-  	select * from TB_PRODUCT
-  </select> 
--->
-  
 </mapper>
