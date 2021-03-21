@@ -16,7 +16,7 @@
 <body>
 	<div id="side-menu" class="side-menu">
 		<div class="goto-admin-main">
-		<a href="">메인으로</a>
+		<a href="/admin/product-register">메인으로</a>
 		</div>
 		<div class="list">
 		상품 관리<br>

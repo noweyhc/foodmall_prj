@@ -13,16 +13,16 @@
 <body>
 <div class="admin-body-wrapper">
 
-	<input type="button" value="관리자 메인" onclick='location.href = "/admin"'>
 	<hr>
-	임시 상품 등록 페이지<br><br>
+	<h2>상품 등록</h2>
+	<hr>
 	<input type="button" id="randomBtn" value="랜덤 생성" style="background-color:cyan">
 	등록 실패 시 상품번호 중복이니 재생성 후 등록하세요<br>
 	<div style="font-weigt:bold">
 	${result }<br>
 	</div>
 	
-	<form action="product-register" id="product_register" method="post" enctype="multipart/form-data">
+	<form action="product-edit" id="product_register" method="post" enctype="multipart/form-data">
 			상품번호 : <input type="text" name="product_no" id="product_no" style="width:50px">
 			카테고리 : <select name="product_category" id="product_category" style="width:80px">
 				<option value="국/탕" selected="selected">국/탕</option>
