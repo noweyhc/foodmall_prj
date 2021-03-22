@@ -238,7 +238,7 @@ let signUpSubmit = {
             //회원가입이 완료되면 로그인 페이지로 이동
             if(response == SIGNUPSUCCESS){
                 alert('회원 가입이 완료되었습니다.');
-                window.location.href='signIn.do';
+                window.location.href='/';
             }//end if
         }).fail(function (error){
             alert('오류가 발생하였습니다 잠시 후 다시 시도해주세요.');
