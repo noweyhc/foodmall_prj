@@ -22,4 +22,5 @@ public class FaqVo {
 	private int faq_hit;
 	private String faq_manager; 
 	private MultipartFile uploadFile;
+	private String test;
 }
