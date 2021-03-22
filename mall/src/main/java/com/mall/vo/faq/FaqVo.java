@@ -2,6 +2,8 @@ package com.mall.vo.faq;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,5 @@ public class FaqVo {
 	private Timestamp faq_update;	
 	private int faq_hit;
 	private String faq_manager; 
-
+	private MultipartFile uploadFile;
 }
