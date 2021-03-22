@@ -40,18 +40,18 @@
 			재료 : <input type="text" name="product_ingredient" id="product_ingredient" value="${product.product_ingredient }">
 			가격 : <input type="text" name="product_price" id="product_price"  style="width:100px" value="${product.product_price }"><br>
 			
-			메인이미지  <img src="/img/${product.product_main_img }"><br>
-			<input type="hidden" name="product_main_img" class="product_main_img" value="${product.product_main_img }">
-			변경 할 메인이미지 : <input type="file" id="mainImgFile" name="mainImgFile"><br>
+			메인이미지 <img src="/img/${product.product_main_img }" id="main_img" ><br>
+			<input type="hidden" name="product_main_img" id="product_main_img" value="${product.product_main_img }">
+			변경 할 메인이미지 : <input type="file" id="mainImgFile" name="mainImgFile" onchange="setImg(event, 'main_img');"><br>
 			
-			상세이미지1 <img src="/img/${product.product_detail_img1 }"><br>
-			<input type="hidden" name="product_detail_img1" class="product_detail_img1" value="${product.product_detail_img1 }">
-			변경 할 상세이미지1 : <input type="file" id="detailImgFile1" name="detailImgFile1"><hr>
+			상세이미지1 <img src="/img/${product.product_detail_img1 }" id="detail_img1"><br>
+			<input type="hidden" name="product_detail_img1" id="product_detail_img1" value="${product.product_detail_img1 }">
+			변경 할 상세이미지1 : <input type="file" id="detailImgFile1" name="detailImgFile1" onchange="setImg(event, 'detail_img1');"><hr>
 			
-			상세이미지2 <img src="/img/${product.product_detail_img2 }" alt="이미지 없음"><br>
+			상세이미지2 <img src="/img/${product.product_detail_img2 }" id="detail_img2" alt="이미지 없음"><br>
 			상세이미지2는 필수가 아닙니다<br>
-			<input type="hidden" name="product_detail_img2" class="product_detail_img2" value="${product.product_detail_img2 }">
-			상세이미지2 : <input type="file" id="detailImgFile2" name="detailImgFile2"><br>
+			<input type="hidden" name="product_detail_img2" id="product_detail_img2" value="${product.product_detail_img2 }">
+			상세이미지2 : <input type="file" id="detailImgFile2" name="detailImgFile2" onchange="setImg(event, 'detail_img2');"><br>
 			<hr>
 			<br>
 			<input type="button" id="product_edit_submit" value="수정">
@@ -61,5 +61,6 @@
 </div>
 
 <script type="text/javascript" src="/static/js/admin/productEdit.js"></script>
+<script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>
 </body>
 </html>

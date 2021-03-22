@@ -25,7 +25,7 @@ public class AdminUtil {
 	 * @param tale 이미지 파일에 붙일 꼬리표 (메인이미지는 없음, 상세이미지는 _detail1,2)
 	 * @return 새로운 파일 이름
 	 */
-	public String imgRename(int no, MultipartFile imgFile, String tale) {
+	public String renameImg(int no, MultipartFile imgFile, String tale) {
 		String newName = "";
 		
 		// 새로운 파일 이름 : product[상품번호][꼬리표].확장자

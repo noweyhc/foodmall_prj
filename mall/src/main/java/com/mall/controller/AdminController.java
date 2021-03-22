@@ -1,6 +1,5 @@
 package com.mall.controller;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,11 +64,11 @@ public class AdminController {
 		
 		//이미지 파일 이름을 product상품번호 형태로 수정하고, 필수 이미지가 없을 시 안내 메세지와 함께 돌려 보냄
 		try {
-			mainImgName = util.imgRename(pv.getProduct_no(), uploadImg, "");
-			detailImgName1 = util.imgRename(pv.getProduct_no(), uploadDetailImg1, "_detail1");
+			mainImgName = util.renameImg(pv.getProduct_no(), uploadImg, "");
+			detailImgName1 = util.renameImg(pv.getProduct_no(), uploadDetailImg1, "_detail1");
 			//상세이미지2가 존재하는지 확인
 			if(uploadDetailImg2.getSize() != 0) {
-				detailImgName2 = util.imgRename(pv.getProduct_no(), uploadDetailImg2, "_detail2");
+				detailImgName2 = util.renameImg(pv.getProduct_no(), uploadDetailImg2, "_detail2");
 			}
 		}catch(Exception e){
 			mav.addObject("result", "메인이미지와 상세이미지1은 필수입니다.");	
@@ -162,7 +161,7 @@ public class AdminController {
 			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
 			String oldMainImgPath = path + "/" + pv.getProduct_main_img();
 			util.deleteImg(oldMainImgPath);			
-			mainImgName = util.imgRename(pv.getProduct_no(), pv.getMainImgFile(), "");
+			mainImgName = util.renameImg(pv.getProduct_no(), pv.getMainImgFile(), "");
 			pv.setProduct_main_img(mainImgName);
 			
 			try {
@@ -175,7 +174,7 @@ public class AdminController {
 		if(pv.getDetailImgFile1().getSize() != 0) {
 			String oldDetailImgPath1 = path + "/" + pv.getProduct_detail_img1();
 			util.deleteImg(oldDetailImgPath1);
-			detailImgName1 = util.imgRename(pv.getProduct_no(), pv.getDetailImgFile1(), "_detail1");
+			detailImgName1 = util.renameImg(pv.getProduct_no(), pv.getDetailImgFile1(), "_detail1");
 			pv.setProduct_detail_img1(detailImgName1);
 			
 			try {
@@ -190,7 +189,7 @@ public class AdminController {
 				String oldDetailImgPath2 = path + "/" + pv.getProduct_detail_img2();
 				util.deleteImg(oldDetailImgPath2);
 			}
-			detailImgName2 = util.imgRename(pv.getProduct_no(), pv.getDetailImgFile2(), "_detail2");
+			detailImgName2 = util.renameImg(pv.getProduct_no(), pv.getDetailImgFile2(), "_detail2");
 			pv.setProduct_detail_img2(detailImgName2);
 			try {
 				util.uploadImg(path, pv.getDetailImgFile2(), detailImgName2);

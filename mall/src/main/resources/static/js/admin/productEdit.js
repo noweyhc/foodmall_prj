@@ -24,9 +24,8 @@ storageOptions.forEach(function(option){
 let productNo = document.getElementById('product_no').value;
 let ajaxUrl = '/admin/product-edit/' + productNo;
 
-$("#product_edit_submit").click(function(){
-	let updateData = new FormData(document.getElementById('product_editor'));
-	
+$('#product_edit_submit').click(function(){
+	let updateData = new FormData(document.getElementById('product_editor'));	
 	$.ajax({
 		url:ajaxUrl,
 		data:updateData,
@@ -34,7 +33,7 @@ $("#product_edit_submit").click(function(){
 		processData:false,
 		contentType:false,
 		success:function(){
-			alert('상품 정보 수정에 성공했습니다.');
+			alert("상품 수정에 성공하였습니다.");
 		}
-	})
+	});
 });

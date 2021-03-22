@@ -6,3 +6,13 @@ function deleteConfirm(no, productName){
 		location.href = "/admin/product-edit/delete?no=" + no;
 	}
 }
+
+//이미지 업로드 시 미리보기 기능 구현
+function setImg(event, imgId) {
+	let reader = new FileReader();
+	reader.onload = e => {
+		let img = document.getElementById(imgId);
+		img.src = e.target.result;
+	}
+	reader.readAsDataURL(event.target.files[0]);				
+};
