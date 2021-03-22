@@ -51,6 +51,15 @@ public class ProductDao {
 		return pv;
 	}
 	
+	//상품번호 no 제품의 정보를 변경하고 성공 여부를 반환합니다
+	public int updateProduct(ProductVo pv) {
+		int re = sqlSession.update("products.update", pv);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
 	public void commit() {
     	sqlSession.commit();
     }

@@ -1,6 +1,5 @@
 package com.mall.controller;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,16 +7,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
-import com.mall.dao.user.UserDAO;
+import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
 
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,8 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 	
 	private final ProductDao dao;
-
+	private final AdminUtil util;
+	
 	//관리자 메인 페이지로 이동
 	@RequestMapping("")
 	public String adminMainpage() {
@@ -64,11 +64,11 @@ public class AdminController {
 		
 		//이미지 파일 이름을 product상품번호 형태로 수정하고, 필수 이미지가 없을 시 안내 메세지와 함께 돌려 보냄
 		try {
-			mainImgName =("product" + String.valueOf(pv.getProduct_no()) + uploadImg.getOriginalFilename().substring(uploadImg.getOriginalFilename().indexOf(".")));
-			detailImgName1 =("product" + String.valueOf(pv.getProduct_no()) + "_detail1" + uploadDetailImg1.getOriginalFilename().substring(uploadDetailImg1.getOriginalFilename().indexOf(".")));
+			mainImgName = util.renameImg(pv.getProduct_no(), uploadImg, "");
+			detailImgName1 = util.renameImg(pv.getProduct_no(), uploadDetailImg1, "_detail1");
 			//상세이미지2가 존재하는지 확인
 			if(uploadDetailImg2.getSize() != 0) {
-				detailImgName2 =("product" + String.valueOf(pv.getProduct_no()) + "_detail2" + uploadDetailImg2.getOriginalFilename().substring(uploadDetailImg2.getOriginalFilename().indexOf(".")));							
+				detailImgName2 = util.renameImg(pv.getProduct_no(), uploadDetailImg2, "_detail2");
 			}
 		}catch(Exception e){
 			mav.addObject("result", "메인이미지와 상세이미지1은 필수입니다.");	
@@ -136,13 +136,71 @@ public class AdminController {
 	}
 	
 	//url : /admin/product-edit/상품번호
-	@RequestMapping("/product-edit/{productNo}")
+	@RequestMapping(value = "/product-edit/{productNo}", method = RequestMethod.GET)
 	public ModelAndView editProductFormDetail(@PathVariable String productNo) {
 		ModelAndView mav = new ModelAndView();
 		int no = Integer.parseInt(productNo);
 		mav.addObject("product", dao.selectOne(no));
 		mav.setViewName("/admin/productEditDetail");
 		return mav;
+	}
+	
+	//url : /admin/product-edit/상품번호, POST 방식일 때 DB와 이미지 파일 수정
+	@RequestMapping(value = "/product-edit/{productNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateProduct(ProductVo pv, HttpServletRequest request) {
+		//상품 이미지를 등록할 webapp/img 경로
+		String path = request.getRealPath("/img");
+		
+		String mainImgName = "";
+		String detailImgName1 = "";
+		String detailImgName2 = ""; 
+				
+		//메인이미지와 상세이미지1이 변경되었는지 확인
+		if(pv.getMainImgFile().getSize() != 0) {
+			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
+			String oldMainImgPath = path + "/" + pv.getProduct_main_img();
+			util.deleteImg(oldMainImgPath);			
+			mainImgName = util.renameImg(pv.getProduct_no(), pv.getMainImgFile(), "");
+			pv.setProduct_main_img(mainImgName);
+			
+			try {
+				util.uploadImg(path, pv.getMainImgFile(), mainImgName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(pv.getDetailImgFile1().getSize() != 0) {
+			String oldDetailImgPath1 = path + "/" + pv.getProduct_detail_img1();
+			util.deleteImg(oldDetailImgPath1);
+			detailImgName1 = util.renameImg(pv.getProduct_no(), pv.getDetailImgFile1(), "_detail1");
+			pv.setProduct_detail_img1(detailImgName1);
+			
+			try {
+				util.uploadImg(path, pv.getDetailImgFile1(), detailImgName1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(pv.getDetailImgFile2().getSize() != 0) {
+			if(pv.getProduct_detail_img2() != null) {
+				String oldDetailImgPath2 = path + "/" + pv.getProduct_detail_img2();
+				util.deleteImg(oldDetailImgPath2);
+			}
+			detailImgName2 = util.renameImg(pv.getProduct_no(), pv.getDetailImgFile2(), "_detail2");
+			pv.setProduct_detail_img2(detailImgName2);
+			try {
+				util.uploadImg(path, pv.getDetailImgFile2(), detailImgName2);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int re = dao.updateProduct(pv);
+		
+		return re+"";
 	}
 	
 	//url : /admin/product-edit/delete?no=값
@@ -160,10 +218,7 @@ public class AdminController {
 		}
 		
 		for(String path : imgList) {
-			File file = new File(path);
-			if(file.exists()) {
-				file.delete();
-			}
+			util.deleteImg(path);
 		}
 		
 		//DB에서 해당 상품의 데이터를 삭제

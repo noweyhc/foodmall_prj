@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/static/css/adminStyle.css">
+<link rel="stylesheet" href="/css/adminStyle.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -36,6 +36,6 @@
 	</table>
 </div>
 
-<script type="text/javascript" src="/static/js/adminFuntions.js"></script>
+<script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>
 </body>
 </html>

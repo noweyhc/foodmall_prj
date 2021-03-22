@@ -13,9 +13,8 @@
 <body>
 <div class="admin-body-wrapper">
 
-	<input type="button" value="관리자 메인" onclick='location.href = "/admin"'>
+	<h2>상품 등록</h2>
 	<hr>
-	임시 상품 등록 페이지<br><br>
 	<input type="button" id="randomBtn" value="랜덤 생성" style="background-color:cyan">
 	등록 실패 시 상품번호 중복이니 재생성 후 등록하세요<br>
 	<div style="font-weigt:bold">
@@ -46,15 +45,18 @@
 			재료 : <input type="text" name="product_ingredient" id="product_ingredient">
 			가격 : <input type="text" name="product_price" id="product_price"  style="width:100px"><br>
 			
+			<img src="" id="main_img" alt="이미지 없음"><br>
 			<input type="hidden" name="product_main_img" class="product_main_img">
-			메인이미지 : <input type="file" id="mainImgFile" name="mainImgFile"><br>
+			메인이미지 : <input type="file" id="mainImgFile" name="mainImgFile" onchange="setImg(event, 'main_img');"><br>
 			
+			<img src="" id="detail_img1" alt="이미지 없음"><br>
 			<input type="hidden" name="product_detail_img1" class="product_detail_img1">
-			상세이미지1 : <input type="file" id="detailImgFile1" name="detailImgFile1"><hr>
+			상세이미지1 : <input type="file" id="detailImgFile1" name="detailImgFile1" onchange="setImg(event, 'detail_img1');"><hr>
 			
 			상세이미지2는 필수가 아닙니다<br>
+			<img src="" id="detail_img2" alt="이미지 없음"><br>
 			<input type="hidden" name="product_detail_img2" class="product_detail_img2">
-			상세이미지2 : <input type="file" id="detailImgFile2" name="detailImgFile2"><br>
+			상세이미지2 : <input type="file" id="detailImgFile2" name="detailImgFile2" onchange="setImg(event, 'detail_img2');"><br>
 			<hr>
 			<br>
 			<input type="submit" value="등록">
@@ -63,7 +65,7 @@
 
 </div>
 
-<script type="text/javascript" src="/static/js/generate_random.js">
-</script>
+<script type="text/javascript" src="/static/js/admin/generate_random.js"></script>
+<script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>
 </body>
 </html>
