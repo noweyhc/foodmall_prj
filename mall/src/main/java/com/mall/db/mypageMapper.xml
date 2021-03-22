@@ -12,6 +12,10 @@
   		select mem_id from tb_member where mem_id = #{mem_id}
   </select>
   
+  <select id="getPwd" resultType="java.lang.String">
+		SELECT mem_pwd FROM tb_member WHERE mem_id = #{mem_id}
+  </select>
+
   <update id="updateEmail">
   		UPDATE tb_member SET mem_email = #{mem_email} WHERE mem_id = #{mem_id}
   </update>
@@ -20,7 +24,11 @@
   		UPDATE tb_member SET mem_phone = #{mem_phone} WHERE mem_id = #{mem_id}
   </update>
   
-  <select id="getPwd" resultType="java.lang.String">
-		SELECT mem_pwd FROM tb_member WHERE mem_id = #{mem_id}
-  </select>
+  <update id="updatePwd">
+  		UPDATE tb_member SET mem_pwd = #{mem_pwd} WHERE mem_id = #{mem_id}
+  </update>
+  
+  <delete id="deleteId">
+  		DELETE tb_member WHERE mem_id = #{mem_id}
+  </delete>  
 </mapper>

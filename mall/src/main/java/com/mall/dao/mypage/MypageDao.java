@@ -1,7 +1,5 @@
 package com.mall.dao.mypage;
 
-import static com.mall.db.SqlSessionFactoryBean.getSqlSession;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,10 +56,6 @@ public class MypageDao {
 
 		return re;
 	}
-	
-	public void commit() {
-    	sqlSession.commit();
-    }
 
 	public MypageVo getMemberid(String mem_id) {
 		
@@ -82,4 +76,37 @@ public class MypageDao {
 		return pwd;
 	}
 
+	public int updatePwd(String newPassword) {
+		
+		String admin = "leewooo";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("mem_id", admin);
+		map.put("mem_pwd", newPassword);
+		
+		System.out.println("bb"+map.get("mem_pwd")+"bb");
+		
+		int re = sqlSession.update("mypage.updatePwd",map);
+		
+		commit();
+		
+		System.out.println(re);
+		
+		return re;
+	}
+	
+	public void commit() {
+    	sqlSession.commit();
+    }
+
+	public int deleteId(String mem_id) {
+		
+		System.out.println(mem_id);
+		int re = sqlSession.delete("mypage.deleteId",mem_id);
+		
+		commit();
+		
+		return re;
+	}
 }
