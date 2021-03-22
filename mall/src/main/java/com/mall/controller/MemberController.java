@@ -17,11 +17,13 @@ public class MemberController {
 	
 	private final UserDAO userDAO;
 	
+	//회원가입으로
 	@GetMapping("/signUp.do")
 	public String signUp() {
 		return "signUp";
 	}
 	
+	//아이디 check
 	@PostMapping("/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestBody String mem_id) {
@@ -29,6 +31,7 @@ public class MemberController {
 		return String.valueOf(userDAO.idCheck(mem_id));
 	}
 	
+	//이메일 check
 	@PostMapping("/emailCheck.do")
 	@ResponseBody
 	public String eamilCheck(@RequestBody String mem_email) {
@@ -36,6 +39,7 @@ public class MemberController {
 		return String.valueOf(userDAO.emailCheck(mem_email));
 	}
 	
+	//회원가입 요청
 	@PostMapping("/signUp.do")
 	@ResponseBody
 	public String signUp(@RequestBody UserVO userVO) {
