@@ -32,6 +32,11 @@
   	where product_no = #{product_no}
   </select>
   
+  <select id="searchByName" resultType="productVo">
+  	select * from TB_PRODUCT
+  	where product_title like #{keyword}
+  </select>
+  
   <select id="selectProducts" resultType="productVo">
  	select product_no, product_category, product_title, product_price, 
     		product_main_img, product_detail_img1, product_detail_img2

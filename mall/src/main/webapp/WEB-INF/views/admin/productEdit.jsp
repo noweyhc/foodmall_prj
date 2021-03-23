@@ -13,6 +13,7 @@
 <div class="admin-body-wrapper">
 	<div class="admin-title">
 		<h2>상품 관리</h2>
+		<hr>
 	</div>
 	
 	<table width="70%">

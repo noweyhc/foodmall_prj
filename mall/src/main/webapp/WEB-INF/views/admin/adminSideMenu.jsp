@@ -25,7 +25,8 @@
 		</div>
 		<hr class = "divider">
 		<div class= "list">
-		할인 관리
+		할인 관리<br>
+		<a href="/admin/sale-register">할인 등록</a><br>
 		</div>
 		<hr class = "divider">
 		<div class= "list">

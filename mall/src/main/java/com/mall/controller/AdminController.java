@@ -226,4 +226,36 @@ public class AdminController {
 		return "redirect:/admin/product-edit";
 	}
 	
+	//url : /admin/product-search
+	//GET 방식 접근일 때, 검색 팝업창을 띄움
+	@RequestMapping(value = "/product-search", method = RequestMethod.GET)
+	public String searchProduct(HttpServletRequest request) {
+		return "/admin/productSearch";
+	}
+	
+	//url : /admin/product-search
+	//POST 방식 접근일 때, 검색 결과를 갱신
+	@RequestMapping(value = "/product-search", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ProductVo> updateSearchList(HttpServletRequest request) {
+		String keyword = request.getParameter("keyword");
+		List<ProductVo> searchList = new ArrayList<>();
+		searchList = dao.searchByName(keyword);			
+		return searchList;
+	}
+	
+	@RequestMapping(value = "/sale-register", method = RequestMethod.GET)
+	public String registerSaleForm() {
+		return "/admin/saleRegister";
+	}
+	
+	@RequestMapping(value = "/sale-register/{productNo}", method = RequestMethod.POST)
+	public String registerSaleDetail(@PathVariable String productNo) {
+		return "/admin/saleRegister";
+	}
+
+	@RequestMapping(value = "/testest")
+	public String searchProduct() {
+		return "/admin/productSearch";
+	}
 }
