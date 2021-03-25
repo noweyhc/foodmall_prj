@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sale">
+  <select id="register">
+    insert into TB_TIMESALE values(
+    #{product_no},
+    to_date(#{timesale_start}, 'yyyy-mm-dd hh24:mi:ss'),
+    to_date(#{timesale_end}, 'yyyy-mm-dd hh24:mi:ss'),
+    #{timesale_saleprice})
+  </select>
+</mapper>

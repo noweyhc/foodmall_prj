@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
+import com.mall.dao.sale.SaleDao;
 import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
+import com.mall.vo.sale.SaleVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 	
 	private final ProductDao dao;
+	private final SaleDao sdao;
 	private final AdminUtil util;
 	
 	//관리자 메인 페이지로 이동
@@ -249,8 +253,18 @@ public class AdminController {
 		return "/admin/saleRegister";
 	}
 	
-	@RequestMapping(value = "/sale-register/{productNo}", method = RequestMethod.POST)
-	public String registerSaleDetail(@PathVariable String productNo) {
+	//url : /admin/sale-register
+	//POST 방식 접근일 때, 받은 정보를 세일정보 테이블에 입력
+	@RequestMapping(value = "/sale-register", method = RequestMethod.POST)
+	public String registerSaleDetail(HttpServletRequest request) {
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		int salePrice = Integer.parseInt(request.getParameter("salePrice"));
+		
+		SaleVo sv = new SaleVo(productNo, startDate, endDate, salePrice);
+		sdao.registerSale(sv);
+		
 		return "/admin/saleRegister";
 	}
 

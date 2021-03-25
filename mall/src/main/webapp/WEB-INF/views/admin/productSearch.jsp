@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 <h3>상품 검색기</h3>
 	<div>
 		 <input type="text" name="searchKeyword" id="searchKeyword" style="width:600px; height:20px"
-		  placeholder="상품명으로 검색" onkeyup="search('searchKeyword')">
+		  placeholder="상품명으로 검색" onkeyup="search('searchKeyword');">
 	</div>
 	
 	<div id="searchResults">
@@ -21,6 +20,7 @@
 				<td width="100px">상품번호</td>
 				<td width="200px">카테고리</td>
 				<td width="300px">상품명</td>
+				<td width="200px">원가격</td>
 			</tr>
 		</table>
 	</div>
