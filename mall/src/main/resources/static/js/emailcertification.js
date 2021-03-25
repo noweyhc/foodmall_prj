@@ -27,7 +27,6 @@
                 data:data
             }).done(function(data){
                 code = data;
-                alert(code);
                 alert("인증코드를 발송하였습니다.");
             });
             
@@ -36,7 +35,7 @@
         /*================이메일 인증완료 후 수정완료 클릭 시 이메일 변경====================*/
         $("#btnEmailCheck").click(function(){
         
-        	let userCode = $("#inputPhone").val();
+        	let userCode = $("#inputEmail").val();
         	let email = $('#email').val();
         	
         	let data = {email:email};
@@ -44,11 +43,14 @@
         	if(code == userCode){
         		$.ajax({
         			url : "/updateEmail.do",
-        			data:data
+        			data:data,
+					type:'GET'
         		}).done(function(data){
+					alert('성공적으로 이메일 변경이 완료되었습니다.');
         			$("") // jstl문법 변수처리 가능한지 확인해보기
-        		});
-        	
+        		}).fail(function(){
+					alert("실패");
+				});
         	}else{
         		alert("일치하지않습니다.");
         		$('#validInput').val('');

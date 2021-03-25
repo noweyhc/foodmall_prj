@@ -23,7 +23,7 @@
             <input type="text" id="email" name="mem_email"><button type="button" id="btnEmailSendCode">인증</button>
 			<p id="emailValidCheck"></p>
             인증번호 입력
-            <input type="text" id="validInput" name="validInput"><br>
+            <input type="text" id="inputEmail" name="validInput"><br>
             <button type="button" id="btnEmailCheck">수정 완료</button>
             <button type="button" id="btnEmailCheckCancel">수정 취소</button>
         </div>

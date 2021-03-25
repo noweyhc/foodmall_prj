@@ -106,7 +106,7 @@ public class MypageController {
 		admin = "leewooo";
 		
 		int re = dao.updateEmail(email,admin);
-		
+		System.out.println(re);
 		if(re == 1) {
 			return email;
 		}else {
@@ -134,8 +134,6 @@ public class MypageController {
 		
 		// 핸드폰 문자를 보내기 위한 객체
 		BanchanSms sms = new BanchanSms();
-		
-		System.out.println(code);
 		
 		sms.sendMsg("01086469577", phone, content);
 		
