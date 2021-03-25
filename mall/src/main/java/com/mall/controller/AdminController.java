@@ -268,8 +268,48 @@ public class AdminController {
 		return "/admin/saleRegister";
 	}
 
-	@RequestMapping(value = "/testest")
-	public String searchProduct() {
-		return "/admin/productSearch";
+	//url : /admin/sale-edit
+	//GET 방식 접근일 때, 세일 상품의 목록을 보여줌
+	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
+	public ModelAndView editSale() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", sdao.findAll());
+		mav.setViewName("/admin/saleEdit");
+		return mav;
+	}
+	
+	//url : /admin/sale-edit/상품번호
+	//GET 방식 접근일 때, 해당 세일 상품의 상세 정보를 보여줌
+	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.GET)
+	public ModelAndView editSaleDetail(@PathVariable String productNo) {
+		ModelAndView mav = new ModelAndView();
+		int no = Integer.parseInt(productNo);
+		mav.addObject("product", dao.selectOne(no));
+		mav.addObject("sale", sdao.selectOne(no));
+		mav.setViewName("/admin/saleEditDetail");
+		return mav;
+	}
+	
+	//url : /admin/sale-edit/상품번호
+	//POST 방식 접근일 때, 해당 세일 상품의 DB 정보를 수정
+	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateSale(@PathVariable String productNo, HttpServletRequest request) {
+		int no = Integer.parseInt(productNo);
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		int salePrice = Integer.parseInt(request.getParameter("salePrice"));
+		SaleVo sv = new SaleVo(no, startDate, endDate, salePrice);
+		int re = sdao.updateSale(sv);
+		
+		return re+"";
+	}
+	
+	//url : /admin/sale-edit/delete?no=값
+	@RequestMapping("/sale-edit/delete")
+	public String deleteSale(int no) {
+		//DB에서 해당 세일의 데이터를 삭제
+		sdao.deleteSale(no);
+		return "redirect:/admin/sale-edit";
 	}
 }

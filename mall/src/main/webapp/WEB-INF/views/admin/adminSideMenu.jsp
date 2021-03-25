@@ -27,6 +27,7 @@
 		<div class= "list">
 		할인 관리<br>
 		<a href="/admin/sale-register">할인 등록</a><br>
+		<a href="/admin/sale-edit">할인 수정 및 삭제</a><br>
 		</div>
 		<hr class = "divider">
 		<div class= "list">

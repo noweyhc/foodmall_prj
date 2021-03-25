@@ -1,6 +1,6 @@
    
 //상품 삭제 시 확인창을 띄우는 함수
-function deleteConfirm(no, productName){
+function deleteConfirmProduct(no, productName){
 	let deleteConfirm = confirm(no +'번 상품 : ' + productName + ' 삭제합니다');
 	if(deleteConfirm){
 		location.href = "/admin/product-edit/delete?no=" + no;
@@ -60,6 +60,15 @@ function selectProduct(no, title, price){
 	opener.document.getElementById("productTitle").value = title;
 	opener.document.getElementById("productPrice").value = price;
 	window.close();
+}
+
+
+//할인 삭제 시 확인창을 띄우는 함수
+function deleteConfirmSale(no){
+	let deleteConfirm = confirm(no +'번 상품 할인을 삭제합니다');
+	if(deleteConfirm){
+		location.href = "/admin/sale-edit/delete?no=" + no;
+	}
 }
 
 
