@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
+import com.mall.dao.sale.SaleDao;
 import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
+import com.mall.vo.sale.SaleVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 	
 	private final ProductDao dao;
+	private final SaleDao sdao;
 	private final AdminUtil util;
 	
 	//관리자 메인 페이지로 이동
@@ -226,4 +230,86 @@ public class AdminController {
 		return "redirect:/admin/product-edit";
 	}
 	
+	//url : /admin/product-search
+	//GET 방식 접근일 때, 검색 팝업창을 띄움
+	@RequestMapping(value = "/product-search", method = RequestMethod.GET)
+	public String searchProduct(HttpServletRequest request) {
+		return "/admin/productSearch";
+	}
+	
+	//url : /admin/product-search
+	//POST 방식 접근일 때, 검색 결과를 갱신
+	@RequestMapping(value = "/product-search", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ProductVo> updateSearchList(HttpServletRequest request) {
+		String keyword = request.getParameter("keyword");
+		List<ProductVo> searchList = new ArrayList<>();
+		searchList = dao.searchByName(keyword);			
+		return searchList;
+	}
+	
+	@RequestMapping(value = "/sale-register", method = RequestMethod.GET)
+	public String registerSaleForm() {
+		return "/admin/saleRegister";
+	}
+	
+	//url : /admin/sale-register
+	//POST 방식 접근일 때, 받은 정보를 세일정보 테이블에 입력
+	@RequestMapping(value = "/sale-register", method = RequestMethod.POST)
+	public String registerSaleDetail(HttpServletRequest request) {
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		int salePrice = Integer.parseInt(request.getParameter("salePrice"));
+		
+		SaleVo sv = new SaleVo(productNo, startDate, endDate, salePrice);
+		sdao.registerSale(sv);
+		
+		return "/admin/saleRegister";
+	}
+
+	//url : /admin/sale-edit
+	//GET 방식 접근일 때, 세일 상품의 목록을 보여줌
+	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
+	public ModelAndView editSale() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", sdao.findAll());
+		mav.setViewName("/admin/saleEdit");
+		return mav;
+	}
+	
+	//url : /admin/sale-edit/상품번호
+	//GET 방식 접근일 때, 해당 세일 상품의 상세 정보를 보여줌
+	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.GET)
+	public ModelAndView editSaleDetail(@PathVariable String productNo) {
+		ModelAndView mav = new ModelAndView();
+		int no = Integer.parseInt(productNo);
+		mav.addObject("product", dao.selectOne(no));
+		mav.addObject("sale", sdao.selectOne(no));
+		mav.setViewName("/admin/saleEditDetail");
+		return mav;
+	}
+	
+	//url : /admin/sale-edit/상품번호
+	//POST 방식 접근일 때, 해당 세일 상품의 DB 정보를 수정
+	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateSale(@PathVariable String productNo, HttpServletRequest request) {
+		int no = Integer.parseInt(productNo);
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		int salePrice = Integer.parseInt(request.getParameter("salePrice"));
+		SaleVo sv = new SaleVo(no, startDate, endDate, salePrice);
+		int re = sdao.updateSale(sv);
+		
+		return re+"";
+	}
+	
+	//url : /admin/sale-edit/delete?no=값
+	@RequestMapping("/sale-edit/delete")
+	public String deleteSale(int no) {
+		//DB에서 해당 세일의 데이터를 삭제
+		sdao.deleteSale(no);
+		return "redirect:/admin/sale-edit";
+	}
 }
