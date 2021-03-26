@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -271,11 +272,9 @@ public class AdminController {
 	//url : /admin/sale-edit
 	//GET 방식 접근일 때, 세일 상품의 목록을 보여줌
 	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
-	public ModelAndView editSale() {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", sdao.findAll());
-		mav.setViewName("/admin/saleEdit");
-		return mav;
+	public String editSale(Model model) {
+		model.addAttribute("list", sdao.findAll());
+		return "/admin/saleEdit";
 	}
 	
 	//url : /admin/sale-edit/상품번호
