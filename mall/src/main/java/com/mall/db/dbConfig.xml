@@ -7,6 +7,7 @@
   <properties resource="com/mall/db/db.properties"/>
   <typeAliases>
   	<typeAlias type="com.mall.vo.product.ProductVo" alias="productVo"/>
+  	<typeAlias type="com.mall.vo.sale.SaleVo" alias="saleVo"/>
   </typeAliases>
   
   
@@ -34,9 +35,12 @@
     
     
     
+    
+    
     <mapper resource="com/mall/db/noticeMapper.xml"/>
 
 
 
+    <mapper resource="com/mall/db/saleMapper.xml"/>
   </mappers>
 </configuration>
