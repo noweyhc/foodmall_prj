@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +23,58 @@
 
 	<%@ include file="header.jsp" %>
 	<%@ include file="menubar.jsp" %>
+	
+	<section id=detailProducts><br>
 	<div id="title" align="center">
-		<h2>상품상세</h2>
+		<h2>상품 상세정보</h2>
 		<hr>
+		<a href="/listProducts.do">상품목록</a> >
+		<a href="#">${p.product_category }</a>
+	</div>
+	
+	<div id="product-detail" align="center">
+		<table border="1">
+			<tr>
+				<td>
+					<img  src="img/${p.product_main_img }" width="400" height="400">
+				</td>
+				<td>
+					<table border="1" style="width: 400px; height: 400px;">
+					<tr align="center">
+						<td>상품명</td>
+						<td>${p.product_title }</td>
+					</tr>
+					<tr align="center">
+						<td>가격</td>
+						<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
+					</tr>
+					<tr align="center">
+						<td colspan="2">
+							<form name="form-cart" method="post" action="/insert.do">
+								<input type="hidden" name="product_no" value="${p.product_no}">
+								<input type="hidden" name="product_price" value="${p.product_price}">
+								<input type="hidden" name="product_title" value="${p.product_title}">
+								<select name="product_qty">
+									<c:forEach begin="1" end="10" var="i">
+										<option value="${i }">${i }</option>
+									</c:forEach>
+								</select>&nbsp;개
+								<input type="submit" value="장바구니에 담기">
+							</form>
+						</td>
+					</tr>
+					<%-- <tr align="center">
+						<td>총 금액</td>
+						<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
+					</tr> --%>
+					</table>
+				</td>
+			</tr>
+		</table>
 	</div>
 	
 	<div align="center">
-		<img  src="img/${p.product_main_img }"><br>
+		<%-- <img  src="img/${p.product_main_img }"><br>
 		상품번호 : ${p.product_no }<br>
 		카테고리 : ${p.product_category }<br>
 		상품명 : ${p.product_title }<br>
@@ -65,17 +112,19 @@
 		상품가격 : ${p.product_price }<br>
 		<hr>
 		<a href="#">장바구니</a>
-		<a href="#">바로구매</a>
+		<a href="#">바로구매</a> --%>
 		
 		<hr>
+		<button id="btn_detail">상품 상세설명</button>&nbsp;
+		<button id="btn_review">상품 리뷰</button>&nbsp;
+		<button id="btn_cs">1:1 문의</button><br>
+		<h6>${product_detail_text }</h6>
 		<img src="img/${p.product_detail_img1 }">
 		<img src="img/${p.product_detail_img2 }">
 	</div>
+	</section>
 	
 	<%@ include file="footer.jsp" %>
-	
-	<script type="text/javascript" src="/static/js/eventbanner.js"></script>
-	<meta http-equiv="Expires" content="-1">
 
 </body>
 </html>

@@ -17,7 +17,7 @@ public class ProductsController {
 	@RequestMapping("/detailProducts.do")
 	public ModelAndView detail(int no) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("p", dao.selectProducts(no));
+		mav.addObject("p", dao.selectOne(no));
 		return mav;
 		}
 	
