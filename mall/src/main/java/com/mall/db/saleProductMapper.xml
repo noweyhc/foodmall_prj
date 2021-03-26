@@ -38,7 +38,7 @@
 		where	a.product_no = b.product_no
 		and		to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') > a.timesale_start 
 		and		a.timesale_end > to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') 
-		order by a.timesale_start	
+		order by a.timesale_end	
 	</select>
 	
 	<select id="findAll" resultMap="saleProductMap">

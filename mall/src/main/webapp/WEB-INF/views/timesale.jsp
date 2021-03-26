@@ -32,6 +32,8 @@
 						<li class="subtitle">${s.product.product_subtitle }</li>
 						<li class="origin-price" style="color: gray;"><del><fmt:formatNumber value="${s.product.product_price }" pattern="#,###"/>원</del></li>
 						<li class="sale-price" style="font-weight: bold;"><fmt:formatNumber value="${s.sale.timesale_saleprice }" pattern="#,###"/>원</li>
+						<li class="timer" id="${s.sale.product_no }"></li>
+						<li class="endDate" value="${s.sale.timesale_end }" style="display: none;"></li>
 					</ul>
 			    </c:forEach>
 			</div>
@@ -41,5 +43,6 @@
 		</div>
 	</section>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
+<script type="text/javascript" src="/static/js/saleTimer.js"></script>
 </body>
 </html>
