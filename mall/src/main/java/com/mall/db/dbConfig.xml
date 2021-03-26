@@ -27,6 +27,14 @@
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>
     <mapper resource="com/mall/db/faqMapper.xml"/>
+    
+    
+    
+    
+    
+    
+    
+    <mapper resource="com/mall/db/noticeMapper.xml"/>
 
 
 

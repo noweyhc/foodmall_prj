@@ -17,10 +17,8 @@ public class FaqVo {
 	private int faq_no;
 	private String faq_title; 
 	private String faq_content; 
-	private Timestamp faq_regdate;
-	private Timestamp faq_update;	
+	private Timestamp faq_regdate;	
 	private int faq_hit;
 	private String faq_manager; 
 	private MultipartFile uploadFile;
-	private String test;
 }

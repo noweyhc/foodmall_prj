@@ -1,7 +1,5 @@
 package com.mall.dao.mypage;
 
-import static com.mall.db.SqlSessionFactoryBean.getSqlSession;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="notice">
+
+	<select id="findAll" resultType="com.mall.vo.notice.NoticeVo">
+		select notice_no,notice_title,notice_content,notice_regdate,notice_hit,notice_manager  
+  	  	from (select rownum num,notice_no,notice_title,notice_content,notice_regdate,notice_hit,notice_manager
+    	from (select * from tb_notice order by notice_no desc)) 
+		where num between #{start} and #{end}
+	</select>
+	
+	<select id="detail" resultType="com.mall.vo.notice.NoticeVo">
+  		select * from tb_notice where notice_no=#{notice_no}
+ 	</select> 
+
+  	<insert id="insert">
+  		insert into tb_notice values(seq_tb_notice.nextval,#{notice_title},#{notice_content},sysdate,0,#{notice_manager})
+ 	</insert>
+ 	
+ 	<update id="update">
+  		update tb_notice set notice_title=#{notice_title},notice_content=#{notice_content} where notice_no=#{notice_no}
+ 	</update>
+ 	
+ 	<delete id="delete">
+  		delete from tb_notice where notice_no=#{notice_no}  
+  	</delete>
+
+ 	<select id="totBoard" resultType="java.lang.Integer">
+  		select count(*) from tb_notice
+  	</select>
+
+</mapper>

@@ -6,36 +6,38 @@
 <mapper namespace="FAQ">
 
 	<select id="findAll" resultType="com.mall.vo.faq.FaqVo">
-		select * from tb_faq order by faq_no desc
+		select faq_no,faq_title,faq_regdate,faq_hit,faq_manager  
+  	  	from (select rownum num,faq_no,faq_title,faq_regdate,faq_hit,faq_manager
+    	from (select * from tb_faq order by faq_no desc)) 
+		where num between #{start} and #{end}
 	</select>
 	
 	<select id="detail" resultType="com.mall.vo.faq.FaqVo">
   		select * from tb_faq where faq_no=#{faq_no}
  	</select> 
- 	 
+
+
+  	<insert id="insert">
+  		insert into tb_faq values(seq_tb_faq.nextval,#{faq_title},#{faq_content},sysdate,#{faq_hit},#{faq_manager})
+ 	</insert>
+ 	
+ 	<update id="update">
+  		update tb_faq set faq_title=#{faq_title},faq_content=#{faq_content} where faq_no=#{faq_no}
+ 	</update>
+ 	
+ 	<delete id="delete">
+  		delete from tb_faq where faq_no=#{faq_no}  
+  	</delete>
+
  	<select id="totBoard" resultType="java.lang.Integer">
   		select count(*) from tb_faq
   	</select>
-
-  	<insert id="insert">
-  		insert into tb_faq values(seq_board.nextval,#{faq_title},#{faq_content},sysdate,sysdate,0,#{faq_manager})
- 	</insert>
-
-  <!-- 
-  <update id="update">
-  	update tb_faq set title=#{title},content=#{content},fname=#{fname},fsize=#{fsize} where no=#{no} and pwd=#{pwd}
-  </update>
-
-  <delete id="delete">
-  	delete tb_faq where no=#{no} and pwd=#{pwd}  
-  </delete>
-  
-  
-  <select id="findAll" resultType="FAQVo">
-    select faq_no,faq_title,faq_content,faq_regdate,faq_hit,faq_manager from (select rownum num, faq_no,faq_title,faq_content,faq_regdate,faq_hit,faq_manager from 
-	(select * from tb_faq order by b_ref desc,b_step)) 
-	where num between #{start} and #{end}
-  </select> -->
-
+  	
+  	<!-- 조회수 증가 -->
+  	<update id="updateHit">
+  		update tb_faq set faq_hit=faq_hit+1 where faq_no=#{faq_no}
+ 	</update>
+  	
+  	
 
 </mapper>

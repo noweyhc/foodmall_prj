@@ -1,4 +1,4 @@
-package com.mall.dao.faq;
+package com.mall.dao.notice;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,62 +7,58 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
-import com.mall.vo.faq.FaqVo;
+import com.mall.vo.notice.NoticeVo;
 
 @Repository
-public class FaqDao {
+public class NoticeDao {
 
 	private SqlSession sqlSession;
 
-	public FaqDao() {
+	public NoticeDao() {
 		this.sqlSession = SqlSessionFactoryBean.getSqlSession();
 	}
 	
 	// 글 목록
-	public List<FaqVo> listFAQ(int start, int end) {
+	public List<NoticeVo> listNotice(int start, int end) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("end", end);
 
-		List<FaqVo> list = sqlSession.selectList("FAQ.findAll", map);
+		List<NoticeVo> list = sqlSession.selectList("notice.findAll", map);
 		return list;
 	}
 
 	// 글 상세
-	public FaqVo detailFAQ(int no) {
-		FaqVo f = sqlSession.selectOne("FAQ.detail", no);
-		
-		return f;
+	public NoticeVo detailNotice(int no) {
+		NoticeVo n = sqlSession.selectOne("notice.detail", no);
+		return n;
 	}
 
-	// 페이징을 위한 총 게시글 수 조회
 	public int totBoard() {
-		int total = sqlSession.selectOne("FAQ.totBoard");
+		int total = sqlSession.selectOne("notice.totBoard");
 		return total;
 	}
 
 	// 글 작성
-	public int insertFAQ(FaqVo f) {
-		int re = sqlSession.insert("FAQ.insert", f);
+	public int insertNotice(NoticeVo n) {
+		int re = sqlSession.insert("notice.insert", n);
 		sqlSession.commit();
 		return re;
 	}
 
 	// 글 수정
-	public int updateFAQ(FaqVo f) {
-		int re = sqlSession.update("FAQ.update", f);
+	public int updateNotice(NoticeVo n) {
+		int re = sqlSession.update("notice.update", n);
 		sqlSession.commit();
 		return re;
 	}
 
 	// 글 삭제
-	public int deleteFAQ(int no) {
-		int re = sqlSession.delete("FAQ.delete", no);
+	public int deleteNotice(int no) {
+		int re = sqlSession.delete("notice.delete", no);
 		sqlSession.commit();
 		return re;
 	}
-	
-	
 
 	/*
 	 * public void insertLog(Sist_log log) { sqlSession.insert("sist_log.insert",

@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>FAQ 목록</h2>
-<a href="insertFAQ.do">글 쓰기</a>
+<h2>공지사항 목록</h2>
+<a href="insertNotice.do">글 쓰기</a>
 <hr>
 <table border="1" width="80%">
 	<tr>
@@ -21,19 +21,19 @@
 
 	</tr>
 			
-	 <c:forEach var="f" items="${list }">
+	 <c:forEach var="n" items="${list }">
 		<tr>
-			<td>${f.faq_no }</td>
-			<td><a href="detailFAQ.do?no=${f.faq_no }">${f.faq_title }</a></td>
-			<td>${f.faq_regdate }</td>
-			<td>${f.faq_hit }</td>
-			<td>${f.faq_manager }</td>
+			<td>${n.notice_no }</td>
+			<td><a href="detailNotice.do?no=${n.notice_no }">${n.notice_title }</a></td>
+			<td>${n.notice_regdate }</td>
+			<td>${n.notice_hit }</td>
+			<td>${n.notice_manager }</td>
 		</tr>
 	</c:forEach> 
 </table>
 
 <c:forEach var="i" begin="1" end="${totalPage }">
-	<a href="listFAQ.do?pageNUM=${i }">${i }</a>
+	<a href="listNotice.do?pageNUM=${i }">${i }</a>
 </c:forEach>
 
 </body>
