@@ -183,8 +183,11 @@ public class MypageController {
 	}//updateShipping
 	
 	@PostMapping("/updateShipping.do")
-	public String updateShippingSubmit(Model model) {
+	public String updateShippingSubmit(Model model,ShippingVo spVo,String mem_id) {
 		
+		mem_id = "leewooo";
+		
+		int re = dao.updateShipping(spVo,mem_id);
 		
 		return "";
 	}

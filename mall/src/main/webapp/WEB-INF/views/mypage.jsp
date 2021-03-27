@@ -31,7 +31,7 @@
 	    </tr>
 	    <tr>
 	      <th scope="row">3</th>
-	      <td><a href="shippingList.do">배송지 관리</a></td>
+	      <td><a href="updateShipping.do">배송지 관리</a></td>
 	    </tr>
 	    <tr>
 	      <th scope="row">4</th>

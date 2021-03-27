@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<form action="updateShipping" method="post">
+<form action="updateShipping.do" method="post">
 
 	<h4>현재주소</h4>
 	
@@ -41,14 +41,14 @@
         <!-- 변경 할 우편번호  -->
         <div class="row">
 	        <div class="input-field col s1">
-	          <input name="mem_zipcode"  id="mem_zipcode" type="text" class="validate">
+	          <input name="mem_zipcode"  id="mem_zipcode" value=" " type="text" class="validate">
 	          <label for="mem_zipcode">변경할 우편번호</label>
 	        </div>
         </div>
         <!-- 변경 할 주소  -->
         <div class="row">
 	        <div class="input-field col s3">
-	          <input name="mem_address" id="mem_address" type="text" class="validate">
+	          <input name="mem_address" id="mem_address" value=" " type="text" class="validate">
 	          <label for="mem_address">변경할 주소</label>
 	        </div>
         </div>
@@ -65,9 +65,9 @@
         </div>
         
         <!-- 우편번호 수정 버튼 -->
-        <div class="row">
-		  <a class="waves-effect waves-light btn-small" onclick="PostCode()"><i class="material-icons left">search</i>우편번호 찾기</a>
-        </div>
+	   <button class="btn waves-effect waves-light" type="submit" name="action">주소 수정
+	     <i class="material-icons right">send</i>
+	   </button>
 </form>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

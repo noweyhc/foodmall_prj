@@ -19,6 +19,16 @@
   <select id="getShipping" resultType="com.mall.vo.mypage.ShippingVo">
   		SELECT mem_zipcode,mem_address,mem_detailaddress FROM tb_member WHERE mem_id = #{mem_id}
   </select>
+  
+  <update id="updateShipping">
+  		UPDATE tb_member 
+  		SET
+  		mem_zipcode = #{mem_zipcode},
+  		mem_address = #{mem_address},
+  		mem_detailaddress = #{mem_detailaddress}
+  		WHERE
+  		mem_id = #{mem_id}
+  </update>
 
   <update id="updateEmail">
   		UPDATE tb_member SET mem_email = #{mem_email} WHERE mem_id = #{mem_id}

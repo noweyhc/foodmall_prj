@@ -99,10 +99,6 @@ public class MypageDao {
 		
 		return re;
 	}
-	
-	public void commit() {
-    	sqlSession.commit();
-    }
 
 	public int deleteId(String mem_id) {
 		
@@ -134,4 +130,28 @@ public class MypageDao {
 		
 		return spVo;
 	}
+
+	public int updateShipping(ShippingVo spVo,String mem_id) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("mem_zipcode", spVo.getMem_zipcode());
+		map.put("mem_address", spVo.getMem_address());
+		map.put("mem_detailaddress", spVo.getMem_detailaddress());
+		map.put("mem_id", mem_id);
+		
+		int re = sqlSession.update("mypage.updateShipping",map);
+		
+		if(re == 1) {
+			commit();
+		}
+		
+		return re;
+	}
+	
+	
+	public void commit() {
+    	sqlSession.commit();
+    }
+	
 }
