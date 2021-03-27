@@ -24,10 +24,8 @@
     <mapper resource="com/mall/db/userMapper.xml"/>
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>
-<<<<<<< HEAD
     <mapper resource="com/mall/db/inquiryMapper.xml"/>
-=======
     <mapper resource="com/mall/db/saleMapper.xml"/>
->>>>>>> a58655bb284e18ee91528ccc4994ad1d9166f237
+    
   </mappers>
 </configuration>

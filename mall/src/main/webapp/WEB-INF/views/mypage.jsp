@@ -27,7 +27,7 @@
 	    </tr>
 	    <tr>
 	      <th scope="row">2</th>
-	      <td><a href="userInfoUpdate.do">회원정보 변경</a></td>
+	      <td><a href="userInfoUpdate.do">이메일/휴대전화 변경</a></td>
 	    </tr>
 	    <tr>
 	      <th scope="row">3</th>
@@ -38,11 +38,15 @@
 	      <td><a href="userInfoUpdate.do">주문정보 확인</a></td>
 	    </tr>
 	    <tr>
-	    <th scope="row">5</th>
+	      <th scope="row">5</th>
+	      <td><a href="myInquiry.do">내가 한 문의 확인</a></td>
+	    </tr>
+	    <tr>
+	    <th scope="row">6</th>
 	      <td><a href="resetPassword.do">비밀번호 변경</a></td>
 	    </tr>
 	    <tr>
-	      <th scope="row">6</th>
+	      <th scope="row">7</th>
 	      <td><a href="deleteAccount.do">회원탈퇴</a></td>
 	    </tr>
 	    	    

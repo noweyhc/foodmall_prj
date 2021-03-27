@@ -1,13 +1,17 @@
 package com.mall.dao.mypage;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.mypage.MyInqDetailVo;
+import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.mypage.MypageVo;
+import com.mall.vo.mypage.ShippingVo;
 
 @Repository
 public class MypageDao {
@@ -108,5 +112,26 @@ public class MypageDao {
 		commit();
 		
 		return re;
+	}
+
+	public List<MyInqListVo> findMyInq(String mem_id) {
+		
+		List<MyInqListVo> list = sqlSession.selectList("mypage.findMyInq",mem_id);
+		
+		return list;
+	}
+
+	public MyInqDetailVo findDetailInq(int cs_no) {
+		
+		MyInqDetailVo detailVo = sqlSession.selectOne("mypage.detailInq",cs_no);
+		
+		return detailVo;
+	}
+
+	public ShippingVo getShipping(String mem_id) {
+		
+		ShippingVo spVo = sqlSession.selectOne("mypage.getShipping",mem_id);
+		
+		return spVo;
 	}
 }

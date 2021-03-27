@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.answer.answerVo;
+import com.mall.vo.inquiry.InquiryEmailPhoneVo;
 import com.mall.vo.inquiry.InquiryVo;
 import com.mall.vo.user.UserVO;
 
@@ -23,12 +25,11 @@ public class InquiryDao {
 	
 	public int totBoard() {
 		int total = sqlSession.selectOne("inquiry.totBoard");
-		
 		return total;
 	}
 	
-	
 	public UserVO getMemberInfo(String id) {
+		
 		UserVO uv = sqlSession.selectOne("inquiry.findAll",id);
 		
 		return uv;
@@ -39,7 +40,7 @@ public class InquiryDao {
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		String cs_mem_id = "leewooo";
-			
+		
 		//아이디
 		map.put("cs_mem_id", cs_mem_id);
 		
@@ -48,6 +49,7 @@ public class InquiryDao {
 		map.put("cs_content",ivo.getCs_content());
 		map.put("cs_category_one",ivo.getCs_category_one());
 		map.put("cs_category_two",ivo.getCs_category_two());
+		map.put("cs_response","미답변");
 		
 		System.out.println(ivo.getCs_category_one());
 		
@@ -57,6 +59,8 @@ public class InquiryDao {
 		
 		// 사용자가 올린 이미지
 		map.put("cs_fname", ivo.getCs_fname());
+		
+		System.out.println(map);
 		
 		int re = sqlSession.insert("inquiry.insertInquiry",map);
 		
@@ -87,8 +91,33 @@ public class InquiryDao {
 		return userIqVo;
 	}//selectInquiry
 	
+	public InquiryEmailPhoneVo getMemberEmail(int cs_no) {
+		
+		InquiryEmailPhoneVo iep = sqlSession.selectOne("inquiry.getMemberEmail",cs_no);
+		
+		return iep;
+	}//getMemberEmail
+
+	public int insertAnswer(answerVo answerVo,int cs_no,String cs_mem_id) {
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("ans_title",answerVo.getAns_title());
+		map.put("ans_content",answerVo.getAns_content());
+		map.put("ans_cs_no", cs_no);
+		map.put("ans_cs_mem_id", cs_mem_id);
+		
+		System.out.println(map);
+		
+		int re = sqlSession.insert("inquiry.insertAnswer",map);
+		
+		commit();
+		
+		return re;
+	}
 	
 	public void commit() {
 		sqlSession.commit();
 	}//commit
+
+
 }//InquiryDao

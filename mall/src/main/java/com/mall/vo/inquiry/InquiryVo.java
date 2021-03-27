@@ -24,5 +24,8 @@ public class InquiryVo {
 	private String cs_category_one; // 카테고리 대분류
 	private String cs_category_two; // 카테고리 소분류
 	private MultipartFile uploadFile; //업로드되는 파일
+	private String cs_email; // 고객 이메일
+	private String cs_phone; // 고객 휴대전화
+	private String cs_response; // 미답변, 답변완료
 	
 }

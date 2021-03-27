@@ -10,20 +10,28 @@
   </select>
 
   <select id="findAll" resultType="com.mall.vo.user.UserVO">
-    select * from tb_member
+    select * from tb_member where mem_id = #{mem_id} 
   </select>
   
   <insert id="insertInquiry">
-    	INSERT INTO tb_cs VALUES(seq_tb_cs.nextval,#{cs_mem_id},#{cs_title},#{cs_content},sysdate,#{cs_category_one},#{cs_category_two},#{cs_fname},#{cs_email},#{cs_phone})
+    	INSERT INTO tb_cs VALUES(seq_tb_cs.nextval,#{cs_mem_id},#{cs_title},#{cs_content},sysdate,#{cs_category_one},#{cs_category_two},#{cs_fname},#{cs_email},#{cs_phone},#{cs_response})
   </insert>
   
   <select id="findAllInquiry" resultType="com.mall.vo.inquiry.InquiryVo">
-      select cs_no, cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone from (select rownum num, cs_no, cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone from
+      select cs_no, cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from (select rownum num, cs_no,cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from
 	(select * from tb_cs order by cs_no desc)) where num between #{start} and #{end}
   </select>
   
   <select id="selectInquiry" resultType="com.mall.vo.inquiry.InquiryVo">
   		SELECT * FROM tb_cs WHERE cs_no = #{cs_no}
   </select>
+  
+  <select id="getMemberEmail" resultType="com.mall.vo.inquiry.InquiryEmailPhoneVo">
+  	SELECT * FROM tb_cs WHERE cs_no = #{cs_no} 
+  </select>
+
+  <insert id="insertAnswer">
+  	INSERT INTO tb_cs_answer VALUES(seq_tb_cs_answer.nextval,#{ans_title},#{ans_content},sysdate,#{ans_cs_mem_id},#{ans_cs_no})
+  </insert>
   
 </mapper>
