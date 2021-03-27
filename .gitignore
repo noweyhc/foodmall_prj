@@ -1,3 +1,4 @@
 /.metadata/
 db.properties
 application.properties
+adminPassword.txt
