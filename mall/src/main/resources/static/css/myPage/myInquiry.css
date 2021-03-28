@@ -6,9 +6,18 @@ a:active {text-decoration: none; color: black;}
 a:hover {text-decoration: black; color: black;}
 
 th {
-	font-size: 3rem;
+	text-align : center;
+	font-size: 1.5rem;
+}
+
+td {
+	text-align: center;
 }
 
 #cs_title {
 	font-weight: bold;
+}
+
+#page {
+	text-align: center;
 }

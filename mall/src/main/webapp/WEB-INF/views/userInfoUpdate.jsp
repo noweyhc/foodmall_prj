@@ -12,11 +12,15 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!-- css  -->    
+    <link rel="stylesheet" href="/static/css/myPage/userInfoUpdate.css">
+    <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 </head>
 
 <body>
 
-  <div class="row">
+  <div class="row wrap">
     <div class="col s12">
     <h2>이메일 변경</h2>
       <!-- 사용자 이름  -->

@@ -198,8 +198,7 @@ public class InquiryController {
 		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
 		
 		model.addAttribute("detailVo",detailVo);
-		
-		
+
 		return "myInqDetail";
 	}
 	

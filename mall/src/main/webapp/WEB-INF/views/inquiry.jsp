@@ -3,49 +3,118 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
-<link rel="stylesheet" href="/static/css/inquiry.css">
+<title>[밥도둑]1:1문의</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!-- css -->
+	<link rel="stylesheet" href="/static/css/myPage/inquiry.css">
 </head>
 <body>
-
-	<form method="post" enctype="multipart/form-data" name="inquiry_form">
-
-		<label>문의유형</label> 
-		<select onchange="categoryChange(this)" id="value1">
-			<option>선택해주세요</option>
-			<option value="product">상품문의</option>
-			<option value="delivery">배송문의</option>
-		</select> 
-			<input type="hidden" name="cs_category_one" value="">
-		
-		<select id="good">
-			<option>선택해주세요</option>
-		</select> <br> 
-		<input type="hidden" name="cs_category_two" id="cs_category_two" value="">
-		
-		<label>고객명</label> : ${uv.mem_name}
-		<br> 
-		<input type="hidden" name="mem_name" value="${uv.mem_name }"> 
-		<label>아이디</label> : ${uv.mem_id }
+	<div class="wrap">
+		<h4>[밥도둑]1:1문의</h4>
+		<hr>
 		<br>
-        <br>
-        <label>제목</label><br>
-         <input type="text" size="68" id="cs_title" name="cs_title"><br>
-
-		<label>내용</label> <br>
-		<textarea cols="70" rows="20" maxlength="550" id="cs_content" name="cs_content"
-			placeholder="문의유형을 선택후 문의내용을 자세하게 작성해주세요.
-			자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴수 있습니다.
-
-		10월 18일부터 산업안전보건법에 고객응대 근로자 보호조치가 시행됩니다(시행 년도 2018년).고객응대근로자에게 폭언, 욕설 등을 하지 말아주세요."></textarea>
-		<br> 
-		파일 <input type="file" name="uploadFile"><br>
-        <label>이메일주소</label> <input type="text" placeholder="예) example@banchan.com" name="cs_email"><br> 
-        <label>핸드폰 번호</label> <input type="text" placeholder="01012345678" name="cs_phone"><br>
-
-		<button type="submit" id="submit1">문의 접수</button>
-	</form>
+		<br>
+		<form method="post" enctype="multipart/form-data" name="inquiry_form">
+			<div class="row">
+			  <!-- 문의 유형 -->
+			  <label>문의 유형</label>
+			  <select class="browser-default" onchange="categoryChange(this)" id="value1">
+				    <option value="" disabled selected>선택해주세요</option>
+				    <option value="product">상품문의</option>
+				    <option value="delivery">배송문의</option>
+			  </select>		
+			</div>
+				
+			<!-- 세부 문의 유형  -->
+			<div class="row">
+			  <label>세부 문의 유형</label>
+			  <select class="browser-default" id="good">
+				    <option value="" disabled selected>선택해주세요</option>
+			  </select>		
+			</div>		
+	
+			<!-- 고객 아이디 -->
+			<div class="row">
+		        <div class="input-field col s3">
+		          <i class="material-icons prefix">account_box</i>
+		          <input disabled value="${uv.mem_id }" id="mem_id" type="text" class="validate">
+		          <label for="mem_id">회원 아이디</label>
+		        </div>  		
+			</div>
+			
+			<!-- 고객 이름 -->
+			<div class="row">
+		        <div class="input-field col s3">
+		          <i class="material-icons prefix">account_box</i>
+		          <input disabled value="${uv.mem_name}" id="mem_name" type="text" class="validate">
+		          <label for="mem_name">고객명</label>
+		        </div>  		
+			</div>
+			
+			<!-- 문의 제목 -->
+			<div class="row">
+		        <div class="input-field col s10">
+	          	  <i class="material-icons prefix">title</i>
+		          <input  id="cs_title" type="text" class="validate">
+		          <label for="cs_title">문의 제목</label>
+		        </div>  		
+			</div>		
+			
+			<!-- 문의 내용 -->
+	        <div class="row">
+		        <div class="input-field col s10">
+		          <i class="material-icons prefix">mode_edit</i>
+		          <textarea id="icon_prefix2" rows="30" class="materialize-textarea" id="cs_content" name="cs_content" placeholder="문의유형을 선택후 문의내용을 자세하게 작성해주세요.자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴수 있습니다."></textarea>
+		          <label for="icon_prefix2">문의 내용</label>
+		        </div>
+	        </div>
+	        
+	        <!-- 사진 업로드  -->
+		    <div class="file-field input-field">
+		      <div class="btn">
+		        <span>이미지 업로드</span>
+		        <input type="file" name="uploadFile">
+		      </div>
+		      <div class="file-path-wrapper">
+		        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+		      </div>
+		    </div>        
+		    
+		    <!-- 접수 되었다는 메일과 핸드폰 정보  -->
+	        <!-- 이메일 주소 -->   	    
+	        <div class="row">
+		        <div class="input-field col s5">
+		          <i class="material-icons prefix">email</i>
+		          <input type="text" placeholder="예) example@banchan.com" name="cs_email" class="validate">
+		          <label for="cs_email">이메일 주소</label>
+		          <p>접수내용 안내를 위해 알림받을 때 사용할 이메일 정보입니다.</p>
+		        </div>
+	        </div>
+	
+	        <!-- 휴대전화 -->   	    
+	        <div class="row">
+		        <div class="input-field col s5">
+		          <i class="material-icons prefix">local_phone</i>
+		          <input type="text" placeholder="01012345678" name="cs_phone" class="validate">
+		          <label for="cs_email">핸드폰 번호</label>
+		          <p>접수내용 안내를 위해 알림받을 때 사용할 핸드폰 정보입니다.</p>
+		        </div>
+	        </div>
+	        
+	        <div class="row">
+				<a class="waves-effect waves-light btn"  id="submit1"><i class="material-icons left">send</i>문의 접수</a>
+	        </div>
+			<input type="hidden" name="cs_category_one" value="">
+			<input type="hidden" name="cs_category_two" id="cs_category_two" value="">
+			<input type="hidden" name="mem_name" value="${uv.mem_name }"> 
+		</form>
+	</div>	
 <script>
     function categoryChange(e) {
   let _product = ['상품 품질불량', '상품 조회', '상품 행사문의', '상품 기타사항'];
@@ -78,6 +147,11 @@
          console.log(good);
          document.inquiry_form.cs_category_two.value = good;
     }
+    
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
 </script>
 </body>
 </html>
