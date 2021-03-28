@@ -60,9 +60,6 @@
 			    	<li class="active" class="waves-effect"><a href="inquiryList.do?pageNUM=${i }">${i }</a></li>
 			    </c:forEach>
 			</ul>
-			
-			
-			
 	</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

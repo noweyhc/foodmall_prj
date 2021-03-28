@@ -20,8 +20,11 @@
 		<hr>
 		<br>
 		<br>
-		<form method="post" enctype="multipart/form-data" name="inquiry_form">
+		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form">
 			<div class="row">
+
+			<input type="hidden" name="mem_name" value="${uv.mem_name }"> 
+			
 			  <!-- 문의 유형 -->
 			  <label>문의 유형</label>
 			  <select class="browser-default" onchange="categoryChange(this)" id="value1">
@@ -38,6 +41,8 @@
 				    <option value="" disabled selected>선택해주세요</option>
 			  </select>		
 			</div>		
+			<input type="hidden" name="cs_category_one" id="cs_category_one" value="">
+			<input type="hidden" name="cs_category_two" id="cs_category_two" value="">
 	
 			<!-- 고객 아이디 -->
 			<div class="row">
@@ -61,7 +66,7 @@
 			<div class="row">
 		        <div class="input-field col s10">
 	          	  <i class="material-icons prefix">title</i>
-		          <input  id="cs_title" type="text" class="validate">
+		          <input  id="cs_title" name="cs_title" type="text" class="validate">
 		          <label for="cs_title">문의 제목</label>
 		        </div>  		
 			</div>		
@@ -108,15 +113,14 @@
 	        </div>
 	        
 	        <div class="row">
-				<a class="waves-effect waves-light btn"  id="submit1"><i class="material-icons left">send</i>문의 접수</a>
-	        </div>
-			<input type="hidden" name="cs_category_one" value="">
-			<input type="hidden" name="cs_category_two" id="cs_category_two" value="">
-			<input type="hidden" name="mem_name" value="${uv.mem_name }"> 
+	          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    				<i class="material-icons right">send</i>
+  			 </button>
+			</div>	        
 		</form>
 	</div>	
 <script>
-    function categoryChange(e) {
+  function categoryChange(e) {
   let _product = ['상품 품질불량', '상품 조회', '상품 행사문의', '상품 기타사항'];
   let _delivery = ['오배송', '교환/환불', '배송누락', '배송 기타사항'];
   let target = document.getElementById("good");
@@ -138,20 +142,14 @@
     
     document.getElementById("value1").onclick = function(){
         value1 = document.getElementById("value1").value;
-        console.log(value1);
         document.inquiry_form.cs_category_one.value = value1;
     }
     
     document.getElementById("good").onclick = function(){
          good = document.getElementById("good").value;
-         console.log(good);
          document.inquiry_form.cs_category_two.value = good;
     }
     
-      document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
 </script>
 </body>
 </html>

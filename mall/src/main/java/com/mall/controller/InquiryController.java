@@ -60,6 +60,8 @@ public class InquiryController {
 		// 
 		MultipartFile uploadFile = ivo.getUploadFile();
 		
+		System.out.println(ivo.getCs_category_one() + "abcd");
+		
 		ivo.setCs_fname("");
 		
 		String fname = uploadFile.getOriginalFilename();
@@ -81,6 +83,8 @@ public class InquiryController {
 			}//end catch
 			
 			int re = dao.insertInquiry(ivo,cs_email,cs_phone);
+			
+			System.out.println(re);
 			
 			if(re == 1) {
 				return "redirect:/myInquiry.do";
