@@ -1,5 +1,6 @@
 package com.mall.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.mail.SimpleMailMessage;
@@ -7,16 +8,18 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.mypage.MypageDao;
 import com.mall.smswebservice.BanchanSms;
+import com.mall.vo.mypage.MyInqDetailVo;
+import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.mypage.MypageVo;
+import com.mall.vo.mypage.ShippingVo;
 
-import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -67,8 +70,6 @@ public class MypageController {
 	@GetMapping("/sendEmailCode.do")
 	@ResponseBody
 	public String sendEmailCode(String email) {
-		
-		System.out.println("email" + email);
 		
 		// 인증을 위한 랜덤 값 추출
 		Random random = new Random();
@@ -169,10 +170,28 @@ public class MypageController {
 	 * @param model
 	 * @return 배송지관리 페이지
 	 */
-	@GetMapping("/shippingList.do")
-	public String moveShipping(Model model) {
-		return "shippingList";
+	@GetMapping("/updateShipping.do")
+	public String updateShippingForm(Model model) {
+		
+		String mem_id = "leewooo";
+		
+		ShippingVo spVo = dao.getShipping(mem_id);
+		
+		model.addAttribute("spVo",spVo);
+		
+		return "updateShipping";
+	}//updateShipping
+	
+	@PostMapping("/updateShipping.do")
+	public String updateShippingSubmit(Model model,ShippingVo spVo,String mem_id) {
+		
+		mem_id = "leewooo";
+		
+		int re = dao.updateShipping(spVo,mem_id);
+		
+		return "";
 	}
+	
 	
 	/**
 	 * 회원 탈퇴 화면 뷰
@@ -245,7 +264,29 @@ public class MypageController {
 		String pwd = dao.getPwd(currPassword,mem_id);
 		
 		return pwd;
-	}
+	}//getPassword
+	
+	@GetMapping("/myInquiry.do")
+	public String getmyInquiry(Model model) {
+		
+		String mem_id = "leewooo";
+		
+		List<MyInqListVo> list = dao.findMyInq(mem_id);
+		
+		model.addAttribute("list",list);
+		
+		return "myInquiry";
+	}//getmyInquiry
 
+	@GetMapping("myInqDetail.do/{cs_no}")
+	public String myInqDetail(@PathVariable int cs_no,Model model) {
+		
+		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
+		
+		model.addAttribute("detailVo",detailVo);
+		
+		
+		return "myInqDetail";
+	}
 	
 }//class

@@ -19,6 +19,7 @@
 			<th>소분류</th>
 			<th>작성자</th>
 			<th>작성일</th>
+			<th>답변처리</th>
 		</tr>
 		
 	<c:forEach var="l" items="${list }">
@@ -29,6 +30,7 @@
 			<td>${l.cs_category_two }</td>
 			<td>${l.cs_mem_id }</td>		
 			<td>${l.cs_regdate }</td>
+			<td id="cs_response" >${l.cs_response }</td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -41,7 +43,9 @@
 	<button id="btnSearch">검색</button>
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+
 </script>
 </body>
 </html>
