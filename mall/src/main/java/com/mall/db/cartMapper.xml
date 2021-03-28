@@ -17,8 +17,8 @@
   		from TB_CART c, TB_PRODUCT p <!-- , TB_MEMBER m -->
   		where p.product_no = c.product_no 
   		<!-- 	and m.mem_id = c.mem_id
-  			and c.mem_id = #{mem_id} 
-  		order by c.cart_no -->
+  			and c.mem_id = #{mem_id} -->
+  		order by c.cart_no 
   	</select>
 
 	<!-- 장바구니 금액 합계 -->

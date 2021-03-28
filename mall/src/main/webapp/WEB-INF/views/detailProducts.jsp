@@ -40,33 +40,36 @@
 				</td>
 				<td>
 					<table border="1" style="width: 400px; height: 400px;">
-					<tr align="center">
-						<td>상품명</td>
-						<td>${p.product_title }</td>
-					</tr>
-					<tr align="center">
-						<td>가격</td>
-						<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
-					</tr>
-					<tr align="center">
-						<td colspan="2">
-							<form name="form-cart" method="post" action="/insert.do">
-								<input type="hidden" name="product_no" value="${p.product_no}">
-								<input type="hidden" name="product_price" value="${p.product_price}">
-								<input type="hidden" name="product_title" value="${p.product_title}">
-								<select name="product_qty">
-									<c:forEach begin="1" end="10" var="i">
-										<option value="${i }">${i }</option>
-									</c:forEach>
-								</select>&nbsp;개
-								<input type="submit" value="장바구니에 담기">
-							</form>
-						</td>
-					</tr>
-					<%-- <tr align="center">
-						<td>총 금액</td>
-						<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
-					</tr> --%>
+						<tr align="center">
+							<td>상품명</td>
+							<td>${p.product_title }</td>
+						</tr>
+						<tr align="center">
+							<td>상품 소제목</td>
+							<td>${p.product_subtitle }</td>
+						</tr>
+						<tr align="center">
+							<td>상품 가격</td>
+							<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
+						</tr>
+						<tr align="center">
+							<td colspan="2">
+								<form name="form-cart" method="post" action="/insert.do">
+									<input type="hidden" name="product_no" value="${p.product_no}">
+									<input type="hidden" name="product_price" value="${p.product_price}">
+									<input type="hidden" name="product_title" value="${p.product_title}">
+									<select name="product_qty">
+										<c:forEach begin="1" end="10" var="i">
+											<option value="${i }">${i }</option>
+										</c:forEach>
+									</select>&nbsp;개
+									<input type="submit" value="장바구니에 담기">								
+								</form>
+							</td>
+						<tr align="center">
+							<td>총 가격</td>
+							<td><fmt:formatNumber value="${product_price }" pattern="#,###"/>원</td>
+						</tr>
 					</table>
 				</td>
 			</tr>

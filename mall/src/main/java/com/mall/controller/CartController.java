@@ -58,7 +58,7 @@ public class CartController {
 		map.put("fee", fee);
 		map.put("totalPriceCart", sumPriceCart + fee);
 
-		mav.setViewName("/listCart");
+		mav.setViewName("listCart");
 		mav.addObject("map", map);
 		return mav;
 	}
