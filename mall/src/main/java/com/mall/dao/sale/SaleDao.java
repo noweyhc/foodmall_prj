@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mall.db.SqlSessionFactoryBean;
 import com.mall.vo.product.ProductVo;
+import com.mall.vo.sale.SaleProductVo;
 import com.mall.vo.sale.SaleVo;
 
 @Repository
@@ -30,10 +31,16 @@ public class SaleDao {
 	}
 	
 	//timesale 테이블의 모든 데이터를 조회하고, List로 반환합니다
-	public List<SaleVo> findAll(){
-		List<SaleVo> list = new ArrayList<>();
-		list = sqlSession.selectList("sale.findAll");
-		
+	public List<SaleProductVo> findAll(){
+		SaleProductDao dao = sqlSession.getMapper(SaleProductDao.class);
+		List<SaleProductVo> list = dao.findAll();
+		return list;
+	}
+	
+	//timesale 테이블에서 현재 시간상 유효기간에 속하는 상품의 데이터를 조회하고, List로 반환합니다 
+	public List<SaleProductVo> selectValid(String now){
+		SaleProductDao dao = sqlSession.getMapper(SaleProductDao.class);
+		List<SaleProductVo> list = dao.selectValid(now);
 		return list;
 	}
 	
