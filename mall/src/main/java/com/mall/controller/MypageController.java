@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +29,11 @@ public class MypageController {
 
 	private final MypageDao dao;
 	private final JavaMailSender javaMailSender;
+
+	//페이징 처리 관련 변수
+	public static int pageSIZE = 10; // 한 화면에 보여지는 레코드 수
+	public static int totalRecord = 0; //전체 레코드 수
+	public static int totalPage = 1;// 전체 페이지 수
 	
 	/**
 	 * 마이페이지 리스트
@@ -265,28 +271,28 @@ public class MypageController {
 		
 		return pwd;
 	}//getPassword
-	
+/*
+ //*  문의사항 등록 후 List반영이 안되는 이슈때문에 inquiry.do 문의 등록 후 list 담아서 myInquiry로 이동하게 변경
 	@GetMapping("/myInquiry.do")
-	public String getmyInquiry(Model model) {
+	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM ,Model model) {
 		
 		String mem_id = "leewooo";
 		
-		List<MyInqListVo> list = dao.findMyInq(mem_id);
+		totalRecord = dao.totBoard(mem_id);
 		
+		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
+
+		int start = (pageNUM-1) * pageSIZE+1;
+		int end = start + pageSIZE-1;
+		
+		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end);
+		
+		model.addAttribute("totalPage",totalPage);
 		model.addAttribute("list",list);
 		
 		return "myInquiry";
 	}//getmyInquiry
+*/
 
-	@GetMapping("myInqDetail.do/{cs_no}")
-	public String myInqDetail(@PathVariable int cs_no,Model model) {
-		
-		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
-		
-		model.addAttribute("detailVo",detailVo);
-		
-		
-		return "myInqDetail";
-	}
 	
 }//class

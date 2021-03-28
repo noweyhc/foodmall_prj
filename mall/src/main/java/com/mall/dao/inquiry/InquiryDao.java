@@ -11,6 +11,8 @@ import com.mall.db.SqlSessionFactoryBean;
 import com.mall.vo.answer.answerVo;
 import com.mall.vo.inquiry.InquiryEmailPhoneVo;
 import com.mall.vo.inquiry.InquiryVo;
+import com.mall.vo.mypage.MyInqDetailVo;
+import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.user.UserVO;
 
 @Repository
@@ -23,8 +25,8 @@ public class InquiryDao {
 	}//InquiryDao
 
 	
-	public int totBoard() {
-		int total = sqlSession.selectOne("inquiry.totBoard");
+	public int totBoard(String mem_id) {
+		int total = sqlSession.selectOne("inquiry.totBoard",mem_id);
 		return total;
 	}
 	
@@ -50,6 +52,8 @@ public class InquiryDao {
 		map.put("cs_category_one",ivo.getCs_category_one());
 		map.put("cs_category_two",ivo.getCs_category_two());
 		map.put("cs_response","미답변");
+		map.put("cs_respcheck",0);
+		
 		
 		System.out.println(ivo.getCs_category_one());
 		
@@ -67,6 +71,8 @@ public class InquiryDao {
 		if(re == 1) {
 			commit();
 		}//end if
+		
+		System.out.println(re);
 		
 		return re;
 	}//insertInquiry
@@ -118,6 +124,46 @@ public class InquiryDao {
 	public void commit() {
 		sqlSession.commit();
 	}//commit
+
+
+	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("cs_mem_id", cs_mem_id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<MyInqListVo> list = sqlSession.selectList("inquiry.findMyInq",map);
+		
+		return list;
+	}
+
+	// 미답변 -> 답변으로 변경
+	public int ansOK(int cs_no) {
+		
+		Map<String, Object> map = new HashMap<>();
+
+		map.put("cs_no", cs_no);
+		map.put("cs_response", "답변");
+		map.put("cs_respcheck", 1);
+		
+		int re =sqlSession.update("inquiry.updateRep",map);
+		
+		if(re == 1) {
+			commit();
+		}
+		
+		return re;
+	}//ansOK
+
+
+	public MyInqDetailVo findDetailInq(int cs_no) {
+		
+		MyInqDetailVo detailVo = sqlSession.selectOne("inquiry.detailInq",cs_no);
+		
+		return detailVo;
+	}
 
 
 }//InquiryDao

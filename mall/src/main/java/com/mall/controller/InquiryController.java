@@ -22,6 +22,8 @@ import com.mall.util.FileNameUtil;
 import com.mall.vo.answer.answerVo;
 import com.mall.vo.inquiry.InquiryEmailPhoneVo;
 import com.mall.vo.inquiry.InquiryVo;
+import com.mall.vo.mypage.MyInqDetailVo;
+import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.user.UserVO;
 
 import lombok.RequiredArgsConstructor;
@@ -50,8 +52,9 @@ public class InquiryController {
 		return "inquiry";
 	}
 	
+	// 고객이 1:1문의를 등록하는 페이지
 	@PostMapping("/inquiry.do")
-	public String inquirySubmit(Model model,InquiryVo ivo,String cs_email, String cs_phone,HttpServletRequest request) {
+	public String inquirySubmit( Model model,InquiryVo ivo,String cs_email, String cs_phone,HttpServletRequest request) {
 		// 이미지를 저장할 경로
 		String path = request.getSession().getServletContext().getRealPath("inquiry");
 		// 
@@ -77,31 +80,65 @@ public class InquiryController {
 				e.printStackTrace();
 			}//end catch
 			
-			System.out.println(ivo.getCs_fname());
-			
 			int re = dao.insertInquiry(ivo,cs_email,cs_phone);
+			
+			if(re == 1) {
+				return "redirect:/myInquiry.do";
+			}
+		
 		}//end if
 		
 		return "";
 	}//inquirySubmit
 	
+	// 고객이 작성한 1:1문의를 확인하는 페이지
+	@GetMapping("/myInquiry.do")
+	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM ,Model model) {
+		
+		String mem_id = "leewooo";
+		
+		totalRecord = dao.totBoard(mem_id);
+		
+		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
+
+		int start = (pageNUM-1) * pageSIZE+1;
+		int end = start + pageSIZE-1;
+		
+		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end);
+		
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("list",list);
+		
+		return "myInquiry";
+	}//getmyInquiry
+	
 	// 관리자 페이지에서 클라이언트가 문의 남긴 문의 리스트 페이지
 	@GetMapping("/inquiryList.do")
 	public String inquiryList(Model model, @RequestParam(value="pageNUM",defaultValue = "1") int pageNUM) {
+	
+	String mem_id = "leewooo";
+		
 	// 총 게시글 수
-	totalRecord = dao.totBoard();
+	totalRecord = dao.totBoard(mem_id);
 	// 페이지 수 구하기
 	totalPage = (int)Math.ceil(totalRecord / (double)pageSIZE);
 	// 한화면에 보여질 글 갯수
 	int start = (pageNUM-1)*pageSIZE+1;
 	int end = start+pageSIZE-1;
 	// 한페이지에 보여질 글 갯수 정보를 담고있는 start와 end를 인자로 가지로 조회 후 List에 담는다.
-	List<InquiryVo> list=dao.findAllInquiry(start,end);
+	List<InquiryVo> list= null;
+	
+	list =dao.findAllInquiry(start,end);
+
+	if(list == null) {
+		model.addAttribute("list",list);
+		return "inquiryList";
+	}
+	
 	// 페이지 수 상태유지
 	model.addAttribute("totalPage",totalPage);
 	// 고객들의 문의 리스트 상태유지
 	model.addAttribute("list",list);
-	System.out.println(list.get(0).getCs_mem_id());
 	
 		return "inquiryList";
 	}//inquiryList
@@ -119,13 +156,19 @@ public class InquiryController {
 	// 고객 답변 메일로 전송하는 메소드
 	@PostMapping("/sendQnA.do")
 	@ResponseBody
-	public String sendQnA(Model model,answerVo answerVo, int cs_no,String cs_mem_id) {
+	public int sendQnA(Model model,answerVo answerVo, int cs_no,String cs_mem_id) {
 		
 		InquiryEmailPhoneVo iep = dao.getMemberEmail(cs_no);
 
 		System.out.println(cs_mem_id+"abc");
 		int re = dao.insertAnswer(answerVo,cs_no,cs_mem_id);
-		
+		int respChk = 0;
+		//만약 정상적으로 답변이 작성이 되었다면
+		if(re == 1) {
+			// 미답변 -> 답변으로 바꾼다.
+			// 0 -> 1
+			respChk = dao.ansOK(cs_no);
+		}
 		
 		System.out.println(answerVo);
 		
@@ -138,6 +181,27 @@ public class InquiryController {
 		mailMessage.setTo(iep.getCs_email());
 		javaMailSender.send(mailMessage);
 		
+		return respChk;
+	}
+	
+	// 미답변 -> 답변으로 바꾸기 위한 
+	public String ansOK(Model model,int data) {
+		
+		System.out.println(data);
 		return "";
 	}
+	
+	// 마이페이지 고객 문의 내용 DetailPage
+	@GetMapping("myInqDetail.do/{cs_no}")
+	public String myInqDetail(@PathVariable int cs_no,Model model) {
+		
+		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
+		
+		model.addAttribute("detailVo",detailVo);
+		
+		
+		return "myInqDetail";
+	}
+	
+	
 }

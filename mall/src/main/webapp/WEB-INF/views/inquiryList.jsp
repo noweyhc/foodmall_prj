@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="static/css/myPage/inquiryList.css">
 </head>
 <body>
 	
@@ -35,6 +36,10 @@
 	</c:forEach>
 	</table>
 	
+	<c:if test="${empty list}">
+		<h2 id="none_list">아직 작성 된 문의 글이 없습니다. :( </h2>
+	</c:if>	
+	
 	<c:forEach var="i" begin="1" end="${totalPage }">
 		<a href="inquiryList.do?pageNUM=${i }">${i }</a>
 	</c:forEach>
@@ -44,8 +49,5 @@
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-
-</script>
 </body>
 </html>

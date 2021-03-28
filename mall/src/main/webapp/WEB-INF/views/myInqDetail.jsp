@@ -21,12 +21,12 @@
       <div class="row">
         <div class="input-field col s4">
 		  <i class="material-icons prefix">thumb_up</i>
-          <input disabled value=${detailVo.cs_no } id="cs_no" type="text" class="validate" >
+          <input disabled value="${detailVo.cs_no }" id="cs_no" type="text" class="validate" >
           <label for="cs_no">글번호</label>
         </div>
         <div class="input-field col s3">
           <i class="material-icons prefix">account_box</i>
-          <input disabled value=${detailVo.cs_mem_id } id="cs_mem_id" type="text" class="validate" >
+          <input disabled value="${detailVo.cs_mem_id }" id="cs_mem_id" type="text" class="validate" >
           <label for="cs_mem_id">작성 아이디</label>
         </div>
         <div class="input-field col s3">
@@ -54,7 +54,7 @@
       </div>
         <div class="input-field col s10">
           <i class="material-icons prefix">title</i>
-          <input disabled value=${detailVo.ans_title } id="ans_title" type="text" class="validate" >
+          <input disabled value=${detailVo.cs_title } id="ans_title" type="text" class="validate" >
           <label for="ans_title">문의제목</label>
         </div>       
       <div>
@@ -83,7 +83,7 @@
   <h3>답변</h3>
         <div class="row">
         <div class="input-field col s6">
-         <div style=""overflow:auto; "><pre>${detailVo.ans_content }</pre></div>
+         <%-- <div style=""overflow:auto; "><pre>${detailVo.ans_content }</pre></div> --%>
         </div>
       </div>
 

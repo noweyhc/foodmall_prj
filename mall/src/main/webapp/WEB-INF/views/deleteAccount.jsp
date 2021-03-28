@@ -37,8 +37,20 @@
 <form action="deleteAccount.do" method="post" id="deleteForm">
 탈퇴 후에는 아이디 (${mVo.mem_id }) 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
 게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.<br>
-<input type="checkbox" id="deleteVaild" > <label for="deleteVaild"><strong>안내 사항을 모두 확인하였으며, 이에 동의합니다.</strong></label>
-	<input type="button" value="확인" id="deleteCheck"  > 
+
+<div class="row">
+    <p>
+      <label>
+        <input type="checkbox" id="deleteVaild"/>
+        <span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
+      </label>
+    </p>
+</div>
+
+<div class="row">
+	<a class="waves-effect waves-light btn-large" id="deleteCheck"><i class="material-icons left">delete</i>탈퇴하기</a>
+</div>
+<input type="checkbox" id="deleteVaild" > <label for="deleteVaild"></label>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

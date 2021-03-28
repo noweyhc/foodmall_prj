@@ -17,11 +17,11 @@ public class MyInqDetailVo {
 	private String cs_category_one;
 	private String cs_category_two;
 	private String cs_mem_id;
+	private String cs_title;
 	private String cs_content;
 	private Timestamp cs_regdate;
 	private String cs_fname;
 	private String cs_response;
-	private String ans_title;
-	private String ans_content;
+	private int cs_respcheck;
 	
 }

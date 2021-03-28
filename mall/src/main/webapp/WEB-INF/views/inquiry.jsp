@@ -68,7 +68,7 @@
     let value1;
     
     document.getElementById("value1").onclick = function(){
-         value1 = document.getElementById("value1").value;
+        value1 = document.getElementById("value1").value;
         console.log(value1);
         document.inquiry_form.cs_category_one.value = value1;
     }
