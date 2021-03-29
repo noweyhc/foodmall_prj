@@ -74,7 +74,7 @@
 	from tb_product where product_no = #{no}
   </select>
   
-  <select id="findAll" resultType="productVo">
+  <select id="findAll" resultType="java.lang.String">
   	select * from TB_PRODUCT
   </select>
   
