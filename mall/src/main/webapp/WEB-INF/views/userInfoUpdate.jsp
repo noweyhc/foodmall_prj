@@ -39,7 +39,7 @@
 	          <i class="material-icons prefix">email</i>
 	          <input disabled value="${mVo.mem_email }" id="mem_email" type="text" class="validate">
 	          <label for="mem_email">반찬 계정 이메일</label>
-	          <p>아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 반찬사이트로부터 알림을 받을 때 사용할 휴대전화입니다.</p>
+	          <p>아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 반찬사이트로부터 알림을 받을 때 사용할 이메일입니다.</p>
 	        </div>
         </div>        
         
@@ -85,7 +85,7 @@
 	          <i class="material-icons prefix">local_phone</i>
 	          <input disabled value="${mVo.mem_phone }" id="mem_phone" type="text" class="validate">
 	          <label for="mem_id">밥도둑 핸드폰 번호</label>
-		          <p>아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 사용할 이메일 주소입니다.</p>
+		          <p>아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 사용할 핸드폰 번호입니다.</p>
 	        </div>
 	      </div>        
 	      <!-- 핸드폰 번호 수정 버튼 -->
