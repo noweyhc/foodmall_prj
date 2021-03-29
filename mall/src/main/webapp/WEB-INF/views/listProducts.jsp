@@ -35,7 +35,7 @@
 			<div class="row row-cols-4">
 				<c:forEach var="p" items="${list }">
 					<ul class="items">
-						<li class="item-image"><a href="/detailProducts.do?no=${p.product_no }"><img src="img/${p.product_main_img}" width="200" height="200"></a></li>	
+						<li class="item-image"><a href="/detailProducts.do?no=${p.product_no }"><img src="img/${p.product_main_img}" width="250" height="250"></a></li>	
 				    	<li class="title"><a href="/detailProducts.do?no=${p.product_no }" class="a">${p.product_title }</a></li>
 						<li class="subtitle">${p.product_subtitle }</li>
 						<li class="price"><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</li>
@@ -82,9 +82,6 @@
 	</section>
 	
 	<%@ include file="footer.jsp" %>
-	   
-	<script type="text/javascript" src="/static/js/eventbanner.js"></script>
-	<meta http-equiv="Expires" content="-1">
 	
 </body>
 </html>

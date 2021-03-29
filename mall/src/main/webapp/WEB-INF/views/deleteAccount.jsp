@@ -11,14 +11,19 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css -->
+	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
+	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
+	
 </head>
 <body>
-
+<div class="wrap">
 <h2>탈퇴 안내</h2>
-회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.<br>
+회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.
+<p>
 <hr>
 <br>
-사용하고 계신 <strong>아이디(${mVo.mem_id })</strong>는 탈퇴할 경우 재사용 및 복구가 불가능합니다.<br>
+사용하고 계신 <span id="deleteId">아이디(${mVo.mem_id })</span>는 탈퇴할 경우 재사용 및 복구가 불가능합니다.<br>
 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.<br>
 
 <strong>탈퇴 후 회원정보 및 개인형 서비스 이용기록은 모두 삭제됩니다.</strong>
@@ -35,7 +40,7 @@
 <hr>
 
 <form action="deleteAccount.do" method="post" id="deleteForm">
-탈퇴 후에는 아이디 (${mVo.mem_id }) 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
+탈퇴 후에는 아이디 (<span id="deleteId">아이디(${mVo.mem_id })</span>) 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
 게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.<br>
 
 <div class="row">
@@ -45,13 +50,14 @@
         <span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
       </label>
     </p>
+	<div class="row">
+		<a class="waves-effect waves-light btn-large" id="deleteCheck"><i class="material-icons left">delete</i>탈퇴하기</a>
+	</div>
 </div>
 
-<div class="row">
-	<a class="waves-effect waves-light btn-large" id="deleteCheck"><i class="material-icons left">delete</i>탈퇴하기</a>
-</div>
 <input type="checkbox" id="deleteVaild" > <label for="deleteVaild"></label>
 </form>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$("#deleteCheck").on('click',function(){

@@ -56,6 +56,7 @@ public class AdminController {
 		if(util.checkPassword(inputPwd, pwdPath)) {
 			request.getSession().setAttribute("admin", "true");
 		}
+		
 		return "redirect:/admin/main";
 	}
 	
@@ -71,7 +72,9 @@ public class AdminController {
 	
 	//GET 방식 접근일 때, 상품 등록 페이지로 이동
 	@RequestMapping(value = "/product-register", method = RequestMethod.GET)
-	public String registerProductForm() {
+	public String registerProductForm(HttpServletRequest request) {
+		request.setAttribute("category", "product");
+		request.setAttribute("function", "productRegister");
 		return "/admin/productRegister";
 	}
 
@@ -162,7 +165,9 @@ public class AdminController {
 	
 	//GET 방식 접근, 상품 목록 창
 	@RequestMapping(value = "/product-edit", method = RequestMethod.GET)
-	public ModelAndView editProductForm() {
+	public ModelAndView editProductForm(HttpServletRequest request) {
+		request.setAttribute("category", "product");
+		request.setAttribute("function", "productEdit");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/admin/productEdit");
 		mav.addObject("list", dao.findAll());
@@ -173,7 +178,7 @@ public class AdminController {
 	
 	//GET 방식 접근일 때, 수정 대상 상품의 상세 정보 보기
 	@RequestMapping(value = "/product-edit/{productNo}", method = RequestMethod.GET)
-	public ModelAndView editProductFormDetail(@PathVariable String productNo) {
+	public ModelAndView editProductFormDetail(@PathVariable String productNo, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		int no = Integer.parseInt(productNo);
 		mav.addObject("product", dao.selectOne(no));
@@ -290,7 +295,9 @@ public class AdminController {
 	
 	//GET 방식 접근, 세일 정보를 등록
 	@RequestMapping(value = "/sale-register", method = RequestMethod.GET)
-	public String registerSaleForm() {
+	public String registerSaleForm(HttpServletRequest request) {
+		request.setAttribute("category", "sale");
+		request.setAttribute("function", "saleRegister");
 		return "/admin/saleRegister";
 	}
 	
@@ -314,7 +321,9 @@ public class AdminController {
 	
 	//GET 방식 접근, 세일 상품의 목록을 보여줌
 	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
-	public String editSale(Model model) {
+	public String editSale(Model model, HttpServletRequest request) {
+		request.setAttribute("category", "sale");
+		request.setAttribute("function", "saleEdit");
 		model.addAttribute("list", sdao.findAll());
 		return "/admin/saleEdit";
 	}

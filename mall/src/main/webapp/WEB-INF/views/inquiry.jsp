@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- css -->
-	<link rel="stylesheet" href="/static/css/myPage/inquiry.css">
+	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
 </head>
 <body>
 	<div class="wrap">

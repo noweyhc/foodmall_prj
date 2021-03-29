@@ -166,7 +166,7 @@ public class MypageController {
 	@GetMapping("/deleteAccount.do")
 	public String deleteAccountForm(Model model) {
 		// 세션
-		String mem_id = "test1";
+		String mem_id = "jangilkyu";
 		// 고객 아이디를 얻어온다.
 		MypageVo mVo = dao.getMemberid(mem_id);
 		// 상태 유지 후 고객 아이디 회원 탈퇴 뷰에 뿌려준다.
@@ -179,7 +179,7 @@ public class MypageController {
 	@PostMapping("/deleteAccount.do")
 	public String deleteAccountSubmit(Model model,HttpServletResponse response) throws IOException {
 			// 세션
-			String mem_id = "test1";
+			String mem_id = "jangilkyu";
 			// 아이디에 대한 정보를 찾아서 회원 탈퇴
 			int re = dao.deleteId(mem_id);
 			// 성공적으로 주소가 변경이 되었다면
