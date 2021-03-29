@@ -31,18 +31,11 @@
   </select>
   
   <select id="findMyInq" resultType="com.mall.vo.mypage.MyInqListVo">
-  		SELECT  cs_no, cs_title, cs_category_two, cs_regdate,cs_response
-      	FROM tb_cs
-      	WHERE cs_mem_id = #{cs_mem_id}
-  		
-  		<!-- 
-	  	select no, no, cs_no, cs_title,cs_category_two,cs_regdate,cs_response
-		from (SELECT ROWNUM no, cs_no, cs_title,cs_category_two,cs_regdate,cs_response
-		from (SELECT cs_no,cs_title,cs_category_two,cs_regdate,cs_response
-		FROM tb_cs
-		WHERE cs_mem_id = #{cs_mem_id} ORDER BY CS_NO DESC))
-		where no between start and end
-  		 -->
+	  	SELECT no,cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck FROM (SELECT ROWNUM no, cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck from
+     (SELECT cs_no,cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck
+  		FROM tb_cs
+  		WHERE cs_mem_id = #{cs_mem_id} ORDER BY CS_NO DESC))
+      WHERE no between #{start} and #{end}
   </select>
 
   <insert id="insertAnswer">

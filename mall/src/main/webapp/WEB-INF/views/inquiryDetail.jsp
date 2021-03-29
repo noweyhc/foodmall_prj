@@ -14,6 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/myPage/inquiryDetail.css">
+    <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 
 	<!-- summer note -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet"> 
@@ -21,7 +24,11 @@
 <body>
 
 
-<div class="row">
+<div class="row wrap">
+	<h2>문의 사항 답변하기</h2>
+	<hr>
+	<br>
+	<br>
 	<input type="hidden" name="ans_no" id="cs_no" value="${userIqVo.cs_no }">
 	<input type="hidden" name="cs_mem_id" id="cs_mem_id" value="${userIqVo.cs_mem_id }">
 	<input type="hidden" name="cs_respcheck" id="cs_respcheck" value = "${userIqVo.cs_respcheck }">
@@ -83,25 +90,22 @@
 	  		<img src="inquiry/${userIqVo.cs_fname }" id="cs_fname">
         </div>   
 	  </div>   
-</div>
 	
 	  <!-- 답변 하기 버튼 -->
 	  <div class="row">
 		  <a class="waves-effect waves-light btn" id="btnReply"><i class="material-icons left">send</i>답변 하기</a>
 	  </div>  
 
-<div id="answer_wrap">
-
-	<input type="text" id="ans_title" name="ans_title">
-    <textarea id="ans_content"></textarea><br>
-    
-	  <!-- 전송 하기 버튼 -->
-	  <div class="row">
-		  <a class="waves-effect waves-light btn" id="btnsend"><i class="material-icons left">send</i>답변 전송 하기</a>
-	  </div>  
-
+	  <div id="answer_wrap">
+		<input type="text" id="ans_title" name="ans_title">
+	    <textarea id="ans_content"></textarea><br>
+	    
+		  <!-- 전송 하기 버튼 -->
+		  <div class="row">
+			  <a class="waves-effect waves-light btn" id="btnsend"><i class="material-icons left">send</i>답변 전송 하기</a>
+		  </div>  
+    </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 

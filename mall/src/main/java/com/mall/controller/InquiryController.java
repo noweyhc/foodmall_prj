@@ -2,9 +2,11 @@ package com.mall.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -54,13 +56,11 @@ public class InquiryController {
 	
 	// 고객이 1:1문의를 등록하는 페이지
 	@PostMapping("/inquiry.do")
-	public String inquirySubmit( Model model,InquiryVo ivo,String cs_email, String cs_phone,HttpServletRequest request) {
+	public String inquirySubmit( Model model,InquiryVo ivo,String cs_email, String cs_phone,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		// 이미지를 저장할 경로
 		String path = request.getSession().getServletContext().getRealPath("inquiry");
 		// 
 		MultipartFile uploadFile = ivo.getUploadFile();
-		
-		System.out.println(ivo.getCs_category_one() + "abcd");
 		
 		ivo.setCs_fname("");
 		
@@ -84,11 +84,12 @@ public class InquiryController {
 			
 			int re = dao.insertInquiry(ivo,cs_email,cs_phone);
 			
-			System.out.println(re);
-			
 			if(re == 1) {
-				return "redirect:/myInquiry.do";
-			}
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('고객님께서 문의해주신 소중한 의견이 전달되었습니다.'); location.href='/myInquiry.do'; </script>");
+				out.close();
+			}//end if
 		
 		}//end if
 		
@@ -174,14 +175,16 @@ public class InquiryController {
 			respChk = dao.ansOK(cs_no);
 		}
 		
-		System.out.println(answerVo);
+		
+		String subject = "[밥도둑] 문의번호 ["+ answerVo.getAns_cs_no()  +"] 1:1 문의 답변입니다.";
+		String content = "안녕하세요." + cs_mem_id +"님\n" + "고객님 께서 문의해주신 소중한 문의 내용 답변이 완료 되었습니다.\n [마이페이지] -> [내가 문의한 목록]에서 확인이 가능하십니다.\n 항상 이용해주셔서 감사합니다.[밥도둑]";
 		
 		// 메일 보내기
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-		mailMessage.setSubject(answerVo.getAns_title());
+		mailMessage.setSubject(subject);
 		mailMessage.setFrom("jewelrye6");
-		mailMessage.setText(answerVo.getAns_content());
+		mailMessage.setText(content);
 		mailMessage.setTo(iep.getCs_email());
 		javaMailSender.send(mailMessage);
 		

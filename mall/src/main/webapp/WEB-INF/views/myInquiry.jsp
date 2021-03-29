@@ -47,7 +47,7 @@
       <!-- Pagination  -->
 	  <ul class="pagination" id="page">
       <c:forEach var="i" begin="1" end="${totalPage }">
-      		<li class="active" class="waves-effect"><a href="myInquiry.do?pageNUM=${i }">${i }</a></li>
+      		<li class="waves-effect"><a  href="myInquiry.do?pageNUM=${i }">${i }</a></li>
       </c:forEach>
 	  </ul>
          
