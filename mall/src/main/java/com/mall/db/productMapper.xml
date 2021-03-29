@@ -36,7 +36,6 @@
 		where product_no = #{no}
 	</delete>
    
-=======
   <select id="register">
     insert into TB_PRODUCT values(#{product_no}, #{product_category}, #{product_stock}, 
     #{product_title}, #{product_subtitle}, #{product_main_img}, #{product_caloies}, 
