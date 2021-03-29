@@ -21,6 +21,9 @@
   <mappers>
     <mapper resource="com/mall/db/productMapper.xml"/>
     <mapper resource="com/mall/db/userMapper.xml"/>
+<<<<<<< HEAD
+=======
     <mapper resource="com/mall/db/mypageMapper.xml"/>
+>>>>>>> 4e5ae22a578224f80d2ad486df274ed824853d9c
   </mappers>
 </configuration>

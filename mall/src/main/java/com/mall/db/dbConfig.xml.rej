@@ -1,0 +1,9 @@
+diff a/mall/src/main/java/com/mall/db/dbConfig.xml b/mall/src/main/java/com/mall/db/dbConfig.xml	(rejected hunks)
+@@ -24,5 +24,6 @@
+     <mapper resource="com/mall/db/userMapper.xml"/>
+     <mapper resource="com/mall/db/mypageMapper.xml"/>
+     <mapper resource="com/mall/db/reviewMapper.xml"/>
++	<mapper resource="com/mall/db/cartMapper.xml"/>
+   </mappers>
+ </configuration>
+\ No newline at end of file

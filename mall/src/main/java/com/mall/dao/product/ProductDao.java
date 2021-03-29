@@ -1,5 +1,6 @@
 package com.mall.dao.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,6 +47,7 @@ public class ProductDao {
 		return re;
 	}
 	
+
 	//상품번호 no 제품을 상품정보 테이블에서 삭제하고 성공 여부를 반환합니다
 	public int deleteProduct(int no) {
 		int re = sqlSession.delete("products.delete", no);
@@ -53,6 +55,17 @@ public class ProductDao {
 			sqlSession.commit();
 		}
 		return re;
+
+	//특정 문구가 이름에 포함된 상품 목록을 반환합니다
+	public List<ProductVo> searchByName(String keyword){
+		keyword = ("%" + keyword + "%");
+		List<ProductVo> list = new ArrayList<>();	
+		try {
+			list = sqlSession.selectList("products.searchByName", keyword);			
+		}catch(Exception e) {
+			//검색 결과가 없을 때 예외 발생
+		}
+		return list;
 	}
 	
 	public void commit() {

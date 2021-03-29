@@ -13,6 +13,7 @@
 <div class="admin-body-wrapper">
 	<div class="admin-title">
 		<h2>상품 관리</h2>
+		<hr>
 	</div>
 	
 	<table width="70%">
@@ -30,7 +31,7 @@
 				<td>${p.product_category }</td>
 				<td>${p.product_title }</td>
 				<td><input type="button" value="수정" onclick="location.href='/admin/product-edit/${p.product_no }'"></td>
-				<td><input type="button" value="삭제" onclick="deleteConfirm('${p.product_no }','${p.product_title }')"></td>
+				<td><input type="button" value="삭제" onclick="deleteConfirmProduct('${p.product_no }','${p.product_title }')"></td>
 			</tr>
 		</c:forEach>
 	</table>

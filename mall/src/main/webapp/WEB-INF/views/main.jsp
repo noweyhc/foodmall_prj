@@ -66,7 +66,7 @@
 					<li><a href='/listProducts.do'>전체상품</a></li>
 					<li><a href='/shop/goods/productlist.do?category=121'>정기구독</a></li>
 					<li><a href='/shop/goods/productlist.do?category=123'>집밥코디</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>타임세일</a></li>
+					<li><a href='/timesale'>타임세일</a></li>
 					<li><a href='/shop/goods/productlist.do?category=123'>회원리뷰</a></li>
 					<li><a href='/shop/goods/productlist.do?category=123'>이벤트</a></li>
 				</ul>

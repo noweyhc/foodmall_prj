@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/adminStyle.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <title>상품 정보 수정</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
 				<option value="기타">기타</option>
 			</select>
 			재고 : <input type="text" name="product_stock" id="product_stock" style="width:30px" value="${product.product_stock }">	
-			상품명 : <input type="text" name="product_title" id="product_title" style="width:100px" value="${product.product_title }">
+			상품명 : <input type="text" name="product_title" id="product_title" style="width:100px" value="${product.product_title }" onkeyup="search('product_title')">
 			상품부제 : <input type="text" name="product_subtitle" id="product_subtitle" style="width:140px" value="${product.product_subtitle }"><br>
 			칼로리 : <input type="text" name="product_caloies" id="product_caloies" value="${product.product_caloies }">
 			원산지 : <input type="text" name="product_origin" id="product_origin" value="${product.product_origin }">
