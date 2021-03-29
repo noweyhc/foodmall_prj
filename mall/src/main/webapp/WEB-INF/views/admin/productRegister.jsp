@@ -6,9 +6,6 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/static/css/adminStyle.css">
-	<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
 <div class="admin-body-wrapper">
