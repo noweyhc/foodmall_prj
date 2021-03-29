@@ -68,9 +68,11 @@ public class FaqController {
 
 	// 글 상세 조회
 	@RequestMapping("/detailFAQ.do")
-	public ModelAndView detailBoard(HttpServletRequest request, int no) {
+	public ModelAndView detailFAQ(int no) {
+		//조회수 증가
+		dao.updateHit(no);
+		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("f", dao.detailFAQ(no));
 		mav.addObject("f", dao.detailFAQ(no));
 		
 		return mav;
@@ -79,6 +81,8 @@ public class FaqController {
 	// 글 수정
 	@RequestMapping(value = "/updateFAQ.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(HttpServletRequest request, int no) {
+
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("f", dao.detailFAQ(no));
 		return mav;

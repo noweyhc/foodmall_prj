@@ -62,6 +62,11 @@ public class FaqDao {
 		return re;
 	}
 	
+	//조회수 증가
+	public void updateHit(int no) {
+		sqlSession.update("FAQ.updateHit",no);
+		sqlSession.commit();
+	}
 	
 
 	/*

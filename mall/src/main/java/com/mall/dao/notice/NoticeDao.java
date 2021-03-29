@@ -59,6 +59,12 @@ public class NoticeDao {
 		sqlSession.commit();
 		return re;
 	}
+	
+	//조회수 증가
+	public void updateHit(int no) {
+		sqlSession.update("notice.updateHit",no);
+		sqlSession.commit();
+	}
 
 	/*
 	 * public void insertLog(Sist_log log) { sqlSession.insert("sist_log.insert",

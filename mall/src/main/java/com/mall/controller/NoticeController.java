@@ -71,7 +71,10 @@ public class NoticeController {
 
 	// 글 상세 조회
 	@RequestMapping("/detailNotice.do")
-	public ModelAndView detailNotice(HttpServletRequest request, int no) {
+	public ModelAndView detailNotice(int no) {
+		//조회수 증가
+		dao.updateHit(no);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("n", dao.detailNotice(no));
 		return mav;

@@ -13,6 +13,7 @@
 글제목 : ${n.notice_title }<br>
 글내용 : <br>
 <textarea rows="10" cols="80" readonly="readonly">${n.notice_content }</textarea><br>
+글 조회수 : ${n.notice_hit }<br>
 관리자 : ${n.notice_manager }<br>
 <hr> 
 <a href="updateNotice.do?no=${n.notice_no }">수정</a>
