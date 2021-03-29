@@ -24,6 +24,7 @@ import com.mall.util.FileNameUtil;
 import com.mall.vo.answer.answerVo;
 import com.mall.vo.inquiry.InquiryEmailPhoneVo;
 import com.mall.vo.inquiry.InquiryVo;
+import com.mall.vo.mypage.MyInqDetRespVo;
 import com.mall.vo.mypage.MyInqDetailVo;
 import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.user.UserVO;
@@ -175,8 +176,8 @@ public class InquiryController {
 			respChk = dao.ansOK(cs_no);
 		}
 		
-		
-		String subject = "[밥도둑] 문의번호 ["+ answerVo.getAns_cs_no()  +"] 1:1 문의 답변입니다.";
+		// 고객에게 답변 완료 안내멘트 제목/내용
+		String subject = "[밥도둑] 문의번호 ["+ cs_no  +"] 1:1 문의 답변입니다.";
 		String content = "안녕하세요." + cs_mem_id +"님\n" + "고객님 께서 문의해주신 소중한 문의 내용 답변이 완료 되었습니다.\n [마이페이지] -> [내가 문의한 목록]에서 확인이 가능하십니다.\n 항상 이용해주셔서 감사합니다.[밥도둑]";
 		
 		// 메일 보내기
@@ -204,8 +205,11 @@ public class InquiryController {
 		
 		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
 		
+		// 관리자가 답변한 내용 담는 Vo
+		MyInqDetRespVo midrVo = dao.findInqResp(cs_no);
+		
 		model.addAttribute("detailVo",detailVo);
-
+		model.addAttribute("midrVo",midrVo);
 		return "myInqDetail";
 	}
 	

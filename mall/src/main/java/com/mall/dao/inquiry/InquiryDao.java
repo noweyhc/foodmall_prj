@@ -11,6 +11,7 @@ import com.mall.db.SqlSessionFactoryBean;
 import com.mall.vo.answer.answerVo;
 import com.mall.vo.inquiry.InquiryEmailPhoneVo;
 import com.mall.vo.inquiry.InquiryVo;
+import com.mall.vo.mypage.MyInqDetRespVo;
 import com.mall.vo.mypage.MyInqDetailVo;
 import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.user.UserVO;
@@ -163,6 +164,14 @@ public class InquiryDao {
 		MyInqDetailVo detailVo = sqlSession.selectOne("inquiry.detailInq",cs_no);
 		
 		return detailVo;
+	}
+
+
+	public MyInqDetRespVo findInqResp(int cs_no) {
+		
+		MyInqDetRespVo midr = sqlSession.selectOne("inquiry.findInqResp",cs_no);
+		
+		return midr;
 	}
 
 

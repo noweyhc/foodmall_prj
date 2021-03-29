@@ -18,7 +18,7 @@
 <body>
 
 <div class="wrap">
-	<h2>문의한 목록</h2>
+	<h2>내가 문의한 목록</h2>
 	<hr>
       <table class="highlight">
         <thead>
