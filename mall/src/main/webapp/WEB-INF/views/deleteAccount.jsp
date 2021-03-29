@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+   	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
@@ -28,20 +34,21 @@
 
 <hr>
 
-<form action="deleteAccount.do" method="post">
+<form action="deleteAccount.do" method="post" id="deleteForm">
 탈퇴 후에는 아이디 (${mVo.mem_id }) 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
 게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.<br>
-<input type="checkbox" id="deleteVaild"> <label for="deleteVaild"><strong>안내 사항을 모두 확인하였으며, 이에 동의합니다.</strong></label>
-	<input type="submit" value="확인" id="deleteCheck" checked > 
+<input type="checkbox" id="deleteVaild" > <label for="deleteVaild"><strong>안내 사항을 모두 확인하였으며, 이에 동의합니다.</strong></label>
+	<input type="button" value="확인" id="deleteCheck"  > 
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
 	$("#deleteCheck").on('click',function(){
-		let chk = $(this).is(":checked");
-		aelrt(chk);
+	    if(!$("#deleteVaild").is(":checked")){
+	    	alert("탈퇴를 하려면 동의하기를 누르셔야합니다.");
+	    }else{
+	    	$("#deleteForm").submit();
+	    }
 	});
-
 </script>
 
 </body>

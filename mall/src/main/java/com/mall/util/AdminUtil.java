@@ -1,8 +1,14 @@
 package com.mall.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,5 +53,32 @@ public class AdminUtil {
 		fos.write(data);
 		fos.flush();
 		fos.close();
+	}
+	
+	
+	/**
+	 * @param pwd 사용자에게 입력받은 패스워드 
+	 * @param pwdFilePath 관리자 패스워드가 저장되어있는 경로
+	 * @return 일치하는지 확인하여 boolean 형태로 반환
+	 */
+	public boolean checkPassword(String pwd, String pwdFilePath) {
+		boolean check = false;
+		String realPwd = "";
+		
+		try {
+			FileInputStream fileStream = new FileInputStream(pwdFilePath);
+			byte[ ] readBuffer = new byte[fileStream.available()];			
+			while (fileStream.read(readBuffer) != -1){}
+			realPwd = new String(readBuffer); 
+			fileStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(pwd.equals(realPwd)){
+			check = true;
+		}
+		
+		return check;
 	}
 }

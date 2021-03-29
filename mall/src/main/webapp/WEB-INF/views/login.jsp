@@ -16,6 +16,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta name="google-signin-client_id" content="494250711129-uvb45mjo8v2ml56o9ta53phqumvnqlvi.apps.googleusercontent.com">
+
     <title>Laravel</title>
 </head>
 <body>
@@ -78,6 +80,29 @@
         </div>
     </div>
 </main>
+
+<script type="text/javascript" src="http://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+	Kakao.init("72af82160c18ebef80293d4cbccbe1f6");
+	function kakaoLogin(){
+		Kakao.Auth.login({
+			scope:"profile,account_email,gender",
+			success:function(authObj) {
+				console.log(authObj);
+				Kakao.API.request({
+					url:"/v2/user/me",
+					success:function(res){
+					
+						let email = res.kakao_account.email;
+						location.href="/kakaoLoginOK.do?email="+email;
+					
+					}
+				});
+			}
+		});
+	}
+</script>
+	<a href="javascript:kakaoLogin()">카카오 로그인</a>
 </body>
     <script type="text/javascript">
         function validateCheck() {
@@ -97,5 +122,19 @@
             }
         }
     </script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+<script>
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  alert(profile.getEmail());
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	}
+</script>
 
 </html>
