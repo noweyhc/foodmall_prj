@@ -30,7 +30,7 @@
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
 					<li><a href="/login.do">로그인</a></li>      
-					<li><a href="#">마이페이지</a></li>      
+					<li><a href="/mypage.do">마이페이지</a></li>      
 				</ul>
 			</div>
 		</div>
