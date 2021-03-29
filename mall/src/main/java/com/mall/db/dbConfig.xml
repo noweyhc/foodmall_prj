@@ -27,7 +27,7 @@
     <mapper resource="com/mall/db/userMapper.xml"/>
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>
-<<<<<<< HEAD
+
     <mapper resource="com/mall/db/faqMapper.xml"/>
     
     
@@ -42,9 +42,9 @@
 
 
 
-=======
+
     <mapper resource="com/mall/db/inquiryMapper.xml"/>
->>>>>>> 486e57da5b356553bb96be6e6cec9710714ad4d5
+
     <mapper resource="com/mall/db/saleMapper.xml"/>
     <mapper resource="com/mall/db/saleProductMapper.xml"/>
 
