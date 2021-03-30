@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
+
 <!doctype HTML>
 <html>
 <head>
@@ -9,24 +12,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
-    <div class="container" style="margin-bottom: 20px">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <!-- Brand/logo -->
-			<a class="navbar-brand" href="shopList.do">반찬가게</a>
-            <!-- Links -->
-            <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">반찬</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signUp.do">회원가입</a>
-                    </li>
-            </ul>
-        </nav>
-    </div>
+
     <div class="container">
     <div class="jumbotron signUp">
     	<div></div>

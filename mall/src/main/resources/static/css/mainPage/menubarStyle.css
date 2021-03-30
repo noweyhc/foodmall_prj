@@ -1,4 +1,11 @@
 
+.divide-line {
+	width: 100%;
+	background-color: white;
+	box-shadow: 0px 8px 8px -8px #ede7e3;
+	z-index: 10;
+}
+
 .body-wrapper{
 	width: 1100px;
 	margin: auto;
@@ -7,7 +14,11 @@
 #menubar {
 	display: flex;
 	justify-content: space-between;
-	height: 42px;
+	height: 45px;
+}
+
+.menubar .category-list{
+	margin-top: 3px;
 }
 
 .menubar a {
@@ -23,18 +34,9 @@
     color: black;
     text-decoration: none !important;
 }
+
 .menubar .category-list a:hover {
     color: #80cbc4;  
-}
-
-
-.list_main {
-    list-style: none;
-}
-
-.main_sub_wrap {
-    width: 150px;
-    height: 30px;
 }
 
 .sub_ul {
@@ -62,6 +64,7 @@
 
 .dropdown {
   position: relative;
+  margin-top: 3px;
   display: inline-block;
 }
 
@@ -117,12 +120,14 @@ form {
 
 .search-wrap {
     display: inline-block;
+    margin-top: 3px;
+}
+
+.cart-wrap {
+    margin-top: 3px;
+    display: inline-block;
 }
 
 .btn-cart {
     margin-left: 30px;
-}
-
-.cart-wrap {
-        display: inline-block;
 }

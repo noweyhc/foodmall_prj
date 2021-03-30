@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 	<!-- 메뉴바 영역 시작 -->
+	<div class="divide-line">
 	<div class="body-wrapper">
 	<div id="menubar" class="menubar">
 			<div class="dropdown">
@@ -53,6 +55,21 @@
 			<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	</div>
 	</div>
+	</div>
     <!-- 메뉴바 영역 끝 -->
+    
+<script type="text/javascript">
+	$(function(){
+	$(window).scroll(function(){  //스크롤하면 아래 코드 실행
+	       var num = $(this).scrollTop();  // 스크롤값
+	       if( num > 220 ){  // 스크롤을 36이상 했을 때
+	          $(".divide-line").css("top", "0px");
+	          $(".divide-line").css("position","fixed");
+	       }else{
+	           $(".divide-line").css("position","relative");
+	       }
+	  });
+	});
+</script>
 </body>
 </html>

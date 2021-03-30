@@ -12,38 +12,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>listProducts</title>
 	
-    <link rel="stylesheet" href="static/css/mainpageStyle.css">
+    <link rel="stylesheet" href="static/css/listProductsStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">  
-    
-    <!-- 아래 세 개는 임시 추가된 태그로, 작업 편의를 위해 캐시를 저장하지 않게 하는 태그입니다 -->
-    <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Cache-Control" content="no-cache">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
+	<div id="list">
 	<section id=listProducts ><br>
-		<div id="title" align="center">
-			<h2>상품목록</h2>	
+		<div class="list-title">
+			<h4>상품목록</h4>	
 		</div>
 		
-		<div id="product-list" align="center">
-			<hr>
-			
-			<!-- 상품 앨범형 -->
-			<div class="row row-cols-4">
-				<c:forEach var="p" items="${list }">
+		<div class="list-wrap">
+			<c:forEach var="p" items="${list }">
+			<div class="list-item-box">
 					<ul class="items">
-						<li class="item-image"><a href="/detailProducts.do?no=${p.product_no }"><img src="img/${p.product_main_img}" width="250" height="250"></a></li>	
-				    	<li class="title"><a href="/detailProducts.do?no=${p.product_no }" class="a">${p.product_title }</a></li>
-						<li class="subtitle">${p.product_subtitle }</li>
-						<li class="price"><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</li>
+						<li><a href="/detailProducts.do?no=${p.product_no }"><img class="list-item-image" src="img/${p.product_main_img}"></a></li>	
+				    	<li class="list-product-title"><a href="/detailProducts.do?no=${p.product_no }" class="a">${p.product_title }</a></li>
+						<li class="list-product-subtitle">${p.product_subtitle }</li>
+						<li class="list-price"><fmt:formatNumber value="${p.product_price }" pattern="##,###"/>원</li>
 					</ul>
-			    </c:forEach>
 			</div>
-			
-			<hr>
+			</c:forEach>
+		</div>
+
 	<%-- 		
 			<!-- 상품 목록형 --> 			
 			<table id="list-form" border="1" width="68%">
@@ -78,8 +72,9 @@
 				</c:forEach>
 			</table>   --%>
 			
-		</div>
+
 	</section>
+	</div>
 	
 	<%@ include file="footer.jsp" %>
 	

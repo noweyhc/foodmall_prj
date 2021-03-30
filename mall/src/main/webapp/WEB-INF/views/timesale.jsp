@@ -22,8 +22,7 @@
 		
 		<div id="product-list" align="center">
 			<hr>
-			
-			<!-- 상품 앨범형 -->
+
 			<div class="row row-cols-4">
 				<c:forEach var="s" items="${list }">
 					<ul class="items">
