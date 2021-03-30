@@ -23,21 +23,15 @@ public class ProductsController {
 
 
 	// 상품 목록 조회
-	@RequestMapping("/listProducts.do")
+	@RequestMapping("/listProducts.do") 
 	public ModelAndView listProducts(HttpServletRequest request,
 		
 	@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
 		totalRecord = dao.countPage();
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
-
-		System.out.println("pageNUM:" + pageNUM);
 		
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
-
-		System.out.println("시작레코드:" + start);
-		System.out.println("끝나는레코드:" + end);
-		System.out.println("-------------------------------");
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.pagingProduct(start, end));

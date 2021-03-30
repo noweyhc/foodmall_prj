@@ -84,7 +84,7 @@
 			</table>   --%> 
 
 			<c:forEach var="i" begin="1" end="${totalPage }">
-				<a href="pagingProduct.do?pageNUM=${i }">${i }</a>
+				<a href="listProducts.do?pageNUM=${i }">${i }</a>
 			</c:forEach>
 
 		</div>
