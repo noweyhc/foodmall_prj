@@ -1,6 +1,7 @@
 package com.mall.dao.user;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -37,7 +38,7 @@ public class UserDAO {
     
 	public String getLogin(String id, String password) {
 		
-		HashMap<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String,Object>();
 		
 		map.put("mem_id", id);
 		map.put("mem_pwd", password);

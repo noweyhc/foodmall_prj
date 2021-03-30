@@ -13,6 +13,8 @@
 	
 	<!-- css -->
 	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
+	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
+	
 </head>
 <body>
 	<div class="wrap">

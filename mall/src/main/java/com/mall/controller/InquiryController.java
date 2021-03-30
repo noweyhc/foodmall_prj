@@ -212,6 +212,4 @@ public class InquiryController {
 		model.addAttribute("midrVo",midrVo);
 		return "myInqDetail";
 	}
-	
-	
 }

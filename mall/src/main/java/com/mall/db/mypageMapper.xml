@@ -3,14 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
-
-<<<<<<< HEAD
   <select id="totBoard" resultType="java.lang.Integer">
   	select COUNT(*) FROM tb_cs WHERE cs_mem_id = #{cs_mem_id}
   </select>
 
-=======
->>>>>>> d804449d9ca7dbdb95734838d59b2afa714851f6
   <select id="getUserinfo" resultType="com.mall.vo.mypage.MypageVo">
 		select * from tb_member where mem_id = #{mem_id}
   </select>
@@ -52,5 +48,4 @@
   <delete id="deleteId">
   		DELETE tb_member WHERE mem_id = #{mem_id}
   </delete>  
-   
 </mapper>
