@@ -61,7 +61,8 @@
 									<th>단가</th>
 									<th>수량</th>
 									<th>금액</th>
-									<th>-</th>
+									<th></th>
+									
 								</tr>
 								<c:forEach var="c" items="${map.list}" varStatus="i">
 								<tr>
@@ -77,6 +78,7 @@
 									<td>
 										<input type="number" style="width: 50px" name="product_qty" value="${c.product_qty }">
 										<input type="hidden" name="product_no" value="${c.product_no }">
+										<button type="submit" id="btn_update">변경</button>
 									</td>
 									<td style="width: 100px">
 										<fmt:formatNumber value="${c.product_total }" pattern="#,###"/>원
@@ -96,8 +98,6 @@
 								</tr>
 							</table>
 							<input type="hidden" name="count" value="${map.count }">
-							<br>
-							<button type="submit" id="btn_update">수량 변경</button>
 						</form>
 					</c:otherwise>
 				</c:choose>
