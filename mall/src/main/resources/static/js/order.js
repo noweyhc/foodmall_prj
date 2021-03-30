@@ -21,8 +21,57 @@ let  valid = {
     ship2 : function (){
         $('#ship-wrap2').show();
         $('#ship-wrap1').hide();
+		$('#newName').val('');
+		$('#newPhone').val('');
+		$('#newZipcode').val('');
+		$('#newAddr').val('');
+		$('#newDetAddr').val('');
     },
+	shipValid : function(){
+		
+	},
 	payment : function (){
+		let name;
+		let phone;
+		let zipcode;
+		let addr;
+		let detailAddr;
+		
+		/* 수령인 */
+		// 새배송지 수령인이 비어있는 경우
+		if($('#newName').val() == ''){
+			name = $('#currName').val();
+		}else{
+			name = $('#newName').val();
+		}//end 
+		
+		/*연락처*/
+		// 새 배송지 휴대전화란이 비어있는경우
+		if($('#newPhone').val() == ''){
+			phone = $('#currPhone').val();
+		}else{
+			phone = $('#newPhone').val();
+		}//end else
+		
+		/* 우편번호 */
+		if($('#newZipcode').val() == ''){
+			zipcode = $('#currZipcode').val();
+		}else{
+			zipcode = $('#newZipcode').val();
+		}
+		/* 주소 */
+		if($('#newAddr').val() == ''){
+			addr = $('#currAddr').val();
+		}else{
+			addr = $('#newAddr').val();			
+		}
+		/* 상세주소 */
+		if($('#newDetAddr').val() == ''){
+			detailAddr =$('#currDetAddr').val();
+		}else{
+			detailAddr =$('#newDetAddr').val();			
+		}
+		
 	if(!$('#order-agree').is(':checked')){
 		alert('결제를 하려면 약관 동의를 하셔야합니다.');
 		return false;
@@ -38,11 +87,11 @@ let  valid = {
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '밥도둑',
 	            amount : totAmount,
-	            buyer_email : totAmount,
-	            buyer_name : '장일규',
-	            buyer_tel : '01066827082',
-	            buyer_addr : 'adad',
-	            buyer_postcode : '456465',
+	            buyer_email : '',
+	            buyer_name : name,
+	            buyer_tel : phone,
+	            buyer_addr : addr + detailAddr,
+	            buyer_postcode : zipcode,
 	        }, function(rsp) {
 	            if ( rsp.success ) {
 	                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -64,10 +113,7 @@ let  valid = {
 	                        msg += '카드 승인번호 : ' + rsp.apply_num;
 	                        
 	                        alert(msg);
-	                        $.ajax(function(){
-	                        	
-	                        
-	                        });
+
 	                    } else {
 	                        //[3] 아직 제대로 결제가 되지 않았습니다.
 	                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -89,7 +135,6 @@ let  valid = {
 }     
 	/*최종 금액*/
 	let totAmount = $('#totAmount').val();
-	/**/	
 $('#payment').on('click',function(){
 	if(!$('#order-agree').is(':checked')){
 		alert('결제를 하려면 약관 동의를 하셔야합니다.');
