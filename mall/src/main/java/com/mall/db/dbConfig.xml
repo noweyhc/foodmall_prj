@@ -44,8 +44,6 @@
     <mapper resource="com/mall/db/inquiryMapper.xml"/>
 
 
-    <mapper resource="com/mall/db/inquiryMapper.xml"/>
-
     <mapper resource="com/mall/db/saleMapper.xml"/>
     <mapper resource="com/mall/db/saleProductMapper.xml"/>
   </mappers>
