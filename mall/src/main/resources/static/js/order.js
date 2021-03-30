@@ -27,15 +27,22 @@ let  valid = {
 		$('#newAddr').val('');
 		$('#newDetAddr').val('');
     },
-	shipValid : function(){
-		
-	},
 	payment : function (){
 		let name;
 		let phone;
 		let zipcode;
 		let addr;
 		let detailAddr;
+		
+		// 만약 ship2 radio가 선택되었다면
+		if($('input:radio[id="ship2"]').is(":checked")){
+			// 만약 새 배송지에 모든 값이 전부 채워져있지 않다면
+			if($('#newName').val() == '' && $('#newPhone').val() == '' && $('#newZipcode').val() == '' && $('#newAddr').val() == '' && $('#newDetAddr').val()== ''){
+				alert('새 배송지에 내용을 전부 정확하게 입력해주세요.');
+				$(location).attr('href', '/order.do');
+				return false;
+			}
+		}
 		
 		/* 수령인 */
 		// 새배송지 수령인이 비어있는 경우
@@ -71,11 +78,12 @@ let  valid = {
 		}else{
 			detailAddr =$('#newDetAddr').val();			
 		}
-		
+	// 만약 약관을 체크하지않고 결제 하려는 경우
 	if(!$('#order-agree').is(':checked')){
 		alert('결제를 하려면 약관 동의를 하셔야합니다.');
 		return false;
 	}else{
+	// 약관을 체크 했다면 결제 진행
     $(function(){
 	        var IMP = window.IMP; // 생략가능
 	        IMP.init('imp91911023'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -130,7 +138,7 @@ let  valid = {
 	            }
 	        });
 	    });
-	}		
+	  }		
 	}
 }     
 	/*최종 금액*/
