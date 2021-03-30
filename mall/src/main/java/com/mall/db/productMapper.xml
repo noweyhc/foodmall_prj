@@ -7,8 +7,7 @@
 
 	<select id="findAll" resultType="productVo">
 		select * from TB_PRODUCT order by product_regdate
-	</select>
-	
+
 	<select id="select" resultType="productVo">
 		select * from TB_PRODUCT 
 		where product_no = #{no}

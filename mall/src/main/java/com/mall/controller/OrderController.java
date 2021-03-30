@@ -39,8 +39,12 @@ public class OrderController {
 		// 배송료(10만원 이상 무료, 미만 2500원)
 		int fee = totAmount >= 100000 ? 0 : 2500;
 		
+		// 상품 세부 총 갯수 
 		int totQty = dao.selectQty(mem_id);
 
+		// 결제 시 상품 외 X건
+		int prodQty = dao.selelctProdQty(mem_id);
+		
 		// 상품 총 구매 가격
 		model.addAttribute("totAmount",totAmount);
 		
@@ -54,6 +58,9 @@ public class OrderController {
 		
 		// 배송료
 		model.addAttribute("fee",fee);
+		
+		// 결제시 구매상품 외 x건
+		model.addAttribute("prodQty", prodQty);
 		
 		return "order";
 	}//paymentForm

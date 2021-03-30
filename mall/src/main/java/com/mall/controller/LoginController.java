@@ -1,5 +1,8 @@
 package com.mall.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,31 +30,48 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login.do")
-	public String loginSubmit(Model model,HttpSession session,String id, String password,HttpServletRequest request,HttpServletResponse response) {
+	public String loginSubmit(Model model,HttpSession session,HttpServletRequest request,HttpServletResponse response,String mem_id, String mem_pwd) throws IOException {
 
-		// 비밀번호 유효검사		
-		String validPwd = dao.getLogin(id,password); 	
-
-		if(!validPwd.equals("password")) {
-
+		//아이디 또는 비밀번호가 null이거나 공백인 경우
+		if("".equals(mem_id) || mem_id == null || "".equals(mem_pwd)) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('아이디 또는 패스워드를 입력하여 주십시오.'); location.href='/login.do';</script>");
+            out.close();
+            return null;
 		}//end if
 		
+		// 만약 아이디 조회 시 일치하는 아이디가 없으면
+		if(dao.validId(mem_id)== 0) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('아이디가 일치하지 않습니다.'); location.href='/login.do';</script>");
+            return null;
+		}//end if
 		
-		  // 만약 세션값이 존재 한다면 
-		  if(session.getAttribute("login") != null) { 
-		  // 기존 세션 값을제거해준다. 
-		  session.removeAttribute("login"); 
-		  }//end if
+		// 만약 비밀번호 조회 시 일치하는 비밀번호가 없으면
+		if(dao.validPwd(mem_id,mem_pwd)== 0) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('비밀번호가 일치하지 않습니다.'); location.href='/login.do';</script>");
+            return null;
+		}//end if
+		
+		// 만약 세션값이 존재 한다면 
+		if(session.getAttribute("login") != null) { 
+		// 기존 세션 값을제거해준다. 
+		session.removeAttribute("login"); 
+		}//end if
 		  
-		  String login = "";
-		   //만약 id가 비어있지않으면 
-		  if(id != null) {
-			  session.setAttribute("login", id);
-		  }
+		String login = "";
+		//만약 id가 비어있지않으면 
+		if(mem_id != null) {
+			session.setAttribute("login", mem_id);
+		}
 		  
-		  login = (String)session.getAttribute("login");
+		login = (String)session.getAttribute("login");
 
-		  System.out.println(login);
+		System.out.println(login);
 		  
 		return "forward:/";
 	}//loginSubmit
