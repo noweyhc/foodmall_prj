@@ -90,9 +90,9 @@
 								</c:forEach>
 								
 								<tr>
-									<td colspan="6" align="center"><br>
+									<td colspan="6" align="right"><br>
 										상품금액 합계 : 	<fmt:formatNumber value="${map.sumPriceCart }" pattern="###,###,###"/>원<br>
-										배송료 : ${map.fee }<br>
+										배송료 : ${map.fee }원<br>
 										전체 주문금액 : <fmt:formatNumber value="${map.totalPriceCart }" pattern="###,###,###"/>원
 									</td>
 								</tr>
