@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>menubar</title>
+<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
 </head>
 <body>
 
 	<!-- 메뉴바 영역 시작 -->
+	<div class="body-wrapper">
 	<div id="menubar" class="menubar">
 			<div class="dropdown">
 				<button type="button" class="btn btn-outline-dark dropbtn">
@@ -28,7 +29,7 @@
 					<a href="#">기타요리</a>
 				</div>   
 			</div>
-			<div class=menu>
+			<div class=category-list>
 				<ul>
 					<li><a href='/listProducts.do'>전체상품</a></li>
 					<li><a href='/shop/goods/productlist.do?category=121'>정기구독</a></li>
@@ -51,7 +52,7 @@
 			</div>
 			<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	</div>
+	</div>
     <!-- 메뉴바 영역 끝 -->
-    
 </body>
 </html>

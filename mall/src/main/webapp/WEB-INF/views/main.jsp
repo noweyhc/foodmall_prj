@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,83 +13,11 @@
     <link rel="stylesheet" href="static/css/mainpageStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">  
-    
-    <!-- 아래 세 개는 임시 추가된 태그로, 작업 편의를 위해 캐시를 저장하지 않게 하는 태그입니다 -->
-    <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Cache-Control" content="no-cache">
-
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+	
 </head>
 <body>
-	<!-- 헤더 영역 시작 -->
-	<nav id="header">
-		<div class="nav-align">
-			<div class="header menu-right">
-				<ul>
-					<li><a href="#">고객센터</a></li>  
-				</ul>	
-				
-			</div>
-			<div class="header menu-left">
-				<ul>
-					<li><a href="/signUp.do">회원가입</a></li>               
-					<li><a href="/login.do">로그인</a></li>      
-					<li><a href="/mypage.do">마이페이지</a></li>      
-				</ul>
-			</div>
-		</div>
-		<div class="nav-main-image">
-			<a href="/">
-			<img src="static/img/mainimage.JPG" alt="메인이미지">
-		</div>
-	</nav>
-	<!-- 헤더 영역 끝 -->
-	
-	<!-- 메뉴바 영역 시작 -->
-	<div id="menubar" class="menubar">
-			<div class="dropdown">
-				<button type="button" class="btn btn-outline-dark dropbtn">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>  
-					</svg> 
-				</button>
-				<div class="dropdown-content">
-					<a href="#">국&탕</a>
-					<a href="#">찌개&전골</a>
-					<a href="#">찜&조림</a>
-					<a href="#">볶음요리</a>    
-					<a href="#">밑반찬</a>
-					<a href="#">튀김</a>
-					<a href="#">구이</a>
-					<a href="#">김밥&초밥</a>
-					<a href="#">기타요리</a>
-				</div>   
-			</div>
-			<div class=menu>
-				<ul>
-					<li><a href='/listProducts.do'>전체상품</a></li>
-					<li><a href='/shop/goods/productlist.do?category=121'>정기구독</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>집밥코디</a></li>
-					<li><a href='/timesale'>타임세일</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>회원리뷰</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>이벤트</a></li>
-				</ul>
-			</div>
-			<div class="search-wrap">
-				<form action="#">
-					<input type="search" class="inp_search" placeholder="오늘 돈카츠ㄱㄱ?">
-					<button type="submit" class="btn btn-alert btn-search">검색</button>
-				</form>
-			</div>
-			<div class="cart-wrap">
-				<a href="/listCart.do" class="btn-cart"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-					<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-				</svg></a>
-			</div>
-			<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	</div>
-    <!-- 메뉴바 영역 끝 -->
-    
+
     <!-- 이벤트 배너 영역 시작 -->
     <div id="event-banner" class="event-banner">
 		<div class="viewbox">
@@ -124,56 +56,21 @@
 	<!-- 이벤트 배너 영역 종료 -->
 	
 	<!-- 베스트 상품 영역 시작 -->
-	<div id="best">
-		<div class="best-title">
-			<h2>금주 베스트 상품</h2>
+	<div id="new">
+		<div class="new-title">
+			<h4>따끈따끈 신상품</h4>
 		</div>
-		<div class="best-wrap">
-			<div class="bestline first">
+		<div class="new-wrap">
+			<c:forEach var="n" items="${newProducts }">
+			<div class="new-item-box">
 				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best01.png"></a></li>
-					<li class="title"><a href="#" class="a">민트탄산수</a></li>
-					<li class="price">2,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best02.png"></a></li>
-					<li class="title"><a href="#" class="a">잣 대추 밤 넣은 죽</a></li>
-					<li class="price">3,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best03.png"></a></li>
-					<li class="title"><a href="#" class="a">아마도 탄탄면</a></li>
-					<li class="price">4,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best04.png"></a></li>
-					<li class="title"><a href="#" class="a">엄청 작은 미트볼</a></li>
-					<li class="price">5,000원</li>
+					<li><a href="/detailProducts.do?no=${n.product_no }"><img class="new-item-image" src="img/${n.product_main_img }"></a></li>
+					<li class="new-product-title"><a href="/detailProducts.do?no=${n.product_no }">${n.product_title }</a></li>
+					<li class="new-product-subtitle">${n.product_subtitle }</li>
+					<li class="new-price"><fmt:formatNumber value="${n.product_price }" pattern="##,###"/>원</li>
 				</ul>
 			</div>
-			
-			<div class="bestline second">
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best05.png"></a></li>
-					<li class="title"><a href="#" class="a">소고기 쌀국수</a></li>
-					<li class="price">5,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best06.png"></a></li>
-					<li class="title"><a href="#" class="a">치킨커리</a></li>
-					<li class="price">5,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best07.png"></a></li>
-					<li class="title"><a href="#" class="a">요거트 와플</a></li>
-					<li class="price">5,000원</li>
-				</ul>
-				<ul class="items">
-					<li class="best-item-image"><a href="#"><img src="static/img/best08.png"></a></li>
-					<li class="title"><a href="#" class="a">토마토 큰미트볼</a></li>
-					<li class="price">5,000원</li>
-				</ul>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- 베스트 상품 영역 종료 -->

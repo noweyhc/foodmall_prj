@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +20,9 @@
     <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-Control" content="no-cache">
+
 </head>
 <body>
-
-	<%@ include file="header.jsp" %>
-	<%@ include file="menubar.jsp" %>
-	
 	<section id=listProducts ><br>
 		<div id="title" align="center">
 			<h2>상품목록</h2>	

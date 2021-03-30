@@ -3,25 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="static/css/mainPage/headerStyle.css">
 <meta charset="UTF-8">
 <title>header</title>
 </head>
 <body>
 
 	<!-- 헤더 영역 시작 -->
+	<div class="body-wrapper">
 	<nav id="header">
 		<div class="nav-align">
-			<div class="header menu-right">
+			<div class="header menu-left">
 				<ul>
 					<li><a href="#">고객센터</a></li>  
 				</ul>	
 				
 			</div>
-			<div class="header menu-left">
+			<div class="header menu-right" id="menu-right">
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
 					<li><a href="/login.do">로그인</a></li>      
-					<li><a href="/mypage.do">마이페이지</a></li>      
+					<li id="mypageLink"><a href="/mypage.do">마이페이지</a></li>      
 				</ul>
 			</div>
 		</div>
@@ -31,6 +33,7 @@
 			</a>
 		</div>
 	</nav>
+	</div>
 	<!-- 헤더 영역 끝 -->
 	
 </body>

@@ -55,6 +55,7 @@ public class ProductDao {
 			sqlSession.commit();
 		}
 		return re;
+	}
 
 	//특정 문구가 이름에 포함된 상품 목록을 반환합니다
 	public List<ProductVo> searchByName(String keyword){
@@ -65,6 +66,15 @@ public class ProductDao {
 		}catch(Exception e) {
 			//검색 결과가 없을 때 예외 발생
 		}
+		return list;
+	}
+	
+	
+	//상품 목록 중 제일 최근에 업데이트된 상품 count개의 목록을 반환하빈다
+	public List<ProductVo> selectNew(int count){
+		List<ProductVo> list = new ArrayList<>();
+		list = sqlSession.selectList("products.selectNew", count);
+		
 		return list;
 	}
 	

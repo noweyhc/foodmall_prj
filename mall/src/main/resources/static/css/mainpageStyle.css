@@ -1,158 +1,4 @@
 
-/* header 영역 시작 */
-nav {
-    width: 1200px;
-    margin: 0px auto;
-}
-
-.nav-align {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-}
-
-.header ul {
-    margin: 20px 20px 0 0;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 30px;
-    list-style-type: none; /*불릿 표시 지우기*/
-}
-
-.header ul a {
-    color: #000;
-    text-decoration: none;
-}
-
-.nav-main-image{ 
-    margin: 30px 0 30px 0;
-    text-align: center;
-}
-/* header 영역 끝 */
-
-
-
-/* menubar 영역 시작 */
-.menubar a {
-    text-decoration: none !important;
-}
-
-.menubar a:link {
-    color: black;
-    text-decoration: none !important;
-}
-
-.menubar a:visited{
-    color: black;
-    text-decoration: none !important;
-}
-.menubar a:hover {
-    color: bc30e6;  
-}
-
-#menubar {
-	display: flex;
-	justify-content: center;
-	height: 42px;
-}
-
-.list_main {
-    list-style: none;
-}
-
-.main_sub_wrap {
-    width: 150px;
-    height: 30px;
-}
-
-.sub_ul {
-    width: 100px; 
-    border: 1px solid black;
-    display: none;
-}
-
-
-.menu ul li{
-    display: inline-block;
-    margin-right: 35px;
-    font-size: 20px;
-    font-weight: bold;
-	line-height: 36px;
-}
-
-.dropbtn {
-  background-color: #c71edd;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #bc30e6;}
-
-
-.ipnut-style {
-    width: 15px;
-    height: 35px;
-    font-size: 20px;
-}
-
-form {
-    display: inline-block;
-}
-
-.inp_search {
-    width: 235px;
-    height: 40px;
-    padding: 0 60px 0 14px;
-    border-radius: 20px;
-    background-color: #f7f7f0;
-    font-weight: 350;
-    color: #666;
-    outline: none;
-}
-
-.search-wrap {
-    display: inline-block;
-}
-
-.btn-cart {
-    margin-left: 30px;
-}
-
-.cart-wrap {
-        display: inline-block;
-}
-/* menubar 영역 끝 */
-
-
-
-/* event-banner 영역 시작 */
 .event-banner {
 	margin-top: 4px;
 	width: 100%;
@@ -161,7 +7,7 @@ form {
 }
 
 .event-banner .viewbox {
-	width: 1160px;
+	width: 1100px;
 	height: 100%;
 	position: relative;
 	overflow: hidden;
@@ -235,63 +81,87 @@ form {
 .dot-indicator .dot.active{
 	background: #61E7FE;
 }
-/* event-banner 영역 끝 */
 
 
-
-/* best 상품 영역 시작 */
-#best {
+#new {
 	position: relative;
+	margin: auto;
 	margin-top: 90px;
+	margin-bottom: 50px;
+	width: 1100px;
+}
+
+.new-title{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.new-wrap {
+	margin-top: 50px;
+	width: 100%;
+	margin: auto;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.newline{
+	width: 100%;
+	margin-top: 50px;
+}
+
+.new-item-box {
+	width: 260px;
+	height: 380px;
+	margin-top: 40px;
 	margin-bottom: 50px;
 }
 
-.best-title{
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.best-wrap {
-	margin-top: 50px;
-	width: 100%;
-	position: relative;
-	align-items: center;
-}
-
-.bestline{
-	width: 1160px;
-	margin: auto;
-	margin-top: 50px;
-	display: flex;
-	justify-content: space-between;
-}
-
 .items {
-	width: 240px;
 	list-style: none;
 	margin:0px;
 	padding:0px;
+	display: block;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.items .title{
-	font-weight: bold;
-	margin-top: 8px;
-	color: black;
+.items .new-item-image{
+	width: 260px;
+	height: 280px;
+	object-fit: cover;
 }
-.items .price{
-	font-weight: bold;
-	margin-top: 8px;
+
+.items .new-product-title{
+	font-weight: 400;
+	font-size: 18px;
+	margin-top: 10px;
 	color: black;
 }
 
-.items .a {
+.items .new-product-subtitle{
+	font-weight: 400;
+	margin-top: 5px;
+	color: #667a77;
+}
+
+.items .new-price{
+	font-weight: 700;
+	margin-top: 5px;
+	color: black;
+}
+
+.items a {
 	text-decoration: none;
+	color: black;
 }
-/* best 상품 영역 끝 */
 
 
+.items .new-product-title a:hover {
+	color: #19778a;
+}
 
-/* footer 영역 시작 */
+
 .footer {
 	position: relative;
 	padding-top: 50px;
@@ -350,4 +220,3 @@ form {
 	color: #c2c2c2;
 	font-size: 16px;
 }
-/* footer 영역 끝 */

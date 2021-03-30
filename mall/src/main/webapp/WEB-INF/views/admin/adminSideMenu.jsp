@@ -20,7 +20,7 @@
 			<div class="category-title">밥도둑 관리자</div>
 		</div>
 		<hr class = "divider">
-		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="menu-list-sub">
 				<a id="menu-list-sub-product" class="menu-list-sub-category ${category eq 'product' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseOne" 
 				aria-expanded="${category eq 'product' ? 'true' : 'false' }" aria-controls="collapseOne" data-parent="#accordion">
