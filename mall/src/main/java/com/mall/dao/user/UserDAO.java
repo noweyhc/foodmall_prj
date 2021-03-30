@@ -36,20 +36,28 @@ public class UserDAO {
         return result;
     }
     
-	public String getLogin(String id, String password) {
+	public int validPwd(String id, String password) {
 		
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		map.put("mem_id", id);
 		map.put("mem_pwd", password);
+		
+		System.out.println(map);
 
-		String validPwd = sqlSession.selectOne("userMapper.findpwd", map);
+		int validPwd = sqlSession.selectOne("userMapper.findpwd", map);
 		
 		return validPwd;
 	}
-    
-    public void commit() {
-    	sqlSession.commit();
-    }
 
+	public int validId(String id) {
+		
+		int validId = sqlSession.selectOne("userMapper.findId",id);
+		
+		return validId;
+	}
+	
+	public void commit() {
+		sqlSession.commit();
+	}
 }

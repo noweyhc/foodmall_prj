@@ -16,7 +16,11 @@
 		insert into TB_MEMBER values
 		(SEQ_MEMBER.NEXTVAL,#{mem_id},#{mem_pwd},#{mem_name},#{mem_birth},#{mem_email},#{mem_phone},#{mem_zipCode},#{mem_address},#{mem_detailAddress})
 	</insert>
-	<select id="findpwd" resultType="java.lang.String">
-		select mem_pwd from TB_MEMBER where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}
+	<select id="findpwd" resultType="java.lang.Integer">
+		select COUNT(mem_pwd) from TB_MEMBER where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}
+	</select>
+	
+	<select id="findId" resultType="java.lang.Integer">
+		select COUNT(mem_id) from tb_member where mem_id = #{mem_id}
 	</select>
 </mapper>

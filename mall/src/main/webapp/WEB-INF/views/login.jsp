@@ -1,86 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<meta name="google-signin-client_id" content="494250711129-uvb45mjo8v2ml56o9ta53phqumvnqlvi.apps.googleusercontent.com">
-
-    <title>Laravel</title>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/login.css">
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="#">반찬 쇼핑몰</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">회원가입</a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
-
-<main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">로그인</div>
-                    <div class="card-body">
-                        <form action="login.do" method="post" onsubmit="validateCheck()">
-                            <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">아이디</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="id" id="id">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">비밀번호</label>
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" id="pwd" name="password">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                                <a href="#" class="btn btn-link">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
+     <!-- 아이디 -->
+    <form action="/login.do" method="post"  class="col s10">
+    <div class="login-container">
+         <div class="login-background">
+          <div class="row">
+           <!-- 아이디 -->
+            <div class="input-field col s10">
+              <i class="material-icons prefix">account_box</i>
+              <input type="text" id="mem_id" name="mem_id" type="text" class="validate">
+              <label for="first_name">아이디</label>
+            </div><!--input-->
+          </div><!--row-->
+          
+          <!-- 비밀번호 -->   
+          <div class="row">
+            <div class="input-field col s10">
+                <i class="material-icons prefix">enhanced_encryption</i>
+              <input id="mem_pwd" name="mem_pwd" type="password"  class="validate">
+              <label for="password">Password</label>
+            </div><!--input-->
+          </div><!--비밀번호-->  
+        <!--로그인 제출 버튼-->    
+        <button class="btn waves-effect waves-light" type="submit" name="action">로그인
+            <i class="material-icons right">send</i>
+        </button><!--button-->    
+        </div><!--login-container-->       
+    </div><!--login-container--> 
+    </form><!--form-->
+/*
 <script type="text/javascript" src="http://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	Kakao.init("72af82160c18ebef80293d4cbccbe1f6");
@@ -136,5 +100,5 @@ function onSignIn(googleUser) {
 	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 	}
 </script>
-
+*/
 </html>

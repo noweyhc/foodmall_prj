@@ -25,7 +25,7 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/mall/db/productMapper.xml"/>
+   	<mapper resource="com/mall/db/productMapper.xml"/>
     <mapper resource="com/mall/db/userMapper.xml"/>
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>

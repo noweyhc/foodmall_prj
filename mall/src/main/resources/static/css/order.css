@@ -103,3 +103,11 @@ td,th {
     font-weight: bold;
     font-size: 20px;
 }
+
+.shipping-wrap1 {
+    display: none;
+}
+
+#ship-wrap2{
+	display: none;
+}
