@@ -50,5 +50,11 @@ public class OrderDao {
 		
 		return totQty;
 	}
+
+	public int selelctProdQty(String mem_id) {
+		
+		int prodQty = sqlSession.selectOne("order.selelctProdQty",mem_id);
+		return prodQty;
+	}
 	
 }//OrderDao

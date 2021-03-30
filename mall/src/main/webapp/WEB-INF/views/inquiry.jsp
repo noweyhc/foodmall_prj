@@ -14,18 +14,19 @@
 	<!-- css -->
 	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
-	
+
 </head>
 <body>
+
 	<div class="wrap">
 		<h4>[밥도둑]1:1문의</h4>
 		<hr>
-		<br>
+		<br>ㅋ
 		<br>
 		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form">
 			<div class="row">
 
-			<input type="hidden" name="mem_name" value="${uv.mem_name }"> 
+			<input type="hidden"  name="mem_name" value="${uv.mem_name }"> 
 			
 			  <!-- 문의 유형 -->
 			  <label>문의 유형</label>
@@ -121,7 +122,12 @@
 			</div>	        
 		</form>
 	</div>	
+	
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/js/inquiry.js"></script>
 <script>
+/*
   function categoryChange(e) {
   let _product = ['상품 품질불량', '상품 조회', '상품 행사문의', '상품 기타사항'];
   let _delivery = ['오배송', '교환/환불', '배송누락', '배송 기타사항'];
@@ -151,7 +157,7 @@
          good = document.getElementById("good").value;
          document.inquiry_form.cs_category_two.value = good;
     }
-    
+*/
 </script>
 </body>
 </html>

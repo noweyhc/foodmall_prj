@@ -27,6 +27,8 @@
 <!-- 전체 wrap -->
 <div class="wrap">
     <input type="hidden" value="${totAmount }" id="totAmount">
+    <input type="hidden" value="${prodQty }" id="prodQty">
+    
     <!--주문 목록-->
     <div class="order-background">
     	<div class="order-title-wrap">
@@ -85,14 +87,14 @@
                      <!--수령인-->
                       <div class="row">
                         <div class="input-field col s12">
-                          <input disabled value="${ospVo.mem_name }" id="disabled" type="text" class="validate">
+                          <input disabled value="${ospVo.mem_name }" id="currName" type="text" class="validate">
                           <label for="disabled">수령인</label>
                         </div>
                       </div>
                       <!-- 연락처 -->
                        <div class="row">
                         <div class="input-field col s12">
-                          <input disabled value="${ospVo.mem_phone }" id="disabled" type="text" class="validate">
+                          <input disabled value="${ospVo.mem_phone }" id="currPhone" type="text" class="validate">
                           <label for="disabled">연락처</label>
                         </div>
                       </div> 
@@ -100,18 +102,18 @@
                       <div class="row">
                             <!-- 현재 우편번호 -->
                             <div class="input-field col s1">
-                              <input disabled id="disabled" value="${ospVo.mem_zipcode }" type="text" class="validate">
-                              <label for="disabled">우편번호</label>
+                              <input disabled value="${ospVo.mem_zipcode }" id="currZipcode" type="text" class="validate">
+                              <label for="currZipcode">우편번호</label>
                             </div>
                             <!-- 현재 주소  -->
                             <div class="input-field col s3">
-                              <input disabled id="disabled" value="${ospVo.mem_address }" type="text" class="validate">
-                              <label for="disabled">주소</label>
+                              <input disabled value="${ospVo.mem_address }" id="currAddr" type="text" class="validate">
+                              <label for="currAddr">주소</label>
                             </div>
                             <!-- 현재 상세주소  -->
                             <div class="input-field col s6">
-                              <input disabled id="disabled" value="${ospVo.mem_detailaddress }" type="text" class="validate">
-                              <label for="disabled">상세주소</label>
+                              <input disabled value="${ospVo.mem_detailaddress }" id="currDetAddr" type="text" class="validate">
+                              <label for="currDetAddr">상세주소</label>
                             </div>
                         </div>                      
                   </div>
@@ -124,32 +126,32 @@
                      <!--수령인-->
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="disabled" type="text" class="validate">
-                          <label for="disabled">수령인</label>
+                          <input type="text" id="newName" name="newName" class="validate">
+                          <label for="newName">수령인</label>
                         </div>
                       </div>
                       <!-- 연락처 -->
                       <div class="row">
                         <div class="input-field col s12">
-                          <input id="disabled" type="text" class="validate">
-                          <label for="disabled">연락처</label>
+                          <input type="text" id="newPhone" name="newPhone" class="validate">
+                          <label for="newPhone">연락처</label>
                         </div>
                       </div>                      
                     <div class="row">
                         <!-- 새 우편번호 -->
                         <div class="input-field col s1">
-                          <input id="disabled" type="text" class="validate">
-                          <label for="disabled">우편번호</label>
+                          <input type="text" id="newZipcode" name="newZipcode" class="validate">
+                          <label for="newZipcode">우편번호</label>
                         </div>
                         <!-- 새 주소  -->
                         <div class="input-field col s3">
-                          <input id="disabled" type="text" class="validate">
-                          <label for="disabled">주소</label>
+                          <input type="text" id="newAddr" name="newAddr" class="validate">
+                          <label for="newAddr">주소</label>
                         </div>
                         <!-- 새 상세주소  -->
                         <div class="input-field col s6">
-                          <input id="disabled" type="text" class="validate">
-                          <label for="disabled">상세주소</label>
+                          <input type="text" id="newDetAddr" name="newDetAddr" class="validate">
+                          <label for="newDetAddr">상세주소</label>
                         </div>
                         <!-- 우편번호 찾기 버튼  -->
                         <div class="row">
@@ -224,14 +226,17 @@
     </p>
 	<a class="waves-effect waves-light btn s12" id="payment"><i class="material-icons left">payment</i>결제하기</a>
 </div>
-
+</div>
 <!-- iamport -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- 제이쿼리  -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- 지도 api  -->
 <script src="/static/js/ship.js"></script>
+<script src="/static/js/order.js"></script>
+
 <script>
+/*
     $('#ship2').on('click',function(){
         $('#ship-wrap2').show();
         $('#ship-wrap1').hide();
@@ -280,7 +285,7 @@ $('#payment').on('click',function(){
 	                        //기타 필요한 데이터가 있으면 추가 전달
 	                    }
 	                }).done(function(data) {
-	                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+	                    //[2] 서버에서 결제정보확인 및 서비스루틴이 정상적인 경우
 	                    if ( everythings_fine ) {
 	                        msg = '결제가 완료되었습니다.';
 	                        msg += '\n고유ID : ' + rsp.imp_uid;
@@ -289,6 +294,10 @@ $('#payment').on('click',function(){
 	                        msg += '카드 승인번호 : ' + rsp.apply_num;
 	                        
 	                        alert(msg);
+	                        $.ajax(function(){
+	                        	
+	                        
+	                        });
 	                    } else {
 	                        //[3] 아직 제대로 결제가 되지 않았습니다.
 	                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
@@ -308,6 +317,7 @@ $('#payment').on('click',function(){
 	  });	
 	}
 });
+*/
 </script>
 </body>
 </html>
