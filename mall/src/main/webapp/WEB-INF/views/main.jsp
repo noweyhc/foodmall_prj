@@ -74,10 +74,10 @@
 		</div>
 	</div>
 	<!-- 베스트 상품 영역 종료 -->
-	
+
 	<%@ include file="footer.jsp" %>
-   
-<script type="text/javascript" src="/static/js/eventbanner.js"></script>
-<meta http-equiv="Expires" content="-1">
+
+	<script type="text/javascript" src="/static/js/eventbanner.js"></script>
+	<meta http-equiv="Expires" content="-1">
 </body>
 </html>

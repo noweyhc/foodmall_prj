@@ -38,7 +38,7 @@ public class CartController {
 			// 장바구니에 동일상품 있으면 update
 			dao.updateCart(cv);
 		}
-		return "redirect: /listCart.do";
+		return "redirect:/listCart.do";
 	}
 
 	// 장바구니 목록보기

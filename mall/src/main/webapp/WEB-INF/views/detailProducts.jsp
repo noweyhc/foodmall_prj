@@ -14,8 +14,18 @@
 	<link rel="stylesheet" href="css/detailProductsStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
-    
 	<meta charset="UTF-8">     
+<!-- 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#input_cart").click(function(){
+				if(confirm("장바구니로 가기")) {
+					location.href="/listCart.do";
+				}
+			});	
+		});
+		
+	</script>  --> 
 </head>
 <body>
 
@@ -52,17 +62,18 @@
 									<input type="hidden" name="product_no" value="${p.product_no}">
 									<input type="hidden" name="product_price" value="${p.product_price}">
 									<input type="hidden" name="product_title" value="${p.product_title}">
+									<input type="hidden" name="product_main_img" value="${p.product_main_img}">
 									<select name="product_qty">
 										<c:forEach begin="1" end="10" var="i">
 											<option value="${i }">${i }</option>
 										</c:forEach>
 									</select>&nbsp;개
-									<input type="submit" value="장바구니에 담기">								
+									<input type="submit" id="input_cart" value="장바구니에 담기">						
 								</form>
 							</td>
 						<tr align="center">
 							<td>총 가격</td>
-							<td><fmt:formatNumber value="${product_price }" pattern="#,###"/>원</td>
+							<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
 						</tr>
 					</table>
 				</td>

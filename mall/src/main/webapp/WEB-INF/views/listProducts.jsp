@@ -71,12 +71,13 @@
 					</tr>
 				</c:forEach>
 			</table>   --%>
-			
+			<c:forEach var="i" begin="1" end="${totalPage }">
+				<a href="listProducts.do?pageNUM=${i }">${i }</a>
+			</c:forEach>
 
+		</div>
 	</section>
-	</div>
-	
-	<%@ include file="footer.jsp" %>
-	
+
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
