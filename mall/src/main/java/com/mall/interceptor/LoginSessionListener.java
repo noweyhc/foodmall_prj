@@ -14,6 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Component
 public class LoginSessionListener extends HandlerInterceptorAdapter{
 
+	
 	 // preHandle() : 컨트롤러보다 먼저 수행되는 메서드
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
