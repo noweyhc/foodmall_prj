@@ -11,14 +11,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>detailProducts</title>
 	
-	<link rel="stylesheet" href="static/css/mainpageStyle.css">
+	<link rel="stylesheet" href="css/detailProductsStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
     
-    <!-- 아래 세 개는 임시 추가된 태그로, 작업 편의를 위해 캐시를 저장하지 않게 하는 태그입니다 -->
-	<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Cache-Control" content="no-cache">
 	<meta charset="UTF-8">     
 </head>
 <body>
@@ -26,17 +22,15 @@
 	
 	<section id=detailProducts><br>
 	<div id="title" align="center">
-		<h2>상품 상세정보</h2>
-		<hr>
 		<a href="/listProducts.do">상품목록</a> >
 		<a href="#">${p.product_category }</a>
 	</div>
 	
-	<div id="product-detail" align="center">
+	<div id="product-detail-wrap" align="center">
 		<table border="1">
 			<tr>
 				<td>
-					<img  src="img/${p.product_main_img }" width="400" height="400">
+					<img class="product-mainimg" src="img/${p.product_main_img }">
 				</td>
 				<td>
 					<table border="1" style="width: 400px; height: 400px;">

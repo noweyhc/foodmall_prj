@@ -131,3 +131,8 @@ form {
 .btn-cart {
     margin-left: 30px;
 }
+
+.btn-cart :hover{
+    color: #19778A;
+}
+
