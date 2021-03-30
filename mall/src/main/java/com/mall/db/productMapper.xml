@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="products">
+ <mapper namespace="products">
 	<select id="findAll" resultType="productVo">
 		select * from TB_PRODUCT order by product_regdate
 	</select>
@@ -35,8 +35,7 @@
 		delete from TB_PRODUCT
 		where product_no = #{no}
 	</delete>
-   
-=======
+
   <select id="register">
     insert into TB_PRODUCT values(#{product_no}, #{product_category}, #{product_stock}, 
     #{product_title}, #{product_subtitle}, #{product_main_img}, #{product_caloies}, 
@@ -76,10 +75,10 @@
   
   <select id="findAll" resultType="java.lang.String">
   	select * from TB_PRODUCT
-  </select>
-  
-<!--   
-  <select id="selectCategory" resultType="productVo">
-  	select * from TB_PRODUCT
   </select> 
+  
+
+<!--   <select id="selectCategory" resultType="productVo">
+  	select * from TB_PRODUCT
+  </select>  -->
 </mapper>
