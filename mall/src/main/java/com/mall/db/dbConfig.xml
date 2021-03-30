@@ -30,10 +30,21 @@
     <mapper resource="com/mall/db/userMapper.xml"/>
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>
+
+
+
     <mapper resource="com/mall/db/cartMapper.xml"/>
+
     <mapper resource="com/mall/db/faqMapper.xml"/>
     <mapper resource="com/mall/db/noticeMapper.xml"/>
+
+
+
+
+
     <mapper resource="com/mall/db/inquiryMapper.xml"/>
+
+
     <mapper resource="com/mall/db/saleMapper.xml"/>
     <mapper resource="com/mall/db/saleProductMapper.xml"/>
     <mapper resource="com/mall/db/orderMapper.xml"/>
