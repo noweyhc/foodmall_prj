@@ -1,6 +1,7 @@
 package com.mall.dao.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +22,16 @@ public class ProductDao {
 	public List<ProductVo> findAll(){
 		List<ProductVo> list = null;
 		list = sqlSession.selectList("products.findAll");
+		return list;
+	}	
+	
+	// 페이징 처리를 위한 상품 시작,끝 값 가져오기
+	public List<ProductVo> pagingProduct(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ProductVo> list = sqlSession.selectList("products.paging", map);
 		return list;
 	}	
 	
@@ -73,5 +84,10 @@ public class ProductDao {
     	sqlSession.commit();
     }
 
+	public int countPage() {
+		int total = sqlSession.selectOne("products.countPage");
+		return total;
+	}
+	
 
 }

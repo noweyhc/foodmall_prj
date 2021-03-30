@@ -68,7 +68,7 @@
 							</td>
 						<tr align="center">
 							<td>총 가격</td>
-							<td><fmt:formatNumber value="${product_price }" pattern="#,###"/>원</td>
+							<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
 						</tr>
 					</table>
 				</td>

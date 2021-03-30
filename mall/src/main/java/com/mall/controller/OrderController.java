@@ -21,7 +21,7 @@ public class OrderController {
 	private final OrderDao dao;
 
 	// 결제페이지로 이동
-	@GetMapping("order.do")
+	@GetMapping("/order.do")
 	public String paymentForm(Model model,HttpSession session) {
 		// 세션
 		String mem_id = "jangilkyu";

@@ -20,11 +20,19 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			// 장바구니 목록 페이지로 이동
+			// 상품 더보기: 상품 목록 페이지로 이동
 			$("#btn_list").click(function(){
 				location.href="/listProducts.do";
 			});	
 		});
+		
+		$(function(){
+			// 결제
+			$("#btn_order").click(function(){
+				location.href="/order.do";
+			});	
+		});
+		
 	</script>
 	
 </head>
@@ -84,11 +92,13 @@
 							<input type="hidden" name="count" value="${map.count }">
 							<br>
 							<button type="submit" id="btn_update">수량 변경</button>
-							<button type="submit" id="btn_order">전체상품 결제</button>
 						</form>
 					</c:otherwise>
 				</c:choose>
-				<br><br><hr>
+				<br><br>
+				<button type="submit" id="btn_choice">선택상품 결제</button>
+				<button type="submit" id="btn_order">전체상품 결제</button><br><br>
+				<hr>
 				<button type="button" id="btn_list">상품 더보기</button>
 			</div>
 	</section>
