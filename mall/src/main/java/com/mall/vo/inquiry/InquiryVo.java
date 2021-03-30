@@ -27,5 +27,6 @@ public class InquiryVo {
 	private String cs_email; // 고객 이메일
 	private String cs_phone; // 고객 휴대전화
 	private String cs_response; // 미답변, 답변완료
+	private int cs_respcheck; // 0 미답변, 1 답변
 	
 }
