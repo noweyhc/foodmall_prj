@@ -22,6 +22,14 @@ public class MypageDao {
 		sqlSession = SqlSessionFactoryBean.getSqlSession();
 	}
 	
+	
+	public int totBoard(String cs_mem_id) {
+		
+		int total = sqlSession.selectOne("mypage.totBoard",cs_mem_id);
+		return total;
+	}
+	
+	
 	public MypageVo getMemberinfo(String admin) {
 		
 		MypageVo mVo = sqlSession.selectOne("mypage.getUserinfo",admin);
@@ -110,9 +118,16 @@ public class MypageDao {
 		return re;
 	}
 
-	public List<MyInqListVo> findMyInq(String mem_id) {
+	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end) {
 		
-		List<MyInqListVo> list = sqlSession.selectList("mypage.findMyInq",mem_id);
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("cs_mem_id", cs_mem_id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		
+		List<MyInqListVo> list = sqlSession.selectList("mypage.findMyInq",map);
 		
 		return list;
 	}
@@ -148,7 +163,6 @@ public class MypageDao {
 		
 		return re;
 	}
-	
 	
 	public void commit() {
     	sqlSession.commit();

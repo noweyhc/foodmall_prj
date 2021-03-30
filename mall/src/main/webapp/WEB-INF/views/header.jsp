@@ -1,5 +1,8 @@
+<%@page import="com.mall.interceptor.LoginSessionListener"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,13 +22,15 @@
 				</ul>	
 				
 			</div>
-			<div class="header menu-right" id="menu-right">
+
+			<div class="header menu-right" id="menu-right">		
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
 					<li><a href="/login.do">로그인</a></li>      
 					<li id="mypageLink"><a href="/mypage.do">마이페이지</a></li>      
 				</ul>
 			</div>
+			
 		</div>
 		<div class="nav-main-image">
 			<a href="/">

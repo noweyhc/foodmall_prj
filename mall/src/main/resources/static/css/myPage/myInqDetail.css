@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
-h1 {
-  color: red;
+#ans_content{
+	border: 1px solid;
+	overflow:auto;
 }

@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ShippingVo {
 	
-	private String mem_zipcode;
-	private String mem_address;
-	private String mem_detailaddress;
+	private String mem_zipcode; // 우편번호
+	private String mem_address; // 주소
+	private String mem_detailaddress; // 상세주소
 
 }
