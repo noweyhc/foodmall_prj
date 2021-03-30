@@ -55,6 +55,7 @@ public class ProductDao {
 			sqlSession.commit();
 		}
 		return re;
+	}
 
 	//특정 문구가 이름에 포함된 상품 목록을 반환합니다
 	public List<ProductVo> searchByName(String keyword){
