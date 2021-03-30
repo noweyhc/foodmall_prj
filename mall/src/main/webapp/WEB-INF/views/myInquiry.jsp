@@ -11,11 +11,15 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/static/css/myPage/myInquiry.css">
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 </head>
 <body>
 
-	
-	
+<div class="wrap">
+	<h2>내가 문의한 목록</h2>
+	<hr>
       <table class="highlight">
         <thead>
           <tr>
@@ -31,7 +35,7 @@
 				<c:forEach var="l" items="${list }">
         	<tr>
 					<td>${l.cs_no }</td>
-					<td><a href="myInqDetail.do/${l.cs_no }">${l.cs_title }</a></td>
+					<td id="cs_title"><a href="myInqDetail.do/${l.cs_no }">${l.cs_title }</a></td>
 					<td>[${l.cs_category_two }]</td>
 					<td>${l.cs_regdate }</td>
 					<td>${l.cs_response }</td>
@@ -39,6 +43,15 @@
 				</c:forEach>
         </tbody>
       </table>
-
+      
+      <!-- Pagination  -->
+	  <ul class="pagination" id="page">
+      <c:forEach var="i" begin="1" end="${totalPage }">
+      		<li class="waves-effect"><a  href="myInquiry.do?pageNUM=${i }">${i }</a></li>
+      </c:forEach>
+	  </ul>
+         
+      
+</div>
 </body>
 </html>
