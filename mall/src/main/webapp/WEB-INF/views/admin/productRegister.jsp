@@ -20,6 +20,10 @@
 	
 	<form action="product-register" id="product_register" method="post" enctype="multipart/form-data">
 			상품번호 : <input type="text" name="product_no" id="product_no" style="width:50px">
+			카테고리 : <input type="text" name="product_category" id="product_category" style="width:80px">
+			
+			
+			<!-- 
 			카테고리 : <select name="product_category" id="product_category" style="width:80px">
 				<option value="국/탕" selected="selected">국/탕</option>
 				<option value="찌개/전골">찌개/전골</option>
@@ -28,6 +32,7 @@
 				<option value="김치">김치</option>
 				<option value="기타">기타</option>
 			</select>
+			 -->
 			재고 : <input type="text" name="product_stock" id="product_stock" style="width:30px">
 			상품명 : <input type="text" name="product_title" id="product_title" style="width:100px">
 			상품부제 : <input type="text" name="product_subtitle" id="product_subtitle" style="width:140px"><br>
