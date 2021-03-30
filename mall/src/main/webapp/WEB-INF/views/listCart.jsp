@@ -56,6 +56,7 @@
 						<form name="form-cart" id="form-cart" method="post" action="/update.do">
 							<table border="1">
 								<tr>
+									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>단가</th>
 									<th>수량</th>
@@ -64,6 +65,11 @@
 								</tr>
 								<c:forEach var="c" items="${map.list}" varStatus="i">
 								<tr>
+									<td>
+										<a href="/detailProducts.do?no=${c.product_no }">
+										<img src="img/${c.product_main_img}" width="100" height="100">
+										</a>
+									</td>
 									<td>${c.product_title }</td>
 									<td style="width: 100px">
 										<fmt:formatNumber value="${c.product_price }" pattern="#,###"/>원
@@ -82,7 +88,7 @@
 								</c:forEach>
 								
 								<tr>
-									<td colspan="5" align="right"><br>
+									<td colspan="6" align="center"><br>
 										상품금액 합계 : 	<fmt:formatNumber value="${map.sumPriceCart }" pattern="###,###,###"/>원<br>
 										배송료 : ${map.fee }<br>
 										전체 주문금액 : <fmt:formatNumber value="${map.totalPriceCart }" pattern="###,###,###"/>원

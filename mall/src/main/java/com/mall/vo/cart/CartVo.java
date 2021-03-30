@@ -17,4 +17,5 @@ public class CartVo {
 	private int product_price;
 	private int product_total;
 	private String product_title;
+	private String product_main_img;
 }

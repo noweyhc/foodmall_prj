@@ -17,7 +17,19 @@
 	<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-Control" content="no-cache">
-	<meta charset="UTF-8">     
+	<meta charset="UTF-8">   
+	
+<!-- 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#input_cart").click(function(){
+				if(confirm("장바구니로 가기")) {
+					location.href="/listCart.do";
+				}
+			});	
+		});
+		
+	</script>  --> 
 </head>
 <body>
 
@@ -28,7 +40,7 @@
 	<div id="title" align="center">
 		<h2>상품 상세정보</h2>
 		<hr>
-		<a href="/listProducts.do">상품목록</a> >
+		<a href="/listProducts.do">상품목록</a>
 		<a href="#">${p.product_category }</a>
 	</div>
 	
@@ -58,12 +70,13 @@
 									<input type="hidden" name="product_no" value="${p.product_no}">
 									<input type="hidden" name="product_price" value="${p.product_price}">
 									<input type="hidden" name="product_title" value="${p.product_title}">
+									<input type="hidden" name="product_main_img" value="${p.product_main_img}">
 									<select name="product_qty">
 										<c:forEach begin="1" end="10" var="i">
 											<option value="${i }">${i }</option>
 										</c:forEach>
 									</select>&nbsp;개
-									<input type="submit" value="장바구니에 담기">								
+									<input type="submit" id="input_cart" value="장바구니에 담기">						
 								</form>
 							</td>
 						<tr align="center">
