@@ -13,7 +13,7 @@ let inquiryValid = {
 	},
 
 	Check : function(){
-		inquiryValid.Check();		
+		inquiryValid.Check();	
 	}
 }
 

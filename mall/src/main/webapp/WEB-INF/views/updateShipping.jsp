@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <!-- css  -->
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
     <link rel="stylesheet" href="/static/css/myPage/updateShipping.css">
     <link rel="stylesheet" href="/static/css/myPage/wrap.css">
     
@@ -21,7 +22,6 @@
 <body>
 
 <div class="wrap">
-	<form action="updateShipping.do" method="post">
 	  <h4>현재주소</h4>
 	  <div id="curr-ship-div">
 		<br>
@@ -47,6 +47,7 @@
 		  </div><!-- row -->
 		</div><!-- curr-ship-div  -->
 		
+	<form action="updateShipping.do" method="post" onsubmit="return Check()">
 		<!-- 변경할 주소  -->
 		<h4>변경할 주소</h4>
 		 <div id="new-ship-div">
@@ -83,13 +84,16 @@
 	     </div><!-- new-ship-div -->
 	     <div id="send-btn">
 	        <!-- 우편번호 수정 버튼 -->
-		   <button class="btn waves-effect waves-light" type="submit" name="action">주소 수정
+		   <button class="btn waves-effect waves-light" type="submit" name="sendAddr" id="sendAddr">주소 수정
 		     <i class="material-icons right">send</i>
 		   </button><!-- button -->
 		 </div>
 	</form>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/static/js/updateShipping.js"></script>
+<script src="/static/js/myposts.js"></script>
 </body>
 </html>
