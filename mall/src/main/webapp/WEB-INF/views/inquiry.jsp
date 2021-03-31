@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- css -->
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
 
@@ -21,17 +22,17 @@
 	<div class="wrap">
 		<h4>[밥도둑]1:1문의</h4>
 		<hr>
-		<br>ㅋ
 		<br>
-		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form">
+		<br>
+		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form" id="inquiry_form" onsubmit="return Check()">
 			<div class="row">
 
 			<input type="hidden"  name="mem_name" value="${uv.mem_name }"> 
 			
 			  <!-- 문의 유형 -->
 			  <label>문의 유형</label>
-			  <select class="browser-default" onchange="categoryChange(this)" id="value1">
-				    <option value="" disabled selected>선택해주세요</option>
+			  <select class="browser-default" onchange="categoryChange(this)" id="value1" name="value1">
+				    <option value="0" disabled selected id="v">선택해주세요</option>
 				    <option value="product">상품문의</option>
 				    <option value="delivery">배송문의</option>
 			  </select>		
@@ -78,7 +79,7 @@
 	        <div class="row">
 		        <div class="input-field col s10">
 		          <i class="material-icons prefix">mode_edit</i>
-		          <textarea id="icon_prefix2" rows="30" class="materialize-textarea" id="cs_content" name="cs_content" placeholder="문의유형을 선택후 문의내용을 자세하게 작성해주세요.자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴수 있습니다."></textarea>
+		          <textarea rows="30" class="materialize-textarea" id="cs_content" name="cs_content" placeholder="문의유형을 선택후 문의내용을 자세하게 작성해주세요.자세한 내용을 함께 보내주시면 더욱 신속히 답변드릴수 있습니다."></textarea>
 		          <label for="icon_prefix2">문의 내용</label>
 		        </div>
 	        </div>
@@ -99,7 +100,7 @@
 	        <div class="row">
 		        <div class="input-field col s5">
 		          <i class="material-icons prefix">email</i>
-		          <input type="text" placeholder="예) example@banchan.com" name="cs_email" class="validate">
+		          <input type="text" placeholder="예) example@banchan.com" id="cs_email" name="cs_email" class="validate">
 		          <label for="cs_email">이메일 주소</label>
 		          <p>접수내용 안내를 위해 알림받을 때 사용할 이메일 정보입니다.</p>
 		        </div>
@@ -109,14 +110,14 @@
 	        <div class="row">
 		        <div class="input-field col s5">
 		          <i class="material-icons prefix">local_phone</i>
-		          <input type="text" placeholder="01012345678" name="cs_phone" class="validate">
+		          <input type="text" placeholder="01012345678" id="cs_phone" name="cs_phone" class="validate">
 		          <label for="cs_email">핸드폰 번호</label>
 		          <p>접수내용 안내를 위해 알림받을 때 사용할 핸드폰 정보입니다.</p>
 		        </div>
 	        </div>
 	        
 	        <div class="row">
-	          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+	          <button class="btn waves-effect waves-light" id="send1" type="submit" name="action">Submit
     				<i class="material-icons right">send</i>
   			 </button>
 			</div>	        
@@ -125,10 +126,41 @@
 	
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/static/js/inquiry.js"></script>
+<script src="/static/js/inquiryValid.js"></script>  
 <script>
 /*
-  function categoryChange(e) {
+		$(document).ready(function(){
+			$('#inquiry_form').submit(function(){
+					if(($("#value1 option:selected").val()) == 0) {
+					                  toastr.options = {
+											  "closeButton": false,
+											  "debug": false,
+											  "newestOnTop": false,
+											  "progressBar": false,
+											  "positionClass": "toast-bottom-right",
+											  "preventDuplicates": false,
+											  "onclick": null,
+											  "showDuration": "300",
+											  "hideDuration": "1000",
+											  "timeOut": "5000",
+											  "extendedTimeOut": "1000",
+											  "showEasing": "swing",
+											  "hideEasing": "linear",
+											  "showMethod": "fadeIn",
+											  "hideMethod": "fadeOut"
+					                  };
+					                  toastr.error('문의유형을 선택해 주시기바랍니다.');
+							return false;
+					}
+			});
+		});
+*/
+//alert($("#value1 option:selected").val());
+
+/*
+  function categoryChange(e)s {
   let _product = ['상품 품질불량', '상품 조회', '상품 행사문의', '상품 기타사항'];
   let _delivery = ['오배송', '교환/환불', '배송누락', '배송 기타사항'];
   let target = document.getElementById("good");

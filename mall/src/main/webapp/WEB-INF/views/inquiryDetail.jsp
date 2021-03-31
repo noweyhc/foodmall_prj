@@ -95,10 +95,18 @@
 	  <div class="row">
 		  <a class="waves-effect waves-light btn" id="btnReply"><i class="material-icons left">send</i>답변 하기</a>
 	  </div>  
+	  
 
 	  <div id="answer_wrap">
-		<input type="text" id="ans_title" name="ans_title">
-	    <textarea id="ans_content"></textarea><br>
+		  <!-- 답변 제목 -->
+		  <div class="row">
+			 <div class="input-field col s10">
+		        <i class="material-icons prefix">title</i>
+			    <input  id="ans_title" name="ans_title" type="text" class="validate">
+			    <label for="ans_title">답변 제목</label>
+			</div>  		
+		  </div>	
+		  <textarea id="ans_content"></textarea><br>
 	    
 		  <!-- 전송 하기 버튼 -->
 		  <div class="row">
@@ -110,12 +118,10 @@
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- 섬머노트  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 <script src="/static/js/inquiryDetail.js"></script>
 
 <script>
-
-/*
 	// 답변여부	
 	var resp = $('#cs_respcheck').val();
 	
@@ -151,7 +157,6 @@
      tabsize: 2, 
      lang: "ko-KR"
     }); 
-*/    
 </script>
 </body>
 </html>
