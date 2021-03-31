@@ -68,4 +68,12 @@
 		where rnum between #{start} and #{end}
 	</select>
 	
+	<select id="getNextNo" resultType="int">
+		select product_no 
+		from(
+  			SELECT * FROM tb_product 
+  			order by product_regdate desc 
+		)
+		where rownum = 1
+	</select>
 </mapper>

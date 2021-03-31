@@ -89,6 +89,15 @@ public class ProductDao {
 		return list;
 	}
 	
+	
+	//제일 최근에 등록된 상품 번호를 조회하여, 지정된 다음 상품 번호를 반환한다
+	public int getNextNo() {
+		int no = sqlSession.selectOne("products.getNextNo");
+		no += 1;
+		
+		return no;
+	}
+	
 	public void commit() {
     	sqlSession.commit();
     }

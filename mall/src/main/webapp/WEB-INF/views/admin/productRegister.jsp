@@ -22,7 +22,7 @@
 					<div class="form-row">
 						<div class="form-group">
 							<label for="product_no" class="inputtag">상품번호</label>
-							<input type="text" class="form-control inputbox" name="product_no" id="product_no">
+							<input type="text" class="form-control inputbox" value="${nextNo }" name="product_no" id="product_no" readonly>
 						</div>
 					</div>
 					<div class="form-row">
