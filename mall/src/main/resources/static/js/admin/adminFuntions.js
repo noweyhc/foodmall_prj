@@ -3,7 +3,6 @@
 function checkProductForm(formtype){
 	
 	let test = document.getElementsByClassName('product_main_img');
-	console.log(test);
 	
 	// 숫자만 있어야 하는 항목들
 	let reg = /^[0-9]+$/;
@@ -58,6 +57,50 @@ function checkProductForm(formtype){
 	return true;
 }
 
+//세일 등록 시 유효성을 검사하는 함수
+function checkSaleForm(){
+	let reg = /^[0-9]+$/;
+	let salePrice = document.getElementById('salePrice');
+	let originPrice = document.getElementById('productPrice').value;
+	let productNo = document.getElementById('productNo').value;
+	let start = document.getElementById('startDate').value + document.getElementById('startTime').value;
+	let end = document.getElementById('endDate').value + document.getElementById('endTime').value;
+
+	//상품을 선택했는지 검증
+	if(productNo == ''){
+		alert('할인 할 상품을 선택하세요');
+		return false;
+	}
+	
+	//세일가를 기입했는지 확인
+	if(salePrice.value == ''){
+		textClean(salePrice, '할인가');
+		return false;
+	}
+	
+	//세일가에 숫자만 들어있는지 확인
+	if(!reg.test(salePrice.value)){
+		numClean(salePrice, '할인가');
+		return false;
+	}
+	
+	//세일가가 정상가보다 낮은지 확인
+	if(salePrice.value >= originPrice){
+		alert('할인가는 원가격보다 낮아야합니다');
+		salePrice.value = '';
+		salePrice.focus();
+		return false;
+	}
+	
+	//세일 기간이 정상적으로 설정되었는지 확인
+	if(start >= end){
+		alert('할인 종료일이 시작일보다 이르거나 같습니다\n기간을 확인하고 다시 설정하세요');
+		return false;
+	}
+	
+	return true;
+	
+}
 
 function numClean(target, name){
 	alert(name + ' 항목에는 숫자만 넣어주세요');
@@ -69,6 +112,8 @@ function textClean(target, name){
 	alert(name + ' 항목은 필수 기재 항목입니다');
 	target.focus();
 }
+
+
 
 //상품 삭제 시 확인창을 띄우는 함수
 function deleteConfirmProduct(no, productName){

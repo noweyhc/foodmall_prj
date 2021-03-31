@@ -92,7 +92,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group">
-							<label for="product_detail_img1" class="sr_only"></label>
+							<label for="product_detail_img1" class="sr-only"></label>
 							<input type="hidden" name="product_detail_img1" class="product_detail_img1">
 							<label for="detailImgFile1" class="inputtag">상세이미지1</label>
 							<input type="file"  class="form-control inputbox" id="detailImgFile1" name="detailImgFile1" onchange="setImg(event, 'detail_img1');" style="width: 545px;">
