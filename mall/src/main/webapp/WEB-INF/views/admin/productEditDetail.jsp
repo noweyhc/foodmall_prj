@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/adminSideMenu.jsp"%>
+<%@ include file="adminSideMenu.jsp"%>
+<%@ include file="adminToolbar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/adminStyle.css">
+<link rel="stylesheet" href="css/admin/adminStyle.css">
 
 <title>상품 정보 수정</title>
 </head>
