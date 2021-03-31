@@ -20,25 +20,26 @@
 					</svg> 
 				</button>
 				<div class="dropdown-content">
-					<a href="#">국&탕</a>
-					<a href="#">찌개&전골</a>
-					<a href="#">찜&조림</a>
-					<a href="#">볶음요리</a>    
-					<a href="#">밑반찬</a>
-					<a href="#">튀김</a>
-					<a href="#">구이</a>
-					<a href="#">김밥&초밥</a>
-					<a href="#">기타요리</a>
+						<a href="/listProducts.do?category_no=100">국물요리</a>
+						<a href="/listProducts.do?category_no=101">찜·조림</a>
+						<a href="/listProducts.do?category_no=102">육류</a>
+						<a href="/listProducts.do?category_no=103">해물</a>
+						<a href="/listProducts.do?category_no=104">튀김요리</a>
+						<a href="/listProducts.do?category_no=105">면요리</a>
+						<a href="/listProducts.do?category_no=106">밑반찬·김치</a>
+						<a href="/listProducts.do?category_no=107">분식·도시락</a>    
+						<a href="/listProducts.do?category_no=108">덮밥·볶음밥</a>
+						<a href="/listProducts.do?category_no=109">밀키트·기타</a>
 				</div>   
 			</div>
 			<div class=category-list>
 				<ul>
 					<li><a href='/listProducts.do'>전체상품</a></li>
-					<li><a href='/shop/goods/productlist.do?category=121'>정기구독</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>집밥코디</a></li>
+					<li><a href='#'>정기구독</a></li>
+					<li><a href='#'>집밥코디</a></li>
 					<li><a href='/timesale'>타임세일</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>회원리뷰</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>이벤트</a></li>
+					<li><a href='#'>회원리뷰</a></li>
+					<li><a href='#'>이벤트</a></li>
 				</ul>
 			</div>
 			<div class="search-wrap">

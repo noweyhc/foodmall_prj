@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class ProductVo {
 	private int product_no;	// 상품번호
 	private String product_category; // 상품 카테고리
+	private int category_no; // 카테고리 번호
 	private int product_stock; // 상품 재고수량
 	private String product_title; // 상품명
 	private String product_subtitle; // 상품 서브제목

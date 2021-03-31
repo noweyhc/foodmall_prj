@@ -93,10 +93,29 @@ public class ProductDao {
     	sqlSession.commit();
     }
 
+	
+	//총 페이지 수를 가져온다
 	public int countPage() {
 		int total = sqlSession.selectOne("products.countPage");
 		return total;
 	}
+	
+	//카테고리에 해당하는 상품목록 페이징처리
+	public List<ProductVo> categoryProduct(int start, int end, int category_no) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ProductVo> list = sqlSession.selectList("products.category", map);
+		return list;
+	}	
+	
+	public List<ProductVo> categoryProduct(int category_no){
+		List<ProductVo> list = null;
+		list = sqlSession.selectList("products.category");
+		return list;
+	}	
+	
 	
 
 }
