@@ -35,8 +35,8 @@ function setTimer(endTime, timer){
 	t = setInterval(countdown, 1000);
 }
 
-let timerList = document.getElementsByClassName("timer");
-let endDateList = document.getElementsByClassName("endDate");
+let timerList = document.getElementsByClassName("sale-timer");
+let endDateList = document.getElementsByClassName("sale-endDate");
 
 for(var i = 0; i < timerList.length; i++){
 	setTimer(endDateList[i].getAttribute('value'), timerList[i]);
