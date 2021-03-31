@@ -1,4 +1,4 @@
-    	let code;
+let code; //근데 여기서는 또 잘되요 위에 이메일 인증하는 코드입니다
 
 let emailValid = {
 
