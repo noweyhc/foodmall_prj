@@ -29,10 +29,27 @@ let emailValid = {
 	sendEmaCode : function(){
            let email = $("#email").val();
            
-            if (email == '') {
-            	$('#emailValidCheck').html('인증번호를 입력해주시기바랍니다.').css('color','red');
-            	$('#email').val('');
-            	$('#email').focus();
+            if ($('#email').val() == '') {
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+				};
+						toastr.error('이메일을 정확히 입력해 주시기바랍니다.');
+            		$('#email').focus();
+					return false;
             }
             
             let data = {email:email};
@@ -42,7 +59,24 @@ let emailValid = {
                 data:data
             }).done(function(data){
                 code = data;
-                alert("인증코드를 발송하였습니다.");
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+				};
+						toastr.success('인증코드를 발송하였습니다.');
             });
             
 	},
