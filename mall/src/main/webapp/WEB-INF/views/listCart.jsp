@@ -7,34 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>listCart</title>
+	
 
     <link rel="stylesheet" href="static/css/mainpageStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">  
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
     
     <!-- 아래 세 개는 임시 추가된 태그로, 작업 편의를 위해 캐시를 저장하지 않게 하는 태그입니다 -->
     <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-Control" content="no-cache">
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			// 상품 더보기: 상품 목록 페이지로 이동
-			$("#btn_list").click(function(){
-				location.href="/listProducts.do";
-			});	
-		});
 		
-		$(function(){
-			// 결제
-			$("#btn_order").click(function(){
-				location.href="/order.do";
-			});	
-		});
-		
-	</script>
-	
 </head>
 <body>
 
@@ -105,11 +90,29 @@
 				<button type="submit" id="btn_choice">선택상품 결제</button>
 				<button type="submit" id="btn_order">전체상품 결제</button><br><br>
 				<hr>
-				<button type="button" id="btn_list">상품 더보기</button>
+				<button type="button" id="btn_list">상품 더보기</button><br><br>
 			</div>
 	</section>
 	
 	<%@ include file="footer.jsp" %>
 	
 </body>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 상품 더보기: 상품 목록 페이지로 이동
+			$("#btn_list").click(function(){
+				location.href="/listProducts.do";
+			});	
+		});
+		
+		$(function(){
+			// 결제
+			$("#btn_order").click(function(){
+				location.href="#";
+			});	
+		});
+		
+	</script>
 </html>

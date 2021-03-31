@@ -22,7 +22,6 @@
 	flex-wrap: wrap;
 }
 
-
 .list-item-box {
 	width: 260px;
 	height: 380px;
@@ -42,6 +41,7 @@
 	width: 260px;
 	height: 290px;
 	object-fit: cover;
+	border-radius: 5%;
 }
 
 .items .list-product-title{
@@ -71,6 +71,25 @@
 
 .items .list-product-title a:hover {
 	color: #19778a;
+}
+
+.page-num {
+	text-align: center;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.page-num a:link {
+	color: #19778a;
+
+}
+		
+.page-num a:visited {
+	color: #19778a;
+}
+		
+.page-num a:hover {
+	color: #ffa62b;
 }
 
 

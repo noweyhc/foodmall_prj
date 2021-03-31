@@ -21,7 +21,7 @@
 	<div class="wrap">
 		<h4>[밥도둑]1:1문의</h4>
 		<hr>
-		<br>ㅋ
+		<br>
 		<br>
 		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form">
 			<div class="row">
