@@ -18,7 +18,7 @@
 			
 			<div class="container">
 			<div class = "register-form">
-				<form action="product-register" class="form-inline" id="product_register" method="post" enctype="multipart/form-data">
+				<form action="product-register"  onsubmit="return checkProductForm();" class="form-inline" id="product_register" method="post" enctype="multipart/form-data">
 					<div class="form-row">
 						<div class="form-group">
 							<label for="product_no" class="inputtag">상품번호</label>
