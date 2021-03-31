@@ -51,7 +51,7 @@
 					<div class="form-row">
 						<div class="form-group">
 							<label for="product_detail_text" class="inputtag">상세설명</label>
-							<textarea cols="110" rows="6" class="form-control inputbox" name="product_detail_text" id="product_detail_text" style="resize: none;" >${product.product_detail_text }</textarea>
+							<textarea cols="100" rows="6" class="form-control inputbox" name="product_detail_text" id="product_detail_text" style="width: 900px; resize: none;" >${product.product_detail_text }</textarea>
 						</div>
 					</div>
 					<div class="form-row">
@@ -118,9 +118,12 @@
 						</div>
 					</div>							
 					<div class="form-row">
-						<div class="button-group">
+						<div class="edit delete-group">
+							<button type="button" class="button delete" id="product_edit_delete"  onclick="deleteConfirmProduct('${product.product_no }','${product.product_title }')">삭제</button>
+						</div>
+						<div class="edit button-group">
 							<button type="button" class="button submit" id="product_edit_submit">수정</button>
-							<button type="button" class="button erase" onclick="location.href='/admin/product-edit'">취소</button>
+							<button type="button" class="button erase" id="product_edit_cancel" onclick="location.href='/admin/product-edit'">취소</button>
 						</div>
 					</div>
 			</form>

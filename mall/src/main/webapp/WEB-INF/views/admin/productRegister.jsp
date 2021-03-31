@@ -50,7 +50,7 @@
 					<div class="form-row">
 						<div class="form-group">
 							<label for="product_detail_text" class="inputtag">상세설명</label>
-							<textarea cols="110" rows="6" class="form-control inputbox" name="product_detail_text" id="product_detail_text" style="resize: none;"></textarea>
+							<textarea cols="100" rows="6" class="form-control inputbox" name="product_detail_text" id="product_detail_text" style="width: 900px; resize: none;"></textarea>
 						</div>
 					</div>
 					<div class="form-row">
@@ -110,9 +110,9 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="button-group">
-							<button type="submit" class="button submit">등록</button>
-							<button type="reset" class="button erase">재작성</button>
+						<div class="button-group" id="register-button-group">
+							<button type="submit" class="button submit" id="product-register-submit">등록</button>
+							<button type="reset" class="button erase" id="product-register-erase">재작성</button>
 						</div>
 					</div>
 				</form>
