@@ -37,7 +37,7 @@ let  valid = {
 		// 만약 ship2 radio가 선택되었다면
 		if($('input:radio[id="ship2"]').is(":checked")){
 			// 만약 새 배송지에 모든 값이 전부 채워져있지 않다면
-			if($('#newName').val() == '' && $('#newPhone').val() == '' && $('#newZipcode').val() == '' && $('#newAddr').val() == '' && $('#newDetAddr').val()== ''){
+			if($('#newName').val() == '' || $('#newPhone').val() == '' || $('#newZipcode').val() == '' || $('#newAddr').val() == '' || $('#newDetAddr').val()== ''){
 				alert('새 배송지에 내용을 전부 정확하게 입력해주세요.');
 				$(location).attr('href', '/order.do');
 				return false;
