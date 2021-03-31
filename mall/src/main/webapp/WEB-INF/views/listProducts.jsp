@@ -20,7 +20,6 @@
 </head>
 <body>
 	<div id="list">
-	<section id=listProducts ><br>
 		<div class="list-title">
 			<h4>상품목록</h4>	
 		</div>
@@ -37,46 +36,11 @@
 			</div>
 			</c:forEach>
 		</div>
-
-	<%-- 		
-			<!-- 상품 목록형 --> 			
-			<table id="list-form" border="1" width="68%">
-				<tr>
-					<td>상품번호</td>
-					<td>메인이미지</td>
-					<td>상품명</td>
-					<td>서브제목</td>
-					<td>상품가격</td>
-					<td>상품등록일</td>
-				</tr>
-				
-				<c:forEach var="p" items="${list }">
-					<tr>
-						<td>${p.product_no }</td>
-						<td>
-							<a href="/detailProducts.do?no=${p.product_no }">
-							<img src="img/${p.product_main_img}" width="100" height="100">
-							</a>
-						</td>
-						<td>
-							<a href="/detailProducts.do?no=${p.product_no }">
-							${p.product_title }
-							</a>
-						</td>
-						<td>${p.product_subtitle }</td>
-						<td>
-							<fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원
-						</td>
-						<td>${p.product_regdate }</td>
-					</tr>
-				</c:forEach>
-			</table>   --%>
-			<c:forEach var="i" begin="1" end="${totalPage }">
-				<a href="listProducts.do?pageNUM=${i }">${i }</a>
-			</c:forEach>
-
-		</div>
-	</section>
+		
+		<c:forEach var="i" begin="1" end="${totalPage }">
+			<a href="listProducts.do?pageNUM=${i }">${i }</a>
+		</c:forEach>
+	</div>
 
 	<%@ include file="footer.jsp"%>
 </body>

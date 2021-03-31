@@ -33,7 +33,7 @@
 	<section id=detailProducts><br>
 	<div id="title" align="center">
 		<a href="/listProducts.do">상품목록</a> >
-		<a href="#">${p.product_category }</a>
+		<a href="/listProducts.do?category_no=${p.category_no }">${p.product_category }</a>
 	</div>
 	
 	<div id="product-detail-wrap" align="center">
