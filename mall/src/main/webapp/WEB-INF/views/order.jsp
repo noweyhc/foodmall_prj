@@ -28,6 +28,7 @@
 <div class="wrap">
     <input type="hidden" value="${totAmount }" id="totAmount">
     <input type="hidden" value="${prodQty }" id="prodQty">
+    <input type="hidden" value="${lastTot }" id="lastTot">
     
     <!--주문 목록-->
     <div class="order-background">
@@ -207,7 +208,7 @@
                   <hr id="dotted-hr">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="00" id="disabled" type="text" class="validate">
+                      <input disabled value="${lastTot }" id="disabled" type="text" class="validate">
                       <label for="disabled">최종 결제 금액</label>
                     </div>
                   </div>

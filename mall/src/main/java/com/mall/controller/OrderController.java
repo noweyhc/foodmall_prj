@@ -62,6 +62,9 @@ public class OrderController {
 		// 결제시 구매상품 외 x건
 		model.addAttribute("prodQty", prodQty);
 		
+		// 주문금액 + 배송비
+		model.addAttribute("lastTot",totAmount +fee);
+		
 		return "order";
 	}//paymentForm
 	
