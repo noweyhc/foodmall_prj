@@ -139,7 +139,11 @@ function setImg(event, imgId) {
 
 //상품 검색창 띄우기
 function popupSearch(){
-	window.open('product-search', '상품 검색', 'width=800, height=600, left=200, top=50');
+	let width = 800;
+	let height = 600;
+	let xpos = Math.ceil(( window.screen.width - width )/2);
+	let ypos = Math.ceil((window.screen.height - height)/2) - 80;
+	window.open('product-search', '상품 검색', 'width=800, height=600, left=' + xpos + ', top=' + ypos);
 }
 
 //상품명 검색 시 검색 결과를 바로바로 반영하는 기능
@@ -155,7 +159,7 @@ function search(searchBoxId){
 			type:'post',
 			success:function(data){
 				$("#resultList").empty();
-				$("#resultList").append('<tr><td width="100px">상품번호</td><td width="200px">카테고리</td><td width="300px">상품명</td><td width="200px">원가격</td></tr>');
+				$("#resultList").append('<th>상품번호</th><th>카테고리</th><th>상품명</th><th>원가격</th>');
 				
 				$.each(data, function(index, item){
 					let tr = $("<tr></tr>");

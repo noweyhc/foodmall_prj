@@ -22,7 +22,7 @@
 		<div class="register-form">
 			<div class="form-row">
 				<button type="button" class="button" id="button-search" 
-				onclick="window.open('product-search', '상품 검색', 'width=800, height=600, left=200, top=50');"><i class="fas fa-search"></i>&nbsp;&nbsp;상품 찾기</button>
+				onclick="popupSearch();"><i class="fas fa-search"></i>&nbsp;&nbsp;상품 찾기</button>
 			</div>
 			
 			<form action="sale-register" onsubmit="return checkSaleForm();" class="form-inline" id="sale-register" method="post">
