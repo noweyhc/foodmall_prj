@@ -11,7 +11,7 @@
 	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/css/adminStyle.css">
+	<link rel="stylesheet" href="/css/admin/adminStyle.css">
 </head>
 <body>
 	<div id="side-menu" class="side-menu">

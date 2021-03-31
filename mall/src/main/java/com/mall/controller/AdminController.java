@@ -74,6 +74,7 @@ public class AdminController {
 	public String registerProductForm(HttpServletRequest request) {
 		request.setAttribute("category", "product");
 		request.setAttribute("function", "productRegister");
+		request.setAttribute("nextNo", dao.getNextNo());
 		return "/admin/productRegister";
 	}
 

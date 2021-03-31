@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<div id="toolbar" class="toolbar" style="position: relative; width: 100%; height: 70px; margin-left: 230px; background-color: white;">
+	<div id="toolbar" class="toolbar" style="position: relative; height: 60px; 
+	background-color: white; box-shadow: 0px 8px 8px -8px #DFD4CD; z-index: -10;">
 	</div>
 </body>
 </html>

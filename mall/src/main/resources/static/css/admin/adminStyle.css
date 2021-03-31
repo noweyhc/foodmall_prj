@@ -1,12 +1,18 @@
 @charset "UTF-8";
 
-
+body {
+	background-color: #F7F5F3;
+}
 /* 사이드 메뉴바 */
 #side-menu {
 	width:230px;
 	height:100%;
 	position:fixed;
 	background-color: #26a69a;
+}
+
+.admin-body-wrapper {
+	margin-left: 250px;
 }
 
 .side-menu .goto-admin-main{
@@ -92,8 +98,3 @@
 	margin-left: 1rem;
 	margin-right: 1rem;
 }
-
-.admin-body-wrapper {
-	margin-left: 250px;
-}
-
