@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="/static/css/mypageStyle.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -120,7 +119,69 @@
         </div>
         </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/static/js/emailcertification.js"></script>
-<script type="text/javascript" src="/static/js/phonecertification.js"></script>
+<script src="/static/js/emailcertification.js"></script>
+
+<script>
+/*
+    	let code;
+
+    	/* =============== 이메일 수정 클릭 시 visible =================*/
+        $("#btn-email").click(function(){
+           $("#emailForm").css("visibility",'visible'); 
+        });    
+
+    	/* =============== 이메일 수정 취소 클릭 시 visible =================*/
+        $("#btnEmailCheckCancel").click(function(){
+		   $("#emailForm").css("visibility",'hidden');        
+        });
+        
+    	/* =============== 이메일 인증 =================*/
+        $("#btnEmailSendCode").click(function(){
+           let email = $("#email").val();
+           
+            if (email == '') {
+            	$('#emailValidCheck').html('인증번호를 입력해주시기바랍니다.').css('color','red');
+            	$('#email').val('');
+            	$('#email').focus();
+            }
+            
+            let data = {email:email};
+            
+            $.ajax({
+                url :"/sendEmailCode.do",
+                data:data
+            }).done(function(data){
+                code = data;
+                alert("인증코드를 발송하였습니다.");
+            });
+            
+        });
+        
+        /*================이메일 인증완료 후 수정완료 클릭 시 이메일 변경====================*/
+        $("#btnEmailCheck").click(function(){
+        
+        	let userCode = $("#inputEmail").val();
+        	let email = $('#email').val();
+        	
+        	let data = {email:email};
+        
+        	if(code == userCode){
+        		$.ajax({
+        			url : "/updateEmail.do",
+        			data:data,
+					type:'GET'
+        		}).done(function(data){
+					alert('성공적으로 이메일 변경이 완료되었습니다.');
+        			$("") // jstl문법 변수처리 가능한지 확인해보기
+        		}).fail(function(){
+					alert("실패");
+				});
+        	}else{
+        		alert("일치하지않습니다.");
+        		$('#validInput').val('');
+        	}
+        });
+*/
+</script>
 </body>
 </html>

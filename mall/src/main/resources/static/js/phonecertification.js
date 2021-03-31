@@ -1,3 +1,7 @@
+
+phone
+
+
     	/* =============== 핸드폰 수정 클릭 시 visible =================*/
         $("#btn-phone").click(function(){
            $("#phoneForm").css('visibility','visible'); 

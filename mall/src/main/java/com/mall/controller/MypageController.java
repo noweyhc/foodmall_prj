@@ -166,7 +166,7 @@ public class MypageController {
 	@GetMapping("/deleteAccount.do")
 	public String deleteAccountForm(Model model) {
 		// 세션
-		String mem_id = "jangilkyu";
+		String mem_id = "admin1234";
 		// 고객 아이디를 얻어온다.
 		MypageVo mVo = dao.getMemberid(mem_id);
 		// 상태 유지 후 고객 아이디 회원 탈퇴 뷰에 뿌려준다.

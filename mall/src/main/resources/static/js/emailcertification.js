@@ -1,17 +1,32 @@
     	let code;
 
-    	/* =============== 이메일 수정 클릭 시 visible =================*/
-        $("#btn-email").click(function(){
-           $("#emailForm").css("visibility",'visible'); 
-        });    
+let emailValid = {
 
-    	/* =============== 이메일 수정 취소 클릭 시 visible =================*/
+	init : function(){
+		let _this = this;
+		
+		$("#btn-email").on('click',function(){
+			_this.showEmailForm();
+		});
         $("#btnEmailCheckCancel").click(function(){
-		   $("#emailForm").css("visibility",'hidden');        
-        });
-        
-    	/* =============== 이메일 인증 =================*/
+			_this.btnChkCan();	
+		});
         $("#btnEmailSendCode").click(function(){
+			_this.sendEmaCode();		
+		});
+        $("#btnEmailCheck").click(function(){
+			_this.chckEmail();
+		});
+	},
+	
+	showEmailForm : function(){
+       $("#emailForm").css("visibility",'visible'); 
+	},
+	
+	btnChkCan : function(){
+	   $("#emailForm").css("visibility",'hidden');        
+	},
+	sendEmaCode : function(){
            let email = $("#email").val();
            
             if (email == '') {
@@ -30,12 +45,9 @@
                 alert("인증코드를 발송하였습니다.");
             });
             
-        });
-        
-        /*================이메일 인증완료 후 수정완료 클릭 시 이메일 변경====================*/
-        $("#btnEmailCheck").click(function(){
-        
-        	let userCode = $("#inputEmail").val();
+	},
+	chckEmail : function(){
+		    let userCode = $("#inputEmail").val();
         	let email = $('#email').val();
         	
         	let data = {email:email};
@@ -47,12 +59,16 @@
 					type:'GET'
         		}).done(function(data){
 					alert('성공적으로 이메일 변경이 완료되었습니다.');
-        			$("") // jstl문법 변수처리 가능한지 확인해보기
         		}).fail(function(){
 					alert("실패");
 				});
         	}else{
         		alert("일치하지않습니다.");
+				alert(userCode);
+				alert(email);
         		$('#validInput').val('');
         	}
-        });
+	}
+}
+
+emailValid.init();

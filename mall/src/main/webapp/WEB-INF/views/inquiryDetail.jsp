@@ -106,11 +106,17 @@
 		  </div>  
     </div>
 </div>
+
+<!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 섬머노트  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<script src="/static/js/inquiryDetail.js"></script>
 
 <script>
-	// 답변여부
+
+/*
+	// 답변여부	
 	var resp = $('#cs_respcheck').val();
 	
 	$('#btnReply').on('click',function(){
@@ -145,7 +151,7 @@
      tabsize: 2, 
      lang: "ko-KR"
     }); 
-    
+*/    
 </script>
 </body>
 </html>

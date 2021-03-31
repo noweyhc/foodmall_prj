@@ -59,7 +59,9 @@
 </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/js/deleteAccount.js"></script>
 <script>
+/*
 	$("#deleteCheck").on('click',function(){
 	    if(!$("#deleteVaild").is(":checked")){
 	    	alert("탈퇴를 하려면 동의하기를 누르셔야합니다.");
@@ -67,6 +69,7 @@
 	    	$("#deleteForm").submit();
 	    }
 	});
+*/
 </script>
 
 </body>

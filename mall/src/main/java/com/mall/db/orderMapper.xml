@@ -11,7 +11,7 @@
   </select>
   
   <!-- 장바구니 금액 합계 -->
-  <select id="sumPrice" resultType="int">
+  <select id="sumPrice" resultType="java.lang.Integer">
 		select nvl(sum(p.product_price * c.product_qty), 0) product_total
 		from TB_CART c, TB_PRODUCT p
 		where c.product_no = p.product_no 
@@ -24,12 +24,12 @@
   </select>
   
   <!-- 총 구매 상품 갯수  -->
-  <select id="selectQty" resultType="int">
+  <select id="selectQty" resultType="java.lang.Integer">
   	SELECT sum(product_qty) FROM tb_cart WHERE mem_id = #{mem_id}
   </select>
   
   <!-- 상품 갯수  -->
-  <select id="selelctProdQty" resultType="int">
+  <select id="selelctProdQty" resultType="java.lang.Integer">
 	  SELECT COUNT(product_no) FROM tb_cart WHERE mem_id = #{mem_id}
   </select>
 </mapper>
