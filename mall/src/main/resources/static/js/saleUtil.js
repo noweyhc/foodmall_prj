@@ -1,4 +1,14 @@
 
+//원가와 세일가격을 받아 할인율을 계산해주는 함수
+function setSalerate(origin, sale, saletag){
+	let gap = origin - sale;
+	let salerate = gap / origin * 100;
+	salerate = Math.floor(salerate);
+	
+	saletag.innerHTML = '-' + salerate + '% ';
+}
+
+
 //세일 종료일에 맞춰 타이머를 생성해주는 함수
 function setTimer(endTime, timer){
 	let end = new Date(endTime);
@@ -35,12 +45,21 @@ function setTimer(endTime, timer){
 	t = setInterval(countdown, 1000);
 }
 
+
+let originList = document.getElementsByClassName('sale-origin-price');
+let saleList = document.getElementsByClassName('sale-price');
+let saletagList = document.getElementsByClassName('sale-rate');
+
+for(var i = 0; i < originList.length; i++){
+	setSalerate(originList[i].getAttribute('value'), 
+				saleList[i].getAttribute('value'),
+				saletagList[i]);
+}
+
+
 let timerList = document.getElementsByClassName("sale-timer");
 let endDateList = document.getElementsByClassName("sale-endDate");
 
 for(var i = 0; i < timerList.length; i++){
 	setTimer(endDateList[i].getAttribute('value'), timerList[i]);
 }
-
-
-

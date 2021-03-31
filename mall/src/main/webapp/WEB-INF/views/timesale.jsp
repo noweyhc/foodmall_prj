@@ -30,8 +30,8 @@
 							<li><a href="/detailProducts.do?no=${s.sale.product_no }"><img  class="sale-item-image" src="img/${s.product.product_main_img}"></a></li>	
 					    	<li class="sale-title"><a href="/detailProducts.do?no=${s.sale.product_no }" class="a">${s.product.product_title }</a></li>
 							<li class="sale-subtitle">${s.product.product_subtitle }</li>
-							<li class="sale-origin-price" style="color: gray;"><fmt:formatNumber value="${s.product.product_price }" pattern="#,###"/>원</li>
-							<li class="sale-price" style="font-weight: bold;"><span class="sale-rate">-40%</span><fmt:formatNumber value="${s.sale.timesale_saleprice }" pattern="#,###"/>원</li>
+							<li class="sale-origin-price" style="color: gray;" value="${s.product.product_price }"><fmt:formatNumber value="${s.product.product_price }" pattern="#,###"/>원</li>
+							<li class="sale-price" style="font-weight: bold;" value="${s.sale.timesale_saleprice }"><span class="sale-rate">-40%</span><fmt:formatNumber value="${s.sale.timesale_saleprice }" pattern="#,###"/>원</li>
 							<li class="sale-timer" id="${s.sale.product_no }"></li>
 							<li class="sale-endDate" value="${s.sale.timesale_end }" style="display: none;"></li>
 						</ul>
@@ -42,6 +42,6 @@
 		</div>
 	</div>
 <%@ include file="/WEB-INF/views/footer.jsp"%>
-<script type="text/javascript" src="js/saleTimer.js"></script>
+<script type="text/javascript" src="js/saleUtil.js"></script>
 </body>
 </html>
