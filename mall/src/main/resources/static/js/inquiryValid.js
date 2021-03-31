@@ -85,7 +85,7 @@ function Check(){
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 						                  };
-				toastr.error('제목을 입력해주시기 바랍니다.');		
+				toastr.error('내용을 입력해주시기 바랍니다.');		
 		return false;
 	}//end if
 
@@ -132,6 +132,8 @@ function Check(){
 				toastr.error('핸드폰 번호를 확인해주시기 바랍니다.');		
         return false;
     }//end if
+
+	return true;
 }
 
 
