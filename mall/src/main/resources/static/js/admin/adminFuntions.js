@@ -1,6 +1,9 @@
  
 //상품 등록 및 수정 시 정보 유효성을 검사하는 함수
-function checkProductForm(){
+function checkProductForm(formtype){
+	
+	let test = document.getElementsByClassName('product_main_img');
+	console.log(test);
 	
 	// 숫자만 있어야 하는 항목들
 	let reg = /^[0-9]+$/;
@@ -34,20 +37,22 @@ function checkProductForm(){
 		}
 	}
 	
-	// 이미지 경로를 통해 필수 이미지가 있는지 확인
-	let img = document.getElementById('mainImgFile');
-	let detail1 = document.getElementById('detailImgFile1');
-	
-	if(img.value == ''){
-		alert('메인이미지는 필수로 있어야 합니다')
-		img.focus();
-		return false;
-	}
-	
-	if(detail1.value == ''){
-		alert('상세이미지1은 필수로 있어야 합니다')
-		detail1.focus();
-		return false;
+	if(formtype == 'register'){
+		// 이미지 경로를 통해 필수 이미지가 있는지 확인
+		let img = document.getElementById('mainImgFile');
+		let detail1 = document.getElementById('detailImgFile1');
+		
+		if(img.value == ''){
+			alert('메인이미지는 필수로 있어야 합니다')
+			img.focus();
+			return false;
+		}
+		
+		if(detail1.value == ''){
+			alert('상세이미지1은 필수로 있어야 합니다')
+			detail1.focus();
+			return false;
+		}
 	}
 
 	return true;
