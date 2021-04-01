@@ -1,0 +1,18 @@
+#listCart {
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 16px;
+	text-decoration: none;
+}
+	
+#listCart a:link {
+	color: black;
+}
+
+#listCart a:visited {
+	color: black;
+}
+
+#listCart a:hover {
+	color: #ffa62b;
+	text-decoration: none;
+}
