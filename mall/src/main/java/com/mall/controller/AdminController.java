@@ -365,4 +365,13 @@ public class AdminController {
 		sdao.deleteSale(no);
 		return "redirect:/admin/sale-edit";
 	}
+	
+	
+	@RequestMapping(value = "/set-register", method = RequestMethod.GET)
+	public String registerSetForm(HttpServletRequest request) {
+		request.setAttribute("category", "set");
+		request.setAttribute("function", "setRegister");
+		return "/admin/setRegister";
+	}
+	
 }
