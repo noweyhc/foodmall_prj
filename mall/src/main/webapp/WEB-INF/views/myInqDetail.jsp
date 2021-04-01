@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/myPage/myInqDetail.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
+	
+	<link rel="stylesheet" href="myInqDetail.css">
 </head>
 <body>
 
 <div class="wrap">
-	<h2>문의 내용</h2>
-	<hr>
-	<br>
-	<br>
+	<h4 class="qna-info-title">문의 내용</h4>
+    <div class="qna-info-container">
 	  <div class="row">
 	    <div class="col s12">
 	      <div class="row">
@@ -79,23 +79,27 @@
 		  	<br>
 		  	<br>
 		  	<label for="cs_fname">첨부 이미지</label>
+        <div class="img-wrap">
 		  		<img src="/inquiry/${detailVo.cs_fname }" id="cs_fname">
+		</div>
 	        </div>   
 		  </div>      
 	    </div>
 	  </div>
-	  
+    </div>
 	  <hr>
 	  
+	  <h4 class="qna-info-title">문의 답변</h4>
 	  <c:if test="${midrVo eq null }">
-	  	<h3>관리자가 확인 중에 있습니다. 확인 후 답변드리겠습니다. </h3>
+	  	<h5 id="resp-title">관리자가 확인 중에 있습니다. 확인 후 답변드리겠습니다. </h5>
 	  </c:if> 
  	  
  	  <c:if test="${midrVo ne null }">
-	  <h3>답변</h3>
 	        <div class="row">
 	        <div class="input-field col s6">
-	         	 ${midrVo.ans_content }
+	         	 <span id="resp-content">
+                  	     ${midrVo.ans_content }
+	         	 </span>
 	        </div>
 	      </div> 
 	  </c:if>
