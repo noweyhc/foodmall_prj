@@ -18,7 +18,6 @@
 
 </head>
 <body>
-
 	<div class="wrap">
 		<h4>[밥도둑]1:1문의</h4>
 		<hr>
@@ -26,7 +25,6 @@
 		<br>
 		<form method="post" enctype="multipart/form-data" action="inquiry.do" name="inquiry_form" id="inquiry_form" onsubmit="return Check()">
 			<div class="row">
-
 			<input type="hidden"  name="mem_name" value="${uv.mem_name }"> 
 			
 			  <!-- 문의 유형 -->
@@ -123,8 +121,7 @@
 			</div>	        
 		</form>
 	</div>	
-	
-	
+	    	<%@ include file="footer.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/static/js/inquiry.js"></script>
