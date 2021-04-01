@@ -24,10 +24,8 @@
 				<div class="form-row">
 					<div class="form-group">
 						<label for="set_no" class="inputtag">세트번호</label>
-						<input type="text" class="form-control inputbox" id="set_no" name="set_no" readonly>
+						<input type="text" class="form-control inputbox" id="set_no" name="set_no" value="${nextNo }" readonly>
 					</div>
-					<button type="button" class="button" id="button-search" 
-					onclick="popupSearch();"><i class="fas fa-search"></i>&nbsp;&nbsp;구성품 추가</button>
 				</div>
 				
 				<div class="form-row">
@@ -39,6 +37,7 @@
 								<th>상품번호</th>
 								<th>카테고리</th>
 								<th>상품명</th>
+								<th>가격</th>
 								<th>재고</th>
 								<th>취소</th>
 							</tr>
@@ -46,7 +45,8 @@
 					</table>
 					</div>
 				</div>
-
+					<button type="button" class="button" id="button-search" 
+					onclick="popupSearch();"><i class="fas fa-plus-square"></i>&nbsp;&nbsp;구성품 추가</button>
 				<div class="form-row">
 					<div class="form-group">
 						<label for="set_title" class="inputtag">세트명</label>
@@ -74,6 +74,16 @@
 						<label for="set_stock" class="inputtag">재고</label>
 						<input type="text" class="form-control inputbox" id="set_stock" name="set_stock">
 					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="form-group">
+						<label for="product_main_img" class="sr_only"></label>
+						<input type="hidden" name="set_img">
+						<label for="set_img_file" class="inputtag">이미지</label>
+						<input type="file" class="form-control inputbox" id="set_img_file" name="set_img_file" onchange="setImg(event, 'main_img');" style="width: 545px;">
+						<img src="" id="main_img" onerror="this.src='/img/empty.png'" class="img-thumbnail-box">
+					</div>							
 				</div>
 
 				<div class="form-row">

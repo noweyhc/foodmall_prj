@@ -43,6 +43,9 @@ body {
 }
 
 #button-search {
+	margin-left: 94px;
+	margin-bottom: 20px;
+	width: 900px;
 	background-color: #CFDCD7;
 	color: black;
 }
@@ -68,11 +71,26 @@ body {
 	margin-right: 45px;
 }
 
+.fas .fa-window-close {
+	font-size: 18px;
+	color: gray;
+}
+
+.fas .fa-window-close:hover{
+	color: #e76f51;
+	cursor: pointer;
+}
+
 .register-form .form-control:focus {
  	border-color: #B7D9D4;
  	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #B7D9D4;
 }
 
+.img-thumbnail-box {
+	width:90px;
+	height:45px;
+
+}
 
 .button-group {
 	width: 100%;

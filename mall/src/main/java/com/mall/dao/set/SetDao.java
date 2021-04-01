@@ -24,4 +24,15 @@ public class SetDao {
 		return re;
 	}
 	
+	//제일 최근 등록된 세트 상품의 번호를 반환합니다
+	public int getNextNo() {
+		int re = 0;
+		try {
+			re = sqlSession.selectOne("sets.getNextNo");
+		} catch(Exception e) {
+			//세트 상품 데이터 개수가 0일 때 예외 발생
+		}
+		return re + 1;
+	}
+	
 }

@@ -8,4 +8,13 @@
 		insert into TB_SET values(seq_set.nextval, #{SET_TITLE}, #{SET_SUBTITLE}, 
 	    	#{SET_IMG}, #{SET_DETAIL_TEXT}, #{SET_STOCK}, #{SET_PRICE}, sysdate)
 	</insert>
+	
+	<select id="getNextNo" resultType="int">
+		select set_no 
+		from(
+  			SELECT * FROM tb_product 
+  			order by product_regdate desc 
+		)
+		where rownum = 1
+	</select>
 </mapper>

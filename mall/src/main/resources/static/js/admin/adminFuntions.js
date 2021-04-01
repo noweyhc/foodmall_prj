@@ -198,14 +198,21 @@ function sendItem(item){
 	switch(target){
 		// 세트 등록창의 경우, 구성품 목록에 추가시킴
 		case "set-register":
+			let productNoData = '<div class="form-group product-no-group" id="' +
+			item.product_no + '"> ' +
+			'<label for="productNo" class="sr-only">번호</label><input type="hidden" name="productNo" value=' + 
+			item.product_no + '></div>';
 			let tr = $("<tr></tr>");
 			let td1 = $("<td></td>").html(item.product_no);
 			let td2 = $("<td></td>").html(item.product_category);
 			let td3 = $("<td></td>").html(item.product_title);
-			let td4 = $("<td></td>").html(item.product_stock);
-			let td5 = $("<td></td>").html(item.product_price);
-			$(tr).append(td1,td2,td3,td4,td5);
+			let td4 = $("<td></td>").html(item.product_price);
+			let td5 = $("<td></td>").html(item.product_stock);
+			let td6 = $("<td></td>").html('<i class="fas fa-window-close" onclick="deleteRow(this,' + 
+											item.product_no + ')"</i>');
+			$(tr).append(td1,td2,td3,td4,td5,td6);
 			$(opener.document).find('#component-list').append(tr);
+			$(opener.document).find('#set-register').append(productNoData);
 			window.close();
 			break;
 
@@ -221,4 +228,11 @@ function sendItem(item){
 			window.close();
 			break;
 	}
+}
+
+//세트 구성품 목록에서 테이블 행을 삭제하고 폼에서 hidden으로 전달되는 값도 삭제 
+function deleteRow(obj, index){
+	document.getElementById(index).remove();
+	let tr = $(obj).parent().parent();
+	tr.remove();
 }

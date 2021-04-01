@@ -55,6 +55,23 @@
 					</div>
 				</div>
 			</div>
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-set" class="menu-list-sub-category ${category eq 'set' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseThree" 
+				aria-expanded="${category eq 'set' ? 'true' : 'false' }" aria-controls="collapseThree" data-parent="#accordion">
+					<i class="fas fa-layer-group"></i>	
+					<span style="margin-left: 10px;">세트 관리</span>
+				</a>
+			</div>
+			<div id="collapseThree" class="collapse ${category eq 'set' ? 'show' : '' } ">
+				<div class="py-2 collapse-inner rounded">
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'setRegister' ? 'active' : '' }" href="/admin/set-register">세트 등록</a>
+					</div>
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'setEdit' ? 'active' : '' }" href="">세트 수정 및 삭제</a>
+					</div>
+				</div>
+			</div>
 		</div>
 			<hr class = "divider">
 		</div>

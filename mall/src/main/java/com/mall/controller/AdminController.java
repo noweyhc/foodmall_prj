@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
+import com.mall.dao.set.SetDao;
 import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
 import com.mall.vo.sale.SaleVo;
@@ -31,6 +32,7 @@ public class AdminController {
 	
 	private final ProductDao dao;
 	private final SaleDao sdao;
+	private final SetDao setdao;
 	private final AdminUtil util;
 	
 	
@@ -371,6 +373,7 @@ public class AdminController {
 	public String registerSetForm(HttpServletRequest request) {
 		request.setAttribute("category", "set");
 		request.setAttribute("function", "setRegister");
+		request.setAttribute("nextNo", setdao.getNextNo());
 		return "/admin/setRegister";
 	}
 	
