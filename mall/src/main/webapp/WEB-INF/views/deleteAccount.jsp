@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,57 +14,62 @@
     <!-- css -->
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
 	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 	
+	<link rel="stylesheet" href="delete.css">
 </head>
 <body>
-<div class="wrap">
-<h2>Å»Åð ¾È³»</h2>
-È¸¿øÅ»Åð¸¦ ½ÅÃ»ÇÏ±â Àü¿¡ ¾È³» »çÇ×À» ²À È®ÀÎÇØÁÖ¼¼¿ä.
-<p>
-<hr>
-<br>
-»ç¿ëÇÏ°í °è½Å <span id="deleteId">¾ÆÀÌµð(${mVo.mem_id })</span>´Â Å»ÅðÇÒ °æ¿ì Àç»ç¿ë ¹× º¹±¸°¡ ºÒ°¡´ÉÇÕ´Ï´Ù.<br>
-Å»ÅðÇÑ ¾ÆÀÌµð´Â º»ÀÎ°ú Å¸ÀÎ ¸ðµÎ Àç»ç¿ë ¹× º¹±¸°¡ ºÒ°¡ÇÏ¿À´Ï ½ÅÁßÇÏ°Ô ¼±ÅÃÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>
+<div class="wrap del-container">
+<h2>íƒˆí‡´ ì•ˆë‚´</h2>
+íšŒì›íƒˆí‡´ë¥¼ ì‹ ì²­í•˜ê¸° ì „ì— ì•ˆë‚´ ì‚¬í•­ì„ ê¼­ í™•ì¸í•´ì£¼ì„¸ìš”.
 
-<strong>Å»Åð ÈÄ È¸¿øÁ¤º¸ ¹× °³ÀÎÇü ¼­ºñ½º ÀÌ¿ë±â·ÏÀº ¸ðµÎ »èÁ¦µË´Ï´Ù.</strong>
-È¸¿øÁ¤º¸ ¹× ÁÖ¹®Á¤º¸, ¸®ºä µî °³ÀÎÇü ¼­ºñ½º ÀÌ¿ë±â·ÏÀº ¸ðµÎ »èÁ¦µÇ¸ç, »èÁ¦µÈ µ¥ÀÌÅÍ´Â º¹±¸µÇÁö ¾Ê½À´Ï´Ù.<br>
-»èÁ¦µÇ´Â ³»¿ëÀ» È®ÀÎÇÏ½Ã°í ÇÊ¿äÇÑ µ¥ÀÌÅÍ´Â ¹Ì¸® ¹é¾÷À» ÇØÁÖ¼¼¿ä.<br>
+<div class="delete-wrap">
+ì‚¬ìš©í•˜ê³  ê³„ì‹  <span class="del-text">ì•„ì´ë””(${mVo.mem_id })</span>ëŠ” íƒˆí‡´í•  ê²½ìš° ìž¬ì‚¬ìš© ë° ë³µêµ¬ê°€ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.<br>
+íƒˆí‡´í•œ ì•„ì´ë””ëŠ” ë³¸ì¸ê³¼ íƒ€ì¸ ëª¨ë‘ ìž¬ì‚¬ìš© ë° ë³µêµ¬ê°€ ë¶ˆê°€í•˜ì˜¤ë‹ˆ ì‹ ì¤‘í•˜ê²Œ ì„ íƒí•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.<br>
+</div>
+<div class="delete-wrap">
+<span class="del-text">íƒˆí‡´ í›„ íšŒì›ì •ë³´ ë° ê°œì¸í˜• ì„œë¹„ìŠ¤ ì´ìš©ê¸°ë¡ì€ ëª¨ë‘ ì‚­ì œë©ë‹ˆë‹¤.</span>
+íšŒì›ì •ë³´ ë° ì£¼ë¬¸ì •ë³´, ë¦¬ë·° ë“± ê°œì¸í˜• ì„œë¹„ìŠ¤ ì´ìš©ê¸°ë¡ì€ ëª¨ë‘ ì‚­ì œë˜ë©°, ì‚­ì œëœ ë°ì´í„°ëŠ” ë³µêµ¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>
+ì‚­ì œë˜ëŠ” ë‚´ìš©ì„ í™•ì¸í•˜ì‹œê³  í•„ìš”í•œ ë°ì´í„°ëŠ” ë¯¸ë¦¬ ë°±ì—…ì„ í•´ì£¼ì„¸ìš”.<br>
+</div>
 
-<hr>
-
-<strong>Å»Åð ÈÄ¿¡µµ °Ô½ÃÆÇÇü ¼­ºñ½º¿¡ µî·ÏÇÑ °Ô½Ã¹°Àº ±×´ë·Î ³²¾Æ ÀÖ½À´Ï´Ù.</strong><br>
-¸®ºä°Ô½ÃÆÇ,1:1°Ô½ÃÆÇ µî¿¡ ¿Ã¸° °Ô½Ã±Û ¹× ´ñ±ÛÀº Å»Åð ½Ã ÀÚµ¿ »èÁ¦µÇÁö ¾Ê°í ±×´ë·Î ³²¾Æ ÀÖ½À´Ï´Ù.
-»èÁ¦¸¦ ¿øÇÏ´Â °Ô½Ã±ÛÀÌ ÀÖ´Ù¸é ¹Ýµå½Ã Å»Åð Àü »èÁ¦ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
-Å»Åð ÈÄ¿¡´Â È¸¿øÁ¤º¸°¡ »èÁ¦µÇ¾î º»ÀÎ ¿©ºÎ¸¦ È®ÀÎÇÒ ¼ö ÀÖ´Â ¹æ¹ýÀÌ ¾ø¾î, °Ô½Ã±ÛÀ» ÀÓÀÇ·Î »èÁ¦ÇØµå¸± ¼ö ¾ø½À´Ï´Ù.
-
-<hr>
+<div class="delete-wrap">
+<span class="del-text">íƒˆí‡´ í›„ì—ë„ ê²Œì‹œíŒí˜• ì„œë¹„ìŠ¤ì— ë“±ë¡í•œ ê²Œì‹œë¬¼ì€ ê·¸ëŒ€ë¡œ ë‚¨ì•„ ìžˆìŠµë‹ˆë‹¤.</span><br>
+ë¦¬ë·°ê²Œì‹œíŒ,1:1ê²Œì‹œíŒ ë“±ì— ì˜¬ë¦° ê²Œì‹œê¸€ ë° ëŒ“ê¸€ì€ íƒˆí‡´ ì‹œ ìžë™ ì‚­ì œë˜ì§€ ì•Šê³  ê·¸ëŒ€ë¡œ ë‚¨ì•„ ìžˆìŠµë‹ˆë‹¤.
+ì‚­ì œë¥¼ ì›í•˜ëŠ” ê²Œì‹œê¸€ì´ ìžˆë‹¤ë©´ ë°˜ë“œì‹œ íƒˆí‡´ ì „ ì‚­ì œí•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.
+íƒˆí‡´ í›„ì—ëŠ” íšŒì›ì •ë³´ê°€ ì‚­ì œë˜ì–´ ë³¸ì¸ ì—¬ë¶€ë¥¼ í™•ì¸í•  ìˆ˜ ìžˆëŠ” ë°©ë²•ì´ ì—†ì–´, ê²Œì‹œê¸€ì„ ìž„ì˜ë¡œ ì‚­ì œí•´ë“œë¦´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+</div>
 
 <form action="deleteAccount.do" method="post" id="deleteForm">
-Å»Åð ÈÄ¿¡´Â ¾ÆÀÌµð (<span id="deleteId">¾ÆÀÌµð(${mVo.mem_id })</span>) ·Î ´Ù½Ã °¡ÀÔÇÒ ¼ö ¾øÀ¸¸ç ¾ÆÀÌµð¿Í µ¥ÀÌÅÍ´Â º¹±¸ÇÒ ¼ö ¾ø½À´Ï´Ù.
-°Ô½ÃÆÇÇü ¼­ºñ½º¿¡ ³²¾Æ ÀÖ´Â °Ô½Ã±ÛÀº Å»Åð ÈÄ »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.<br>
 
+<div class="delete-wrap">
+íƒˆí‡´ í›„ì—ëŠ” ì•„ì´ë”” (<span class="del-text">ì•„ì´ë””(${mVo.mem_id })</span>)ì— ë°ì´í„°ëŠ” ë³µêµ¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+ê²Œì‹œíŒí˜• ì„œë¹„ìŠ¤ì— ë‚¨ì•„ ìžˆëŠ” ê²Œì‹œê¸€ì€ íƒˆí‡´ í›„ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.<br>
+</div>
 <div class="row">
     <p>
       <label>
         <input type="checkbox" id="deleteVaild"/>
-        <span>¾È³» »çÇ×À» ¸ðµÎ È®ÀÎÇÏ¿´À¸¸ç, ÀÌ¿¡ µ¿ÀÇÇÕ´Ï´Ù.</span>
+        <span>ì•ˆë‚´ ì‚¬í•­ì„ ëª¨ë‘ í™•ì¸í•˜ì˜€ìœ¼ë©°, ì´ì— ë™ì˜í•©ë‹ˆë‹¤.</span>
       </label>
     </p>
+<div class="del-btn">
 	<div class="row">
-		<a class="waves-effect waves-light btn-large" id="deleteCheck"><i class="material-icons left">delete</i>Å»ÅðÇÏ±â</a>
+		<a class="waves-effect waves-light btn-large" id="deleteCheck"><i class="material-icons left">delete</i>íƒˆí‡´í•˜ê¸°</a>
 	</div>
+    <input type="checkbox" id="deleteVaild" > <label for="deleteVaild"></label>
 </div>
-
-<input type="checkbox" id="deleteVaild" > <label for="deleteVaild"></label>
+</div>
 </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/static/js/deleteAccount.js"></script>
 <script>
 /*
 	$("#deleteCheck").on('click',function(){
 	    if(!$("#deleteVaild").is(":checked")){
-	    	alert("Å»Åð¸¦ ÇÏ·Á¸é µ¿ÀÇÇÏ±â¸¦ ´©¸£¼Å¾ßÇÕ´Ï´Ù.");
+	    	alert("íƒˆí‡´ë¥¼ í•˜ë ¤ë©´ ë™ì˜í•˜ê¸°ë¥¼ ëˆ„ë¥´ì…”ì•¼í•©ë‹ˆë‹¤.");
 	    }else{
 	    	$("#deleteForm").submit();
 	    }
