@@ -414,6 +414,13 @@ public class AdminController {
 			mav.addObject("result", "DB 등록 실패. 상품번호를 확인해주세요.");			
 		}
 		
+		//해당 세트에 포함된 상품 번호를 리스트로 가져옴
+		String[] arr = request.getParameterValues("productNo");
+		
+		for(String no:arr) {
+			System.out.println(no);
+		}
+		
 		mav.setViewName("/admin/setRegister");
 		return mav;
 	}

@@ -12,8 +12,8 @@
 	<select id="getNextNo" resultType="int">
 		select set_no 
 		from(
-  			SELECT * FROM tb_product 
-  			order by product_regdate desc 
+  			SELECT * FROM tb_set 
+  			order by set_regdate desc 
 		)
 		where rownum = 1
 	</select>
