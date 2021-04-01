@@ -70,11 +70,9 @@
 	
 	<!-- 카테고리 -->
 	<select id="category" resultType="productVo">
-		select * from ( select rownum rnum, p.* from ( select * 
-		from TB_PRODUCT 
+		select * from TB_PRODUCT 
 		order by product_regdate ) p)
-		where rnum between #{start} and #{end}
-			and category_no = #{category_no}
+		where category_no = #{category_no}
 	</select>
 	
 	<select id="getNextNo" resultType="int">

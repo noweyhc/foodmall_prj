@@ -10,10 +10,13 @@
 	
 
     <link rel="stylesheet" href="static/css/mainpageStyle.css">
+    <link rel="stylesheet" href="static/css/listCartStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+	
     
     <!-- 아래 세 개는 임시 추가된 태그로, 작업 편의를 위해 캐시를 저장하지 않게 하는 태그입니다 -->
     <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
@@ -26,7 +29,7 @@
 	<%@ include file="header.jsp" %>
 	<%@ include file="menubar.jsp" %>
 	
- 	<section id=listCart ><br>
+ 	<section id=listCart><br>
 			<div id="title" align="center">
 				<h2>내 장바구니</h2>	
 			</div>
@@ -39,24 +42,34 @@
 					
 					<c:otherwise>
 						<form name="form-cart" id="form-cart" method="post" action="/update.do">
-							<table border="1">
+							<table border="1" class="table table-bordered" style="padding: 0 10px; text-align: center">
+								<thead class="thead-dark">
 								<tr>
+									<th>선택</th>
 									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>단가</th>
 									<th>수량</th>
 									<th>금액</th>
 									<th></th>
-									
 								</tr>
 								<c:forEach var="c" items="${map.list}" varStatus="i">
 								<tr>
+									<td>
+										<form name="cart-checkBox" method="post" action="">
+											<input type="checkbox" value="${c.cart_no }">
+										</form>
+									</td>
 									<td>
 										<a href="/detailProducts.do?no=${c.product_no }">
 										<img src="img/${c.product_main_img}" width="100" height="100">
 										</a>
 									</td>
-									<td>${c.product_title }</td>
+									<td>
+										<a href="/detailProducts.do?no=${c.product_no }">
+										${c.product_title }
+										</a>
+									</td>
 									<td style="width: 100px">
 										<fmt:formatNumber value="${c.product_price }" pattern="#,###"/>원
 									</td>
@@ -69,18 +82,19 @@
 										<fmt:formatNumber value="${c.product_total }" pattern="#,###"/>원
 									</td>
 									<td>
-										<a href="/delete.do?cart_no=${c.cart_no }">삭제</a>
+										<a href="/delete.do?cart_no=${c.cart_no }" style="color: blue;">삭제</a>
 									</td> 
 								</tr>
 								</c:forEach>
 								
 								<tr>
-									<td colspan="6" align="right"><br>
+									<td colspan="7" align="right">
 										상품금액 합계 : 	<fmt:formatNumber value="${map.sumPriceCart }" pattern="###,###,###"/>원<br>
-										배송료 : ${map.fee }원<br>
+										배송료 : <fmt:formatNumber value="${map.fee }" pattern="###,###,###"/>원<br>
 										전체 주문금액 : <fmt:formatNumber value="${map.totalPriceCart }" pattern="###,###,###"/>원
 									</td>
 								</tr>
+							</thead>
 							</table>
 							<input type="hidden" name="count" value="${map.count }">
 						</form>
