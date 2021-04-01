@@ -20,7 +20,7 @@
 		
 		<div class="container">
 		<div class="register-form">
-			<form action="set-register" onsubmit="" class="form-inline" id="set-register" method="post">
+			<form action="set-register" onsubmit="" class="form-inline" id="set-register" method="post" enctype="multipart/form-data">
 				<div class="form-row">
 					<div class="form-group">
 						<label for="set_no" class="inputtag">세트번호</label>
@@ -81,7 +81,7 @@
 						<label for="product_main_img" class="sr_only"></label>
 						<input type="hidden" name="set_img">
 						<label for="set_img_file" class="inputtag">이미지</label>
-						<input type="file" class="form-control inputbox" id="set_img_file" name="set_img_file" onchange="setImg(event, 'main_img');" style="width: 545px;">
+						<input type="file" class="form-control inputbox" id="imgFile" name="imgFile" onchange="setImg(event, 'main_img');" style="width: 545px;">
 						<img src="" id="main_img" onerror="this.src='/img/empty.png'" class="img-thumbnail-box">
 					</div>							
 				</div>

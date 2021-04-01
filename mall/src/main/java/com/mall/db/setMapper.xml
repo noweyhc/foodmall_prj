@@ -5,8 +5,8 @@
 
 <mapper namespace="sets">
 	<insert id="register">
-		insert into TB_SET values(seq_set.nextval, #{SET_TITLE}, #{SET_SUBTITLE}, 
-	    	#{SET_IMG}, #{SET_DETAIL_TEXT}, #{SET_STOCK}, #{SET_PRICE}, sysdate)
+		insert into TB_SET values(seq_set.nextval, #{set_title}, #{set_subtitle}, 
+	    	#{set_img}, #{set_detail_text}, #{set_stock}, #{set_price}, sysdate)
 	</insert>
 	
 	<select id="getNextNo" resultType="int">
