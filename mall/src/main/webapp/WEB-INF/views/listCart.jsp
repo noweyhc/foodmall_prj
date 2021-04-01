@@ -45,6 +45,7 @@
 							<table border="1" class="table table-bordered" style="padding: 0 10px; text-align: center">
 								<thead class="thead-dark">
 								<tr>
+									<th>선택</th>
 									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>단가</th>
@@ -54,6 +55,11 @@
 								</tr>
 								<c:forEach var="c" items="${map.list}" varStatus="i">
 								<tr>
+									<td>
+										<form name="cart-checkBox" method="post" action="">
+											<input type="checkbox" value="${c.cart_no }">
+										</form>
+									</td>
 									<td>
 										<a href="/detailProducts.do?no=${c.product_no }">
 										<img src="img/${c.product_main_img}" width="100" height="100">
@@ -82,7 +88,7 @@
 								</c:forEach>
 								
 								<tr>
-									<td colspan="6" align="right">
+									<td colspan="7" align="right">
 										상품금액 합계 : 	<fmt:formatNumber value="${map.sumPriceCart }" pattern="###,###,###"/>원<br>
 										배송료 : <fmt:formatNumber value="${map.fee }" pattern="###,###,###"/>원<br>
 										전체 주문금액 : <fmt:formatNumber value="${map.totalPriceCart }" pattern="###,###,###"/>원
