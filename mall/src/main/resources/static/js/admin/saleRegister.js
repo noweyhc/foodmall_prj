@@ -9,3 +9,4 @@ document.getElementById('endDate').value = fDate.toISOString().slice(0, 10);
 document.getElementById('endDate').min= date.toISOString().slice(0, 10);
 
 document.getElementById('startTime').value = date.toString().slice(16, 21);
+
