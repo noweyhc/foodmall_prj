@@ -22,7 +22,8 @@
 				</ul>	
 				
 			</div>
-
+		
+		<c:if test="${login == null }">
 			<div class="header menu-right" id="menu-right">		
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
@@ -30,6 +31,15 @@
 					<li id="mypageLink"><a href="/mypage.do">마이페이지</a></li>      
 				</ul>
 			</div>
+		</c:if>
+		<c:if test="${login != null }">
+			<div class="header menu-right" id="menu-right">		
+				<ul>
+					<li><a href="">로그아웃</a></li>
+					<li id="mypageLink"><a href="/mypage.do">마이페이지</a></li>      
+				</ul>
+			</div>
+		</c:if>
 			
 		</div>
 		<div class="nav-main-image">
