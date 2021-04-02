@@ -50,7 +50,7 @@
 	            </div><!--input-->
 	          </div><!--비밀번호-->  
 	        <!--로그인 제출 버튼--> 
-	        아이디 찾기 비밀번호 찾기 
+	        <a href="/idInquiry.do">아이디 찾기</a> | <a href="">비밀번호 찾기</a>
 	        <div class="login-btn">   
 	            <button class="btn waves-effect waves-light" type="submit" name="action">로그인
 	                <i class="material-icons right">send</i>
@@ -82,6 +82,7 @@
 			}
 		});
 	}
+	
 </script>
 	<a href="javascript:kakaoLogin()">카카오 로그인</a>
 </body>
