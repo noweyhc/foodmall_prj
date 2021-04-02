@@ -22,7 +22,8 @@
                <p>이메일 : </p>
                <p>휴대전화 :</p>
            </div>
-           <a href="userInfoUpdate.do">이메일/휴대전화 변경</a>           </div>
+           <a href="/mypage/userInfoUpdate">이메일/휴대전화 변경</a>          
+            </div>
            <!-- 배송지 관리 -->
             <div>
             <h2 class="mypage-h2">배송지 관리</h2>
@@ -30,7 +31,7 @@
                내가 저장한 배송지 및 최근 사용한 배송지를
                관리할 수 있습니다.
             </p>            
-            <a href="updateShipping.do">배송지 관리</a>
+            <a href="/mypage/updateShipping">배송지 관리</a>
             </div>
             
             <div>
@@ -59,7 +60,7 @@
             <h2 class="mypage-h2">회원 탈퇴</h2>
             <p class="context">밥도둑을 더 이상 이용하지 않는다면
             </p>
-            <a href="deleteAccount.do">회원탈퇴</a>
+            <a href="/mypage/deleteAccount">회원탈퇴</a>
             </div>
 
     </div>
