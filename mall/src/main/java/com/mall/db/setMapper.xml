@@ -17,4 +17,8 @@
 		)
 		where rownum = 1
 	</select>
+	
+	<insert id="registerComponent">
+		insert into TB_SET_COMPONENT values(#{set_no}, #{product_no})
+	</insert>
 </mapper>

@@ -22,6 +22,7 @@ import com.mall.dao.set.SetDao;
 import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
 import com.mall.vo.sale.SaleVo;
+import com.mall.vo.set.SetComponentVo;
 import com.mall.vo.set.SetVo;
 
 import lombok.RequiredArgsConstructor;
@@ -160,6 +161,7 @@ public class AdminController {
 			mav.addObject("result", "DB 등록 실패. 상품번호를 확인해주세요.");			
 		}
 		
+		request.setAttribute("nextNo", dao.getNextNo());
 		mav.setViewName("/admin/productRegister");
 		return mav;
 	}
@@ -418,9 +420,11 @@ public class AdminController {
 		String[] arr = request.getParameterValues("productNo");
 		
 		for(String no:arr) {
-			System.out.println(no);
+			SetComponentVo cv = new SetComponentVo(sv.getSet_no(), Integer.parseInt(no));
+			int re2 = setdao.registerSetComponent(cv);
 		}
 		
+		request.setAttribute("nextNo", setdao.getNextNo());
 		mav.setViewName("/admin/setRegister");
 		return mav;
 	}
