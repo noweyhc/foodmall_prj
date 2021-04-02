@@ -34,6 +34,9 @@
 						<li class="list-set-price"><fmt:formatNumber value="${s.set_price }" pattern="##,###"/>원</li>
 						
 						<c:forEach var="c" items="${compList }">
+							<c:if test="${s.set_no == c.component.set_no }">
+								<li>${c.product.product_title }</li>
+							</c:if>
 						</c:forEach>
 					</ul>
 			</div>

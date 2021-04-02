@@ -23,7 +23,7 @@
 }
 
 .list-set-box {
-	width: 800px;
+	width: 300px;
 	height: 380px;
 	margin-top: 40px;
 	margin-bottom: 50px;
@@ -37,39 +37,39 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.items .list-item-image{
+.sets .list-set-image{
 	width: 260px;
 	height: 290px;
 	object-fit: cover;
 	border-radius: 5%;
 }
 
-.items .list-product-title{
+.sets .list-product-title{
 	font-weight: 400;
 	font-size: 18px;
 	margin-top: 10px;
 	color: black;
 }
 
-.items .list-product-subtitle{
+.sets .list-product-subtitle{
 	font-weight: 400;
 	margin-top: 5px;
 	color: #667a77;
 }
 
-.items .list-price{
+.sets .list-price{
 	font-weight: 700;
 	margin-top: 5px;
 	color: black;
 }
 
-.items a {
+.sets a {
 	text-decoration: none;
 	color: black;
 }
 
 
-.items .list-product-title a:hover {
+.sets .list-product-title a:hover {
 	color: #19778a;
 }
 
