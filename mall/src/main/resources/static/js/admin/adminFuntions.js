@@ -137,6 +137,16 @@ function setImg(event, imgId) {
 	}
 };
 
+
+//할인 삭제 시 확인창을 띄우는 함수
+function deleteConfirmSale(no){
+	let deleteConfirm = confirm(no +'번 상품 할인을 삭제합니다');
+	if(deleteConfirm){
+		location.href = "/admin/sale-edit/delete?no=" + no;
+	}
+}
+
+
 //상품 검색창 띄우기
 function popupSearch(){
 	let width = 800;
@@ -159,19 +169,20 @@ function search(searchBoxId){
 			type:'post',
 			success:function(data){
 				$("#resultList").empty();
-				$("#resultList").append('<th>상품번호</th><th>카테고리</th><th>상품명</th><th>원가격</th>');
+				$("#resultList").append('<th>상품번호</th><th>카테고리</th><th>상품명</th><th>재고</th><th>원가격</th>');
 				
 				$.each(data, function(index, item){
 					let tr = $("<tr></tr>");
 					let td1 = $("<td></td>").html(item.product_no);
 					let td2 = $("<td></td>").html(item.product_category);
 					let td3 = $("<td></td>").html(item.product_title);
-					let td4 = $("<td></td>").html(item.product_price);
+					let td4 = $("<td></td>").html(item.product_stock);
+					let td5 = $("<td></td>").html(item.product_price);
 					
 					$(tr).click(function(){
-						selectProduct(item.product_no, item.product_title, item.product_price);
+						sendItem(item);
 					});
-					$(tr).append(td1,td2,td3,td4);
+					$(tr).append(td1,td2,td3,td4,td5);
 					$("#resultList").append(tr);
 				})
 			}
@@ -179,18 +190,49 @@ function search(searchBoxId){
 	}
 }
 
-function selectProduct(no, title, price){
-	opener.document.getElementById("productNo").value = no;
-	opener.document.getElementById("productTitle").value = title;
-	opener.document.getElementById("productPrice").value = price;
-	window.close();
+//상품 검색창을 호출한 부모창의 주소에 따라 갖고있는 상품 정보 처리
+function sendItem(item){
+	let target = window.opener.location.href
+	target = target.substr(target.lastIndexOf('/') + 1, target.length);
+	
+	switch(target){
+		// 세트 등록창의 경우, 구성품 목록에 추가시킴
+		case "set-register":
+			let productNoData = '<div class="form-group product-no-group" id="' +
+			item.product_no + '"> ' +
+			'<label for="productNo" class="sr-only">번호</label><input type="hidden" name="productNo" value=' + 
+			item.product_no + '></div>';
+			let tr = $("<tr></tr>");
+			let td1 = $("<td></td>").html(item.product_no);
+			let td2 = $("<td></td>").html(item.product_category);
+			let td3 = $("<td></td>").html(item.product_title);
+			let td4 = $("<td></td>").html(item.product_price);
+			let td5 = $("<td></td>").html(item.product_stock);
+			let td6 = $("<td></td>").html('<i class="fas fa-window-close" onclick="deleteRow(this,' + 
+											item.product_no + ')"</i>');
+			$(tr).append(td1,td2,td3,td4,td5,td6);
+			$(opener.document).find('#component-list').append(tr);
+			$(opener.document).find('#set-register').append(productNoData);
+			window.close();
+			break;
+
+		// 세일 등록창의 경우, 필요한 상품 정보를 골라 넘김
+		case "sale-register":
+			opener.document.getElementById("productNo").value = item.product_no;
+			opener.document.getElementById("productTitle").value = item.product_title;
+			opener.document.getElementById("productPrice").value = item.product_price;
+			window.close();
+			break;
+			
+		default:
+			window.close();
+			break;
+	}
 }
 
-
-//할인 삭제 시 확인창을 띄우는 함수
-function deleteConfirmSale(no){
-	let deleteConfirm = confirm(no +'번 상품 할인을 삭제합니다');
-	if(deleteConfirm){
-		location.href = "/admin/sale-edit/delete?no=" + no;
-	}
+//세트 구성품 목록에서 테이블 행을 삭제하고 폼에서 hidden으로 전달되는 값도 삭제 
+function deleteRow(obj, index){
+	document.getElementById(index).remove();
+	let tr = $(obj).parent().parent();
+	tr.remove();
 }

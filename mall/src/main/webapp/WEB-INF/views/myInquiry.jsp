@@ -50,8 +50,7 @@
       		<li class="waves-effect"><a  href="myInquiry.do?pageNUM=${i }">${i }</a></li>
       </c:forEach>
 	  </ul>
-         
-      
 </div>
+ 	    	<%@ include file="footer.jsp" %>
 </body>
 </html>

@@ -158,5 +158,6 @@
      lang: "ko-KR"
     }); 
 </script>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

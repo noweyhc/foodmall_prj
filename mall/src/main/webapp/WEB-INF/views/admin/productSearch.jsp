@@ -12,8 +12,8 @@
 <body>
 <h3>상품 검색기</h3>
 	<div>
-		 <input type="text" name="searchKeyword" id="searchKeyword" style="width:600px; height:20px"
-		  placeholder="상품명으로 검색" onkeyup="search('searchKeyword');">
+		 <input type="text" name="searchKeyword" id="searchKeyword" style="width:600px; height:20px" placeholder="상품명으로 검색" 
+		 onkeyup="search('searchKeyword');">
 	</div>
 	
 	<div class="table-wrap">
@@ -23,6 +23,7 @@
 					<th>상품번호</th>
 					<th>카테고리</th>
 					<th>상품명</th>
+					<th>재고</th>
 					<th>원가격</th>
 				</tr>
 			</table>

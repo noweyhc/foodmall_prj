@@ -11,6 +11,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 	
 	<!-- css  -->    
     <link rel="stylesheet" href="/static/css/myPage/userInfoUpdate.css">
@@ -65,7 +66,6 @@
 					  </div>
 			        </div><!-- input-field -->
 				</div><!-- row -->
-				<p id="emailValidCheck"></p>
 				<!-- 인증번호 입력 -->
 				<div class="row">
 					<div class="input-field col s10">
@@ -135,6 +135,8 @@
           </div>
          </div>
         </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/static/js/emailcertification.js"></script>
 <script src="/static/js/phonecertification.js"></script>
@@ -250,5 +252,6 @@
         });
 */
 </script>
+	    	<%@ include file="footer.jsp" %>
 </body>
 </html>
