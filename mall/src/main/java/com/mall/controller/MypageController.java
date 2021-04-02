@@ -52,7 +52,7 @@ public class MypageController {
 		if(id == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 후 후기 작성이 가능합니다.!'); location.href='/'; </script>");
+			out.println("<script>alert('로그인 후 마이페이지 이용이 가능합니다.!'); location.href='/'; </script>");
 			out.close();
 		}
 		

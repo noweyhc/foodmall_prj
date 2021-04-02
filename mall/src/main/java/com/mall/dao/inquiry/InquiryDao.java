@@ -31,21 +31,19 @@ public class InquiryDao {
 		return total;
 	}
 	
-	public UserVO getMemberInfo(String id) {
+	public UserVO getMemberInfo(String mem_id) {
 		
-		UserVO uv = sqlSession.selectOne("inquiry.findAll",id);
+		UserVO uv = sqlSession.selectOne("inquiry.findAll",mem_id);
 		
 		return uv;
 	}//getMemberInfo
 
-	public int insertInquiry(InquiryVo ivo, String cs_email, String cs_phone) {
+	public int insertInquiry(InquiryVo ivo, String cs_email, String cs_phone, String mem_id) {
 		
 		Map<String, Object> map = new HashMap<String,Object>();
 		
-		String cs_mem_id = "leewooo";
-		
-		//아이디
-		map.put("cs_mem_id", cs_mem_id);
+		//회원 아이디
+		map.put("cs_mem_id", mem_id);
 		
 		// 1:1문의 내역
 		map.put("cs_title",ivo.getCs_title());
@@ -172,6 +170,14 @@ public class InquiryDao {
 		MyInqDetRespVo midr = sqlSession.selectOne("inquiry.findInqResp",cs_no);
 		
 		return midr;
+	}
+
+
+	public int cntTbCs() {
+
+		int cntTbCs = sqlSession.selectOne("inquiry.cntTbCs");
+
+		return 0;
 	}
 
 

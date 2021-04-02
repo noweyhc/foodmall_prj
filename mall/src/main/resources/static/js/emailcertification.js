@@ -65,7 +65,7 @@ let emailValid = {
             let data = {email:email};
             
             $.ajax({
-                url :"/mypage/sendEmailCode.do",
+                url :"/mypage/sendEmailCode",
                 data:data
             }).done(function(data){
                 code = data;
