@@ -20,17 +20,18 @@
 					</svg> 
 				</button>
 				<div class="dropdown-content">
-						<a href="/listProducts.do?category_no=100">국물요리</a>
-						<a href="/listProducts.do?category_no=101">찜·조림</a>
-						<a href="/listProducts.do?category_no=102">육류</a>
-						<a href="/listProducts.do?category_no=103">해물</a>
-						<a href="/listProducts.do?category_no=104">튀김요리</a>
-						<a href="/listProducts.do?category_no=105">면요리</a>
-						<a href="/listProducts.do?category_no=106">밑반찬·김치</a>
-						<a href="/listProducts.do?category_no=107">분식·도시락</a>    
-						<a href="/listProducts.do?category_no=108">덮밥·볶음밥</a>
-						<a href="/listProducts.do?category_no=109">밀키트·기타</a>
-				</div>   
+						<a href="/categoryProducts.do?no=100">국물요리</a>
+						<a href="/listProducts.do?no=101">찜·조림</a>
+						<a href="/listProducts.do?no=102">육류</a>
+						<a href="/listProducts.do?no=103">해물</a>
+						<a href="/listProducts.do?no=104">튀김요리</a>
+						<a href="/listProducts.do?no=105">면요리</a>
+						<a href="/listProducts.do?no=106">밑반찬·김치</a>
+						<a href="/listProducts.do?no=107">분식·도시락</a>    
+						<a href="/listProducts.do?no=108">덮밥·볶음밥</a>
+						<a href="/listProducts.do?no=109">밀키트·기타</a>
+				</div>  
+		 
 			</div>
 			<div class=category-list>
 				<ul>

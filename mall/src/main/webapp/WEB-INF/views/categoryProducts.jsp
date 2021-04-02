@@ -31,7 +31,7 @@
 						<li><a href="/detailProducts.do?no=${p.product_no }"><img class="list-item-image" src="img/${p.product_main_img}"></a></li>	
 				    	<li class="list-product-title"><a href="/detailProducts.do?no=${p.product_no }" class="a">${p.product_title }</a></li>
 						<li class="list-product-subtitle">${p.product_subtitle }</li>
-						<li class="list-price"><fmt:formatNumber value="${p.product_price }" pattern="##,###"/>원</li>
+						<li class="list-price"><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</li>
 					</ul>
 			</div>
 			</c:forEach>

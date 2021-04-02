@@ -71,8 +71,8 @@
 	<!-- 카테고리 -->
 	<select id="category" resultType="productVo">
 		select * from TB_PRODUCT 
-		order by product_regdate ) p)
 		where category_no = #{category_no}
+		order by product_regdate
 	</select>
 	
 	<select id="getNextNo" resultType="int">

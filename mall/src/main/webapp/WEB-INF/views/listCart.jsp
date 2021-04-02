@@ -103,7 +103,7 @@
 				<br><br>
 				<button type="submit" id="btn_choice">선택상품 결제</button>
 				<button type="submit" id="btn_order">전체상품 결제</button><br><br>
-				<hr>
+				<hr>10만원 이상 구매시 무료배송
 				<button type="button" id="btn_list">상품 더보기</button><br><br>
 			</div>
 	</section>
