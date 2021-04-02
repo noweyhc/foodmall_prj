@@ -16,9 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.dao.mypage.MypageDao;
+import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
 import com.mall.vo.mypage.IdInquiryVo;
 import com.mall.vo.mypage.MypageVo;
@@ -27,49 +29,51 @@ import com.mall.vo.mypage.ShippingVo;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("/mypage")
 @RequiredArgsConstructor
 public class MypageController {
 
 	private final MypageDao dao;
 	private final JavaMailSender javaMailSender;
-
+	private final LoginSessionListener lsl;
 	//페이징 처리 관련 변수
 	public static int pageSIZE = 10; // 한 화면에 보여지는 레코드 수
 	public static int totalRecord = 0; //전체 레코드 수
 	public static int totalPage = 1;// 전체 페이지 수
 	
 	// 마이페이지 리스트
-	@GetMapping("/mypage.do")
+	@GetMapping("")
 	public String Mypage(Model model, HttpSession session, HttpServletRequest request,  HttpServletResponse response ) throws IOException {
 		
-		session = request.getSession(true);
-		String id = (String) session.getAttribute("login");
+		String id =null;
+		id = (String) session.getAttribute("login");
 		
 		if(id == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 후 후기 작성이 가능합니다.!'); location.href='/'; </script>");
 			out.close();
-			return null;	
-			
 		}
+		
+		lsl.setSession(request.getSession(), id);
+		
+		
+		
 		return "mypage";
 	}//Mypage
 	
 	// 회원의 Email & Phone 정보 변경 뷰 페이지
-	@GetMapping("/userInfoUpdate.do")
-	public String updateForm(Model model,String admin,HttpSession session,HttpServletRequest request) {
-		
-		session = request.getSession(true);
+	@GetMapping("/userInfoUpdate")
+	public String updateForm(Model model,HttpSession session,HttpServletRequest request) {
+
 		String id = (String) session.getAttribute("login");
 		
-		// Session 아이디
-		admin = "leewooo";
 		// 회원 아이디와 이름을 가져온다.
 		MypageVo mVo = dao.getMemberinfo(id);
 		// 상태 유지 후 뷰 페이지로 이동
 		model.addAttribute("mVo",mVo);
- 		return "userInfoUpdate";
+ 		return "/mypage/userInfoUpdate";
+ 		
 	}//ModelAndView
 	
 	// 이메일 인증번호 난수
@@ -103,13 +107,14 @@ public class MypageController {
 	}//sendEmailCode
 	
 	// AJAX을 통한 이메일 인증코드가 맞을 시 해당 메소드로 호출 시 변경
-	@GetMapping("/updateEmail.do")
+	@GetMapping("/updateEmail")
 	@ResponseBody
-	public String EmailUpdate(String email,String admin) {
+	public String EmailUpdate(String email,HttpSession session,HttpServletRequest request) {
 		// session
-		admin = "leewooo";
+		String id = (String) session.getAttribute("login");
+		
 		// 변경할 이메일을 가지고 update
-		int re = dao.updateEmail(email,admin);
+		int re = dao.updateEmail(email,id);
 		// 만약 성공적으로 변경이 완료되었다면 뷰페이지에 변경된 이메일 값으로 변경 
 		if(re == 1) {
 			return email;

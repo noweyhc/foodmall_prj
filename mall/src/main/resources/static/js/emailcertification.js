@@ -65,7 +65,7 @@ let emailValid = {
             let data = {email:email};
             
             $.ajax({
-                url :"/sendEmailCode.do",
+                url :"/mypage/sendEmailCode.do",
                 data:data
             }).done(function(data){
                 code = data;
@@ -101,13 +101,13 @@ let emailValid = {
 			// 만약 고객이 input창에 입력한 인증 번호와 메일로 전송 된 인증코드가 일치 한다면
         	if(code == userCode){
         		$.ajax({
-        			url : "/updateEmail.do",
+        			url : "/mypage/updateEmail",
         			data:data,
 					type:'GET'
         		}).done(function(){
 					// 인증 코드 일치 시 
 					alert('성공적으로 변경이 완료되었습니다.');
-					location.replace('userInfoUpdate.do');
+					location.replace('/mypage/userInfoUpdate');
         		}).fail(function(){
 					alert("실패");
 				});

@@ -68,7 +68,7 @@ let phoneValid = {
 
 	   // 핸드폰 변경을 위한 인증코드 ajax      
        $.ajax({
-           url :"/sendPhoneCode.do",
+           url :"/mypage/sendPhoneCode.do",
            data:data
        }).done(function(data){
                 code = data;
@@ -104,12 +104,12 @@ let phoneValid = {
         
         if(phonecode == userCode){
         	$.ajax({
-        		url : "/updatePhone.do",
+        		url : "/mypage/updatePhone.do",
         		data:data
         	}).done(function(){
 				// 인증 코드 일치 시 
 				alert('성공적으로 변경이 완료되었습니다.');
-				location.replace('userInfoUpdate.do');
+				location.replace('/mypage/userInfoUpdate');
         	});
         }else{
 		// 인증 코드 불 일치 시
