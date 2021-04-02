@@ -67,25 +67,25 @@
 	<%@ include file="footer.jsp"%>
 
 <script type="text/javascript">
-	function downAmount(obj, count){
+	function downAmount(obj, price){
 		let id = obj.id;
 		id = id.substring(id.indexOf('-')+1, id.length);
 		let num = document.getElementById('amount-'+id);
-		let price = document.getElementById('price-'+id);
+		let total = document.getElementById('price-'+id);
 		if(num.value > 1){
 			num.value = Number(num.value) - 1;
-			price.innerHTML = Number(price.innerHTML) - count;
+			total.innerHTML = Number(total.innerHTML) - price;
 		}
 	}
 	
-	function upAmount(obj, count){
+	function upAmount(obj, price){
 		let id = obj.id;
 		id = id.substring(id.indexOf('-')+1, id.length);
 		let num = document.getElementById('amount-'+id);
-		let price = document.getElementById('price-'+id);
+		let total = document.getElementById('price-'+id);
 		if(num.value < 100){
 			num.value = Number(num.value) + 1;
-			price.innerHTML = Number(price.innerHTML) + count;
+			total.innerHTML = Number(total.innerHTML) + price;
 		}
 	}
 </script>
