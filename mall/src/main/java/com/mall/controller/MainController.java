@@ -40,10 +40,11 @@ public class MainController {
 		
 		//검색 결과가 비어있을 시 안내 문구를 보이기 위해 결과값 추가
 		List<ProductVo> resultList = productDao.searchByName(keyword);
+		mav.addObject("resultCount", resultList.size());
 		if(resultList.isEmpty()) {
 			mav.addObject("notFound", "true");
 		}else {
-			mav.addObject(resultList);
+			mav.addObject("resultList", resultList);
 		}
 		
 		mav.setViewName("searchResult");
