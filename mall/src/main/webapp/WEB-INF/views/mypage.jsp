@@ -46,7 +46,7 @@
             <p class="context">
                 내가 문의한 내역에 대한 정보를 확인할 수 있습니다.
             </p>
-     	    <td><a href="myInquiry.do">내가 한 문의 확인</a></td>
+     	    <td><a href="/inquiry/myInquiry">내가 한 문의 확인</a></td>
             </div>
             
             <div>

@@ -1,9 +1,76 @@
-// 값
-
+const EXISTID = 1;
+const EXIS = 0;
 //유효성
 let pwd = /^[A-Za-z0-9]{6,12}$/;
 
-
+let pwdValid = {
+	
+	init : function(){
+		let _this = this;
+		
+		$("#sendPwd").click(function() {
+			_this.updatePwd();
+		});
+	},
+	
+	chckPwd : function(){
+		
+		$.ajax({
+			url: "/getPassword.do",
+			type: "POST",
+			data: $('#currPassword').val(),
+			dataType:'json',
+            contentType:'application/json; charset=utf-8'
+		}).done(function(data) {
+			if (data == EXIS) {
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+								                  };
+						toastr.error('문의유형을 선택해 주시기바랍니다.');
+						
+				return false;
+			}
+		}).fail(function(){
+			alert('aaa');
+		});
+		
+		pwdValid.updatePwd();
+	},
+	
+	updatePwd : function(){
+		$.ajax({
+				url: "/resetPassword.do",
+				data: $('#newChkPassword').val(),
+				type: "POST",
+				dataType:'json',
+        	    contentType:'application/json; charset=utf-8'				
+			}).done(function(data) {
+				alert("성공적으로 비밀번호가 변경되었습니다.");
+			}).fail(function() {
+				alert("실패");
+			});		
+			
+	}
+	
+	
+	
+}
+pwdValid.init();
+/*
 $("#changeSubmit").click(function() {
 	let currPassword = $("#currPassword").val();
 	let newPassword = $("#newPassword").val();
@@ -23,19 +90,6 @@ $("#changeSubmit").click(function() {
 		alert("비밀번호가 일치하지않습니다.");
 		return false;
 	}
-
-
-	let data = { currPassword: currPassword };
-	$.ajax({
-		url: "/getPassword.do",
-		type: "POST",
-		data: data
-	}).done(function(data) {
-		if (data != currPassword) {
-			alert("현재 비밀번호가 일치하지않습니다.");
-			return false;
-		}
-	});
 });
 
 $("#changeSubmit").click(function() {
@@ -61,3 +115,4 @@ $('#newChkPassword').keyup(function() {
 		$('#chkpwd').attr('color', '#0099FF');
 	}
 });
+*/

@@ -221,7 +221,7 @@ public class InquiryController {
 	}
 	
 	// 마이페이지 고객 문의 내용 DetailPage
-	@GetMapping("myInqDetail.do/{cs_no}")
+	@GetMapping("myInqDetail/{cs_no}")
 	public String myInqDetail(@PathVariable int cs_no,Model model) {
 		
 		MyInqDetailVo detailVo = dao.findDetailInq(cs_no);
@@ -231,6 +231,6 @@ public class InquiryController {
 		
 		model.addAttribute("detailVo",detailVo);
 		model.addAttribute("midrVo",midrVo);
-		return "myInqDetail";
+		return "/inquiry/myInqDetail";
 	}
 }

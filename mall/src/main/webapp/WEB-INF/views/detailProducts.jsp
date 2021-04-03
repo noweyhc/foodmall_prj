@@ -97,9 +97,6 @@
 		</div>
 	</div>
 	</section>
-	
-	<%@ include file="footer.jsp" %>
-
 </body>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
