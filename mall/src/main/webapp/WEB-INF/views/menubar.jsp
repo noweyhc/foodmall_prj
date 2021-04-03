@@ -21,16 +21,16 @@
 					</svg> 
 				</button>
 				<div class="dropdown-content">
-						<a href="/listProducts.do?category_no=100">국물요리</a>
-						<a href="/listProducts.do?category_no=101">찜·조림</a>
-						<a href="/listProducts.do?category_no=102">육류</a>
-						<a href="/listProducts.do?category_no=103">해물</a>
-						<a href="/listProducts.do?category_no=104">튀김요리</a>
-						<a href="/listProducts.do?category_no=105">면요리</a>
-						<a href="/listProducts.do?category_no=106">밑반찬·김치</a>
-						<a href="/listProducts.do?category_no=107">분식·도시락</a>    
-						<a href="/listProducts.do?category_no=108">덮밥·볶음밥</a>
-						<a href="/listProducts.do?category_no=109">밀키트·기타</a>
+						<a href="/category?key=국&key=탕">국/탕</a>
+						<a href="/category?key=찜&key=조림">찜/조림</a>
+						<a href="/category?key=육류">육류</a>
+						<a href="/category?key=생선&key=해산물">생선/해산물</a>
+						<a href="/category?key=덮밥&key=비빔밥">한그릇 음식</a>
+						<a href="/category?key=일품요리">일품요리</a>
+						<a href="/category?key=밑반찬&key=김치">밑반찬/김치</a>
+						<a href="/category?key=면">면</a>  
+						<a href="/category?key=도시락">도시락</a>
+						<a href="/category?key=밀키트&key=기타">밀키트/기타</a>
 				</div>   
 			</div>
 			<div class=category-list>

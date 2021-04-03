@@ -21,7 +21,7 @@
 <body>
 	<div id="list">
 		<div class="list-title">
-			<h4>상품목록</h4>	
+			<h4>상품 목록</h4>	
 		</div>
 		
 		<div class="list-wrap">
@@ -41,7 +41,7 @@
 			<c:forEach var="i" begin="1" end="${totalPage }">
 				<a href="listProducts.do?pageNUM=${i }">${i }</a>
 			</c:forEach>
-		</div>>
+		</div>
 	</div>
 
 	<%@ include file="footer.jsp"%>
