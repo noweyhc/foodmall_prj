@@ -1,5 +1,6 @@
 package com.mall.dao.order;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,10 +26,6 @@ public class OrderDao {
 		return cVoList;
 	}// findCartList
 
-	// 커밋
-	public void commit(){
-		sqlSession.commit();
-	}
 
 	public int getTotAmount(String mem_id) {
 		
@@ -55,6 +52,30 @@ public class OrderDao {
 		
 		int prodQty = sqlSession.selectOne("order.selelctProdQty",mem_id);
 		return prodQty;
+	}
+
+	public int insertOrderInfo(HashMap<String, Object> map) {
+		
+		HashMap<String, Object> orderInfoMap = new HashMap<>();
+				
+		orderInfoMap.put("order_phone", map.get("phone"));
+		orderInfoMap.put("order_name", map.get("name"));
+		orderInfoMap.put("order_totprice", map.get("lastTot"));
+		orderInfoMap.put("order_addr", map.get("addr"));
+		orderInfoMap.put("order_zipcode", map.get("zipcode"));
+		orderInfoMap.put("order_detailAddr", map.get("detailAddr"));
+		orderInfoMap.put("order_mem_id", map.get("mem_id"));
+		
+		System.out.println(orderInfoMap);
+		int re = sqlSession.selectOne("order.insertOrderInfo",orderInfoMap);
+		commit();
+		
+		return re;
+	}
+	
+	// 커밋
+	public void commit(){
+		sqlSession.commit();
 	}
 	
 }//OrderDao

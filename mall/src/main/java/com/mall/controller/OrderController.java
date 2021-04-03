@@ -1,13 +1,20 @@
 package com.mall.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.mall.dao.order.OrderDao;
 import com.mall.vo.Order.OrderProdListVo;
 import com.mall.vo.Order.OrderShippingVo;
@@ -65,7 +72,27 @@ public class OrderController {
 		// 주문금액 + 배송비
 		model.addAttribute("lastTot",totAmount +fee);
 		
+		// 회원아이디
+		model.addAttribute("mem_id",mem_id);
+		
 		return "order";
 	}//paymentForm
+	
+	@PostMapping("a.do")
+	@ResponseBody
+	public String a(Model model, @RequestBody HashMap<String, Object> map) {
+
+		
+		int re = dao.insertOrderInfo(map);
+		
+		
+		String lastTot = (String) map.get("lastTot");
+		String name = (String)map.get("phone");
+		String addr = (String)map.get("addr");
+		String zipcode = (String)map.get("zipcode");
+		String detailAddr = (String)map.get("detailAddr");
+		
+		return "";
+	}
 	
 }//class

@@ -35,7 +35,7 @@
 				<c:forEach var="l" items="${list }">
         	<tr>
 					<td>${l.cs_no }</td>
-					<td id="cs_title"><a href="myInqDetail.do/${l.cs_no }">${l.cs_title }</a></td>
+					<td id="cs_title"><a href="myInqDetail/${l.cs_no }">${l.cs_title }</a></td>
 					<td>[${l.cs_category_two }]</td>
 					<td>${l.cs_regdate }</td>
 					<td>${l.cs_response }</td>
@@ -47,7 +47,7 @@
       <!-- Pagination  -->
 	  <ul class="pagination" id="page">
       <c:forEach var="i" begin="1" end="${totalPage }">
-      		<li class="waves-effect"><a  href="myInquiry.do?pageNUM=${i }">${i }</a></li>
+      		<li class="waves-effect"><a  href="myInquiry?pageNUM=${i }">${i }</a></li>
       </c:forEach>
 	  </ul>
 </div>

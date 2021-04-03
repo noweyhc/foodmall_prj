@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/myPage/myInqDetail.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
+	<link rel="stylesheet" href="css/mainPage/footerStyle.css">
 	
 	<link rel="stylesheet" href="myInqDetail.css">
 </head>
@@ -104,5 +105,6 @@
 	      </div> 
 	  </c:if>
 </div>
+	  	<%@ include file="../footer.jsp" %>
 </body>
 </html>

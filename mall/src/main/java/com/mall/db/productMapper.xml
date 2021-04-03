@@ -56,32 +56,31 @@
 		where product_title like #{keyword}
 	</select>
 
-	<!-- 페이징 처리 -->
 	<select id="countPage" resultType="int">
 		select count(*) from TB_PRODUCT
 	</select>
 	
 	<select id="paging" resultType="productVo">
-		select * from ( select rownum rnum, p.* from ( select * 
-		from TB_PRODUCT 
+		select * from ( select rownum rnum, p.* from ( select *
+		from TB_PRODUCT
 		order by product_regdate ) p)
 		where rnum between #{start} and #{end}
 	</select>
 	
 	<!-- 카테고리 -->
 	<select id="category" resultType="productVo">
-		select * from ( select rownum rnum, p.* from ( select * 
-		from TB_PRODUCT 
+		select * from ( select rownum rnum, p.* from ( select *
+		from TB_PRODUCT
 		order by product_regdate ) p)
 		where rnum between #{start} and #{end}
 			and category_no = #{category_no}
 	</select>
 	
 	<select id="getNextNo" resultType="int">
-		select product_no 
+		select product_no
 		from(
-  			SELECT * FROM tb_product 
-  			order by product_regdate desc 
+  			SELECT * FROM tb_product
+  			order by product_regdate desc
 		)
 		where rownum = 1
 	</select>
