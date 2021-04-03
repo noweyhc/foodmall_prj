@@ -89,7 +89,28 @@
 	color: #667a77;
 }
 
-.items .list-price{
+.items .sale-origin-price {
+	font-weight: 500;
+	margin-top: 5px;
+	font-size: 12px;
+	color: gray;
+	text-decoration: line-through;
+}
+
+.items .sale-price {
+	font-weight: 700;
+	font-size: 18px;
+	color: #ffa62b;
+}
+
+.items .sale-rate {
+	font-weight: 700;
+	font-size: 16px;
+	color: #26A69A;
+	padding-bottom: 2px;
+}
+
+.items .list-price {
 	font-weight: 700;
 	margin-top: 5px;
 	color: black;

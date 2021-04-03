@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class MainController {
 	
 	private final ProductDao productDao;
+	private final SaleDao saleDao;
 
 	@RequestMapping("/")
 	public ModelAndView mainpage() {
