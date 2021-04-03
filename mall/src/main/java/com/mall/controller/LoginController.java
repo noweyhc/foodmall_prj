@@ -3,6 +3,7 @@ package com.mall.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ import com.mall.dao.user.UserDAO;
 import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
 import com.mall.vo.mypage.IdInquiryVo;
+import com.mall.vo.mypage.PwdInquiryVo;
+import com.mall.vo.mypage.PwdPhoneAuthVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -119,7 +122,7 @@ public class LoginController {
 			int chkCode = random.nextInt(888888) + 111111;
 			String code = String.valueOf(chkCode);
 			// 클라이언트에게 전송할 문자 내용
-			String content = "[더 반찬]을 항상 이용해주셔서 항상 감사합니다\n\n"
+			String content = "[밥도둑]을 항상 이용해주셔서 항상 감사합니다\n\n"
 					+ "인증 번호는[" + code + "]입니다." ;
 			// 핸드폰 문자를 보내기 위한 객체
 			BanchanSms sms = new BanchanSms();
@@ -135,7 +138,7 @@ public class LoginController {
 	
 	@PostMapping("/viewIdList")
 	public String viewIdList(Model model,String mem_id) {
-		
+		System.out.println("a");
 		model.addAttribute("mem_id", mem_id);
 		
 		return "/login/viewIdList";
@@ -188,8 +191,92 @@ public class LoginController {
 			iiVo.setCode(code);
 			
 			return iiVo;
+	}//emailAuth
+	
+	// 비밀번호 찾기
+	// 비밀번호 찾기 view
+	@GetMapping("/pwdInquiry")
+	public String pwdInquiry() {
+		return "login/pwdInquiry";
+	}//pwdInquiry
+	
+	// 비밀번호 찾기 Process
+	@PostMapping("/pwdInquiry")
+	public String pwdInquiryPro(Model model,String mem_id) {
+
+		PwdInquiryVo pwdInquiry = dao.findPwdUserId(mem_id);
+		
+		if(mem_id.equals(pwdInquiry.getMem_id())) {
+			model.addAttribute("pVo",pwdInquiry);
+			return "login/viewPwdAuth";
+		}
+		
+		return "login";
 	}
 	
+	// 비밀번호 찾기 ajax으로 회원정보에 등록한 휴대전화번호로 인증
+	@PostMapping("/pwdPhoneAuth")
+	@ResponseBody
+	public PwdPhoneAuthVo pwdPhoneAuth(Model model,@RequestBody HashMap<String, Object> map) {
+		
+		String mem_name = (String)map.get("mem_name");
+		String mem_phone = (String)map.get("mem_phone");
+
+		int re = dao.pwdPhoneAuth(mem_name,mem_phone);
+		String mem_id = dao.getMemId(mem_name,mem_phone);
+		String code = "";
+		
+		PwdPhoneAuthVo pVo = new PwdPhoneAuthVo();
+		
+		if(re == 1) {
+			// 랜덤객체 생성
+			Random random = new Random();
+			// 인증을 위한 랜덤 값 추출
+			int chkCode = random.nextInt(888888) + 111111;
+			code = String.valueOf(chkCode);
+			// 클라이언트에게 전송할 문자 내용
+			String content = "[밥도둑]을 항상 이용해주셔서 항상 감사합니다\n\n"
+					+ "인증 번호는[" + code + "]입니다." ;
+			// 핸드폰 문자를 보내기 위한 객체
+			BanchanSms sms = new BanchanSms();
+			// 발신자 / 인증을 요청한 번호 / 문자 내용
+			sms.sendMsg("01086469577", mem_phone, content);
+
+			pVo.setCode(code);
+			pVo.setResult(re);
+			pVo.setMem_id(mem_id);
+		}else {
+			pVo.setResult(0);
+		}
+		
+		return pVo;
+	}//pwdPhoneAuth
+	
+	@PostMapping("/viewInputPasswd")
+	public String viewInputPasswd(Model model, String mem_id) {
+		
+		model.addAttribute("mem_id",mem_id);
+		
+		return "/login/viewInputPasswd";
+	}
+	
+	@PostMapping("/viewInputProPwd")
+	public String viewInputProPwd(Model model,String mem_id,String currPwd,HttpServletResponse response) throws IOException {
+
+		int re = dao.updateInqPwd(mem_id,currPwd);
+		
+		System.out.println(re);
+		
+		if(re == 1) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('성공적으로 비밀번호가 변경되었습니다.'); location.href='/';</script>");
+            out.close();
+            return null;			
+		}
+		
+		return "";
+	}
 	
 	/*
 	@GetMapping("/kakaoLoginOK.do")

@@ -51,7 +51,7 @@
                 </div>
             </div>
             <form action="/login/viewIdList" method="POST" onsubmit="return Check()">
-		        <input type="hidden" id="mem_id" name="mem_id" value="">
+		        <input type="hidden" id="mem_id1" name="mem_id" value="">
 		  <div class="submitBtn">
     		  <button class="btn waves-effect waves-light nextBtn" type="submit" id="phoneSubmit" name="action">다음
    				 <i class="material-icons right">send</i>
@@ -87,7 +87,7 @@
                       <label for="disabled">인증번호</label>
                     </div>
                 </div>
-	            <form action="/login/viewIdList" method="POST" onsubmit="return CheckEmail()">
+	            <form action="/login/viewIdList" method="POST" onsubmit="return Check()">
 			        <input type="hidden" id="mem_id" name="mem_id" value="">
 		       <div class="submitBtn">
 	    		  <button class="btn waves-effect waves-light nextBtn" type="submit" id="emailSubmit" name="action">다음

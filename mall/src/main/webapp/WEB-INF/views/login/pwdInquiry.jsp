@@ -15,20 +15,26 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/myPage/pwdInquiry.css">
+    
 </head>
 <body>
-   <form action="" method="">
+   <form action="/login/pwdInquiry" method="POST">
        <div id ="pwInquiry-container">
         <h2 class="pwd-title">비밀번호 찾기</h2>
          <p class="context">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
           <div class="row">
             <div class="input-field col s10">
-              <input id="disabled" type="password" class="validate">
+              <input id="disabled" type="text" class="validate" name="mem_id">
               <label for="disabled">아이디 입력</label>
             </div>
           </div> 
           <div class="pwd-btn"> 
-              <a class="waves-effect waves-light btn-small"><i class="material-icons left">cloud</i>전송</a>
+			  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+			    <i class="material-icons right">send</i>
+			  </button>
           </div>
        </div>
    </form>

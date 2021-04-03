@@ -46,7 +46,7 @@
 	            </div><!--input-->
 	          </div><!--비밀번호-->  
 	        <!--로그인 제출 버튼--> 
-	        <a href="/login/idInquiry">아이디 찾기</a> | <a href="">비밀번호 찾기</a>
+	        <a href="/login/idInquiry">아이디 찾기</a> | <a href="/login/pwdInquiry">비밀번호 찾기</a>
 	        <div class="login-btn">   
 	            <button class="btn waves-effect waves-light" type="submit" name="action">로그인
 	                <i class="material-icons right">send</i>

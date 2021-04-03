@@ -65,5 +65,18 @@
 	SELECT mem_id FROM tb_member WHERE  mem_email = #{mem_email} AND mem_name = #{mem_name}
   </select>
   
+  <select id="findPwdUserId" resultType="com.mall.vo.mypage.PwdInquiryVo">
+  	SELECT mem_id, mem_phone FROM tb_member WHERE mem_id = #{mem_id}
+  </select>
+  
+  <select id="pwdPhoneAuth" resultType="java.lang.Integer">
+	SELECT COUNT(mem_id) FROM tb_member where mem_name = #{mem_name} AND mem_phone = #{mem_phone}
+  </select>
+  
+  <update id="updateInqPwd">
+  	UPDATE tb_member 
+  	SET mem_pwd = #{mem_pwd}
+  	WHERE mem_id = #{mem_id}
+  </update>
   
 </mapper>
