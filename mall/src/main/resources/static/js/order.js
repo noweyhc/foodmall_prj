@@ -33,6 +33,7 @@ let  valid = {
 		let zipcode;
 		let addr;
 		let detailAddr;
+		let mem_id = $('#mem_id').val();
 		
 		// 만약 ship2 radio가 선택되었다면
 		if($('input:radio[id="ship2"]').is(":checked")){
@@ -92,11 +93,11 @@ let  valid = {
 	        var msg;
 	        
 	        IMP.request_pay({
-	            pg : 'kakaopay',
+	            pg : 'inicis',
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '밥도둑',
-	            amount : lastTot,
+	            amount : 1000,
 	            buyer_email : '',
 	            buyer_name : name,
 	            buyer_tel : phone,
@@ -123,14 +124,31 @@ let  valid = {
 	                        msg += '카드 승인번호 : ' + rsp.apply_num;
 	                        
 	                        alert(msg);
-
+							
 	                    } else {
 	                        //[3] 아직 제대로 결제가 되지 않았습니다.
 	                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	                    }
 	                });
+						// db에 결제 내용 저장 하는 Ajax
+						$.ajax({
+							url : 'a.do',
+							type : 'POST',
+							dataType : 'json',
+			        	    contentType:'application/json; charset=utf-8',				
+
+							data : JSON.stringify({
+								'lastTot' : $('#lastTot').val(),
+								'name' : name,
+								'phone' : phone,
+								'addr' : addr,
+								'zipcode' : zipcode,
+								'detailAddr' : detailAddr,
+								'mem_id' : mem_id
+							})
+						});
 	                //성공시 이동할 페이지
-	                location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg;
+	                location.href='/';
 	            } else {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;

@@ -16,9 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.dao.mypage.MypageDao;
+import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
 import com.mall.vo.mypage.IdInquiryVo;
 import com.mall.vo.mypage.MypageVo;
@@ -27,53 +29,54 @@ import com.mall.vo.mypage.ShippingVo;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("/mypage")
 @RequiredArgsConstructor
 public class MypageController {
 
 	private final MypageDao dao;
 	private final JavaMailSender javaMailSender;
-
+	private final LoginSessionListener lsl;
 	//페이징 처리 관련 변수
 	public static int pageSIZE = 10; // 한 화면에 보여지는 레코드 수
 	public static int totalRecord = 0; //전체 레코드 수
 	public static int totalPage = 1;// 전체 페이지 수
 	
 	// 마이페이지 리스트
-	@GetMapping("/mypage.do")
+	@GetMapping("")
 	public String Mypage(Model model, HttpSession session, HttpServletRequest request,  HttpServletResponse response ) throws IOException {
-		
-		session = request.getSession(true);
-		String id = (String) session.getAttribute("login");
+
+		String id =null;
+
+		id = (String) session.getAttribute("login");
 		
 		if(id == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 후 후기 작성이 가능합니다.!'); location.href='/'; </script>");
+			out.println("<script>alert('로그인 후 마이페이지 이용이 가능합니다.!'); location.href='/'; </script>");
 			out.close();
-			return null;	
-			
 		}
+		
+		lsl.setSession(request.getSession(), id);
+		
 		return "mypage";
 	}//Mypage
 	
 	// 회원의 Email & Phone 정보 변경 뷰 페이지
-	@GetMapping("/userInfoUpdate.do")
-	public String updateForm(Model model,String admin,HttpSession session,HttpServletRequest request) {
-		
-		session = request.getSession(true);
+	@GetMapping("/userInfoUpdate")
+	public String updateForm(Model model,HttpSession session,HttpServletRequest request) {
+
 		String id = (String) session.getAttribute("login");
 		
-		// Session 아이디
-		admin = "leewooo";
 		// 회원 아이디와 이름을 가져온다.
 		MypageVo mVo = dao.getMemberinfo(id);
 		// 상태 유지 후 뷰 페이지로 이동
 		model.addAttribute("mVo",mVo);
- 		return "userInfoUpdate";
+ 		return "/mypage/userInfoUpdate";
+ 		
 	}//ModelAndView
 	
 	// 이메일 인증번호 난수
-	@GetMapping("/sendEmailCode.do")
+	@GetMapping("/sendEmailCode")
 	@ResponseBody
 	public String sendEmailCode(String email) {
 		// 랜덤함수 객체
@@ -103,13 +106,14 @@ public class MypageController {
 	}//sendEmailCode
 	
 	// AJAX을 통한 이메일 인증코드가 맞을 시 해당 메소드로 호출 시 변경
-	@GetMapping("/updateEmail.do")
+	@GetMapping("/updateEmail")
 	@ResponseBody
-	public String EmailUpdate(String email,String admin) {
+	public String EmailUpdate(String email,HttpSession session,HttpServletRequest request) {
 		// session
-		admin = "leewooo";
+		String id = (String) session.getAttribute("login");
+		
 		// 변경할 이메일을 가지고 update
-		int re = dao.updateEmail(email,admin);
+		int re = dao.updateEmail(email,id);
 		// 만약 성공적으로 변경이 완료되었다면 뷰페이지에 변경된 이메일 값으로 변경 
 		if(re == 1) {
 			return email;
@@ -118,7 +122,7 @@ public class MypageController {
 	}//EmailUpdate
 	
 	// 이메일 인증번호 난수
-	@GetMapping("/sendPhoneCode.do")
+	@GetMapping("/sendPhoneCode")
 	@ResponseBody
 	public String sendPhoneCode(String phone) {
 		// 랜덤객체 생성
@@ -138,13 +142,13 @@ public class MypageController {
 	}//sendPhoneCode
 	
 	 // 인증번호가 일치 할 시 핸드폰 번호를 변경
-	@GetMapping("/updatePhone.do")
+	@GetMapping("/updatePhone")
 	@ResponseBody
-	public String phoneUpdate(String phone,String admin) {
+	public String phoneUpdate(String phone,HttpSession session,HttpServletRequest request) {
 		// 세선
-		admin = "leewooo";
+		String id = (String) session.getAttribute("login");
 		// 변경할 핸드폰 번호 dao로 전달
-		int re = dao.updatePhone(phone,admin);
+		int re = dao.updatePhone(phone,id);
 		// 핸드폰 번호가 성공적으로 변경이 완료 됐으면
 		if(re == 1) {
 			//변경된 핸드폰 번호를 뷰단에 변경
@@ -154,55 +158,58 @@ public class MypageController {
 	}//phoneUpdate
 	
 	 // 배송지 관리 뷰 페이지로 이동
-	@GetMapping("/updateShipping.do")
-	public String updateShippingForm(Model model) {
+	@GetMapping("/updateShipping")
+	public String updateShippingForm(Model model,HttpSession session,HttpServletRequest request) {
 		// 세션
-		String mem_id = "leewooo";
+		String id = (String) session.getAttribute("login");
+		
 		// ShippingVo에 회원에 대한 우편번호/주소/상세주소를 담는다.
-		ShippingVo spVo = dao.getShipping(mem_id);
+		ShippingVo spVo = dao.getShipping(id);
 		// 상태유지 후 페이지에 현재주소 value에 값을 뿌려준다.
 		model.addAttribute("spVo",spVo);
 		
-		return "updateShipping";
+		return "/mypage/updateShipping";
 	}//updateShipping
 	
 	// 주소 변경 Process
-	@PostMapping("/updateShipping.do")
-	public String updateShippingSubmit(Model model,ShippingVo spVo,String mem_id,HttpServletResponse response) throws IOException {
+	@PostMapping("/updateShipping")
+	public String updateShippingSubmit(Model model,ShippingVo spVo,String mem_id,HttpServletResponse response,HttpSession session,HttpServletRequest request) throws IOException {
 		// 세션
-		mem_id = "leewooo";
+		String id = (String) session.getAttribute("login");
 		// 변경할 우편번호/주소/상세주소를 담겨져 있는 spVo객체를 dao로 전달
-		int re = dao.updateShipping(spVo,mem_id);
+		int re = dao.updateShipping(spVo,id);
 		// 성공적으로 주소가 변경이 되었다면
 		if(re == 1) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('주소 변경이 성공적으로 변경이 완료되었습니다.'); location.href='/updateShipping.do'; </script>");
+			out.println("<script>alert('주소 변경이 성공적으로 변경이 완료되었습니다.'); location.href='/mypage/updateShipping'; </script>");
 			out.close();
 		}
 		return "";
 	}//updateShippingSubmit
 	
 	// 회원 탈퇴 화면 뷰
-	@GetMapping("/deleteAccount.do")
-	public String deleteAccountForm(Model model) {
+	@GetMapping("/deleteAccount")
+	public String deleteAccountForm(Model model,HttpServletResponse response,HttpSession session,HttpServletRequest request) {
 		// 세션
-		String mem_id = "admin1234";
+		String id = (String) session.getAttribute("login");
+
 		// 고객 아이디를 얻어온다.
-		MypageVo mVo = dao.getMemberid(mem_id);
+		MypageVo mVo = dao.getMemberid(id);
 		// 상태 유지 후 고객 아이디 회원 탈퇴 뷰에 뿌려준다.
 		model.addAttribute("mVo",mVo);
 
-		return "deleteAccount";
+		return "/mypage/deleteAccount";
 	}// deleteAccountForm
 	
 	// 회원탈퇴 Process
-	@PostMapping("/deleteAccount.do")
-	public String deleteAccountSubmit(Model model,HttpServletResponse response) throws IOException {
+	@PostMapping("/deleteAccount")
+	public String deleteAccountSubmit(Model model,HttpServletResponse response,HttpSession session,HttpServletRequest request) throws IOException {
 			// 세션
-			String mem_id = "jangilkyu";
+			String id = (String) session.getAttribute("login");
+
 			// 아이디에 대한 정보를 찾아서 회원 탈퇴
-			int re = dao.deleteId(mem_id);
+			int re = dao.deleteId(id);
 			// 성공적으로 주소가 변경이 되었다면
 			if(re == 1) {
 				response.setContentType("text/html;charset=UTF-8");
