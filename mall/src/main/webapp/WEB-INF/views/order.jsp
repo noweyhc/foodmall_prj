@@ -29,7 +29,7 @@
     <input type="hidden" value="${totAmount }" id="totAmount">
     <input type="hidden" value="${prodQty }" id="prodQty">
     <input type="hidden" value="${lastTot }" id="lastTot">
-    
+    <input type="hidden" value="${mem_id }" id="mem_id">
     <!--주문 목록-->
     <div class="order-background">
     	<div class="order-title-wrap">

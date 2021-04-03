@@ -66,10 +66,12 @@ public class LoginController {
 		String login = "";
 		//만약 id가 비어있지않으면 
 		if(mem_id != null) {
+			System.out.println("로그인하여 세션 저장함" + mem_id);
 			session.setAttribute("login", mem_id);
 		}
 		  
 		login = (String)session.getAttribute("login");
+		
 
 		System.out.println(login);
 		  

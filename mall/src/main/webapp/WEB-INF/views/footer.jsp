@@ -17,7 +17,7 @@
 				<ul>
 					<li><a href="/listNotice.do">공지사항</a></li>
 					<li><a href="/listFAQ.do">자주묻는 질문</a></li>
-					<li><a href="/inquiry.do">1:1문의</a></li>
+					<li><a href="/inquiry/inquiry">1:1문의</a></li>
 	
 					<li><a href="#">개인정보처리방침</a></li>
 					<li><a href="#">이용안내</a></li>
