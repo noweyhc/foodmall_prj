@@ -123,6 +123,14 @@ form {
     margin-top: 3px;
 }
 
+.fa-search {
+	font-size: 24px;
+}
+
+.fa-search:hover {
+	color: #26A69A;
+}
+
 .cart-wrap {
     margin-top: 3px;
     display: inline-block;

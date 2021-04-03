@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
+	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -43,9 +44,9 @@
 				</ul>
 			</div>
 			<div class="search-wrap">
-				<form action="#">
-					<input type="search" class="inp_search" placeholder="오늘 돈카츠ㄱㄱ?">
-					<button type="submit" class="btn btn-alert btn-search">검색</button>
+				<form action="/search" method="get">
+					<input type="search" name="keyword" class="inp_search" placeholder="오늘은 돈가츠?">
+					<button type="submit" class="btn btn-alert btn-search"><i class="fas fa-search"></i></button>
 				</form>
 			</div>
 			<div class="cart-wrap">
