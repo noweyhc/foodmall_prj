@@ -251,7 +251,8 @@ public class MypageController {
 		return pwd;
 	}//getPassword
 	
-	
+	//=======================================================
+	/*
 	// 아이디 찾기 뷰페이지
 	@GetMapping("/idInquiry.do")
 	public String idInquiry(Model model) {
@@ -351,7 +352,7 @@ public class MypageController {
 		}
 		return null;
 	}
-	
+	*/
 /*
  //*  문의사항 등록 후 List반영이 안되는 이슈때문에 inquiry.do 문의 등록 후 list 담아서 myInquiry로 이동하게 변경
 	@GetMapping("/myInquiry.do")

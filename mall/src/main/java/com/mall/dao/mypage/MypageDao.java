@@ -163,7 +163,7 @@ public class MypageDao {
 		
 		return re;
 	}
-
+/*
 	public int phoneAuth(HashMap<String, Object> map) {
 		
 		Map<String, Object> phoneAuthMap = new HashMap<>();
@@ -217,7 +217,7 @@ public class MypageDao {
 		return mem_id;
 	}
 	
-	
+	*/
 	public void commit() {
 		sqlSession.commit();
 	}

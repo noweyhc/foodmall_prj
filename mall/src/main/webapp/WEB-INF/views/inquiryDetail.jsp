@@ -87,7 +87,7 @@
 	  		<br>
 	  		<br>
 	  		<br>
-	  		<img src="inquiry/${userIqVo.cs_fname }" id="cs_fname">
+	  		<img src="../inquiry/${userIqVo.cs_fname }" id="cs_fname">
         </div>   
 	  </div>   
 	

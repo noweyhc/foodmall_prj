@@ -28,7 +28,7 @@
             ${mem_id}
         </div>
         <div class="find-id-btn">
-            <a class="waves-effect waves-light btn-small" href="/login.do"><i class="material-icons left">favorite</i>로그인하기</a>
+            <a class="waves-effect waves-light btn-small" href="/login/userLogin"><i class="material-icons left">favorite</i>로그인하기</a>
             <a class="waves-effect waves-light btn-small"><i class="material-icons left">mood</i>비밀번호 찾기</a>
         </div>
     </div>    

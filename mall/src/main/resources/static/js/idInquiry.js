@@ -24,7 +24,7 @@ let idInquiry = {
 		});
 		
 		$('#emailSubmit').on('click',function(){
-			_this.Check();
+			_this.CheckEmail();
 		});
 	},
 	
@@ -99,7 +99,7 @@ let idInquiry = {
 	}
 		
 		$.ajax({
-			url : 'phoneAuth.do',
+			url : '/login/phoneAuth',
 			type : 'POST',
 			dataType : 'json',
 			contentType:'application/json; charset=utf-8',				
@@ -181,12 +181,12 @@ let idInquiry = {
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
 						                  };
-				toastr.error('주소를 정확히 입력해 주시기바랍니다..');
+				toastr.error('이메일을 정확히 입력해 주시기바랍니다..');
 			return false;
 		}//end if	
 		
 		$.ajax({
-			url : 'emailAuth.do',
+			url : '/login/emailAuth',
 			type : 'POST',
 			contentType:'application/json; charset=utf-8',				
 			data : JSON.stringify({
@@ -194,8 +194,8 @@ let idInquiry = {
 				'mem_email': $('#mem_email').val(),
 			})
 		}).done(function(data){
-			alert('인증 메일이 전송 되었습니다.');
 			if(data.result == 1){
+				alert('인증 메일이 전송 되었습니다.');
 				$('#mem_email_auth').attr('disabled',false);
 				$('#mem_email_auth').focus();	
 				emailcode = data.code;
@@ -228,33 +228,15 @@ let idInquiry = {
 	
 	Check : function(){
 		idInquiry.Check();	
+	},
+	
+	emailCheck : function(){
+		idInquiry.emailCheck();
 	}
 	
 }//idInquiry
 
 function Check(){
-
-	if($('#mem_phone_auth').val() == ''){
-		toastr.options = {
-				  "closeButton": false,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": false,
-				  "positionClass": "toast-bottom-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": "5000",
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-						                  };
-				toastr.error('인증번호를 정확히 입력해 주시기바랍니다.');
-		return false;		
-	}
 	
 	if($('#mem_phone_auth').val() != code){
 		toastr.options = {
@@ -277,8 +259,12 @@ function Check(){
 				toastr.error('인증번호가 일치하지 않습니다.');
 		return false;				
 	}
-	
-	if($('#mem_email_auth').val == ''){
+}//Check
+
+function CheckEmail(){
+		if($('#mem_email_auth').val() != emailcode){
+		alert($('#mem_email_auth').val );
+		alert(emailcode);
 		toastr.options = {
 				  "closeButton": false,
 				  "debug": false,
@@ -299,9 +285,6 @@ function Check(){
 				toastr.error('인증번호를 정확히 입력해 주시기바랍니다.');
 		return false;		
 	}
-	
-
-}//Check
-
+}
 
 idInquiry.init();

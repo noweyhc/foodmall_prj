@@ -5,13 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-</head>
-<body>
-<!DOCTYPE html>
-	<html lang="en">
-	<head>
-	    <meta charset="UTF-8">
-	    <title>Document</title>
 	    <!-- Compiled and minified CSS -->
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	
@@ -25,11 +18,14 @@
 		<link rel="stylesheet" href="css/detailProductsStyle.css">
 	
 	    <link rel="stylesheet" href="login.css">
-	</head>
+</head>
 	<body>
+		<%@ include file="../header.jsp" %>
 	<div class="wrap">
 	     <!-- 아이디 -->
-	    <form action="/login.do" method="post"  class="col s10">
+	    <form action="/login/userLogin" method="post"  class="col s10">
+	    <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+	    
 	    <div class="login-container">
 	         <div class="login-background">
 	          <div class="row">
@@ -50,7 +46,7 @@
 	            </div><!--input-->
 	          </div><!--비밀번호-->  
 	        <!--로그인 제출 버튼--> 
-	        <a href="/idInquiry.do">아이디 찾기</a> | <a href="">비밀번호 찾기</a>
+	        <a href="/login/idInquiry">아이디 찾기</a> | <a href="">비밀번호 찾기</a>
 	        <div class="login-btn">   
 	            <button class="btn waves-effect waves-light" type="submit" name="action">로그인
 	                <i class="material-icons right">send</i>
@@ -60,7 +56,7 @@
 	    </div><!--login-container--> 
 	    </form><!--form-->   
 	    </div>
-	    	<%@ include file="footer.jsp" %>
+	    	<%@ include file="../footer.jsp" %>
 /*
 <script type="text/javascript" src="http://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
