@@ -58,10 +58,12 @@ public class MainController {
 	public ModelAndView searchCategory(HttpServletRequest request) {
 		String[] keywords = request.getParameterValues("key");
 		ModelAndView mav = new ModelAndView();
+		String title = "";
 		
 		//각 키워드에 해당하는 상품 목록을 받아서 추가
 		List<ProductVo> categoryList = new ArrayList<ProductVo>();
 		for(String key : keywords) {
+			title += ("/" + key);
 			categoryList.addAll(productDao.selectCategory(key));
 		}
 		
@@ -74,6 +76,8 @@ public class MainController {
 		}
 		
 		mav.addObject("list", list);
+		mav.addObject("title", title.substring(1));
+		mav.addObject("saleMap", saleDao.selectValidMap());
 		mav.setViewName("listProducts");
 		return mav;
 	}

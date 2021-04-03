@@ -21,7 +21,14 @@
 <body>
 	<div id="list">
 		<div class="list-title">
-			<h4>상품 목록</h4>	
+			<c:choose>
+				<c:when test="${title != null}">
+					<h4>${title }</h4>	
+				</c:when>
+				<c:otherwise>
+					<h4>상품 목록</h4>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		
 		<div class="list-wrap">

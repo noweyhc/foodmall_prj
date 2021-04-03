@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id=saleProducts ><br>
+	<div id=saleProducts >
 		<div id="sale-list-title" align="center">
 			<h4>세일 목록</h4>	
 		</div>
