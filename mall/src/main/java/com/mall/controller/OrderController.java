@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,16 +23,17 @@ import com.mall.vo.Order.OrderShippingVo;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("payment")
 @RequiredArgsConstructor
 public class OrderController {
 	
 	private final OrderDao dao;
 
 	// 결제페이지로 이동
-	@GetMapping("/order.do")
+	@GetMapping("/order")
 	public String paymentForm(Model model,HttpSession session) {
 		// 세션
-		String mem_id = "jangilkyu";
+		String mem_id = (String) session.getAttribute("login");
 		
 		// 고객이 담은 장바구니 상품 정보 (상품번호/제목/서브제목/이미지/고객 장바구니 상품 총 가격/고객 장바구니 상품 수량)
 		List<OrderProdListVo> cVoList = dao.findCartList(mem_id);
@@ -75,7 +77,7 @@ public class OrderController {
 		// 회원아이디
 		model.addAttribute("mem_id",mem_id);
 		
-		return "order";
+		return "/payment/order";
 	}//paymentForm
 	
 	@PostMapping("a.do")
@@ -84,7 +86,6 @@ public class OrderController {
 
 		
 		int re = dao.insertOrderInfo(map);
-		
 		
 		String lastTot = (String) map.get("lastTot");
 		String name = (String)map.get("phone");

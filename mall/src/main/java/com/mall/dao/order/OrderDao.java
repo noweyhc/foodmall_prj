@@ -57,7 +57,7 @@ public class OrderDao {
 	public int insertOrderInfo(HashMap<String, Object> map) {
 		
 		HashMap<String, Object> orderInfoMap = new HashMap<>();
-				
+		
 		orderInfoMap.put("order_phone", map.get("phone"));
 		orderInfoMap.put("order_name", map.get("name"));
 		orderInfoMap.put("order_totprice", map.get("lastTot"));
@@ -67,7 +67,7 @@ public class OrderDao {
 		orderInfoMap.put("order_mem_id", map.get("mem_id"));
 		
 		System.out.println(orderInfoMap);
-		int re = sqlSession.selectOne("order.insertOrderInfo",orderInfoMap);
+		int re = sqlSession.insert("order.insertOrderInfo",orderInfoMap);
 		commit();
 		
 		return re;

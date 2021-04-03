@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.mypage.PwdInquiryVo;
 import com.mall.vo.user.UserVO;
 
 
@@ -109,9 +110,55 @@ public class UserDAO {
 		
 		return mem_id;
 	}
+
+	public PwdInquiryVo findPwdUserId(String mem_id) {
+		
+		PwdInquiryVo pwdVo = sqlSession.selectOne("mypage.findPwdUserId",mem_id);
+		
+		return pwdVo;
+	}
+
+	public int pwdPhoneAuth(String mem_name, String mem_phone) {
+		
+		Map<String, Object> pwdAuthMap = new HashMap<>();
+		
+		pwdAuthMap.put("mem_name", mem_name);
+		pwdAuthMap.put("mem_phone", mem_phone);
+		
+		int re = sqlSession.selectOne("mypage.pwdPhoneAuth",pwdAuthMap);
+		
+		return re;
+	}
 	
 	public void commit() {
 		sqlSession.commit();
+	}
+
+	public String getMemId(String mem_name, String mem_phone) {
+		
+		Map<String, Object> getMembIdMapwd = new HashMap<>();
+		
+		getMembIdMapwd.put("mem_name", mem_name);
+		getMembIdMapwd.put("mem_phone", mem_phone);
+		
+		String mem_id = sqlSession.selectOne("mypage.phoneAuthGetId",getMembIdMapwd);
+		
+		return mem_id;
+	}
+
+	public int updateInqPwd(String mem_id, String currPwd) {
+		
+		Map<String,Object> updateInqPwdMap = new HashMap<>();
+		
+		updateInqPwdMap.put("mem_id", mem_id);
+		updateInqPwdMap.put("mem_pwd", currPwd);
+		
+		int re = sqlSession.update("mypage.updateInqPwd",updateInqPwdMap);
+		
+		commit();
+		System.out.println(re);
+		
+		return re;
 	}
 
 

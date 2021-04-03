@@ -34,12 +34,12 @@
   </select>
   
   <insert id="insertOrderInfo">
-  	 INSERT INTO tb_order (order_no,order_date,order_cart_no,order_set_no,order_name,order_phone,order_addr,order_zipcode,order_detailaddr,order_totprice,order_mem_id)
+  	 INSERT INTO tb_order (order_no,order_date,order_name,order_phone,order_addr,order_zipcode,order_detailaddr,order_totprice,order_mem_id)
   	 VALUES(
   	 seq_tb_order.nextval,
   	 sysdate,
-  	 order_name,
-  	 order_phone,
+  	 #{order_name},
+  	 #{order_phone},
   	 #{order_addr},
   	 #{order_zipcode},
   	 #{order_detailAddr},
