@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
 import com.mall.dao.set.SetDao;
 import com.mall.util.AdminUtil;
+import com.mall.vo.event.EventVo;
 import com.mall.vo.product.ProductVo;
 import com.mall.vo.sale.SaleVo;
 import com.mall.vo.set.SetComponentVo;
@@ -35,6 +37,7 @@ public class AdminController {
 	private final ProductDao dao;
 	private final SaleDao sdao;
 	private final SetDao setdao;
+	private final EventDao eventdao;
 	private final AdminUtil util;
 	
 	
@@ -429,4 +432,43 @@ public class AdminController {
 		return mav;
 	}
 	
+	//GET 방식 접근, 이벤트 등록 페이지로 이동
+	@RequestMapping(value = "/event-register", method = RequestMethod.GET)
+	public String registerEventForm(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "event");
+		request.getSession().setAttribute("function", "eventRegister");
+		request.getSession().setAttribute("nextNo", eventdao.getNextNo());
+		return "/admin/eventRegister";
+	}
+	
+	//POST 방식 접근, 이벤트를 DB에 입력하고 결과를 반환
+	@RequestMapping(value = "/event-register", method = RequestMethod.POST)
+	public String registerEvent(EventVo ev, HttpServletRequest request) {
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		ev.setEvent_start(startDate);
+		ev.setEvent_end(endDate);
+		
+		//세트 이미지를 등록할 webapp/img 경로
+		String path = request.getRealPath("/img");
+				
+		//파일 데이터를 받아와서 변수에 저장
+		MultipartFile uploadImg = ev.getImgFile();
+			
+		//이미지 파일 이름을 set + 세트번호로 지정
+		String imgName = util.renameEventImg(ev.getEvent_no(), uploadImg);
+
+		//DB에 수정된 이미지 파일 이름을 저장
+		ev.setEvent_img(imgName);
+
+		try {
+			util.uploadImg(path, uploadImg, imgName);
+		} catch (IOException e) {
+		}
+		
+		//이미지 정보를 저장하는 쿼리문을 실행하고, 결과값을 반환
+		int re = eventdao.registerEvent(ev);
+		
+		return "redirect:/admin/event-register";
+	}
 }

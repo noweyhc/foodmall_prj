@@ -14,9 +14,9 @@ let  post = {
                 }
                 //이 후 회원가입 창에 값을 넣어준다.
                 //우편번호 넣기
-                $('#mem_zipCode').val(data.zonecode)
+                $('#mem_zipCode').val(data.zonecode);
                 //주소 넣기
-                $('#mem_address').val(addr)
+                $('#mem_address').val(addr);
                 //다음 상세주소로 포커싱
                 $('#mem_detailAddress').focus();
             }

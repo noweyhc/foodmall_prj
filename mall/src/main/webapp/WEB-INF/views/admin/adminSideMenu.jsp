@@ -75,6 +75,24 @@
 				</div>
 			</div>
 			
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-event" class="menu-list-sub-category ${category eq 'event' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseFour" 
+				aria-expanded="${category eq 'event' ? 'true' : 'false' }" aria-controls="collapseFour" data-parent="#accordion">
+					<i class="fas fa-layer-group"></i>	
+					<span class="menu-list-title ">이벤트 관리</span>
+				</a>
+			</div>
+			<div id="collapseFour" class="collapse ${category eq 'event' ? 'show' : '' } ">
+				<div class="py-2 collapse-inner rounded">
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'eventRegister' ? 'active' : '' }" href="/admin/event-register">이벤트 등록</a>
+					</div>
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'eventEdit' ? 'active' : '' }" href="">이벤트 수정 및 삭제</a>
+					</div>
+				</div>
+			</div>
+			
 			<hr class = "divider">
 
 			<div class="menu-list-sub">

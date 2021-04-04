@@ -56,6 +56,20 @@ public class AdminUtil {
 	}
 	
 	/**
+	 * @param no 이미지 번호
+	 * @param imgFile 이미지 파일 객체
+	 * @return 새로운 파일 이름
+	 */
+	public String renameEventImg(int no, MultipartFile imgFile) {
+		String newName = "";
+		
+		// 새로운 파일 이름 : event[상품번호].확장자
+		newName = "event" + String.valueOf(no) + imgFile.getOriginalFilename().substring(imgFile.getOriginalFilename().indexOf("."));
+		
+		return newName;
+	}
+	
+	/**
 	 * @param path 이미지를 저장할 서버 경로
 	 * @param imgFile 서버에 업로드할 이미지
 	 * @param fileName 서버에 업로드할 이미지 이름

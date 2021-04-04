@@ -34,7 +34,6 @@
 			<div class=category-list>
 				<ul style="margin-top: 0px; margin-bottom: 0px;">
 					<li><a href='/listProducts.do'>전체상품</a></li>
-					<li><a href='#'>정기구독</a></li>
 					<li><a href='/set'>세트판매</a></li>
 					<li><a href='/timesale'>타임세일</a></li>
 					<li><a href='/reviewList'>회원리뷰</a></li>
