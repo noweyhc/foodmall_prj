@@ -16,9 +16,7 @@
 	<div id="menubar" class="menubar">
 			<div class="dropdown">
 				<button type="button" class="btn btn-outline-dark dropbtn">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>  
-					</svg> 
+					<i class="fas fa-bars" style="font-size: 16px;"></i>
 				</button>
 				<div class="dropdown-content">
 						<a href="/category?key=국&key=탕">국/탕</a>
@@ -34,7 +32,7 @@
 				</div>   
 			</div>
 			<div class=category-list>
-				<ul>
+				<ul style="margin-top: 0px; margin-bottom: 0px;">
 					<li><a href='/listProducts.do'>전체상품</a></li>
 					<li><a href='#'>정기구독</a></li>
 					<li><a href='/set'>세트판매</a></li>
@@ -44,7 +42,7 @@
 				</ul>
 			</div>
 			<div class="search-wrap">
-				<form action="/search" method="get">
+				<form action="/search" method="get" style="height: 42px; display: flex;">
 					<input type="search" name="keyword" class="inp_search" placeholder="오늘은 돈가츠?">
 					<button type="submit" class="btn btn-alert btn-search"><i class="fas fa-search"></i></button>
 				</form>
