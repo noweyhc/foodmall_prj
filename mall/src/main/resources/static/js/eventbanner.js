@@ -88,3 +88,4 @@ dotIndicator.addEventListener('click', (e) => {
 	btnShowHide(targetIndex, leftBtn, rightBtn, slides)
 	if(e.detail > 1) return;
 });
+

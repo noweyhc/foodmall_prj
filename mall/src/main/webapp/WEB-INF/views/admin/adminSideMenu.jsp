@@ -25,7 +25,7 @@
 				<a id="menu-list-sub-product" class="menu-list-sub-category ${category eq 'product' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseOne" 
 				aria-expanded="${category eq 'product' ? 'true' : 'false' }" aria-controls="collapseOne" data-parent="#accordion">
 					<i class="fas fa-apple-alt"></i>	
-					<span style="margin-left: 10px;">상품 관리</span>
+					<span class="menu-list-title">상품 관리</span>
 				</a>
 			</div>
 			<div id="collapseOne" class="collapse ${category eq 'product' ? 'show' : '' } ">
@@ -38,11 +38,12 @@
 					</div>
 				</div>
 			</div>		
+			
 			<div class="menu-list-sub">
 				<a id="menu-list-sub-sale" class="menu-list-sub-category ${category eq 'sale' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseTwo" 
 				aria-expanded="${category eq 'sale' ? 'true' : 'false' }" aria-controls="collapseTwo" data-parent="#accordion">
 					<i class="fas fa-percentage"></i>	
-					<span style="margin-left: 10px;">할인 관리</span>
+					<span class="menu-list-title">할인 관리</span>
 				</a>
 			</div>
 			<div id="collapseTwo" class="collapse ${category eq 'sale' ? 'show' : '' } ">
@@ -55,11 +56,12 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="menu-list-sub">
 				<a id="menu-list-sub-set" class="menu-list-sub-category ${category eq 'set' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseThree" 
 				aria-expanded="${category eq 'set' ? 'true' : 'false' }" aria-controls="collapseThree" data-parent="#accordion">
 					<i class="fas fa-layer-group"></i>	
-					<span style="margin-left: 10px;">세트 관리</span>
+					<span class="menu-list-title ">세트 관리</span>
 				</a>
 			</div>
 			<div id="collapseThree" class="collapse ${category eq 'set' ? 'show' : '' } ">
@@ -72,9 +74,17 @@
 					</div>
 				</div>
 			</div>
+			
+			<hr class = "divider">
+
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-notice" class="menu-list-sub-category"  href="/admin/listNotice.do">
+					<i class="fas fa-volume-up"></i>
+					<span class="menu-list-title">공지사항 관리</span>
+				</a>
+			</div>
 		</div>
 			<hr class = "divider">
 		</div>
-
 </body>
 </html>
