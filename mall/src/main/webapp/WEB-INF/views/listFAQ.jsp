@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/menubar.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +70,7 @@
 			<button id="searchBtn">검색</button>
 		</div> -->
 
-
+<%@ include file="footer.jsp"%>	
 </body>
 </body>
 </html>

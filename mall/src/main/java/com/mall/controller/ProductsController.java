@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
+import com.mall.dao.sale.SaleDao;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -15,6 +17,14 @@ import lombok.RequiredArgsConstructor;
 public class ProductsController {
 
 	private final ProductDao dao;
+<<<<<<< HEAD
+=======
+	private final SaleDao saleDao;
+	
+	public static int pageSIZE = 12;	// 한 화면에 보여줄 게시물 수
+	public static int totalRecord = 0;	// 총 게시물 수
+	public static int totalPage = 1;	// 페이지 번호
+>>>>>>> f3057407b6a8236bfe0db09a2c6d16bddb20253a
 
 	public static int pageSIZE = 12; // 한 화면에 보여줄 게시물 수
 	public static int totalRecord = 0; // 총 게시물 수
@@ -35,6 +45,7 @@ public class ProductsController {
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.pagingProduct(start, end));
+		mav.addObject("saleMap", saleDao.selectValidMap());
 		mav.addObject("totalPage", totalPage);
 		return mav;
 	}

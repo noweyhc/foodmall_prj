@@ -51,6 +51,16 @@ body {
 	color: rgba(255,255,255,.7);
 }
 
+.side-menu .menu-list-sub .menu-list-sub-category .active{
+	color: white;
+	font-weight: bold;
+}
+
+.side-menu .menu-list-title{
+	margin-left: 16px;
+}
+
+
 .side-menu .menu-list-sub :hover{
 	color: rgba(255,255,255,1);
 	text-decoration: none;

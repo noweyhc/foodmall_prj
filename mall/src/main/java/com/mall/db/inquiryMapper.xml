@@ -62,4 +62,8 @@
   		SELECT ans_title,ans_content,ans_regdate,ans_cs_no from tb_cs_answer WHERE ans_cs_no = #{ans_cs_no}
   </select>
   
+  <select id="cntTbCs" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM tb_cs
+  </select>
+  
 </mapper>

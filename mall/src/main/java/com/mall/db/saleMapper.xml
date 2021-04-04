@@ -32,4 +32,10 @@
   	where product_no = #{no}
   </select>
   
+  <select id="selectValid" resultType="saleVo">
+		select	* from TB_TIMESALE 
+		where	to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') > timesale_start 
+		and		timesale_end > to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') 
+	</select>
+  
 </mapper>

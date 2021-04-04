@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/menubar.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +83,8 @@
 
 		</div>
 	</div>
-
+	
+<%@ include file="footer.jsp"%>	
 </body>
 </html>
 

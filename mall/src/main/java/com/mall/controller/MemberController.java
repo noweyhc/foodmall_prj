@@ -27,7 +27,6 @@ public class MemberController {
 	@PostMapping("/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestBody String mem_id) {
-		System.out.println(mem_id);
 		return String.valueOf(userDAO.idCheck(mem_id));
 	}
 	
@@ -35,7 +34,6 @@ public class MemberController {
 	@PostMapping("/emailCheck.do")
 	@ResponseBody
 	public String eamilCheck(@RequestBody String mem_email) {
-		System.out.println(mem_email);
 		return String.valueOf(userDAO.emailCheck(mem_email));
 	}
 	
@@ -43,7 +41,6 @@ public class MemberController {
 	@PostMapping("/signUp.do")
 	@ResponseBody
 	public String signUp(@RequestBody UserVO userVO) {
-		System.out.println(userVO);
 		return String.valueOf(userDAO.memberSave(userVO));
 	}
 

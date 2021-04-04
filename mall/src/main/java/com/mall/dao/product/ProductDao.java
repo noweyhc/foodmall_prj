@@ -120,9 +120,11 @@ public class ProductDao {
 		return list;
 	}	
 	
-	public List<ProductVo> categoryProduct(int category_no){
-		List<ProductVo> list = null;
-		list = sqlSession.selectList("products.category");
+	//카테고리에 해당하는 상품 목록 반환
+	public List<ProductVo> selectCategory(String keyword){
+		keyword = ("%" + keyword + "%");
+		List<ProductVo> list = new ArrayList<ProductVo>();
+		list = sqlSession.selectList("products.selectCategory", keyword);
 		return list;
 	}	
 	

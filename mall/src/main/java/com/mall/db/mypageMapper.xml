@@ -15,8 +15,8 @@
   		select mem_id from tb_member where mem_id = #{mem_id}
   </select>
   
-  <select id="getPwd" resultType="java.lang.String">
-		SELECT mem_pwd FROM tb_member WHERE mem_id = #{mem_id}
+  <select id="getPwd" resultType="java.lang.Integer">
+		SELECT COUNT(mem_pwd) FROM tb_member WHERE mem_id = #{mem_id} AND mem_pwd = #{mem_pwd}
   </select>
   
   <select id="getShipping" resultType="com.mall.vo.mypage.ShippingVo">
@@ -48,4 +48,35 @@
   <delete id="deleteId">
   		DELETE tb_member WHERE mem_id = #{mem_id}
   </delete>  
+  
+  <select id="phoneAuth" resultType="java.lang.Integer">
+  	SELECT COUNT(mem_phone) FROM tb_member WHERE  mem_phone = #{mem_phone} AND mem_name = #{mem_name}
+  </select>
+  
+  <select id="phoneAuthGetId" resultType="java.lang.String">
+	SELECT mem_id FROM tb_member WHERE  mem_phone = #{mem_phone} AND mem_name = #{mem_name}
+  </select>
+  
+  <select id="emailAuth" resultType="java.lang.Integer">
+  	SELECT COUNT(mem_email) FROM tb_member WHERE  mem_email = #{mem_email} AND mem_name = #{mem_name}
+  </select>  
+  
+  <select id="emailAuthGetId" resultType="java.lang.String">
+	SELECT mem_id FROM tb_member WHERE  mem_email = #{mem_email} AND mem_name = #{mem_name}
+  </select>
+  
+  <select id="findPwdUserId" resultType="com.mall.vo.mypage.PwdInquiryVo">
+  	SELECT mem_id, mem_phone FROM tb_member WHERE mem_id = #{mem_id}
+  </select>
+  
+  <select id="pwdPhoneAuth" resultType="java.lang.Integer">
+	SELECT COUNT(mem_id) FROM tb_member where mem_name = #{mem_name} AND mem_phone = #{mem_phone}
+  </select>
+  
+  <update id="updateInqPwd">
+  	UPDATE tb_member 
+  	SET mem_pwd = #{mem_pwd}
+  	WHERE mem_id = #{mem_id}
+  </update>
+  
 </mapper>

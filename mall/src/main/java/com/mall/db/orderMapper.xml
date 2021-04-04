@@ -32,4 +32,20 @@
   <select id="selelctProdQty" resultType="java.lang.Integer">
 	  SELECT COUNT(product_no) FROM tb_cart WHERE mem_id = #{mem_id}
   </select>
+  
+  <insert id="insertOrderInfo">
+  	 INSERT INTO tb_order (order_no,order_date,order_name,order_phone,order_addr,order_zipcode,order_detailaddr,order_totprice,order_mem_id)
+  	 VALUES(
+  	 seq_tb_order.nextval,
+  	 sysdate,
+  	 #{order_name},
+  	 #{order_phone},
+  	 #{order_addr},
+  	 #{order_zipcode},
+  	 #{order_detailAddr},
+  	 #{order_totprice},
+  	 #{order_mem_id}
+	)
+  </insert>
+
 </mapper>

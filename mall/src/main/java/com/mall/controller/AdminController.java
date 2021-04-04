@@ -22,6 +22,7 @@ import com.mall.dao.set.SetDao;
 import com.mall.util.AdminUtil;
 import com.mall.vo.product.ProductVo;
 import com.mall.vo.sale.SaleVo;
+import com.mall.vo.set.SetComponentVo;
 import com.mall.vo.set.SetVo;
 
 import lombok.RequiredArgsConstructor;
@@ -75,8 +76,8 @@ public class AdminController {
 	//GET 방식 접근일 때, 상품 등록 페이지로 이동
 	@RequestMapping(value = "/product-register", method = RequestMethod.GET)
 	public String registerProductForm(HttpServletRequest request) {
-		request.setAttribute("category", "product");
-		request.setAttribute("function", "productRegister");
+		request.getSession().setAttribute("category", "product");
+		request.getSession().setAttribute("function", "productRegister");
 		request.setAttribute("nextNo", dao.getNextNo());
 		return "/admin/productRegister";
 	}
@@ -160,6 +161,7 @@ public class AdminController {
 			mav.addObject("result", "DB 등록 실패. 상품번호를 확인해주세요.");			
 		}
 		
+		request.setAttribute("nextNo", dao.getNextNo());
 		mav.setViewName("/admin/productRegister");
 		return mav;
 	}
@@ -169,8 +171,8 @@ public class AdminController {
 	//GET 방식 접근, 상품 목록 창
 	@RequestMapping(value = "/product-edit", method = RequestMethod.GET)
 	public ModelAndView editProductForm(HttpServletRequest request) {
-		request.setAttribute("category", "product");
-		request.setAttribute("function", "productEdit");
+		request.getSession().setAttribute("category", "product");
+		request.getSession().setAttribute("function", "productEdit");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/admin/productEdit");
 		mav.addObject("list", dao.findAll());
@@ -299,8 +301,8 @@ public class AdminController {
 	//GET 방식 접근, 세일 정보를 등록
 	@RequestMapping(value = "/sale-register", method = RequestMethod.GET)
 	public String registerSaleForm(HttpServletRequest request) {
-		request.setAttribute("category", "sale");
-		request.setAttribute("function", "saleRegister");
+		request.getSession().setAttribute("category", "sale");
+		request.getSession().setAttribute("function", "saleRegister");
 		return "/admin/saleRegister";
 	}
 	
@@ -325,8 +327,8 @@ public class AdminController {
 	//GET 방식 접근, 세일 상품의 목록을 보여줌
 	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
 	public String editSale(Model model, HttpServletRequest request) {
-		request.setAttribute("category", "sale");
-		request.setAttribute("function", "saleEdit");
+		request.getSession().setAttribute("category", "sale");
+		request.getSession().setAttribute("function", "saleEdit");
 		model.addAttribute("list", sdao.findAll());
 		return "/admin/saleEdit";
 	}
@@ -374,9 +376,9 @@ public class AdminController {
 	//GET 방식 접근, 세트 등록 페이지로 이동
 	@RequestMapping(value = "/set-register", method = RequestMethod.GET)
 	public String registerSetForm(HttpServletRequest request) {
-		request.setAttribute("category", "set");
-		request.setAttribute("function", "setRegister");
-		request.setAttribute("nextNo", setdao.getNextNo());
+		request.getSession().setAttribute("category", "set");
+		request.getSession().setAttribute("function", "setRegister");
+		request.getSession().setAttribute("nextNo", setdao.getNextNo());
 		return "/admin/setRegister";
 	}
 	
@@ -418,9 +420,11 @@ public class AdminController {
 		String[] arr = request.getParameterValues("productNo");
 		
 		for(String no:arr) {
-			System.out.println(no);
+			SetComponentVo cv = new SetComponentVo(sv.getSet_no(), Integer.parseInt(no));
+			int re2 = setdao.registerSetComponent(cv);
 		}
 		
+		request.setAttribute("nextNo", setdao.getNextNo());
 		mav.setViewName("/admin/setRegister");
 		return mav;
 	}
