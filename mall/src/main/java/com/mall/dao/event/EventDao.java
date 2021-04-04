@@ -1,5 +1,10 @@
 package com.mall.dao.event;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -34,4 +39,32 @@ private SqlSession sqlSession;
 		}
 		return re + 1;
 	}
+	
+	//이벤트 글을 모두 찾아 리스트로 반환
+	public List<EventVo> findAll(){
+		List<EventVo> list = new ArrayList<>();
+		list = sqlSession.selectList("event.findAll");
+		return list;
+	}
+	
+	//현재 시간상 유효기간에 속하는 이벤트 데이터를 조회하고 반환합니다
+	public List<EventVo> selectValid(){
+		List<EventVo> list = new ArrayList<>();
+		list = sqlSession.selectList("event.selectValid", getNow());
+		return list;
+	}
+	
+	//db의 시간과 현재시간의 비교를 위해 현재시간을 원하는 포맷으로 추출
+	public String getNow() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = sdf.format(date);
+		return now;
+	}
+	
+	public void commit() {
+    	sqlSession.commit();
+    }
 }
+
+

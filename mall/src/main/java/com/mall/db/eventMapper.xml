@@ -19,4 +19,14 @@
 	)
 	where rownum = 1
   </select>
+  
+  <select id="findAll" resultType="eventVo">
+  	select * from tb_event
+  </select>
+  
+  <select id="selectValid" resultType="eventVo">
+  	select * from tb_event 
+  	where	to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') > event_start 
+	and		event_end > to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss')
+  </select>
 </mapper>

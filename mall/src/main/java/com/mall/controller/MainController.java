@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
 import com.mall.util.AdminUtil;
@@ -23,10 +24,12 @@ public class MainController {
 	
 	private final ProductDao productDao;
 	private final SaleDao saleDao;
+	private final EventDao eventDao;
 
 	@RequestMapping("/")
 	public ModelAndView mainpage() {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("eventList", eventDao.selectValid());
 		mav.addObject("newProducts", productDao.selectNew(8));
 		mav.setViewName("main");
 		return mav;
