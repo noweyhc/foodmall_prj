@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/header.jsp"%>
-<%@ include file="/WEB-INF/views/menubar.jsp"%>
+<%@ include file="adminSideMenu.jsp"%>
+<%@ include file="adminToolbar.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -56,15 +56,14 @@
 					href="listFAQ.do?pageNUM=${i }">${i }</a></li>
 			</c:forEach>
 		</ul>
+
+
+		<div class="row">
+			<button class="btn waves-effect waves-light" type="button"
+				name="insert" onclick="location.href='insertFAQ.do' ">글쓰기</button>
+		</div>
 	</div>
 
-
-	<!-- <div id="input-field col s10">
-			<input type="text" id="keyword" placeholder="검색할 상품명을 입력">
-			<button id="searchBtn">검색</button>
-		</div> -->
-
-<%@ include file="footer.jsp"%>	
 </body>
 </body>
 </html>

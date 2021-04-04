@@ -83,6 +83,12 @@
 					<span class="menu-list-title">공지사항 관리</span>
 				</a>
 			</div>
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-faq" class="menu-list-sub-category"  href="/admin/listFAQ.do">
+					<i class="fas fa-question-circle"></i>
+					<span class="menu-list-title">FAQ 관리</span>
+				</a>
+			</div>
 		</div>
 			<hr class = "divider">
 		</div>

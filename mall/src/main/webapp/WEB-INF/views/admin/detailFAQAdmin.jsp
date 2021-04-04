@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/header.jsp"%>
-<%@ include file="/WEB-INF/views/menubar.jsp"%>
-
+<%@ include file="adminSideMenu.jsp"%>
+<%@ include file="adminToolbar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,13 +72,16 @@
 
 			<!-- 전송 하기 버튼 -->
 			<div class="row">
-				<a class="waves-effect waves-light btn" id="btnsend" href="listFAQ.do">목록보기</a>
+				<a class="waves-effect waves-light btn" id="btnsend"
+					href="updateFAQ.do?no=${f.faq_no }">수정</a> <a
+					class="waves-effect waves-light btn" id="btnsend"
+					href="deleteFAQ.do?no=${f.faq_no }">삭제</a> <a
+					class="waves-effect waves-light btn" id="btnsend" href="listFAQ.do">목록보기</a>
+
 			</div>
 
 		</div>
 	</div>
-	
-<%@ include file="footer.jsp"%>	
 </body>
 </html>
 

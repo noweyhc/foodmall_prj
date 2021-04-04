@@ -36,28 +36,44 @@ public class FaqController {
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
 
-		System.out.println("시작레코드:" + start);
-		System.out.println("끝나는레코드:" + end);
-		System.out.println("-------------------------------");
-
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.listFAQ(start, end));
 		mav.addObject("totalPage", totalPage);
 		return mav;
 	}
+	
+	// 관리자용 목록 조회+페이징
+	@RequestMapping("/admin/listFAQ.do")
+	public ModelAndView listFAQAdmin(HttpServletRequest request, @RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
+		totalRecord = dao.totBoard(); // 총 게시글 수
+		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
+		
+		System.out.println("pageNUM:" + pageNUM);
+		
+		int start = (pageNUM - 1) * pageSIZE + 1;
+		int end = start + pageSIZE - 1;
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", dao.listFAQ(start, end));
+		mav.addObject("totalPage", totalPage);
+		mav.setViewName("admin/listFAQAdmin");
+		return mav;
+	}
+	
 
 	// 글 쓰기
-	@RequestMapping(value = "/insertFAQ.do", method = RequestMethod.GET)
-	public void insertFAQForm() {
+	@RequestMapping(value = "/admin/insertFAQ.do", method = RequestMethod.GET)
+	public String insertFAQForm() {
+		return "admin/insertFAQ";
 	}
 
 	// 글 쓰기 완료
-	@RequestMapping(value = "/insertFAQ.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insertFAQ.do", method = RequestMethod.POST)
 	public ModelAndView insertFAQSubmit(FaqVo f) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.insertFAQ(f);
 		if (re == 1) {
-			mav.setViewName("redirect:/listFAQ.do");
+			mav.setViewName("redirect:/admin/listFAQ.do");
 			System.out.println("등록 성공");
 		} else {
 			mav.addObject("msg", "게시물 등록에 실패하였습니다.");
@@ -71,26 +87,34 @@ public class FaqController {
 	public ModelAndView detailBoard(HttpServletRequest request, int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("f", dao.detailFAQ(no));
+		return mav;
+	}
+	
+	// 관리자용 글 상세 조회
+	@RequestMapping("/admin/detailFAQ.do")
+	public ModelAndView detailBoardAdmin(HttpServletRequest request, int no) {
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("f", dao.detailFAQ(no));
-		
+		mav.setViewName("admin/detailFAQAdmin");
 		return mav;
 	}
 
 	// 글 수정
-	@RequestMapping(value = "/updateFAQ.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updateFAQ.do", method = RequestMethod.GET)
 	public ModelAndView updateForm(HttpServletRequest request, int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("f", dao.detailFAQ(no));
+		mav.setViewName("admin/updateFAQ");
 		return mav;
 	}
 
 	// 글 수정완료
-	@RequestMapping(value = "/updateFAQ.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updateFAQ.do", method = RequestMethod.POST)
 	public ModelAndView updateSubmit(FaqVo f) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.updateFAQ(f);
 		if (re == 1) {
-			mav.setViewName("redirect:/listFAQ.do");
+			mav.setViewName("redirect:/admin/listFAQ.do");
 		} else {
 			mav.addObject("msg", "삭제에 실패하였습니다.");
 			mav.setViewName("error");
@@ -99,7 +123,7 @@ public class FaqController {
 	}
 	
 	// 글 삭제
-	@RequestMapping(value = "/deleteFAQ.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/deleteFAQ.do", method = RequestMethod.GET)
 	public ModelAndView deleteForm(int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("no", no);
@@ -107,12 +131,12 @@ public class FaqController {
 	}
 
 	// 글 삭제 완료
-	@RequestMapping(value = "/deleteFAQ.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/deleteFAQ.do", method = RequestMethod.POST)
 	public ModelAndView deleteSubmit(int no) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.deleteFAQ(no);
 		if (re == 1) {
-			mav.setViewName("redirect:/listFAQ.do");
+			mav.setViewName("redirect:/admin/listFAQ.do");
 		} else {
 			mav.addObject("msg", "삭제에 실패하였습니다.");
 			mav.setViewName("error");
