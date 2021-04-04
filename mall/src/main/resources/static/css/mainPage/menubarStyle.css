@@ -121,6 +121,16 @@ form {
 .search-wrap {
     display: inline-block;
     margin-top: 3px;
+    width: 290px;
+    height: 42px;
+}
+
+.fa-search {
+	font-size: 24px;
+}
+
+.fa-search:hover {
+	color: #26A69A;
 }
 
 .cart-wrap {

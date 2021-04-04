@@ -14,7 +14,7 @@
 
 	<!-- 헤더 영역 시작 -->
 	<div class="body-wrapper">
-	<nav id="header">
+	<div id="header">
 		<div class="nav-align">
 			<div class="header menu-left">
 				<ul>
@@ -44,10 +44,10 @@
 		</div>
 		<div class="nav-main-image">
 			<a href="/">
-			<img src="static/img/mainimage.JPG" alt="메인이미지">
+			<img id="logo-image" src="img/logo.png" alt="메인이미지">
 			</a>
 		</div>
-	</nav>
+	</div>
 	</div>
 	<!-- 헤더 영역 끝 -->
 	

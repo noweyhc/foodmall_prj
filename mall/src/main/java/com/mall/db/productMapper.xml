@@ -68,7 +68,9 @@
 	</select>
 	
 	<!-- 카테고리 -->
-	<select id="category" resultType="productVo">
+	<select id="selectCategory" resultType="productVo">
+		select * from TB_PRODUCT
+		where product_category like #{keyword}
 	</select>
 	
 	<select id="getNextNo" resultType="int">

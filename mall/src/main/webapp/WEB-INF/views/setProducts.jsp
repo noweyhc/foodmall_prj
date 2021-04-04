@@ -22,7 +22,7 @@
 <body>
 	<div id="list">
 		<div class="list-title">
-			<h4>세트목록</h4>	
+			<h4>세트 목록</h4>	
 		</div>
 		
 		<div class="list-wrap">

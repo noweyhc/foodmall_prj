@@ -37,10 +37,7 @@ public class SaleController {
 	//타임세일 메인페이지로 이동
 	@RequestMapping("")
 	public String timesalePage(Model model) {
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String now = sdf.format(date);
-		model.addAttribute("list", sdao.selectValid(now));
+		model.addAttribute("list", sdao.selectValid());
 		return "/timesale";
 	}
 	
