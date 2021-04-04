@@ -88,22 +88,17 @@ public class MypageDao {
 		return pwd;
 	}
 
-	public int updatePwd(String newPassword) {
-		
-		String admin = "leewooo";
+	public int updatePwd(String newPassword, String mem_id) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("mem_id", admin);
+		map.put("mem_id", mem_id);
 		map.put("mem_pwd", newPassword);
 		
-		System.out.println("bb"+map.get("mem_pwd")+"bb");
 		
 		int re = sqlSession.update("mypage.updatePwd",map);
 		
 		commit();
-		
-		System.out.println(re);
 		
 		return re;
 	}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,12 +15,12 @@
 	
 	<!-- css -->
 	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
-	<link rel="stylesheet" href="/static/css/myPage/deleteAccount.css">
+	<link rel="stylesheet" href="/static/css/myPage/inquiry.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
 
 </head>
 <body>
-	<div class="wrap">
+	<div class="wrap ">
 		<h4>[밥도둑]1:1문의</h4>
 		<hr>
 		<br>

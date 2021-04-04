@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +15,13 @@
 	    
 	    <!-- icon -->
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	    <link rel="stylesheet" href="/static/css/login.css">
+	    <link rel="stylesheet" href="/static/css/myPage/login.css">
 	    <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 		<link rel="stylesheet" href="css/detailProductsStyle.css">
 	
 	    <link rel="stylesheet" href="login.css">
 </head>
 	<body>
-		<%@ include file="../header.jsp" %>
 	<div class="wrap">
 	     <!-- 아이디 -->
 	    <form action="/login/userLogin" method="post"  class="col s10">
@@ -57,62 +58,5 @@
 	    </form><!--form-->   
 	    </div>
 	    	<%@ include file="../footer.jsp" %>
-/*
-<script type="text/javascript" src="http://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-	Kakao.init("72af82160c18ebef80293d4cbccbe1f6");
-	function kakaoLogin(){
-		Kakao.Auth.login({
-			scope:"profile,account_email,gender",
-			success:function(authObj) {
-				console.log(authObj);
-				Kakao.API.request({
-					url:"/v2/user/me",
-					success:function(res){
-					
-						let email = res.kakao_account.email;
-						location.href="/kakaoLoginOK.do?email="+email;
-					
-					}
-				});
-			}
-		});
-	}
-	
-</script>
-	<a href="javascript:kakaoLogin()">카카오 로그인</a>
 </body>
-    <script type="text/javascript">
-        function validateCheck() {
-            var id = $('#id').val();
-            var pwd = $('#pwd').val();
-
-            if (!id) {
-                alert("아이디를 입력해 주세요.");
-                $('#id').focus();
-                return false;
-            }
-
-            if (!pwd) {
-                alert("비밀번호를 입력해 주세요.");
-                $('#pwd').focus();
-                return false;
-            }
-        }
-    </script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-
-<script>
-function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  alert(profile.getEmail());
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	}
-</script>
-*/
 </html>

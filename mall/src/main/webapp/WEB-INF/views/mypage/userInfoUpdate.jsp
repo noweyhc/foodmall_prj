@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +12,10 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 	
 	<!-- css  -->    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
     <link rel="stylesheet" href="/static/css/myPage/userInfoUpdate.css">
     <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 </head>
@@ -252,6 +254,6 @@
         });
 */
 </script>
-	    	<%@ include file="../footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +20,12 @@
     
     <!-- css -->
     <link rel="stylesheet" href="/static/css/myPage/pwdInquiry.css">
+    <link rel="stylesheet" href="/static/css/myPage/wrap.css">
+    
     
 </head>
 <body>
+<div class="wrap">
    <form action="/login/pwdInquiry" method="POST">
        <div id ="pwInquiry-container">
         <h2 class="pwd-title">비밀번호 찾기</h2>
@@ -38,5 +43,7 @@
           </div>
        </div>
    </form>
+</div>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

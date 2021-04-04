@@ -39,7 +39,7 @@ let pwdValid = {
 						  "hideEasing": "linear",
 						  "showMethod": "fadeIn",
 						  "hideMethod": "fadeOut"
-								                  };
+				};
 						toastr.error('문의유형을 선택해 주시기바랍니다.');
 						
 				return false;
