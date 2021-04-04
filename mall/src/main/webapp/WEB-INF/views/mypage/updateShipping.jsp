@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,5 +98,6 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="/static/js/updateShipping.js"></script>
 <script src="/static/js/myposts.js"></script>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

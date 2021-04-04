@@ -76,12 +76,15 @@ public class InquiryDao {
 		return re;
 	}//insertInquiry
 	
-	public List<InquiryVo> findAllInquiry(int start, int end) {
+	public List<InquiryVo> findAllInquiry(int start, int end,String keyword, String searchFeild) {
 		
 		Map<String, Object> map = new HashMap<>();
-
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
 		map.put("start", start);
 		map.put("end", end);
+		
+		System.out.println(map);
 		
 		List<InquiryVo> list = sqlSession.selectList("inquiry.findAllInquiry",map);
 		
@@ -173,11 +176,16 @@ public class InquiryDao {
 	}
 
 
-	public int cntTbCs() {
+	public int cntTbCs(String keyword, String searchFeild) {
 
-		int cntTbCs = sqlSession.selectOne("inquiry.cntTbCs");
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
+		
+		int cntTbCs = sqlSession.selectOne("inquiry.cntTbCs",map);
 
-		return 0;
+		return cntTbCs;
 	}
 
 

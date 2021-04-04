@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,8 @@
     <link rel="stylesheet" href="/static/css/myPage/myInquiry.css">
     <!-- css -->
     <link rel="stylesheet" href="/static/css/myPage/wrap.css">
+    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -44,10 +48,40 @@
         </tbody>
       </table>
       
+	  <!-- search -->	
+	  <form action="myInquiry" onsubmit="return inqValid();">
+	      <div class="iq-List-wrap">
+	        <div id="select-container">
+	          <div class="input-field">
+					  <select class="browser-default" id="searchFeild" name="searchFeild" >
+		    				<option value="" disabled selected>선택</option>
+							<option value="cs_title">제목</option>
+							<option value="cs_mem_id">작성자</option>
+		 			 </select>
+	          </div>
+	        </div>
+	        <div id="input-container">			
+	              <input type="hidden" name="pageNUM" value="1" >
+	              <div class="row">
+	                <div class="input-field col s10">
+	                  <input type="text" name="keyword" id="keyword" class="validate">
+	                  <label for="disabled">검색</label>
+	                </div>
+	              </div>
+	        </div>
+	        <div id="btn-container">
+	          <button class="btn waves-effect waves-light" id="btnSearch" type="submit" name="action">검색
+	            <i class="material-icons right">send</i>
+	          </button>
+	        </div>
+	      </div>
+	  </form>  
+		
+      
       <!-- Pagination  -->
 	  <ul class="pagination" id="page">
       <c:forEach var="i" begin="1" end="${totalPage }">
-      		<li class="waves-effect"><a  href="myInquiry?pageNUM=${i }">${i }</a></li>
+      		<li class="waves-effect"><a  href="myInquiry?pageNUM=${i }&keyword=${keyword}">${i }</a></li>
       </c:forEach>
 	  </ul>
 </div>

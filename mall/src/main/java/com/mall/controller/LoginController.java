@@ -86,16 +86,15 @@ public class LoginController {
 	}//loginSubmit
 	
 	@GetMapping("logout")
-	public String logout(HttpSession session,HttpServletResponse response){
+	public String logout(HttpSession session){
 		
-		String userId = lsl.getUserID(session);
-		
-		if(userId != null) {
-			lsl.removeSession(userId);
+		String mem_id = (String) session.getAttribute("login");
+
+		if(mem_id != null) {
+			session.invalidate();
 		}
-//		session.invalidate();
-		
-		return "/";
+
+		return "redirect:/";
 	}
 	
 	// 아이디 찾기 뷰페이지

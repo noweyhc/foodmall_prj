@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +120,7 @@
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- 섬머노트  -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> 
 <script src="/static/js/inquiryDetail.js"></script>
 
 <script>

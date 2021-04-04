@@ -1,16 +1,13 @@
 @charset "UTF-8";
 
-.wrap{
-	width : 1200px;
-	margin: 0 auto;
-	border: 1px solid #DFE1E5;
-	padding: 60px;
-}
-
 #cs_content {
     resize: none;
 }
 
 #answer_wrap {
 	display: none;
+}
+
+form {
+	width: 1000px;
 }

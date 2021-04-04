@@ -56,7 +56,7 @@ public class MypageController {
 			out.close();
 		}
 		
-		lsl.setSession(request.getSession(), id);
+		session.setAttribute("login", id);
 		
 		return "mypage";
 	}//Mypage
@@ -222,34 +222,34 @@ public class MypageController {
 	}//deleteAccountSubmit
 	
 	// 비밀번호 변경 뷰 페이지로 이동
-	@GetMapping("/resetPassword.do")
-	public String resetPassword(Model model) {
-		return "resetPassword";
+	@GetMapping("/resetPassword")
+	public String resetPassword(Model model,HttpSession session) {
+		return "/mypage/resetPassword";
 	}//resetPassword
 	
 	 // 새로운 비밀번호 와 비밀번호 확인이 일치 시 비밀번호 변경
-	@PostMapping("/resetPassword.do")
-	@ResponseBody
-	public String resetSub(Model model,@RequestBody String newChkPassword) {
-		//새로운 비밀번호로 변경
-		System.out.println(newChkPassword);
-		model.addAttribute(dao.updatePwd(newChkPassword));
-		System.out.println(newChkPassword);
+	@PostMapping("/resetPassword")
+	public String resetSub(Model model,HttpSession session,String currPassword,String newChkPassword,HttpServletResponse response) throws IOException {
+		// 세션
+		String mem_id = (String) session.getAttribute("login");
+		
+		int re = dao.getPwd(currPassword, mem_id);
+		
+		System.out.println("a");
+		if(re == 1) {
+			//새로운 비밀번호로 변경
+			model.addAttribute(dao.updatePwd(newChkPassword,mem_id));
+		}else {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			// alert 안내 후 비밀번호 변경(현재)페이지 이동
+			out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.'); location.href='/mypage/resetPasswordmypage/resetPassword'; </script>");
+			out.close();
+		}
+
 		return "mypage.do";
 	}//resetSub
-	
-	// 현재 비밀번호가 맞는지 확인하는 메소드
-	@PostMapping("/getPassword.do")
-	@ResponseBody
-	public int getPassword(@RequestBody String currPassword) {
-		// 세션
-		String mem_id = "leewooo";
-		System.out.println(currPassword);
-		// 아이디와 현재 비밀번호가 일치하는지 확인
-		int pwd = dao.getPwd(currPassword,mem_id);
-		System.out.println(pwd);
-		return pwd;
-	}//getPassword
+
 	
 	//=======================================================
 	/*
