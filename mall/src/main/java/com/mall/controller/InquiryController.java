@@ -119,9 +119,12 @@ public class InquiryController {
 	
 	// 고객이 작성한 1:1문의를 확인하는 페이지
 	@GetMapping("/myInquiry")
-	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM ,Model model,HttpSession session,HttpServletRequest request) {
+	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM , String keyword,Model model,HttpSession session,HttpServletRequest request) {
 		
 		String mem_id = (String) session.getAttribute("login");
+		
+		System.out.println(pageNUM);
+		System.out.println(keyword);
 		
 		totalRecord = dao.totBoard(mem_id);
 		
@@ -141,11 +144,13 @@ public class InquiryController {
 	// 관리자 페이지에서 클라이언트가 문의 남긴 문의 리스트 페이지
 	@GetMapping("/inquiryList")
 	public String inquiryList(Model model, @RequestParam(value="pageNUM",defaultValue = "1") int pageNUM,@RequestParam(value="keyword",defaultValue = "")  String keyword,@RequestParam(value="searchFeild",defaultValue = "cs_title")  String searchFeild) {
-	System.out.println(pageNUM);
+//	System.out.println(pageNUM);
 	System.out.println(keyword);
-	System.out.println(searchFeild);
+//	System.out.println(searchFeild);
 	int cntTbCs = dao.cntTbCs(keyword,searchFeild);
-		
+
+	model.addAttribute("keyword",keyword);
+	model.addAttribute("searchFeild",searchFeild);
 	// 총 게시글 수
 	totalRecord = cntTbCs;
 	// 페이지 수 구하기

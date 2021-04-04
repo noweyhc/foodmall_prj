@@ -90,7 +90,7 @@
 		    <!-- Pagination  -->
 			<ul class="pagination" id="page">
 			    <c:forEach var="i" begin="1" end="${totalPage }">
-			    	<li class="active" class="waves-effect"><a href="inquiryList?pageNUM=${i }">${i }</a></li>
+			    	<li class="active" class="waves-effect"><a href="inquiryList?pageNUM=${i }&keyword=${keyword}&searchFeild=${searchFeild}">${i }</a></li>
 			    </c:forEach>
 			</ul>
 			
