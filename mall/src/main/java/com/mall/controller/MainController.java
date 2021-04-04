@@ -85,4 +85,13 @@ public class MainController {
 		return mav;
 	}
 	
+	//현재 진행중인 이벤트 목록을 보여줌
+	@RequestMapping("/events")
+	public ModelAndView eventList() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("eventList", eventDao.selectValid());
+		mav.setViewName("listEvent");
+		return mav;
+	}
+	
 }
