@@ -13,6 +13,25 @@
 	margin-bottom: 40px;
 }
 
+.event-title {
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 6px;
+}
+
+.event-period {
+	margin-bottom: 6px;
+}
+
+.event-content {
+	width: 100%;
+	margin-bottom: 200px;
+}
+
+.event-image {
+	margin-bottom: 10px;
+}
+
 .list-wrap {
 	margin-top: 50px;
 	width: 100%;

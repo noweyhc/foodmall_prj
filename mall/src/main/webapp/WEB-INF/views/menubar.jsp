@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/menubarStyle.css">
 	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

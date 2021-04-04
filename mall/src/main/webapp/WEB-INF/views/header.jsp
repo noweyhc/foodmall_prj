@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="static/css/mainPage/headerStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/headerStyle.css">
 <meta charset="UTF-8">
 <title>header</title>
 </head>
@@ -44,7 +44,7 @@
 		</div>
 		<div class="nav-main-image">
 			<a href="/">
-			<img id="logo-image" src="img/logo.png" alt="메인이미지">
+			<img id="logo-image" src="${pageContext.request.contextPath}/img/logo.png" alt="메인이미지">
 			</a>
 		</div>
 	</div>

@@ -29,4 +29,9 @@
   	where	to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss') > event_start 
 	and		event_end > to_date(#{now}, 'yyyy-mm-dd hh24:mi:ss')
   </select>
+  
+  <select id="selectOne" resultType="eventVo">
+  	select * from tb_event
+  	where event_no = #{no}
+  </select>
 </mapper>

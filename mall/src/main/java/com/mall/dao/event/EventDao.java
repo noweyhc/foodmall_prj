@@ -54,6 +54,16 @@ private SqlSession sqlSession;
 		return list;
 	}
 	
+	//특정 번호의 이벤트 정보를 찾아 반환합니다
+	public EventVo selectEvent(int no) {
+		EventVo ev = new EventVo();
+		ev = sqlSession.selectOne("event.selectOne", no);
+		
+		//이벤트 세부글에서 줄바꿈 적용
+		ev.setEvent_content(ev.getEvent_content().replaceAll("\r\n","<br>"));
+		return ev;
+	}
+	
 	//db의 시간과 현재시간의 비교를 위해 현재시간을 원하는 포맷으로 추출
 	public String getNow() {
 		Date date = new Date();

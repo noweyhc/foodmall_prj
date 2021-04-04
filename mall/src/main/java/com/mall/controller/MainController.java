@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
 import com.mall.util.AdminUtil;
+import com.mall.vo.event.EventVo;
 import com.mall.vo.product.ProductVo;
 
 import lombok.RequiredArgsConstructor;
@@ -91,6 +93,19 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("eventList", eventDao.selectValid());
 		mav.setViewName("listEvent");
+		return mav;
+	}
+	
+	//현재 진행중인 이벤트 게시글을 보여줌
+	@RequestMapping("/events/{eventNo}")
+	public ModelAndView eventDetail(@PathVariable String eventNo) {
+		ModelAndView mav = new ModelAndView();
+		EventVo ev = eventDao.selectEvent(Integer.parseInt(eventNo));
+		ev.setEvent_start(ev.getEvent_start().substring(0, ev.getEvent_start().indexOf(" ")));
+		ev.setEvent_end(ev.getEvent_end().substring(0, ev.getEvent_end().indexOf(" ")));
+		mav.addObject("event", ev);
+		mav.addObject("eventList", eventDao.selectValid());
+		mav.setViewName("detailEvent");
 		return mav;
 	}
 	
