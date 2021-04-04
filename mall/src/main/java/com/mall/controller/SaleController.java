@@ -34,7 +34,7 @@ public class SaleController {
 	private final ProductDao dao;
 	private final SaleDao sdao;
 	
-	//관리자 메인 페이지로 이동
+	//타임세일 메인페이지로 이동
 	@RequestMapping("")
 	public String timesalePage(Model model) {
 		Date date = new Date();

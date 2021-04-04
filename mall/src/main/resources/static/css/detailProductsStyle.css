@@ -9,3 +9,21 @@
 	height: 500px;
 	object-fit: cover;
 }
+
+.product-detail a{
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 16px;
+	text-shadow: 1px 1px;
+	text-decoration: none;
+}
+.product-detail a:link {
+	color: #ffa62b;
+}
+
+.product-detail a:visited {
+	color: #ffa62b;
+}
+
+.product-detail a:hover {
+	color: #19778a;
+}
