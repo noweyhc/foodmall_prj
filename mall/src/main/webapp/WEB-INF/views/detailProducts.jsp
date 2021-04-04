@@ -12,7 +12,7 @@
 	<title>detailProducts</title>
 	
 	<link rel="stylesheet" href="static/css/detailProductsStyle.css">
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,600,700,800&amp;subset=korean" rel="stylesheet">
 	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
@@ -24,56 +24,63 @@
 
 	<section id="detailProducts"><br>
 	<div class="product-detail">		
-		<div id="product-detail-wrap" align="center">
-			<table border="1">
-				<tr>
-					<td>
-						<img class="product-mainimg" src="img/${p.product_main_img }">
-					</td>
-					<td>
-						<div id="title" align="center">
-							<a href="/listProducts.do">상품목록 > </a>
-							<a href="/listProducts.do?category_no=${p.category_no }">${p.product_category }</a><br><br>
-						</div>
-						<table border="0" style="width: 400px; height: 400px;">
-							<tr align="center">
-								<td style="text-align: left; padding-left: 30px;">상품명</td>
-								<td>${p.product_title }</td>
-							</tr>
-							<tr align="center">
-								<td style="text-align: left; padding-left: 30px;">상품 소제목</td>
-								<td>${p.product_subtitle }</td>
-							</tr>
-							<tr align="center">
-								<td style="text-align: left; padding-left: 30px;">상품 가격</td>
-								<td><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</td>
-							</tr>
-							<tr align="center">
-								<td style="text-align: left; padding-left: 30px;">수량 선택</td>
-								<td colspan="2">
-									<form name="form-cart" method="post" action="/insert.do">
-										<input type="hidden" name="product_no" value="${p.product_no }">
-										<input type="hidden" name="product_price" id="product_price" value="${p.product_price }">
-										<input type="hidden" name="product_title" value="${p.product_title }">
-										<input type="hidden" name="product_main_img" value="${p.product_main_img }">
-										<select id="product_qty" name="product_qty" onchange="getProductQTY();">
-											<c:set var="total_price" value="${p.product_price }"/>
-												<c:forEach var="i" begin="1" end="10" >
-													<option value="${i }">${i }</option>
-												</c:forEach>
-										</select>&nbsp;개&nbsp;
-										<input type="submit" id="input_cart" value="장바구니에 담기">						
-									</form>
-								</td>
-							</tr>		
-							<tr align="center" style="font-weight: bold">
-								<td style="text-align: left; padding-left: 30px;">총 가격</td>
-								<td id="total_price"><fmt:formatNumber value="${total_price }" pattern="#,###"/>원</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+		<div class="product-detail-wrap" align="center">
+			<div class="product-img-wrap">
+				<img class="product-mainimg" src="img/${p.product_main_img }">
+			</div>
+			
+			<div class="product-content-wrap">
+				<div class="product-title">
+					<span>${p.product_title }</span>
+				</div>
+				<div class="product-subtitle">
+					<span>${p.product_subtitle }</span>
+				</div>
+				<div class="product-category">
+					<span>카테고리 > ${p.product_category }</span>
+				</div>
+				<div class="product-detail-head">
+					<ul class="detail-heads">
+						<li>원산지</li>
+						<li>칼로리</li>
+						<li>보관방법</li>
+						<li>재료</li>
+					</ul>
+				</div>
+				<div class="product-detail-body">
+					<ul class="detail-bodies">
+						<li>${p.product_origin }</li>
+						<li>${p.product_caloies }</li>
+						<li>${p.product_storage }</li>
+						<li>${p.product_ingredient }</li>
+					</ul>
+				</div>
+				
+				<form class="purchase-form" name="form-cart" method="post" action="/insert.do">
+					<input type="hidden" name="product_no" value="${p.product_no }">
+					<input type="hidden" name="product_price" id="product_price" value="${p.product_price }">
+					<input type="hidden" name="product_title" value="${p.product_title }">
+					
+					<div class="product-select-amount">
+						<span class="qty-span">수량 선택</span>		
+						<select id="product_qty" name="product_qty" onchange="getProductQTY();">
+							<c:set var="total_price" value="${p.product_price }"/>
+								<c:forEach var="i" begin="1" end="10" >
+									<option value="${i }">${i }</option>
+								</c:forEach>
+						</select>&nbsp;개&nbsp;
+					</div>
+					<div class="product-total-price">
+						<span class="price-span">총 가격</span>
+						<span id="total_price"><fmt:formatNumber value="${total_price }" pattern="#,###"/></span>
+						<span class="price-span">원</span>
+					</div>
+					<div class="button">
+						<input type="submit" id="input_cart" class="cart-button" value="장바구니에 담기">						
+					</div>
+				</form>
+				
+			</div>
 		</div>
 		
 		<div align="center">		
@@ -97,6 +104,7 @@
 		</div>
 	</div>
 	</section>
+	<script type="text/javascript" src="js/priceUtil.js"></script>
 </body>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -117,6 +125,7 @@
 		var total_price = $("#product_price").val();
 		total_price = total_price*qty;
 		//alert(total_price);
+		total_price = priceFormat(total_price);
 		
 		document.getElementById("total_price").innerHTML = total_price;
 	}	
