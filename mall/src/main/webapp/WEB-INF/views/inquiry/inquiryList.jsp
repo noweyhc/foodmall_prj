@@ -13,8 +13,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="/static/css/myPage/myInquiry.css">
     <!-- css -->
+	<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
     <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 	<link rel="stylesheet" href="/static/css/myPage/inquiryList.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 </head>
 <body>
 	<div class="wrap">
@@ -46,10 +49,38 @@
 						</c:forEach>
 				</tbody>
 			</table>
-			
 			<c:if test="${empty list}">
-				<h2 id="none_list">아직 작성 된 문의 글이 없습니다. :( </h2>
+				<h4 id="none_list">아직 작성 된 문의가 없거나 검색결과가 일치하지 않습니다. :( </h4>
 			</c:if>	
+			
+		    <form action="inquiryList" onsubmit="return inqValid();">
+		      <div class="iq-List-wrap">
+		        <div id="select-container">
+		          <div class="input-field">
+						  <select class="browser-default" id="searchFeild" name="searchFeild" >
+			    				<option value="" disabled selected>선택</option>
+								<option value="cs_title">제목</option>
+								<option value="cs_mem_id">작성자</option>
+			 			 </select>
+		          </div>
+		        </div>
+		        <div id="input-container">			
+		              <input type="hidden" name="pageNUM" value="1" >
+		              <div class="row">
+		                <div class="input-field col s10">
+		                  <input type="text" name="keyword" id="keyword" class="validate">
+		                  <label for="disabled">검색</label>
+		                </div>
+		              </div>
+		        </div>
+		        <div id="btn-container">
+		          <button class="btn waves-effect waves-light" id="btnSearch" type="submit" name="action">검색
+		            <i class="material-icons right">send</i>
+		          </button>
+		        </div>
+		      </div>
+		    </form>  
+			
 <%-- 			
 			<c:forEach var="i" begin="1" end="${totalPage }">
 				<a href="inquiryList.do?pageNUM=${i }">${i }</a>
@@ -57,12 +88,13 @@
 		    <!-- Pagination  -->
 			<ul class="pagination" id="page">
 			    <c:forEach var="i" begin="1" end="${totalPage }">
-			    	<li class="active" class="waves-effect"><a href="inquiryList.do?pageNUM=${i }">${i }</a></li>
+			    	<li class="active" class="waves-effect"><a href="inquiryList?pageNUM=${i }">${i }</a></li>
 			    </c:forEach>
 			</ul>
+			
 	</div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="/static/js/inquiryList.js"></script>
 </body>
 </html>

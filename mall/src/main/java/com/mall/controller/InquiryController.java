@@ -66,8 +66,7 @@ public class InquiryController {
 		// view화면에 보여줄 고객 정보 [고객명,아이디]를 담는다.
 		UserVO uv = dao.getMemberInfo(mem_id);
 		// 상태 유지 후 inquiry로 페이지 이동
-		
-		lsl.setSession(request.getSession(), mem_id);
+		session.setAttribute("login", mem_id);
 		
 		model.addAttribute("uv",uv);
 		return "inquiry/inquiry";
@@ -141,9 +140,11 @@ public class InquiryController {
 	
 	// 관리자 페이지에서 클라이언트가 문의 남긴 문의 리스트 페이지
 	@GetMapping("/inquiryList")
-	public String inquiryList(Model model, @RequestParam(value="pageNUM",defaultValue = "1") int pageNUM) {
-		
-	int cntTbCs = dao.cntTbCs();
+	public String inquiryList(Model model, @RequestParam(value="pageNUM",defaultValue = "1") int pageNUM,@RequestParam(value="keyword",defaultValue = "")  String keyword,@RequestParam(value="searchFeild",defaultValue = "cs_title")  String searchFeild) {
+	System.out.println(pageNUM);
+	System.out.println(keyword);
+	System.out.println(searchFeild);
+	int cntTbCs = dao.cntTbCs(keyword,searchFeild);
 		
 	// 총 게시글 수
 	totalRecord = cntTbCs;
@@ -155,7 +156,7 @@ public class InquiryController {
 	// 한페이지에 보여질 글 갯수 정보를 담고있는 start와 end를 인자로 가지로 조회 후 List에 담는다.
 	List<InquiryVo> list= null;
 	
-	list =dao.findAllInquiry(start,end);
+	list = dao.findAllInquiry(start,end,keyword,searchFeild);
 
 	if(list == null) {
 		model.addAttribute("list",list);
