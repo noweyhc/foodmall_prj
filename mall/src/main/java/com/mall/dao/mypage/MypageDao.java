@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.mypage.MaskingVo;
 import com.mall.vo.mypage.MyInqDetailVo;
 import com.mall.vo.mypage.MyInqListVo;
 import com.mall.vo.mypage.MypageVo;
@@ -158,62 +159,17 @@ public class MypageDao {
 		
 		return re;
 	}
-/*
-	public int phoneAuth(HashMap<String, Object> map) {
-		
-		Map<String, Object> phoneAuthMap = new HashMap<>();
-		
-		phoneAuthMap.put("mem_name", map.get("mem_name")); 
-		phoneAuthMap.put("mem_phone", map.get("mem_phone"));
-		
-		int cnt = sqlSession.selectOne("mypage.phoneAuth",phoneAuthMap);
-		
-		
-		return cnt;
-	}
 
-	public String phoneAuthGetId(HashMap<String, Object> map) {
+	
+	public MaskingVo getMaskInfo(String mem_id) {
 		
-		Map<String, Object> phoneAuthMap = new HashMap<>();
+		MaskingVo maskVo = sqlSession.selectOne("mypage.getMaskInfo", mem_id);
 		
-		phoneAuthMap.put("mem_name", map.get("mem_name")); 
-		phoneAuthMap.put("mem_phone", map.get("mem_phone"));
-		
-
-		String mem_id =sqlSession.selectOne("mypage.phoneAuthGetId",phoneAuthMap);
-				
-		return mem_id;
+		return maskVo;
 	}
 	
-	public int emailAuth(HashMap<String, Object> map) {
-		
-		Map<String, Object> emailAuthMap = new HashMap<>();
-		
-		emailAuthMap.put("mem_name", map.get("mem_name")); 
-		emailAuthMap.put("mem_email", map.get("mem_email"));
-		
-		int cnt = sqlSession.selectOne("mypage.emailAuth",emailAuthMap);
-		
-		
-		return cnt;
-	}
-
-
-	public String EmailAuthGetId(HashMap<String, Object> map) {
-		
-		Map<String, Object> emailAuthMap = new HashMap<>();
-		
-		emailAuthMap.put("mem_name", map.get("mem_name")); 
-		emailAuthMap.put("mem_email", map.get("mem_email"));
-		
-		String mem_id = sqlSession.selectOne("mypage.emailAuthGetId",emailAuthMap);
-		
-		
-		return mem_id;
-	}
-	
-	*/
 	public void commit() {
 		sqlSession.commit();
 	}
+
 }

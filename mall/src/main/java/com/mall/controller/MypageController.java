@@ -2,8 +2,9 @@ package com.mall.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,14 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.dao.mypage.MypageDao;
 import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
-import com.mall.vo.mypage.IdInquiryVo;
+import com.mall.vo.mypage.MaskingVo;
 import com.mall.vo.mypage.MypageVo;
 import com.mall.vo.mypage.ShippingVo;
 
@@ -45,18 +45,34 @@ public class MypageController {
 	@GetMapping("")
 	public String Mypage(Model model, HttpSession session, HttpServletRequest request,  HttpServletResponse response ) throws IOException {
 
-		String id =null;
+		String mem_id =null;
 
-		id = (String) session.getAttribute("login");
+		mem_id = (String) session.getAttribute("login");
 		
-		if(id == null) {
+		if(mem_id == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 후 마이페이지 이용이 가능합니다.!'); location.href='/'; </script>");
 			out.close();
+		}//end if
+		
+		// 마스킹
+		MaskingVo maskVo = new MaskingVo();
+		
+		maskVo = dao.getMaskInfo(mem_id);
+		String email = maskVo.getMem_email();
+		
+		Pattern pattern = Pattern.compile("(.)(.*?)(.@.)(.*?)(\\.[^\\.]+)$");
+		Matcher matcher = pattern.matcher(email);
+		if (matcher.find()) {
+		    email = matcher.group(1) + matcher.group(2).replaceAll(".", "*") +
+		            matcher.group(3) + matcher.group(4).replaceAll(".", "*") +
+		            matcher.group(5);
 		}
 		
-		session.setAttribute("login", id);
+		model.addAttribute("email",email);
+		
+		session.setAttribute("login", mem_id);
 		
 		return "mypage";
 	}//Mypage
@@ -151,7 +167,7 @@ public class MypageController {
 		int re = dao.updatePhone(phone,id);
 		// 핸드폰 번호가 성공적으로 변경이 완료 됐으면
 		if(re == 1) {
-			//변경된 핸드폰 번호를 뷰단에 변경
+			//변경된 핸	드폰 번호를 뷰단에 변경
 			return phone;
 		}
 		return "";
@@ -250,129 +266,4 @@ public class MypageController {
 		return "mypage.do";
 	}//resetSub
 
-	
-	//=======================================================
-	/*
-	// 아이디 찾기 뷰페이지
-	@GetMapping("/idInquiry.do")
-	public String idInquiry(Model model) {
-
-		return "idInquiry";
-	}
-	
-	// 아이디 찾기 - 회원 정보에 등록한 휴대전화로 인증
-	@PostMapping("/phoneAuth.do")
-	@ResponseBody
-	public IdInquiryVo phoneAuth(Model model, @RequestBody HashMap<String, Object> map) {
-		
-		int cnt = dao.phoneAuth(map);
-		String mem_id = dao.phoneAuthGetId(map);
-
-		IdInquiryVo iiVo = new IdInquiryVo();
-
-			String mem_phone = (String)map.get("mem_phone");
-			// 랜덤객체 생성
-			Random random = new Random();
-			// 인증을 위한 랜덤 값 추출
-			int chkCode = random.nextInt(888888) + 111111;
-			String code = String.valueOf(chkCode);
-			// 클라이언트에게 전송할 문자 내용
-			String content = "[더 반찬]을 항상 이용해주셔서 항상 감사합니다\n\n"
-					+ "인증 번호는[" + code + "]입니다." ;
-			// 핸드폰 문자를 보내기 위한 객체
-			BanchanSms sms = new BanchanSms();
-			// 발신자 / 인증을 요청한 번호 / 문자 내용
-			sms.sendMsg("01086469577", mem_phone, content);
-
-			iiVo.setMem_id(mem_id);
-			iiVo.setResult(cnt);
-			
-			iiVo.setCode(code);
-		return iiVo;
-	}//phoneAuth
-	
-	@PostMapping("/viewIdList.do")
-	public String viewIdList(Model model,String mem_id) {
-		
-		model.addAttribute("mem_id", mem_id);
-		return "viewIdList";
-	}//viewIdList
-	
-	
-	@PostMapping("/emailAuth.do")
-	@ResponseBody
-	public IdInquiryVo emailAuth(Model model, @RequestBody HashMap<String, Object> map) {
-		
-		// 회원 이메일이 존재하는지 확인
-		// 존재하면 1 존재하지 않으면 0
-		int cnt = dao.emailAuth(map);
-		
-		System.out.println(map);
-		
-		// 이름과 이메일주소로 회원 아이디를 가져옴
-		String mem_id = dao.EmailAuthGetId(map);
-		
-		IdInquiryVo iiVo = new IdInquiryVo();
-		
-		String email = (String) map.get("mem_email");
-
-		System.out.println(cnt);
-		// 만약 이메일이 존재하면
-		if(cnt == 1) {
-			System.out.println(cnt);
-			// 랜덤함수 객체
-			Random random = new Random();
-			// 인증을 위한 랜덤 값 추출
-			int chkCode = random.nextInt(888888) + 111111;
-			String code = String.valueOf(chkCode);
-	
-			// 인증 코드 메일 제목
-			String subject = "[더 반찬] 본인 확인 인증 메시지입니다.";
-			// 인증 코드 메일 내용
-			String content = "더 반찬을 항상 이용해주셔서 항상 감사합니다\n\n"
-							+ "인증 번호는[" + code + "]입니다.\n" 
-							+ "해당 인증번호를 인증번호 확인란에 기입해주시면 감사하겠습니다.\n"
-							+ "오늘도 즐거운 쇼핑되세요.";
-			// 인증 코드 메일 보내기
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			
-			mailMessage.setSubject(subject); // 제목
-			mailMessage.setFrom("jewelrye6"); // 보내는 계정
-			mailMessage.setText(content); // 내용
-			mailMessage.setTo(email); // 보낼 메일 계정
-			
-			// 메일 전송
-			javaMailSender.send(mailMessage);
-			
-			iiVo.setMem_id(mem_id);
-			iiVo.setResult(cnt);
-			iiVo.setCode(code);
-			
-			return iiVo;
-		}
-		return null;
-	}
-	*/
-/*
- //*  문의사항 등록 후 List반영이 안되는 이슈때문에 inquiry.do 문의 등록 후 list 담아서 myInquiry로 이동하게 변경
-	@GetMapping("/myInquiry.do")
-	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM ,Model model) {
-		
-		String mem_id = "leewooo";
-		
-		totalRecord = dao.totBoard(mem_id);
-		
-		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
-
-		int start = (pageNUM-1) * pageSIZE+1;
-		int end = start + pageSIZE-1;
-		
-		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end);
-		
-		model.addAttribute("totalPage",totalPage);
-		model.addAttribute("list",list);
-		
-		return "myInquiry";
-	}//getmyInquiry
-*/
 }//class
