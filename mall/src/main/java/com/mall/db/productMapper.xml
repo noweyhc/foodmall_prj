@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="products">
-
 	<select id="findAll" resultType="productVo">
 		select * from TB_PRODUCT order by product_regdate
 	</select>

@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+    <link rel="stylesheet" href="static/css/listProductsStyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">  
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+
 <!-- Compiled and minified CSS -->
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -20,6 +33,7 @@
 </head>
 <body>
 	<div class="wrap">
+
 		<h2>FAQ 목록</h2>
 		<hr>
 		<table class="highlight">
@@ -54,20 +68,37 @@
 			</c:forEach>
 		</ul>
 
-
+		<!-- 관리자로 갈 글쓰기
 		<div class="row">
 			<button class="btn waves-effect waves-light" type="button"
 				name="insert" onclick="location.href='insertFAQ.do' ">글쓰기</button>
+		</div> -->
+
+	<div>
+		<div class="row">
+			<div class="input-field col s12">
+				<form action="">
+					<%-- <input type="hidden" name="boardCode" value="${param.boardCode }"> --%>
+					<input type="hidden" name="page" value="1"> 
+					<select
+						name="searchType">
+						<option value="Notice_TITLE">제목</option>
+						<option value="Notice_CONTENT">내용</option>
+						<option value="all">제목+내용</option>
+					</select> 
+
+					<label>Materialize Select</label>
+					
+					<input type="text" name="searchKeyword" placeholder="검색어 입력"> 
+					<input class="btn waves-effect waves-light" type="submit" value="검색">
+				</form>
+			</div>
 		</div>
 	</div>
 
-
-	<!-- <div id="input-field col s10">
-			<input type="text" id="keyword" placeholder="검색할 상품명을 입력">
-			<button id="searchBtn">검색</button>
-		</div> -->
-
-
+	</div>
+	
+	<%@ include file="footer.jsp"%>
 </body>
 </body>
 </html>

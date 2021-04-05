@@ -1,5 +1,7 @@
 package com.mall.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -25,9 +27,14 @@ public class NoticeController {
 
 	// 목록 조회+페이징
 	@RequestMapping("/listNotice.do")
-	public ModelAndView listNotice(HttpServletRequest request,
+	public ModelAndView listNotice(String searchType, String searchKeyword, HttpServletRequest request,
 			@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
-		totalRecord = dao.totBoard();
+		HashMap map = new HashMap();
+		map.put("searchType", searchType);
+		map.put("searchKeyword", searchKeyword);
+		
+		
+		totalRecord = dao.totBoard(map);
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
 		System.out.println("pageNUM:" + pageNUM);
@@ -38,13 +45,16 @@ public class NoticeController {
 
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
+		map.put("start", start);
+		map.put("end", end);
 
 		System.out.println("시작레코드:" + start);
 		System.out.println("끝나는레코드:" + end);
 		System.out.println("-------------------------------");
 
+		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listNotice(start, end));
+		mav.addObject("list", dao.listNotice(map));
 		mav.addObject("totalPage", totalPage);
 		return mav;
 	}

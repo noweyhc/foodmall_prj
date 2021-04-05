@@ -1,5 +1,6 @@
 package com.mall.dao.faq;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
 import com.mall.vo.faq.FaqVo;
+
 
 @Repository
 public class FaqDao {
@@ -19,10 +21,7 @@ public class FaqDao {
 	}
 	
 	// 글 목록
-	public List<FaqVo> listFAQ(int start, int end) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("end", end);
+	public List<FaqVo> listFAQ(HashMap map) {
 
 		List<FaqVo> list = sqlSession.selectList("FAQ.findAll", map);
 		return list;
@@ -36,8 +35,8 @@ public class FaqDao {
 	}
 
 	// 페이징을 위한 총 게시글 수 조회
-	public int totBoard() {
-		int total = sqlSession.selectOne("FAQ.totBoard");
+	public int totBoard(HashMap map) {
+		int total = sqlSession.selectOne("FAQ.totBoard", map);
 		return total;
 	}
 
@@ -67,16 +66,7 @@ public class FaqDao {
 		sqlSession.update("FAQ.updateHit",no);
 		sqlSession.commit();
 	}
-	
 
-	/*
-	 * public void insertLog(Sist_log log) { sqlSession.insert("sist_log.insert",
-	 * log); }
-	 * 
-	 * public int updateBoard(FAQVo b) { int re= sqlSession.update("board.update",
-	 * b); sqlSession.commit(); return re; }
-	 * 
-	 * 
-	 */
+
 
 }
