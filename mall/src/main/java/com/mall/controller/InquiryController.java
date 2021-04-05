@@ -119,21 +119,25 @@ public class InquiryController {
 	
 	// 고객이 작성한 1:1문의를 확인하는 페이지
 	@GetMapping("/myInquiry")
-	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM , String keyword,Model model,HttpSession session,HttpServletRequest request) {
+	public String getmyInquiry(@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM ,@RequestParam(value = "keyword", defaultValue= "") String keyword,String searchFeild,Model model,HttpSession session,HttpServletRequest request) {
 		
 		String mem_id = (String) session.getAttribute("login");
 		
 		System.out.println(pageNUM);
 		System.out.println(keyword);
 		
-		totalRecord = dao.totBoard(mem_id);
+		// 페이지 번호 변경 시 쿼리문 상태 유지
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("searchFeild",searchFeild);
+		
+		totalRecord = dao.totBoard(mem_id,keyword,searchFeild);
 		
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
 		int start = (pageNUM-1) * pageSIZE+1;
 		int end = start + pageSIZE-1;
 		
-		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end);
+		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end,keyword,searchFeild);
 		
 		model.addAttribute("totalPage",totalPage);
 		model.addAttribute("list",list);
@@ -145,12 +149,16 @@ public class InquiryController {
 	@GetMapping("/inquiryList")
 	public String inquiryList(Model model, @RequestParam(value="pageNUM",defaultValue = "1") int pageNUM,@RequestParam(value="keyword",defaultValue = "")  String keyword,@RequestParam(value="searchFeild",defaultValue = "cs_title")  String searchFeild) {
 //	System.out.println(pageNUM);
-	System.out.println(keyword);
+//	System.out.println(keyword);
 //	System.out.println(searchFeild);
+	
+	// 쿼리문과 <select>태그 선택 후 검색 시 총 게시글 수
 	int cntTbCs = dao.cntTbCs(keyword,searchFeild);
 
+	// 페이지 번호 변경 시 쿼리문 상태 유지
 	model.addAttribute("keyword",keyword);
 	model.addAttribute("searchFeild",searchFeild);
+	
 	// 총 게시글 수
 	totalRecord = cntTbCs;
 	// 페이지 수 구하기

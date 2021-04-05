@@ -26,8 +26,15 @@ public class InquiryDao {
 	}//InquiryDao
 
 	
-	public int totBoard(String mem_id) {
-		int total = sqlSession.selectOne("inquiry.totBoard",mem_id);
+	public int totBoard(String mem_id, String keyword, String searchFeild) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("mem_id", mem_id);
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
+		
+		int total = sqlSession.selectOne("inquiry.totBoard",map);
 		return total;
 	}
 	
@@ -53,9 +60,6 @@ public class InquiryDao {
 		map.put("cs_response","미답변");
 		map.put("cs_respcheck",0);
 		
-		
-		System.out.println(ivo.getCs_category_one());
-		
 		// 연락받을 연락처
 		map.put("cs_email", cs_email);
 		map.put("cs_phone", cs_phone);
@@ -71,8 +75,6 @@ public class InquiryDao {
 			commit();
 		}//end if
 		
-		System.out.println(re);
-		
 		return re;
 	}//insertInquiry
 	
@@ -83,8 +85,6 @@ public class InquiryDao {
 		map.put("searchFeild", searchFeild);
 		map.put("start", start);
 		map.put("end", end);
-		
-		System.out.println(map);
 		
 		List<InquiryVo> list = sqlSession.selectList("inquiry.findAllInquiry",map);
 		
@@ -128,10 +128,12 @@ public class InquiryDao {
 	}//commit
 
 
-	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end) {
+	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end, String keyword, String searchFeild) {
 		
 		Map<String, Object> map = new HashMap<>();
 		
+		map.put("searchFeild", searchFeild);
+		map.put("keyword", keyword);
 		map.put("cs_mem_id", cs_mem_id);
 		map.put("start", start);
 		map.put("end", end);
