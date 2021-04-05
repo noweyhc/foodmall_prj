@@ -42,7 +42,6 @@ public class InquiryController {
 	private final InquiryDao dao;
 	private final FileNameUtil FileNameUtil;
 	private final JavaMailSender javaMailSender;
-	private final LoginSessionListener lsl;
 	
 	//페이징 처리 관련 변수
 	public static int pageSIZE = 10; // 한 화면에 보여지는 레코드 수
@@ -54,7 +53,6 @@ public class InquiryController {
 	public String inquiryForm(Model model,HttpSession session, HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
 		String mem_id = (String) session.getAttribute("login");
-		
 		
 		if(mem_id == null) {
 			response.setContentType("text/html;charset=UTF-8");

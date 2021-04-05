@@ -19,10 +19,7 @@ public class NoticeDao {
 	}
 	
 	// 글 목록
-	public List<NoticeVo> listNotice(int start, int end) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("end", end);
+	public List<NoticeVo> listNotice(HashMap map) {
 
 		List<NoticeVo> list = sqlSession.selectList("notice.findAll", map);
 		return list;
@@ -34,8 +31,8 @@ public class NoticeDao {
 		return n;
 	}
 
-	public int totBoard() {
-		int total = sqlSession.selectOne("notice.totBoard");
+	public int totBoard(HashMap map) {
+		int total = sqlSession.selectOne("notice.totBoard", map);
 		return total;
 	}
 
@@ -66,14 +63,5 @@ public class NoticeDao {
 		sqlSession.commit();
 	}
 
-	/*
-	 * public void insertLog(Sist_log log) { sqlSession.insert("sist_log.insert",
-	 * log); }
-	 * 
-	 * public int updateBoard(FAQVo b) { int re= sqlSession.update("board.update",
-	 * b); sqlSession.commit(); return re; }
-	 * 
-	 * 
-	 */
 
 }

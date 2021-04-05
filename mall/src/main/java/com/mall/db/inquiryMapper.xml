@@ -6,11 +6,11 @@
 <mapper namespace="inquiry">
 
   <select id="totBoard" resultType="java.lang.Integer">
-  	select count(*) FROM tb_cs
+  	select count(*) FROM tb_cs WHERE cs_mem_id = #{cs_mem_id}
   	<if test="keyword != ''">
   		<choose>
   	  		<when test="searchFeild == 'cs_title'">
-		  		WHERE cs_title like '%' || #{keyword} || '%'
+		  		AND cs_title like '%' || #{keyword} || '%'
   	  		</when>  			
   		</choose>
   	</if>  	

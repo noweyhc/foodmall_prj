@@ -1,11 +1,16 @@
 package com.mall.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.faq.FaqDao;
@@ -27,8 +32,16 @@ public class FaqController {
 
 	// 목록 조회+페이징
 	@RequestMapping("/listFAQ.do")
-	public ModelAndView listFAQ(HttpServletRequest request, @RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
-		totalRecord = dao.totBoard(); // 총 게시글 수
+	public ModelAndView listFAQ(String searchType, String searchKeyword, HttpServletRequest request, @RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
+		System.out.println("검색 컬럼: "+searchType);
+		System.out.println("검색어: "+searchKeyword);
+		
+		HashMap map = new HashMap();
+		map.put("searchType", searchType);
+		map.put("searchKeyword", searchKeyword);
+		
+		
+		totalRecord = dao.totBoard(map); // 총 게시글 수
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
 		System.out.println("pageNUM:" + pageNUM);
@@ -36,25 +49,39 @@ public class FaqController {
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
 
+		map.put("start", start);
+		map.put("end", end);
+		
+		System.out.println("시작레코드:" + start);
+		System.out.println("끝나는레코드:" + end);
+		System.out.println("-------------------------------");
+
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listFAQ(start, end));
+		mav.addObject("list", dao.listFAQ(map));
 		mav.addObject("totalPage", totalPage);
 		return mav;
 	}
 	
 	// 관리자용 목록 조회+페이징
 	@RequestMapping("/admin/listFAQ.do")
-	public ModelAndView listFAQAdmin(HttpServletRequest request, @RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
-		totalRecord = dao.totBoard(); // 총 게시글 수
+	public ModelAndView listFAQAdmin(String searchType, String searchKeyword, HttpServletRequest request, @RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
+		HashMap map = new HashMap();
+		map.put("searchType", searchType);
+		map.put("searchKeyword", searchKeyword);
+		
+		totalRecord = dao.totBoard(map); // 총 게시글 수
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 		
 		System.out.println("pageNUM:" + pageNUM);
 		
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
+		map.put("start", start);
+		map.put("end", end);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listFAQ(start, end));
+		mav.addObject("list", dao.listFAQ(map));
 		mav.addObject("totalPage", totalPage);
 		mav.setViewName("admin/listFAQAdmin");
 		return mav;
@@ -85,6 +112,9 @@ public class FaqController {
 	// 글 상세 조회
 	@RequestMapping("/detailFAQ.do")
 	public ModelAndView detailBoard(HttpServletRequest request, int no) {
+		//조회수 증가
+		dao.updateHit(no);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("f", dao.detailFAQ(no));
 		return mav;
@@ -143,6 +173,9 @@ public class FaqController {
 		}
 		return mav;
 	}
+
+	
+	
 
 
 }

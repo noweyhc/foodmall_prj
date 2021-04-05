@@ -44,7 +44,6 @@ public class OrderDao {
 	public int selectQty(String mem_id) {
 		
 		int totQty = sqlSession.selectOne("order.selectQty",mem_id);
-		
 		return totQty;
 	}
 
