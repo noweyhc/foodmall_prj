@@ -94,6 +94,15 @@
 			</div>
 			
 			<hr class = "divider">
+			
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-notice" class="menu-list-sub-category"  href="/admin/inquiryList">
+					<i class="fas fa-comments"></i>
+					<span class="menu-list-title">1:1 문의</span>
+				</a>
+			</div>
+			
+			<hr class = "divider">
 
 			<div class="menu-list-sub">
 				<a id="menu-list-sub-notice" class="menu-list-sub-category"  href="/admin/listNotice.do">
