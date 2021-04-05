@@ -9,20 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
-
- 
-=======
 <!-- Compiled and minified CSS -->
->>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+<!-- Compiled and minified JavaScript -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="/static/css/myPage/notice.css">
 
+<!-- css -->
 <link rel="stylesheet" href="/static/css/myPage/wrap.css">
-<link rel="stylesheet" href="/static/css/myPage/notice.css"> 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
@@ -56,39 +54,48 @@
 		<!-- Pagination  -->
 		<ul class="pagination" id="page">
 			<c:forEach var="i" begin="1" end="${totalPage }">
-				<li class="active" class="waves-effect"><a
+				<li class="active" ><a
 					href="listNotice.do?pageNUM=${i }">${i }</a></li>
 			</c:forEach>
 		</ul>
-<<<<<<< HEAD
+		
+		<form action="">
+			<div class="iq-List-wrap">
+				<div id="select-container">
+					<div class="input-field">
+						<select class="browser-default" name="searchType">
+							<option value="NOTICE_TITLE">제목</option>
+							<option value="NOTICE_CONTENT">내용</option>
+							<option value="all">제목+내용</option>
+						</select>
+					</div>	
+				</div>
+				<div id="input-container">
+					<input type="hidden" name="page" value="1">
+					<div class="row">
+						<div class="input-field col s10">	
+							<input type="text" name="searchKeyword" id="keyword" class="validate">				
+							<label >검색</label>
+						</div>
+					</div>
+				</div>
+				
+				<div id="btn-container">
+					<button class="btn waves-effect waves-light" id="btnSearch" type="submit" name="action">검색
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+<%@ include file="footer.jsp"%>	
 
 
+<!-- 관리자로 갈 글쓰기 -->
 <!-- 		<div class="row">
 			<button class="btn waves-effect waves-light" type="button"
 				name="insert" onclick="location.href='insertNotice.do' ">글쓰기</button>
 		</div> -->
-
-	<div>
-		<div class="row">
-			<div class="input-field col s10">
-				<form action="">
-					<input type="hidden" name="page" value="1">
-					<select name="searchType">
-						<option value="NOTICE_TITLE">제목</option>
-						<option value="NOTICE_CONTENT">내용</option>
-						<option value="all">제목+내용</option>
-					</select>
-					<input type="text" name="searchKeyword" placeholder="검색어 입력" >				
-					<input type="submit" value="검색">
-				</form>
-			</div>
-		</div>
-	</div>
-
-=======
-	</div>
-	
-<%@ include file="footer.jsp"%>	
->>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 </body>
 </html>

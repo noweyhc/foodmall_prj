@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-#none_list{
-	text-align: center;
-}
+a:link {text-decoration: none; color: black;}
+a:visited {text-decoration: none; color: black;}
+a:active {text-decoration: none; color: black;}
+a:hover {text-decoration: black; color: black;}
 
 th {
 	text-align : center;
@@ -13,10 +14,23 @@ td {
 	text-align: center;
 }
 
-/* #faq_title {
+#faq_title {
 	font-weight: bold;
-} */
+}
 
 #page {
 	text-align: center;
+}
+
+#select-container {
+ width: 100px;
+}
+
+.iq-List-wrap {
+    display: flex;
+}
+
+
+#btn-container {
+    margin-top: 16px;
 }

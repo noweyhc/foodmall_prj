@@ -46,14 +46,13 @@ public class NoticeController {
 		map.put("start", start);
 		map.put("end", end);
 
-<<<<<<< HEAD
+
 		System.out.println("시작레코드:" + start);
 		System.out.println("끝나는레코드:" + end);
 		System.out.println("-------------------------------");
 
 		
-=======
->>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.listNotice(map));
 		mav.addObject("totalPage", totalPage);
@@ -94,9 +93,14 @@ public class NoticeController {
 	
 	// 관리자 페이지용 목록 조회+페이징
 	@RequestMapping("/admin/listNotice.do")
-	public ModelAndView listNoticeAdmin(HttpServletRequest request,
+	public ModelAndView listNoticeAdmin(String searchType, String searchKeyword, HttpServletRequest request,
 			@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
-		totalRecord = dao.totBoard();
+		
+		HashMap map = new HashMap();
+		map.put("searchType", searchType);
+		map.put("searchKeyword", searchKeyword);
+		
+		totalRecord = dao.totBoard(map);
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
 		// 우리는 한화면에 10개씩 보여주고 싶어요 ==> pageSIZE
@@ -105,9 +109,11 @@ public class NoticeController {
 
 		int start = (pageNUM - 1) * pageSIZE + 1;
 		int end = start + pageSIZE - 1;
+		map.put("start", start);
+		map.put("end", end);
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", dao.listNotice(start, end));
+		mav.addObject("list", dao.listNotice(map));
 		mav.addObject("totalPage", totalPage);
 		mav.setViewName("admin/listNoticeAdmin");
 		return mav;
