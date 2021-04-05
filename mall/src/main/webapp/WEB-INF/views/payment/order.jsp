@@ -53,8 +53,8 @@
                 <tbody>
 	                 <c:forEach var="cVo" items="${cVoList }">
 	                    <tr>
-	                        <td class="order-img"><a href="detailProducts.do?no=${cVo.product_no}"><img src="img/${cVo.product_main_img }" class="order-item-img"></a></td>
-	                        <td class="order-item"><p id="order-title-p"><a href="detailProducts.do?no=${cVo.product_no}">${cVo.product_title }</a></p><span id ="">${cVo.product_subtitle }</span></td>
+	                        <td class="order-img"><a href="../detailProducts.do?no=${cVo.product_no}"><img src="../img/${cVo.product_main_img }" class="order-item-img"></a></td>
+	                        <td class="order-item"><p id="order-title-p"><a href="../detailProducts.do?no=${cVo.product_no}">${cVo.product_title }</a></p><span id ="">${cVo.product_subtitle }</span></td>
 	                        <td class="order-amount">${cVo.product_qty } 개</td>
 	                        <td class="order-price">${cVo.product_total }원</td>
 	                    </tr>
