@@ -22,7 +22,7 @@
 		<hr class = "divider">
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="menu-list-sub">
-				<a id="menu-list-sub-product" class="menu-list-sub-category ${category eq 'product' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseOne" 
+				<a id="menu-list-sub-product" class="menu-list-sub-category ${category eq 'product' ? 'point' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseOne" 
 				aria-expanded="${category eq 'product' ? 'true' : 'false' }" aria-controls="collapseOne" data-parent="#accordion">
 					<i class="fas fa-apple-alt"></i>	
 					<span class="menu-list-title">상품 관리</span>
@@ -40,7 +40,7 @@
 			</div>		
 			
 			<div class="menu-list-sub">
-				<a id="menu-list-sub-sale" class="menu-list-sub-category ${category eq 'sale' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseTwo" 
+				<a id="menu-list-sub-sale" class="menu-list-sub-category ${category eq 'sale' ? 'point' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseTwo" 
 				aria-expanded="${category eq 'sale' ? 'true' : 'false' }" aria-controls="collapseTwo" data-parent="#accordion">
 					<i class="fas fa-percentage"></i>	
 					<span class="menu-list-title">할인 관리</span>
@@ -58,7 +58,7 @@
 			</div>
 			
 			<div class="menu-list-sub">
-				<a id="menu-list-sub-set" class="menu-list-sub-category ${category eq 'set' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseThree" 
+				<a id="menu-list-sub-set" class="menu-list-sub-category ${category eq 'set' ? 'point' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseThree" 
 				aria-expanded="${category eq 'set' ? 'true' : 'false' }" aria-controls="collapseThree" data-parent="#accordion">
 					<i class="fas fa-layer-group"></i>	
 					<span class="menu-list-title ">세트 관리</span>
@@ -76,9 +76,9 @@
 			</div>
 			
 			<div class="menu-list-sub">
-				<a id="menu-list-sub-event" class="menu-list-sub-category ${category eq 'event' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseFour" 
+				<a id="menu-list-sub-event" class="menu-list-sub-category ${category eq 'event' ? 'point' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseFour" 
 				aria-expanded="${category eq 'event' ? 'true' : 'false' }" aria-controls="collapseFour" data-parent="#accordion">
-					<i class="fas fa-layer-group"></i>	
+					<i class="fas fa-calendar-check"></i>
 					<span class="menu-list-title ">이벤트 관리</span>
 				</a>
 			</div>

@@ -236,3 +236,5 @@ function deleteRow(obj, index){
 	let tr = $(obj).parent().parent();
 	tr.remove();
 }
+
+
