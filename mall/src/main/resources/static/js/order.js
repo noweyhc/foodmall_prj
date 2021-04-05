@@ -97,7 +97,8 @@ let  valid = {
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '밥도둑',
-	            amount : 1000,
+				// lastTot
+	            amount : lastTot,
 	            buyer_email : '',
 	            buyer_name : name,
 	            buyer_tel : phone,

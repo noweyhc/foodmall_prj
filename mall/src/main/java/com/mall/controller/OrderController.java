@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.mall.dao.order.OrderDao;
+import com.mall.vo.Order.OrderListVo;
 import com.mall.vo.Order.OrderProdListVo;
 import com.mall.vo.Order.OrderShippingVo;
 
@@ -84,15 +85,9 @@ public class OrderController {
 	
 	@PostMapping("paymentResult")
 	@ResponseBody
-	public String a(Model model, @RequestBody HashMap<String, Object> map) {
+	public String paymentResult(Model model, @RequestBody HashMap<String, Object> map) {
 		
-		int re = dao.insertOrderInfo(map);
-		
-//		String lastTot = (String) map.get("lastTot");
-//		String name = (String)map.get("phone");
-//		String addr = (String)map.get("addr");
-//		String zipcode = (String)map.get("zipcode");
-//		String detailAddr = (String)map.get("detailAddr");
+		dao.insertOrderInfo(map);
 		
 		return "";
 	}

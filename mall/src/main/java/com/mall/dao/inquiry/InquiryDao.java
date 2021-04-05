@@ -24,17 +24,18 @@ public class InquiryDao {
 	public InquiryDao() {
 		sqlSession = SqlSessionFactoryBean.getSqlSession();
 	}//InquiryDao
-
 	
+	// [검색]과[선택] 조건에 따른 총 레코드 수
 	public int totBoard(String mem_id, String keyword, String searchFeild) {
-		
+
 		Map<String, Object> map = new HashMap<>();
-		
+
 		map.put("cs_mem_id", mem_id);
 		map.put("keyword", keyword);
 		map.put("searchFeild", searchFeild);
-		
+
 		int total = sqlSession.selectOne("inquiry.totBoard",map);
+		
 		return total;
 	}
 	
@@ -113,8 +114,6 @@ public class InquiryDao {
 		map.put("ans_content",answerVo.getAns_content());
 		map.put("ans_cs_no", cs_no);
 		map.put("ans_cs_mem_id", cs_mem_id);
-		
-		System.out.println(map);
 		
 		int re = sqlSession.insert("inquiry.insertAnswer",map);
 		

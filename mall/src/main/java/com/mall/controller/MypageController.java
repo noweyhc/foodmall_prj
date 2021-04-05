@@ -3,6 +3,7 @@ package com.mall.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mall.dao.mypage.MypageDao;
 import com.mall.interceptor.LoginSessionListener;
 import com.mall.smswebservice.BanchanSms;
+import com.mall.vo.Order.OrderListVo;
 import com.mall.vo.mypage.MaskingVo;
 import com.mall.vo.mypage.MypageVo;
 import com.mall.vo.mypage.ShippingVo;
@@ -43,20 +45,19 @@ public class MypageController {
 	public static int totalPage = 1;// 전체 페이지 수
 	
 	// 마이페이지 리스트
-	@GetMapping("")
+	@GetMapping("mypage")
 	public String Mypage(Model model, HttpSession session, HttpServletRequest request,  HttpServletResponse response ) throws IOException {
 
 		String mem_id =null;
-
 		mem_id = (String) session.getAttribute("login");
-		
+		/*
 		if(mem_id == null) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 후 마이페이지 이용이 가능합니다.!'); location.href='/'; </script>");
 			out.close();
 		}//end if
-		
+		*/
 		// 마스킹
 		MaskingVo maskVo = new MaskingVo();
 		
@@ -93,7 +94,7 @@ public class MypageController {
 		
 		session.setAttribute("login", mem_id);
 		
-		return "mypage";
+		return "mypage/mypage";
 	}//Mypage
 	
 	// 회원의 Email & Phone 정보 변경 뷰 페이지
@@ -121,9 +122,9 @@ public class MypageController {
 		String code = String.valueOf(chkCode);
 
 		// 인증 코드 메일 제목
-		String subject = "[더 반찬] 이메일 변경 인증 메시지입니다.";
+		String subject = "[밥도둑] 이메일 변경 인증 메시지입니다.";
 		// 인증 코드 메일 내용
-		String content = "더 반찬을 항상 이용해주셔서 항상 감사합니다\n\n"
+		String content = "밥도둑을 항상 이용해주셔서 항상 감사합니다\n\n"
 						+ "인증 번호는[" + code + "]입니다.\n" 
 						+ "해당 인증번호를 인증번호 확인란에 기입해주시면 감사하겠습니다.\n"
 						+ "오늘도 즐거운 쇼핑되세요.";
@@ -151,6 +152,7 @@ public class MypageController {
 		int re = dao.updateEmail(email,id);
 		// 만약 성공적으로 변경이 완료되었다면 뷰페이지에 변경된 이메일 값으로 변경 
 		if(re == 1) {
+			System.out.println(re);
 			return email;
 		}
 		return "";
@@ -166,7 +168,7 @@ public class MypageController {
 		int chkCode = random.nextInt(888888) + 111111;
 		String code = String.valueOf(chkCode);
 		// 클라이언트에게 전송할 문자 내용
-		String content = "[더 반찬]을 항상 이용해주셔서 항상 감사합니다\n\n"
+		String content = "[밥도둑]을 항상 이용해주셔서 항상 감사합니다\n\n"
 				+ "인증 번호는[" + code + "]입니다." ;
 		// 핸드폰 문자를 보내기 위한 객체
 		BanchanSms sms = new BanchanSms();
@@ -270,7 +272,6 @@ public class MypageController {
 		
 		int re = dao.getPwd(currPassword, mem_id);
 		
-		System.out.println("a");
 		if(re == 1) {
 			//새로운 비밀번호로 변경
 			model.addAttribute(dao.updatePwd(newChkPassword,mem_id));
@@ -278,11 +279,34 @@ public class MypageController {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			// alert 안내 후 비밀번호 변경(현재)페이지 이동
-			out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.'); location.href='/mypage/resetPasswordmypage/resetPassword'; </script>");
+			out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.'); location.href='/mypage/resetPassword'; </script>");
 			out.close();
+			return null;
 		}
 
 		return "mypage.do";
 	}//resetSub
 
+	@GetMapping("orderList")
+	public String orderList(Model model,HttpSession session) {
+		
+		String order_mem_id = (String) session.getAttribute("login");
+
+		List<OrderListVo> odList = dao.findOrderList(order_mem_id);
+		
+		model.addAttribute("odList",odList);
+		
+		return "/mypage/orderList";
+	}
+	
+	@GetMapping("orderListDetail")
+	public String orderListDetail(Model model,HttpSession session) {
+		String order_mem_id = (String) session.getAttribute("login");
+
+		List<OrderListVo> odList = dao.findOrderList(order_mem_id);
+		
+		model.addAttribute("odList",odList);
+		
+		return "/mypage/orderListDetail";
+	}
 }//class

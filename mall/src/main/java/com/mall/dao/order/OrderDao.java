@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.Order.OrderListVo;
 import com.mall.vo.Order.OrderProdListVo;
 import com.mall.vo.Order.OrderShippingVo;
 
@@ -65,16 +66,15 @@ public class OrderDao {
 		orderInfoMap.put("order_detailAddr", map.get("detailAddr"));
 		orderInfoMap.put("order_mem_id", map.get("mem_id"));
 		
-		System.out.println(orderInfoMap);
 		int re = sqlSession.insert("order.insertOrderInfo",orderInfoMap);
 		commit();
 		
 		return re;
 	}
-	
 	// 커밋
 	public void commit(){
 		sqlSession.commit();
 	}
+
 	
 }//OrderDao

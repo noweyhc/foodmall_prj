@@ -29,23 +29,23 @@ import com.mall.vo.mypage.PwdPhoneAuthVo;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("login")
+@Controller //현재 class가 Controller 역할
+@RequiredArgsConstructor //DI를 받기 위한 Annotation
+@RequestMapping("login") // 폴더에 있기 때문에 매핑 시 login/ 생략
 public class LoginController {
 	
-	private final UserDAO dao;
-	private final JavaMailSender javaMailSender;
-	private final LoginSessionListener lsl;
+	private final UserDAO dao;  // 회원 정보를 받기 위한 DI
+	private final JavaMailSender javaMailSender; // 문자를 보내기 위한 DI
 	
+	// login view 페이지 이동
 	@GetMapping("userLogin")
 	public String loginForm() {
 		return "login/userLogin";
-	}
+	}//loginForm
 	
+	// 로그인 버튼 클릭시 post 요청에 의한 Process
 	@PostMapping("userLogin")
 	public String loginSubmit(Model model,HttpSession session,HttpServletRequest request,HttpServletResponse response,String mem_id, String mem_pwd) throws IOException {
-
 		//아이디 또는 비밀번호가 null이거나 공백인 경우
 		if("".equals(mem_id) || mem_id == null || "".equals(mem_pwd)) {
             response.setContentType("text/html;charset=UTF-8");
@@ -54,7 +54,7 @@ public class LoginController {
             out.close();
             return null;
 		}//end if
-		
+
 		// 만약 아이디 조회 시 일치하는 아이디가 없으면
 		if(dao.validId(mem_id)== 0) {
             response.setContentType("text/html;charset=UTF-8");
@@ -81,130 +81,125 @@ public class LoginController {
 		if(mem_id != null) {
 			session.setAttribute("login", mem_id);
 		}
-		  
+		// 메인페이지로 리다이렉트
 		return "redirect:/";
 	}//loginSubmit
 	
+	// 로그아웃
 	@GetMapping("logout")
 	public String logout(HttpSession session){
-		
+		// 세션을 가져온다.
 		String mem_id = (String) session.getAttribute("login");
-
+		// 만약 mem_id가 null이 아니라면 즉, 세션이 존재하면
 		if(mem_id != null) {
+			// 세션 만료
 			session.invalidate();
-		}
-
+		}//logout
+		// 메인페이지로 리다이렉트
 		return "redirect:/";
-	}
+	}//logout
 	
 	// 아이디 찾기 뷰페이지
 	@GetMapping("/idInquiry")
 	public String idInquiry(Model model) {
-
 		return "/login/idInquiry";
 	}
 	
-	// 아이디 찾기 - 회원 정보에 등록한 휴대전화로 인증
+	// 아이디 찾기 [회원 정보에 등록한 [휴대전화]로 인증]
 	@PostMapping("/phoneAuth")
 	@ResponseBody
 	public IdInquiryVo phoneAuth(Model model, @RequestBody HashMap<String, Object> map) {
-
+		// ajax을 통해 JSON.stringify로 [아이디]와[휴대전화]을 받은 후 DB에 일치하는 회원이 있을 시 1 없을 시 0을 반환
 		int cnt = dao.phoneAuth(map);
+		// 다음페이지 상태 유지를 위해 [아이디 찾기] 상태유지를 위해 회원 아이디를 받는다.
 		String mem_id = dao.phoneAuthGetId(map);
-
+		// 아이디찾기문의Vo를 생성한다.
 		IdInquiryVo iiVo = new IdInquiryVo();
-
-			String mem_phone = (String)map.get("mem_phone");
-			// 랜덤객체 생성
-			Random random = new Random();
-			// 인증을 위한 랜덤 값 추출
-			int chkCode = random.nextInt(888888) + 111111;
-			String code = String.valueOf(chkCode);
-			// 클라이언트에게 전송할 문자 내용
-			String content = "[밥도둑]을 항상 이용해주셔서 항상 감사합니다\n\n"
-					+ "인증 번호는[" + code + "]입니다." ;
-			// 핸드폰 문자를 보내기 위한 객체
-			BanchanSms sms = new BanchanSms();
-			// 발신자 / 인증을 요청한 번호 / 문자 내용
-			sms.sendMsg("01086469577", mem_phone, content);
-
-			iiVo.setMem_id(mem_id);
-			iiVo.setResult(cnt);
-			
-			iiVo.setCode(code);
+		// map에서 회원에게 인증 메일을 보내기위해 [핸드폰 번호]를 받아온다.
+		String mem_phone = (String)map.get("mem_phone");
+		// 랜덤객체 생성
+		Random random = new Random();
+		// 인증을 위한 랜덤 값 추출
+		int chkCode = random.nextInt(888888) + 111111;
+		// 인증 코드를 문자열로 바꾼다.
+		String code = String.valueOf(chkCode);
+		// 클라이언트에게 전송할 문자 내용
+		String content = "[밥도둑]을 항상 이용해주셔서 항상 감사합니다\n\n"
+				+ "인증 번호는[" + code + "]입니다." ;
+		// 핸드폰 문자를 보내기 위한 객체
+		BanchanSms sms = new BanchanSms();
+		// 발신자 / 인증을 요청한 번호 / 문자 내용
+		sms.sendMsg("01086469577", mem_phone, content);
+		// 객체에 [아이디],[회원존재여부 cnt],[인증번호]를 담는다.
+		iiVo.setMem_id(mem_id);
+		iiVo.setResult(cnt);
+		iiVo.setCode(code);
+		// 객체를 ajax .done으로 전달
 		return iiVo;
 	}//phoneAuth
 	
+	// [아이디 찾기]
+	// [휴대전화 인증] 및 [이메일 인증]이 성공했다면 보이는 페이지
 	@PostMapping("/viewIdList")
 	public String viewIdList(Model model,String mem_id) {
-		
+		// 회원 아이디를 상태유지 후 
 		model.addAttribute("mem_id", mem_id);
-		
+		// viewIdList로 전달
 		return "/login/viewIdList";
 	}//viewIdList
-	
-	
+
+	// 이메일 인증
 	@PostMapping("/emailAuth")
 	@ResponseBody
 	public IdInquiryVo emailAuth(Model model, @RequestBody HashMap<String, Object> map) {
-		
-		// 회원 이메일이 존재하는지 확인
-		// 존재하면 1 존재하지 않으면 0
+		// ajax을 통해 JSON.stringify로 [아이디]와[휴대전화]을 받은 후 DB에 일치하는 회원이 있을 시 1 없을 시 0을 반환
 		int cnt = dao.emailAuth(map);
-		
-		System.out.println(map);
-		
 		// 이름과 이메일주소로 회원 아이디를 가져옴
 		String mem_id = dao.EmailAuthGetId(map);
-		
+		// 아이디찾기문의Vo를 생성한다.
 		IdInquiryVo iiVo = new IdInquiryVo();
-		
+		// map에서 회원에게 인증 메일을 보내기위해 [이메일 주소]를 받아온다.
 		String email = (String) map.get("mem_email");
-
-			// 랜덤함수 객체
-			Random random = new Random();
-			// 인증을 위한 랜덤 값 추출
-			int chkCode = random.nextInt(888888) + 111111;
-			String code = String.valueOf(chkCode);
-	
-			// 인증 코드 메일 제목
-			String subject = "[더 반찬] 본인 확인 인증 메시지입니다.";
-			// 인증 코드 메일 내용
-			String content = "더 반찬을 항상 이용해주셔서 항상 감사합니다\n\n"
-							+ "인증 번호는[" + code + "]입니다.\n" 
-							+ "해당 인증번호를 인증번호 확인란에 기입해주시면 감사하겠습니다.\n"
-							+ "오늘도 즐거운 쇼핑되세요.";
-			// 인증 코드 메일 보내기
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			
-			mailMessage.setSubject(subject); // 제목
-			mailMessage.setFrom("jewelrye6"); // 보내는 계정
-			mailMessage.setText(content); // 내용
-			mailMessage.setTo(email); // 보낼 메일 계정
-			
-			// 메일 전송
-			javaMailSender.send(mailMessage);
-			
-			iiVo.setMem_id(mem_id);
-			iiVo.setResult(cnt);
-			iiVo.setCode(code);
-			System.out.println(iiVo);
-			return iiVo;
+		// 랜덤함수 객체
+		Random random = new Random();
+		// 인증을 위한 랜덤 값 추출
+		int chkCode = random.nextInt(888888) + 111111;
+		String code = String.valueOf(chkCode);
+		// 인증 코드 메일 제목
+		String subject = "[더 반찬] 본인 확인 인증 메시지입니다.";
+		// 인증 코드 메일 내용
+		String content = "더 반찬을 항상 이용해주셔서 항상 감사합니다\n\n"
+						+ "인증 번호는[" + code + "]입니다.\n" 
+						+ "해당 인증번호를 인증번호 확인란에 기입해주시면 감사하겠습니다.\n"
+						+ "오늘도 즐거운 쇼핑되세요.";
+		// 인증 코드 메일 보내기
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setSubject(subject); // 제목
+		mailMessage.setFrom("jewelrye6"); // 보내는 계정
+		mailMessage.setText(content); // 내용
+		mailMessage.setTo(email); // 보낼 메일 계정
+		// 메일 전송
+		javaMailSender.send(mailMessage);
+		// 객체에 [아이디],[회원존재여부 cnt],[인증번호]를 담는다.
+		iiVo.setMem_id(mem_id);
+		iiVo.setResult(cnt);
+		iiVo.setCode(code);
+		// 객체를 ajax .done으로 전달
+		return iiVo;
 	}//emailAuth
 	
-	// 비밀번호 찾기
-	// 비밀번호 찾기 view
+	// [비밀번호 찾기] view 페이지
 	@GetMapping("/pwdInquiry")
 	public String pwdInquiry() {
 		return "login/pwdInquiry";
 	}//pwdInquiry
 	
-	// 비밀번호 찾기 Process
+	// [비밀번호 찾기] Process
 	@PostMapping("/pwdInquiry")
 	public String pwdInquiryPro(Model model,String mem_id,HttpServletResponse response) throws IOException {
-
+		// 
 		PwdInquiryVo pwdInquiry = dao.findPwdUserId(mem_id);
-		
+		// 만약 
 		if(pwdInquiry == null) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -286,12 +281,4 @@ public class LoginController {
 		
 		return "";
 	}
-	
-	/*
-	@GetMapping("/kakaoLoginOK.do")
-	@ResponseBody
-	public String kakaoLoginOK(String email) {
-		return email + "카카오 로그인 완료";
-	}
-	*/
 }
