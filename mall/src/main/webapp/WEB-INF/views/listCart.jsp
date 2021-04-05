@@ -102,11 +102,11 @@
 					</c:otherwise>
 				</c:choose>
 				<br><br>
-				<button type="button" id="btn_selectDelete">선택상품 삭제</button>
-				<button type="button" id="btn_selectOrder">선택상품 결제</button>
-				<button type="button" id="btn_order">전체상품 결제</button><br><br>
+				<button type="button" id="btn_selectDelete" class="button">선택상품 삭제</button>
+				<button type="button" id="btn_selectOrder" class="button">선택상품 결제</button>
+				<button type="button" id="btn_order" class="button">전체상품 결제</button><br><br>
 				<hr>10만원 이상 구매시 무료배송
-				<button type="button" id="btn_list">상품 더보기</button><br><br>
+				<button type="button" id="btn_list" class="button">상품 더보기</button><br><br>
 			</div>
 	</section>
 	

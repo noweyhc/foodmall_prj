@@ -4,24 +4,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.cart.CartDao;
+import com.mall.util.AdminUtil;
+import com.mall.util.CookieUtil;
 import com.mall.vo.cart.CartVo;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 public class CartController {
 
 	private final CartDao dao;
+	private final CookieUtil cookie;
 
 	// 장바구니에 상품 담기
 	@RequestMapping("/insert.do")
@@ -43,7 +48,9 @@ public class CartController {
 
 	// 장바구니 목록보기
 	@RequestMapping("/listCart.do")
-	public ModelAndView listCart(HttpSession session, ModelAndView mav) {
+	public ModelAndView listCart(
+		//@CookieValue(value="cart", required=false) Cookie cookies,
+			HttpSession session, ModelAndView mav) {
 		String mem_id = (String) session.getAttribute("login");
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = dao.listCart(mem_id); // 장바구니 정보

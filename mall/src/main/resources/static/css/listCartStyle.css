@@ -3,7 +3,7 @@
 	font-size: 16px;
 	text-decoration: none;
 }
-	
+
 #listCart a:link {
 	color: black;
 }
@@ -15,4 +15,19 @@
 #listCart a:hover {
 	color: #ffa62b;
 	text-decoration: none;
+}
+
+.button {
+	width: 100px;
+	background-color: #80cbc4;
+	border: none;
+	color: #fff;
+	padding: 15px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 4px;
+	cursor: pointer;
+	border-radius:10px;
 }
