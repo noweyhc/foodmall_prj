@@ -116,9 +116,16 @@
 		var qty = $("#product_qty option:selected").val();
 		var total_price = $("#product_price").val();
 		total_price = total_price*qty;
-		//alert(total_price);
+		var result = addComma(total_price) + "원";
+		//alert(result);
 		
-		document.getElementById("total_price").innerHTML = total_price;
-	}	
+		document.getElementById("total_price").innerHTML = result;
+	}
+	
+	function addComma(num) {
+  		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+ 		 return num.toString().replace(regexp, ',');
+	}
 	</script>
+	<%@ include file="footer.jsp" %>
 </html>

@@ -59,10 +59,7 @@
 				<a href="listProducts.do?pageNum=${i }">${i }</a>
 			</c:forEach>
 		</div>
-<<<<<<< HEAD
 		
-=======
->>>>>>> f3057407b6a8236bfe0db09a2c6d16bddb20253a
 	</div>
 
 	<%@ include file="footer.jsp"%>

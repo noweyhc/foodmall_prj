@@ -17,14 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class ProductsController {
 
 	private final ProductDao dao;
-<<<<<<< HEAD
-=======
 	private final SaleDao saleDao;
-	
-	public static int pageSIZE = 12;	// 한 화면에 보여줄 게시물 수
-	public static int totalRecord = 0;	// 총 게시물 수
-	public static int totalPage = 1;	// 페이지 번호
->>>>>>> f3057407b6a8236bfe0db09a2c6d16bddb20253a
+
 
 	public static int pageSIZE = 12; // 한 화면에 보여줄 게시물 수
 	public static int totalRecord = 0; // 총 게시물 수
@@ -57,16 +51,6 @@ public class ProductsController {
 		return mav;
 	}
 
-
-	@RequestMapping("/categoryProducts.do") 
-	public ModelAndView categoryProducts(int category_no) {
-		ModelAndView mav = new ModelAndView(); 	
-		mav.setViewName("categoryProducts");
-		mav.addObject("list", dao.categoryProduct(category_no)); 
-		mav.addObject("category", category);
-		
-		return mav; 
-	}
 	
 
 }

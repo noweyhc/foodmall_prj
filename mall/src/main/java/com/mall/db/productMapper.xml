@@ -68,16 +68,15 @@
 	</select>
 	
 	<!-- 카테고리 -->
-<<<<<<< HEAD
 	<select id="category" resultType="productVo">
 		select * from TB_PRODUCT 
 		where category_no = #{category_no}
 		order by product_regdate
-=======
+	</select>	
+	
 	<select id="selectCategory" resultType="productVo">
 		select * from TB_PRODUCT
 		where product_category like #{keyword}
->>>>>>> f3057407b6a8236bfe0db09a2c6d16bddb20253a
 	</select>
 	
 	<select id="getNextNo" resultType="int">
