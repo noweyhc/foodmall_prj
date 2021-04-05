@@ -31,7 +31,7 @@
 	            </p>  
 	           <div class="phem-info-content">
 	               <p>이메일 : ${email} </p>
-	               <p>휴대전화 :</p>
+	               <p>휴대전화 : ${maskPhone }</p>
 	           </div>
 			   <a class="waves-effect waves-light btn" href="/mypage/userInfoUpdate">이메일/휴대전화 변경</a>
             </div>

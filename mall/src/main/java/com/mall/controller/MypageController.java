@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,8 +61,9 @@ public class MypageController {
 		MaskingVo maskVo = new MaskingVo();
 		
 		maskVo = dao.getMaskInfo(mem_id);
-		String email = maskVo.getMem_email();
 		
+		// 이메일 마스킹
+		String email = maskVo.getMem_email();
 		Pattern pattern = Pattern.compile("(.)(.*?)(.@.)(.*?)(\\.[^\\.]+)$");
 		Matcher matcher = pattern.matcher(email);
 		if (matcher.find()) {
@@ -69,8 +71,25 @@ public class MypageController {
 		            matcher.group(3) + matcher.group(4).replaceAll(".", "*") +
 		            matcher.group(5);
 		}
+
+		// 핸드폰번호 마스킹
+		String phone = maskVo.getMem_phone();
+		String regex = "(\\d{2,3})(\\d{3,4})(\\d{4})$";
+		Matcher matcher2 = Pattern.compile(regex).matcher(phone);
 		
+		String maskPhone = "";
+		if(matcher2.find()) {
+			String replaceTarget = matcher.group(2);
+			char[] c = new char[replaceTarget.length()];
+			Arrays.fill(c, '*');
+			
+			maskPhone = phone.replace(replaceTarget, String.valueOf(c));
+		}
+		
+		System.out.println(phone);
+		System.out.println(matcher2);
 		model.addAttribute("email",email);
+		model.addAttribute("maskPhone",maskPhone);
 		
 		session.setAttribute("login", mem_id);
 		

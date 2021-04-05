@@ -32,9 +32,11 @@ public class OrderController {
 	// 결제페이지로 이동
 	@GetMapping("/order")
 	public String paymentForm(Model model,HttpSession session) {
+		
 		// 세션
 		String mem_id = (String) session.getAttribute("login");
 		
+		System.out.println("order"+mem_id);
 		// 고객이 담은 장바구니 상품 정보 (상품번호/제목/서브제목/이미지/고객 장바구니 상품 총 가격/고객 장바구니 상품 수량)
 		List<OrderProdListVo> cVoList = dao.findCartList(mem_id);
 		
@@ -80,18 +82,17 @@ public class OrderController {
 		return "/payment/order";
 	}//paymentForm
 	
-	@PostMapping("a.do")
+	@PostMapping("paymentResult")
 	@ResponseBody
 	public String a(Model model, @RequestBody HashMap<String, Object> map) {
-
 		
 		int re = dao.insertOrderInfo(map);
 		
-		String lastTot = (String) map.get("lastTot");
-		String name = (String)map.get("phone");
-		String addr = (String)map.get("addr");
-		String zipcode = (String)map.get("zipcode");
-		String detailAddr = (String)map.get("detailAddr");
+//		String lastTot = (String) map.get("lastTot");
+//		String name = (String)map.get("phone");
+//		String addr = (String)map.get("addr");
+//		String zipcode = (String)map.get("zipcode");
+//		String detailAddr = (String)map.get("detailAddr");
 		
 		return "";
 	}

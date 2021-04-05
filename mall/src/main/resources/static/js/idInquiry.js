@@ -22,9 +22,8 @@ let idInquiry = {
 		$('#phoneSubmit').on('click',function(){
 			_this.Check();
 		});
-		
 		$('#emailSubmit').on('click',function(){
-			_this.CheckEmail();
+			_this.emailCheck();
 		});
 	},
 	
@@ -71,7 +70,7 @@ let idInquiry = {
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
-						                  };
+			};
 				toastr.error('이름을 정확히 입력해 주시기바랍니다.');
 		return false;		
 	}
@@ -158,7 +157,7 @@ let idInquiry = {
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
-						                  };
+				};
 				toastr.error('이름을 정확히 입력해 주시기바랍니다..');
 			return false;	
 		}
@@ -180,7 +179,7 @@ let idInquiry = {
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
-						                  };
+			};
 				toastr.error('이메일을 정확히 입력해 주시기바랍니다..');
 			return false;
 		}//end if	
@@ -219,25 +218,47 @@ let idInquiry = {
 						  "hideEasing": "linear",
 						  "showMethod": "fadeIn",
 						  "hideMethod": "fadeOut"
-								                  };
+				};
 						toastr.error('이름 및 이메일이 일치하는 회원이 존재하지 않습니다.');
 				return false;
 			}
 		});
 	},
 	
+	emailCheck : function(){
+		idInquiry.CheckEmail();
+	},
 	Check : function(){
 		idInquiry.Check();	
-	},
-	
-	emailCheck : function(){
-		idInquiry.emailCheck();
 	}
 	
 }//idInquiry
 
+function CheckEmail(){
+		if($('#mem_email_auth').val() != emailcode){
+		toastr.options = {
+				  "closeButton": false,
+				  "debug": false,
+				  "newestOnTop": false,
+				  "progressBar": false,
+				  "positionClass": "toast-bottom-right",
+				  "preventDuplicates": false,
+				  "onclick": null,
+				  "showDuration": "300",
+				  "hideDuration": "1000",
+				  "timeOut": "5000",
+				  "extendedTimeOut": "1000",
+				  "showEasing": "swing",
+				  "hideEasing": "linear",
+				  "showMethod": "fadeIn",
+				  "hideMethod": "fadeOut"
+			};
+				toastr.error('인증번호를 정확히 입력해 주시기바랍니다.');
+		return false;		
+	}
+}
+
 function Check(){
-	
 	if($('#mem_phone_auth').val() != code){
 		toastr.options = {
 				  "closeButton": false,
@@ -255,36 +276,11 @@ function Check(){
 				  "hideEasing": "linear",
 				  "showMethod": "fadeIn",
 				  "hideMethod": "fadeOut"
-						                  };
+			};
 				toastr.error('인증번호가 일치하지 않습니다.');
 		return false;				
 	}
+	
 }//Check
-
-function CheckEmail(){
-		if($('#mem_email_auth').val() != emailcode){
-		alert($('#mem_email_auth').val );
-		alert(emailcode);
-		toastr.options = {
-				  "closeButton": false,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": false,
-				  "positionClass": "toast-bottom-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": "5000",
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-						                  };
-				toastr.error('인증번호를 정확히 입력해 주시기바랍니다.');
-		return false;		
-	}
-}
 
 idInquiry.init();

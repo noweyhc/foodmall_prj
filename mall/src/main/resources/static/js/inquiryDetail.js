@@ -17,6 +17,17 @@ let inquiryDetail = {
 	},
 	
 	c : function(){
+			
+			if($('#ans_title').val() === ''){
+				alert('제목을 입력 해주시기 바랍니다.');
+				return false;
+			}
+			
+			if($('#ans_content').val() === ''){
+				alert('내용을 입력해 주시기 바랍니다.');
+				return false;
+			}
+		
 			// 답변여부
 			var resp = $('#cs_respcheck').val();
 			
@@ -35,7 +46,8 @@ let inquiryDetail = {
                data : data,
                type : 'POST'
             }).done(function(){
-	
+				alert('고객님께 답변이 전송되었습니다.');
+				$(location).attr('href','/');
             });
 
 			if(resp == 1){
