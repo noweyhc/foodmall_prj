@@ -26,7 +26,7 @@ public class CartController {
 	// 장바구니에 상품 담기
 	@RequestMapping("/insert.do")
 	public String insert(@ModelAttribute CartVo cv, HttpSession session) {
-		String mem_id = (String) session.getAttribute("mem_id");
+		String mem_id = (String) session.getAttribute("login");
 		cv.setMem_id(mem_id);
 
 		// 장바구니에 동일 상품이 있는지 검사
@@ -44,7 +44,7 @@ public class CartController {
 	// 장바구니 목록보기
 	@RequestMapping("/listCart.do")
 	public ModelAndView listCart(HttpSession session, ModelAndView mav) {
-		String mem_id = (String) session.getAttribute("mem_id");
+		String mem_id = (String) session.getAttribute("login");
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = dao.listCart(mem_id); // 장바구니 정보
 		int sumPriceCart = dao.sumPriceCart(mem_id); // 장바구니 전체금액
@@ -66,7 +66,7 @@ public class CartController {
 	// 장바구니 수량 변경
 	@RequestMapping("/update.do")
 	public String update(@RequestParam int[] product_qty, @RequestParam int[] product_no, HttpSession session) {
-		String mem_id = (String) session.getAttribute("mem_id");
+		String mem_id = (String) session.getAttribute("login");
 		// 레코드 갯수만큼 반복문 실행
 		for (int i = 0; i < product_no.length; i++) {
 			CartVo cv = new CartVo();

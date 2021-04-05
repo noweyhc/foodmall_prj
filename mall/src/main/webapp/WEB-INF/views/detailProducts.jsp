@@ -50,7 +50,7 @@
 				<div class="product-detail-body">
 					<ul class="detail-bodies">
 						<li>${p.product_origin }</li>
-						<li>${p.product_caloies }</li>
+						<li>${p.product_caloies } kcal</li>
 						<li>${p.product_storage }</li>
 						<li>${p.product_ingredient }</li>
 					</ul>
