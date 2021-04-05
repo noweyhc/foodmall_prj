@@ -26,9 +26,9 @@
 </head>
 <body>
 
-<h2>결제</h2>
 <!-- 전체 wrap -->
 <div class="wrap">
+  <div>
     <input type="hidden" value="${totAmount }" id="totAmount">
     <input type="hidden" value="${prodQty }" id="prodQty">
     <input type="hidden" value="${lastTot }" id="lastTot">
@@ -38,7 +38,7 @@
     	<div class="order-title-wrap">
         	<h4 class="order-title">주문목록</h4>
         </div>
-        <hr>
+        <hr class="order-hr">
         <!-- 테이블 div box-->
         <div class="order-form-container">
             <table class="order-table">
@@ -170,7 +170,7 @@
     <div class="order-title-wrap">
     	<h4 class="order-title" style="font-weight: 600;">결제</h4>
     </div>
-    <hr>
+    <hr class="order-hr">
      <!-- 결제 수단-->
       <div class="row">
           <p>결제수단</p>
@@ -211,7 +211,7 @@
                   <hr id="dotted-hr">
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="${lastTot }" id="disabled" type="text" class="validate">
+                      <input disabled value="${lastTot }원" id="disabled" type="text" class="validate">
                       <label for="disabled">최종 결제 금액</label>
                     </div>
                   </div>
@@ -219,17 +219,20 @@
         </div>
     </div>
     
-	<hr>
+	<hr class="order-hr">
     <p>
       <label>
         <input type="checkbox" id="order-agree"/>
-        <span id="payment-agree-chkbox">결제 진행 필수 동의</span>
-        <p>개인정보 수집·이용 및 위탁동의<span>(필수)</span><a href="">약관보기</a></p>
-        <p>결제대행 서비스 약관 동의<span>(필수)</span><a href="">약관보기</a></p>
+        <span id="payment-agree-chkbox">결제 진행 필수 동의</span><br>
+        개인정보 수집·이용 및 위탁동의<span>(필수)</span><a href="">약관보기</a><br>
+        결제대행 서비스 약관 동의<span>(필수)</span><a href="">약관보기</a><br>
       </label>
     </p>
-	<a class="waves-effect waves-light btn s12" id="payment"><i class="material-icons left">payment</i>결제하기</a>
-</div>
+    <div id="payment-btn">
+	   <a class="waves-effect waves-light btn s12" id="payment"><i class="material-icons left">payment</i>결제하기</a>
+	</div>
+   </div>
+ </div>
 </div>
 <!-- iamport -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
