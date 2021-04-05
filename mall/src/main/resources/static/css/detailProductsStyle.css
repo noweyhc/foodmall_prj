@@ -2,14 +2,21 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.product-detail {
+	width: 1100px;
+	position: relative;	
+	margin: auto;
+}
+
 .product-detail-wrap {
 	width: 1100px;
 	position: relative;
 	display: flex;
-	margin-top: 20px;
-	margin: auto;
 }
 
+.max-width {
+	width: 100%;
+}
 
 .product-img-wrap {
 	display: flex;
@@ -157,3 +164,48 @@
 .product-detail a:hover {
 	color: #19778a;
 }
+
+
+#product-board-wrap {
+	width: 1100px;
+	position: relative;
+	margin-top: 100px;
+}
+
+.product-navi-var {
+	width: 1100px;
+	margin-top: 60px;
+	margin-bottom: 10px;
+}
+
+.product-navi-var .navi-button{
+	width: 180px;
+	height: 42px;
+}
+
+.product-board-wrap .max-width{
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.product-info {
+	text-align: center;	
+}
+
+.img-content {
+	width: 1100px;
+	height: auto;
+	margin-bottom: 60px;
+}
+
+.info-title {
+	font-size: 38px;
+	margin-bottom: 10px;
+}
+
+.info-subtitle {
+	font-size: 24px;
+	margin-bottom: 40px;
+}
+

@@ -11,12 +11,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>detailProducts</title>
 	
-	<link rel="stylesheet" href="static/css/detailProductsStyle.css">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,600,700,800&amp;subset=korean" rel="stylesheet">
 	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
 	<meta charset="UTF-8">   
+	<link rel="stylesheet" href="static/css/detailProductsStyle.css">
 	
 
 </head>
@@ -83,27 +83,50 @@
 			</div>
 		</div>
 		
-		<div align="center">		
-			<hr>
-			<a href="#detail"><button>상품 상세설명</button></a>
-			<a href="#review"><button>상품 리뷰</button></a>
-			<a href="#cs"><button>1:1 문의</button></a><br>
-
-			<a name="detail"></a> 
-			<h6>${product_detail_text }</h6>
-			<img src="img/${p.product_detail_img1 }">
-			<img src="img/${p.product_detail_img2 }">
-			<br><br><br><br><br><br><br><br><br><br><br><br>
+		<div id="product-board-wrap">
+			<div class="product-navi-var">
+				<button class="navi-button">상품 상세설명</button>
+				<button class="navi-button">상품 리뷰</button>
+				<button class="navi-button">1:1 문의</button>
+			</div>		
+			<div class="product-info max-width">
+				<div class="img-box max-width">
+					<img src="img/${p.product_detail_img1 }" class="img-content">
+				</div>
+				<div class="info-title max-width">
+					<span>${p.product_title }</span>
+				</div>
+				<div class="info-subtitle max-width">
+					<span>${p.product_subtitle }</span>
+				</div>
+				<div class="info-text max-width">
+					<span>${p.product_detail_text }</span>
+				</div>
+				<c:if test="${p.product_detail_img2 != null}">
+				<div class="img-box max-width">
+					<img src="img/${p.product_detail_img2 }">			
+				</div>
+				</c:if>
+			</div>
 			
-			<a name="review"></a><hr>
-			<h6>리뷰 영역</h6>
-			<br><br><br><br><br><br><br><br><br><br><br><br>
-			
-			<a name="cs"></a><hr>
-			<h6>1:1문의 영역</h6>
+			<div class="product-navi-var">
+				<button class="navi-button">상품 상세설명</button>
+				<button class="navi-button">상품 리뷰</button>
+				<button class="navi-button">1:1 문의</button>
+			</div>
+			<div class="product-reviews max-width">
+			</div>
+			<div class="product-navi-var">
+				<button class="navi-button">상품 상세설명</button>
+				<button class="navi-button">상품 리뷰</button>
+				<button class="navi-button">1:1 문의</button>
+			</div>
+			<div class="product-cs max-width">
+			</div>
 		</div>
 	</div>
 	</section>
+	<%@ include file="footer.jsp"%>
 	<script type="text/javascript" src="js/priceUtil.js"></script>
 </body>
 
