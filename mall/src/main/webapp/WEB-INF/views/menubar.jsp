@@ -61,9 +61,9 @@
 	$(function(){
 	$(window).scroll(function(){  //스크롤하면 아래 코드 실행
 	       var num = $(this).scrollTop();  // 스크롤값
-	       if( num > 220 ){  // 스크롤을 36이상 했을 때
-	          $(".divide-line").css("top", "0px");
+	       if( num > 230 ){  // 스크롤을 36이상 했을 때
 	          $(".divide-line").css("position","fixed");
+	          $(".divide-line").css("top", "0px");
 	       }else{
 	           $(".divide-line").css("position","relative");
 	       }

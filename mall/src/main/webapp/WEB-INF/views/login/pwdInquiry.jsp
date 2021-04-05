@@ -32,12 +32,12 @@
          <p class="context">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
           <div class="row">
             <div class="input-field col s10">
-              <input id="disabled" type="text" class="validate" name="mem_id">
+              <input id="mem_id" type="text" class="validate" name="mem_id">
               <label for="disabled">아이디 입력</label>
             </div>
           </div> 
           <div class="pwd-btn"> 
-			  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+			  <button class="btn waves-effect waves-light" type="submit" name="action" id="btnNext">다음
 			    <i class="material-icons right">send</i>
 			  </button>
           </div>

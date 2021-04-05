@@ -201,11 +201,21 @@ public class LoginController {
 	
 	// 비밀번호 찾기 Process
 	@PostMapping("/pwdInquiry")
-	public String pwdInquiryPro(Model model,String mem_id) {
+	public String pwdInquiryPro(Model model,String mem_id,HttpServletResponse response) throws IOException {
 
 		PwdInquiryVo pwdInquiry = dao.findPwdUserId(mem_id);
 		
+		if(pwdInquiry == null) {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('입력칸이 공백이거나 아이디가 존재하지않습니다.'); location.href='/login/pwdInquiry';</script>");
+            out.close();
+            return null;				
+		}
+		
+		
 		if(mem_id.equals(pwdInquiry.getMem_id())) {
+			System.out.println(mem_id);
 			model.addAttribute("pVo",pwdInquiry);
 			return "login/viewPwdAuth";
 		}

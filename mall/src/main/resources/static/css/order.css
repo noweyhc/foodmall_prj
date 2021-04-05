@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.wrap{
+	width : 1100px;
+	margin: 0 auto;
+	border: 1px solid #DFE1E5;
+	padding: 60px;
+}
+
+
 table {
   border-collapse : collapse;
   border-radius : 7px;
@@ -8,7 +16,7 @@ table {
 }
 
 .order-form-container {
-    width: 1300px;
+    width: 1200px;
 }
 
 .order-table {
@@ -35,12 +43,12 @@ td,th {
 }
 
 .order-item {
-    width: 580px;
+    width: 480px;
     text-align: center;
 }
 
 .order-amount {
-    width: 200px;
+    width: 300px;
     text-align: center;
 }
 
@@ -71,7 +79,7 @@ td,th {
 }
 
 .shipping-container {
-    width: 1300px;
+    width: 1200px;
 }
 
 .shipping-background {
@@ -95,7 +103,8 @@ td,th {
 }
 
 .amount_of_Payment {
-    margin-left: 720px;
+    margin-left: 640px;
+    margin-bottom: 50px;
 }
 
 #payment-agree-chkbox {
@@ -110,4 +119,13 @@ td,th {
 
 #ship-wrap2{
 	display: none;
+}
+
+.order-hr {
+    width: 960px;
+}
+
+#payment-btn {
+    margin-top: 50px;   
+    margin-left: 830px;
 }
