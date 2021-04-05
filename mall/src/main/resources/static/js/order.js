@@ -40,7 +40,7 @@ let  valid = {
 			// 만약 새 배송지에 모든 값이 전부 채워져있지 않다면
 			if($('#newName').val() == '' || $('#newPhone').val() == '' || $('#newZipcode').val() == '' || $('#newAddr').val() == '' || $('#newDetAddr').val()== ''){
 				alert('새 배송지에 내용을 전부 정확하게 입력해주세요.');
-				$(location).attr('href', '/order.do');
+				$(location).attr('href', '/payment/order');
 				return false;
 			}
 		}
@@ -132,7 +132,7 @@ let  valid = {
 	                });
 						// db에 결제 내용 저장 하는 Ajax
 						$.ajax({
-							url : 'a.do',
+							url : '/payment/paymentResult',
 							type : 'POST',
 							dataType : 'json',
 			        	    contentType:'application/json; charset=utf-8',				
@@ -153,7 +153,7 @@ let  valid = {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
 	                //실패시 이동할 페이지
-	                location.href="/order.do";
+	                location.href="/payment/order";
 	                alert(msg);
 	            }
 	        });

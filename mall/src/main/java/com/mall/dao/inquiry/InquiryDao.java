@@ -30,7 +30,7 @@ public class InquiryDao {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		map.put("mem_id", mem_id);
+		map.put("cs_mem_id", mem_id);
 		map.put("keyword", keyword);
 		map.put("searchFeild", searchFeild);
 		

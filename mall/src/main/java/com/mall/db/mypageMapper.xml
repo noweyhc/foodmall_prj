@@ -79,4 +79,8 @@
   	WHERE mem_id = #{mem_id}
   </update>
   
+  <select id="getMaskInfo" resultType="com.mall.vo.mypage.MaskingVo">
+  	SELECT mem_email, mem_phone FROM tb_member WHERE mem_id = #{mem_id}
+  </select>
+  
 </mapper>

@@ -137,7 +137,7 @@ public class LoginController {
 	
 	@PostMapping("/viewIdList")
 	public String viewIdList(Model model,String mem_id) {
-		System.out.println("a");
+		
 		model.addAttribute("mem_id", mem_id);
 		
 		return "/login/viewIdList";
@@ -188,7 +188,7 @@ public class LoginController {
 			iiVo.setMem_id(mem_id);
 			iiVo.setResult(cnt);
 			iiVo.setCode(code);
-			
+			System.out.println(iiVo);
 			return iiVo;
 	}//emailAuth
 	
