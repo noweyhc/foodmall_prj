@@ -1,58 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
+<%@ include file="menubar.jsp" %>
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>[밥도둑] 마이페이지</title>
+    
+    <!-- css -->
+	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
+	<link rel="stylesheet" href="/static/css/myPage/mypage.css">
+	    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <title>Hello, world!</title>
+	<!--  css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
   </head>
-  <body>
-	  <table class="table table-hover">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">페이지정보</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>마이페이지</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td><a href="userInfoUpdate.do">이메일/휴대전화 변경</a></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td><a href="updateShipping.do">배송지 관리</a></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">4</th>
-	      <td><a href="userInfoUpdate.do">주문정보 확인</a></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">5</th>
-	      <td><a href="myInquiry.do">내가 한 문의 확인</a></td>
-	    </tr>
-	    <tr>
-	    <th scope="row">6</th>
-	      <td><a href="resetPassword.do">비밀번호 변경</a></td>
-	    </tr>
-	    <tr>
-	      <th scope="row">7</th>
-	      <td><a href="deleteAccount.do">회원탈퇴</a></td>
-	    </tr>
-	    	    
-	  </tbody>
-	</table>  
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<body>
+<div class="wrap">
+      <div id="grid">
+          <!-- 이메일 및 휴대전화 변경 -->
+           <div>
+	           <h2 class="mypage-h2">이메일 및 휴대전화변경</h2>
+	            <p class="context">
+	               밥도둑에 이메일 및 핸드폰번호를 변경할 수 있습니다.
+	            </p>  
+	           <div class="phem-info-content">
+	               <p>이메일 : </p>
+	               <p>휴대전화 :</p>
+	           </div>
+			   <a class="waves-effect waves-light btn" href="/mypage/userInfoUpdate">이메일/휴대전화 변경</a>
+            </div>
+           <!-- 배송지 관리 -->
+            <div>
+            <h2 class="mypage-h2">배송지 관리</h2>
+            <p class="context">
+               내가 저장한 배송지 및 최근 사용한 배송지를
+               관리할 수 있습니다.
+            </p>            
+            <a class="waves-effect waves-light btn" href="/mypage/updateShipping">배송지 관리</a>
+            </div>
+            
+            <div>
+            <h2 class="mypage-h2">주문정보 확인</h2>
+            <p class="context">
+                내가 결제한 구매 내역을 확인 할 수 있습니다.
+            </p>
+            <a class="waves-effect waves-light btn" href="userInfoUpdate.do">주문정보 확인</a>
+            </div>
+            <div>
+            <h2 class="mypage-h2">내가 한 문의 확인</h2>
+            <p class="context">
+                내가 문의한 내역에 대한 정보를 확인할 수 있습니다.
+            </p>
+           	 <a class="waves-effect waves-light btn" href="/inquiry/myInquiry">내가 한 문의 확인</a>
+            </div>
+            
+            <div>
+            <h2 class="mypage-h2">비밀번호 변경</h2>
+            <p class="context">
+                주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요.
+            </p>
+            <a class="waves-effect waves-light btn" href="/mypage/resetPassword">비밀번호 변경</a>
+            </div>          
+            <div>
+            <h2 class="mypage-h2">회원 탈퇴</h2>
+            <p class="context">밥도둑을 더 이상 이용하지 않는다면
+            </p>
+            <a class="waves-effect waves-light btn" href="/mypage/deleteAccount">회원탈퇴</a>
+            </div>
+    </div>
+</div>   
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%@ include file="footer.jsp" %>
   </body>
 </html>

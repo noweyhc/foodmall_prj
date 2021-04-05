@@ -18,7 +18,6 @@ function getRandomInt(min, max) {
 randomBtn.addEventListener('click', () => {
 	
 	product_name = arr_subname[getRandomInt(0, arr_subname.length-1)] + arr_name[getRandomInt(0, arr_name.length-1)];
-	document.getElementById('product_no').value = getRandomInt(1, 9999);
 	document.getElementById('product_category').value = arr_category[getRandomInt(0, 4)];
 	document.getElementById('product_stock').value = 99;
 	document.getElementById('product_title').value = product_name;

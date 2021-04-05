@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="static/css/mainPage/headerStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/headerStyle.css">
 <meta charset="UTF-8">
 <title>header</title>
 </head>
@@ -14,7 +14,7 @@
 
 	<!-- 헤더 영역 시작 -->
 	<div class="body-wrapper">
-	<nav id="header">
+	<div id="header">
 		<div class="nav-align">
 			<div class="header menu-left">
 				<ul>
@@ -22,22 +22,32 @@
 				</ul>	
 				
 			</div>
-
+		
+		<c:if test="${login == null }">
 			<div class="header menu-right" id="menu-right">		
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
-					<li><a href="/login.do">로그인</a></li>      
-					<li id="mypageLink"><a href="/mypage.do">마이페이지</a></li>      
+					<li><a href="login/userLogin">로그인</a></li>      
+					<li id="mypageLink"><a href="/mypage">마이페이지</a></li>      
 				</ul>
 			</div>
+		</c:if>
+		<c:if test="${login != null }">
+			<div class="header menu-right" id="menu-right">		
+				<ul>
+					<li><a href="login/logout">로그아웃</a></li>
+					<li id="mypageLink"><a href="/mypage">마이페이지</a></li>      
+				</ul>
+			</div>
+		</c:if>
 			
 		</div>
 		<div class="nav-main-image">
 			<a href="/">
-			<img src="static/img/mainimage.JPG" alt="메인이미지">
+			<img id="logo-image" src="${pageContext.request.contextPath}/img/logo.png" alt="메인이미지">
 			</a>
 		</div>
-	</nav>
+	</div>
 	</div>
 	<!-- 헤더 영역 끝 -->
 	

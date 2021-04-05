@@ -27,7 +27,3 @@ function categoryChange(e) {
          good = document.getElementById("good").value;
          document.inquiry_form.cs_category_two.value = good;
     }
-    
-function Valid(){
-	if()
-}

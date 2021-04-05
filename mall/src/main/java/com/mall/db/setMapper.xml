@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sets">
+	<insert id="register">
+		insert into TB_SET values(seq_set.nextval, #{set_title}, #{set_subtitle}, 
+	    	#{set_img}, #{set_detail_text}, #{set_stock}, #{set_price}, sysdate)
+	</insert>
+	
+	<select id="getNextNo" resultType="int">
+		select set_no 
+		from(
+  			SELECT * FROM tb_set 
+  			order by set_regdate desc 
+		)
+		where rownum = 1
+	</select>
+	
+	<insert id="registerComponent">
+		insert into TB_SET_COMPONENT values(#{set_no}, #{product_no})
+	</insert>
+	
+	<select id="findAll" resultType="setVo">
+		select * from TB_SET
+	</select>
+</mapper>

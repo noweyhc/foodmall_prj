@@ -16,11 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mall.dao.event.EventDao;
 import com.mall.dao.product.ProductDao;
 import com.mall.dao.sale.SaleDao;
+import com.mall.dao.set.SetDao;
 import com.mall.util.AdminUtil;
+import com.mall.vo.event.EventVo;
 import com.mall.vo.product.ProductVo;
 import com.mall.vo.sale.SaleVo;
+import com.mall.vo.set.SetComponentVo;
+import com.mall.vo.set.SetVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +36,8 @@ public class AdminController {
 	
 	private final ProductDao dao;
 	private final SaleDao sdao;
+	private final SetDao setdao;
+	private final EventDao eventdao;
 	private final AdminUtil util;
 	
 	
@@ -72,8 +79,9 @@ public class AdminController {
 	//GET 방식 접근일 때, 상품 등록 페이지로 이동
 	@RequestMapping(value = "/product-register", method = RequestMethod.GET)
 	public String registerProductForm(HttpServletRequest request) {
-		request.setAttribute("category", "product");
-		request.setAttribute("function", "productRegister");
+		request.getSession().setAttribute("category", "product");
+		request.getSession().setAttribute("function", "productRegister");
+		request.setAttribute("nextNo", dao.getNextNo());
 		return "/admin/productRegister";
 	}
 
@@ -156,6 +164,7 @@ public class AdminController {
 			mav.addObject("result", "DB 등록 실패. 상품번호를 확인해주세요.");			
 		}
 		
+		request.setAttribute("nextNo", dao.getNextNo());
 		mav.setViewName("/admin/productRegister");
 		return mav;
 	}
@@ -165,8 +174,8 @@ public class AdminController {
 	//GET 방식 접근, 상품 목록 창
 	@RequestMapping(value = "/product-edit", method = RequestMethod.GET)
 	public ModelAndView editProductForm(HttpServletRequest request) {
-		request.setAttribute("category", "product");
-		request.setAttribute("function", "productEdit");
+		request.getSession().setAttribute("category", "product");
+		request.getSession().setAttribute("function", "productEdit");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/admin/productEdit");
 		mav.addObject("list", dao.findAll());
@@ -295,8 +304,8 @@ public class AdminController {
 	//GET 방식 접근, 세일 정보를 등록
 	@RequestMapping(value = "/sale-register", method = RequestMethod.GET)
 	public String registerSaleForm(HttpServletRequest request) {
-		request.setAttribute("category", "sale");
-		request.setAttribute("function", "saleRegister");
+		request.getSession().setAttribute("category", "sale");
+		request.getSession().setAttribute("function", "saleRegister");
 		return "/admin/saleRegister";
 	}
 	
@@ -321,8 +330,8 @@ public class AdminController {
 	//GET 방식 접근, 세일 상품의 목록을 보여줌
 	@RequestMapping(value = "/sale-edit", method = RequestMethod.GET)
 	public String editSale(Model model, HttpServletRequest request) {
-		request.setAttribute("category", "sale");
-		request.setAttribute("function", "saleEdit");
+		request.getSession().setAttribute("category", "sale");
+		request.getSession().setAttribute("function", "saleEdit");
 		model.addAttribute("list", sdao.findAll());
 		return "/admin/saleEdit";
 	}
@@ -363,5 +372,103 @@ public class AdminController {
 		//DB에서 해당 세일의 데이터를 삭제
 		sdao.deleteSale(no);
 		return "redirect:/admin/sale-edit";
+	}
+	
+	
+	
+	//GET 방식 접근, 세트 등록 페이지로 이동
+	@RequestMapping(value = "/set-register", method = RequestMethod.GET)
+	public String registerSetForm(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "set");
+		request.getSession().setAttribute("function", "setRegister");
+		request.getSession().setAttribute("nextNo", setdao.getNextNo());
+		return "/admin/setRegister";
+	}
+	
+	//POST 방식 접근, 입력된 세트 정보를 DB에 입력
+	@RequestMapping(value = "/set-register", method = RequestMethod.POST)
+	public ModelAndView registerSet(SetVo sv, HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//세트 이미지를 등록할 webapp/img 경로
+		String path = request.getRealPath("/img");
+		
+		//파일 데이터를 받아와서 변수에 저장
+		MultipartFile uploadImg = sv.getImgFile();
+	
+		//이미지 파일 이름을 set + 세트번호로 지정
+		String mainImgName = util.renameSetImg(sv.getSet_no(), uploadImg);
+
+		//DB에 수정된 이미지 파일 이름을 저장
+		sv.setSet_img(mainImgName);
+	
+		try {
+			util.uploadImg(path, uploadImg, mainImgName);
+		} catch (IOException e) {
+
+		}
+		
+		//세트 정보를 저장하는 쿼리문을 실행하고, 결과값을 확인
+		int re = setdao.registerSet(sv);
+		
+		//등록 성공:1 , 실패:0
+		if(re == 1) {
+			mav.addObject("result", "등록 성공");
+		}else {
+			mav.addObject("result", "DB 등록 실패. 상품번호를 확인해주세요.");			
+		}
+		
+		//해당 세트에 포함된 상품 번호를 리스트로 가져옴
+		String[] arr = request.getParameterValues("productNo");
+		
+		for(String no:arr) {
+			SetComponentVo cv = new SetComponentVo(sv.getSet_no(), Integer.parseInt(no));
+			int re2 = setdao.registerSetComponent(cv);
+		}
+		
+		request.setAttribute("nextNo", setdao.getNextNo());
+		mav.setViewName("/admin/setRegister");
+		return mav;
+	}
+	
+	//GET 방식 접근, 이벤트 등록 페이지로 이동
+	@RequestMapping(value = "/event-register", method = RequestMethod.GET)
+	public String registerEventForm(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "event");
+		request.getSession().setAttribute("function", "eventRegister");
+		request.getSession().setAttribute("nextNo", eventdao.getNextNo());
+		return "/admin/eventRegister";
+	}
+	
+	//POST 방식 접근, 이벤트를 DB에 입력하고 결과를 반환
+	@RequestMapping(value = "/event-register", method = RequestMethod.POST)
+	public String registerEvent(EventVo ev, HttpServletRequest request) {
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		ev.setEvent_start(startDate);
+		ev.setEvent_end(endDate);
+		
+		//세트 이미지를 등록할 webapp/img 경로
+		String path = request.getRealPath("/img");
+				
+		//파일 데이터를 받아와서 변수에 저장
+		MultipartFile uploadImg = ev.getImgFile();
+			
+		//이미지 파일 이름을 set + 세트번호로 지정
+		String imgName = util.renameEventImg(ev.getEvent_no(), uploadImg);
+
+		//DB에 수정된 이미지 파일 이름을 저장
+		ev.setEvent_img(imgName);
+
+		try {
+			util.uploadImg(path, uploadImg, imgName);
+		} catch (IOException e) {
+		}
+		
+		//이미지 정보를 저장하는 쿼리문을 실행하고, 결과값을 반환
+		int re = eventdao.registerEvent(ev);
+		
+		return "redirect:/admin/event-register";
 	}
 }

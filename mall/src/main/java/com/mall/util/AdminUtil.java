@@ -31,12 +31,40 @@ public class AdminUtil {
 	 * @param tale 이미지 파일에 붙일 꼬리표 (메인이미지는 없음, 상세이미지는 _detail1,2)
 	 * @return 새로운 파일 이름
 	 */
-	public String renameImg(int no, MultipartFile imgFile, String tale) {
+	public String renameImg(int no, MultipartFile imgFile, String tail) {
 		String newName = "";
 		
 		// 새로운 파일 이름 : product[상품번호][꼬리표].확장자
-		newName = "product" + String.valueOf(no) + tale + 
+		newName = "product" + String.valueOf(no) + tail + 
 				imgFile.getOriginalFilename().substring(imgFile.getOriginalFilename().indexOf("."));
+		
+		return newName;
+	}
+	
+	/**
+	 * @param no 세트 번호
+	 * @param imgFile 이미지 파일 객체
+	 * @return 새로운 파일 이름
+	 */
+	public String renameSetImg(int no, MultipartFile imgFile) {
+		String newName = "";
+		
+		// 새로운 파일 이름 : set[상품번호].확장자
+		newName = "set" + String.valueOf(no) + imgFile.getOriginalFilename().substring(imgFile.getOriginalFilename().indexOf("."));
+		
+		return newName;
+	}
+	
+	/**
+	 * @param no 이미지 번호
+	 * @param imgFile 이미지 파일 객체
+	 * @return 새로운 파일 이름
+	 */
+	public String renameEventImg(int no, MultipartFile imgFile) {
+		String newName = "";
+		
+		// 새로운 파일 이름 : event[상품번호].확장자
+		newName = "event" + String.valueOf(no) + imgFile.getOriginalFilename().substring(imgFile.getOriginalFilename().indexOf("."));
 		
 		return newName;
 	}

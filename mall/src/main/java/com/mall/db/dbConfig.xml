@@ -9,7 +9,8 @@
   	<typeAlias type="com.mall.vo.product.ProductVo" alias="productVo"/>
   	<typeAlias type="com.mall.vo.cart.CartVo" alias="cartVo"/>
   	<typeAlias type="com.mall.vo.sale.SaleVo" alias="saleVo"/>
-
+  	<typeAlias type="com.mall.vo.set.SetVo" alias="setVo"/>
+  	<typeAlias type="com.mall.vo.event.EventVo" alias="eventVo"/>
   </typeAliases>
   
   
@@ -30,23 +31,15 @@
     <mapper resource="com/mall/db/userMapper.xml"/>
     <mapper resource="com/mall/db/mypageMapper.xml"/>
     <mapper resource="com/mall/db/reviewMapper.xml"/>
-
-
-
     <mapper resource="com/mall/db/cartMapper.xml"/>
-
     <mapper resource="com/mall/db/faqMapper.xml"/>
     <mapper resource="com/mall/db/noticeMapper.xml"/>
-
-
-
-
-
     <mapper resource="com/mall/db/inquiryMapper.xml"/>
-
-
     <mapper resource="com/mall/db/saleMapper.xml"/>
     <mapper resource="com/mall/db/saleProductMapper.xml"/>
     <mapper resource="com/mall/db/orderMapper.xml"/>
+    <mapper resource="com/mall/db/setMapper.xml"/>
+    <mapper resource="com/mall/db/setComponentsMapper.xml"/>
+    <mapper resource="com/mall/db/eventMapper.xml"/>
   </mappers>
 </configuration>

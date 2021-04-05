@@ -4,11 +4,43 @@
 	margin: auto;
 	margin-top: 90px;
 	margin-bottom: 50px;
-	width: 1100px;
+	width: 1120px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .list-title{
 	text-align: center;
+	margin-bottom: 30px;
+}
+
+.search-info {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.search-info .keyword {
+	font-size: 24px;
+	color: #26a69a;
+}
+
+.search-info .count {
+	font-size: 24px;
+	color: #ffa62b;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 4px;
+}
+
+.not-found {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 70px;
+}
+
+.not-found .fa-exclamation-circle {
+	font-size: 80px;
+	color: #ede7e3;
+	margin-top: 40px;
 	margin-bottom: 30px;
 }
 
@@ -18,16 +50,16 @@
 	margin: auto;
 	position: relative;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
-
 
 .list-item-box {
 	width: 260px;
 	height: 380px;
 	margin-top: 40px;
 	margin-bottom: 50px;
+	margin-right: 20px;
 }
 
 .items {
@@ -35,13 +67,13 @@
 	margin:0px;
 	padding:0px;
 	display: block;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .items .list-item-image{
 	width: 260px;
 	height: 290px;
 	object-fit: cover;
+	border-radius: 5%;
 }
 
 .items .list-product-title{
@@ -54,10 +86,31 @@
 .items .list-product-subtitle{
 	font-weight: 400;
 	margin-top: 5px;
-	color: #667a77;
+	color: #19778a;
 }
 
-.items .list-price{
+.items .sale-origin-price {
+	font-weight: 500;
+	margin-top: 5px;
+	font-size: 12px;
+	color: gray;
+	text-decoration: line-through;
+}
+
+.items .sale-price {
+	font-weight: 700;
+	font-size: 18px;
+	color: #ffa62b;
+}
+
+.items .sale-rate {
+	font-weight: 700;
+	font-size: 16px;
+	color: #26A69A;
+	padding-bottom: 2px;
+}
+
+.items .list-price {
 	font-weight: 700;
 	margin-top: 5px;
 	color: black;
@@ -71,6 +124,25 @@
 
 .items .list-product-title a:hover {
 	color: #19778a;
+}
+
+.page-num {
+	text-align: center;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.page-num a:link {
+	color: #19778a;
+
+}
+		
+.page-num a:visited {
+	color: #19778a;
+}
+		
+.page-num a:hover {
+	color: #ffa62b;
 }
 
 

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/menubarStyle.css">
+	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -15,36 +16,34 @@
 	<div id="menubar" class="menubar">
 			<div class="dropdown">
 				<button type="button" class="btn btn-outline-dark dropbtn">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>  
-					</svg> 
+					<i class="fas fa-bars" style="font-size: 16px;"></i>
 				</button>
 				<div class="dropdown-content">
-					<a href="#">국&탕</a>
-					<a href="#">찌개&전골</a>
-					<a href="#">찜&조림</a>
-					<a href="#">볶음요리</a>    
-					<a href="#">밑반찬</a>
-					<a href="#">튀김</a>
-					<a href="#">구이</a>
-					<a href="#">김밥&초밥</a>
-					<a href="#">기타요리</a>
+						<a href="/category?key=국&key=탕">국/탕</a>
+						<a href="/category?key=찜&key=조림">찜/조림</a>
+						<a href="/category?key=육류">육류</a>
+						<a href="/category?key=생선&key=해산물">생선/해산물</a>
+						<a href="/category?key=덮밥&key=비빔밥">한그릇 음식</a>
+						<a href="/category?key=일품요리">일품요리</a>
+						<a href="/category?key=밑반찬&key=김치">밑반찬/김치</a>
+						<a href="/category?key=면">면</a>  
+						<a href="/category?key=도시락">도시락</a>
+						<a href="/category?key=밀키트&key=기타">밀키트/기타</a>
 				</div>   
 			</div>
 			<div class=category-list>
-				<ul>
+				<ul style="margin-top: 0px; margin-bottom: 0px;">
 					<li><a href='/listProducts.do'>전체상품</a></li>
-					<li><a href='/shop/goods/productlist.do?category=121'>정기구독</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>집밥코디</a></li>
+					<li><a href='/set'>세트판매</a></li>
 					<li><a href='/timesale'>타임세일</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>회원리뷰</a></li>
-					<li><a href='/shop/goods/productlist.do?category=123'>이벤트</a></li>
+					<li><a href='/reviewList'>회원리뷰</a></li>
+					<li><a href='/events'>이벤트</a></li>
 				</ul>
 			</div>
 			<div class="search-wrap">
-				<form action="#">
-					<input type="search" class="inp_search" placeholder="오늘 돈카츠ㄱㄱ?">
-					<button type="submit" class="btn btn-alert btn-search">검색</button>
+				<form action="/search" method="get" style="height: 42px; display: flex;">
+					<input type="search" name="keyword" class="inp_search" placeholder="오늘은 돈가츠?">
+					<button type="submit" class="btn btn-alert btn-search"><i class="fas fa-search"></i></button>
 				</form>
 			</div>
 			<div class="cart-wrap">

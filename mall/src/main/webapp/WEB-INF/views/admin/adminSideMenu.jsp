@@ -11,7 +11,7 @@
 	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/css/adminStyle.css">
+	<link rel="stylesheet" href="/css/admin/adminStyle.css">
 </head>
 <body>
 	<div id="side-menu" class="side-menu">
@@ -25,7 +25,7 @@
 				<a id="menu-list-sub-product" class="menu-list-sub-category ${category eq 'product' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseOne" 
 				aria-expanded="${category eq 'product' ? 'true' : 'false' }" aria-controls="collapseOne" data-parent="#accordion">
 					<i class="fas fa-apple-alt"></i>	
-					<span style="margin-left: 10px;">상품 관리</span>
+					<span class="menu-list-title">상품 관리</span>
 				</a>
 			</div>
 			<div id="collapseOne" class="collapse ${category eq 'product' ? 'show' : '' } ">
@@ -38,11 +38,12 @@
 					</div>
 				</div>
 			</div>		
+			
 			<div class="menu-list-sub">
 				<a id="menu-list-sub-sale" class="menu-list-sub-category ${category eq 'sale' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseTwo" 
 				aria-expanded="${category eq 'sale' ? 'true' : 'false' }" aria-controls="collapseTwo" data-parent="#accordion">
 					<i class="fas fa-percentage"></i>	
-					<span style="margin-left: 10px;">할인 관리</span>
+					<span class="menu-list-title">할인 관리</span>
 				</a>
 			</div>
 			<div id="collapseTwo" class="collapse ${category eq 'sale' ? 'show' : '' } ">
@@ -55,9 +56,59 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-set" class="menu-list-sub-category ${category eq 'set' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseThree" 
+				aria-expanded="${category eq 'set' ? 'true' : 'false' }" aria-controls="collapseThree" data-parent="#accordion">
+					<i class="fas fa-layer-group"></i>	
+					<span class="menu-list-title ">세트 관리</span>
+				</a>
+			</div>
+			<div id="collapseThree" class="collapse ${category eq 'set' ? 'show' : '' } ">
+				<div class="py-2 collapse-inner rounded">
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'setRegister' ? 'active' : '' }" href="/admin/set-register">세트 등록</a>
+					</div>
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'setEdit' ? 'active' : '' }" href="">세트 수정 및 삭제</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-event" class="menu-list-sub-category ${category eq 'event' ? '' : 'collapsed' }" href="#" data-toggle="collapse" data-target="#collapseFour" 
+				aria-expanded="${category eq 'event' ? 'true' : 'false' }" aria-controls="collapseFour" data-parent="#accordion">
+					<i class="fas fa-layer-group"></i>	
+					<span class="menu-list-title ">이벤트 관리</span>
+				</a>
+			</div>
+			<div id="collapseFour" class="collapse ${category eq 'event' ? 'show' : '' } ">
+				<div class="py-2 collapse-inner rounded">
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'eventRegister' ? 'active' : '' }" href="/admin/event-register">이벤트 등록</a>
+					</div>
+					<div class="item-wrapper">
+						<a class="collapse-item ${function eq 'eventEdit' ? 'active' : '' }" href="">이벤트 수정 및 삭제</a>
+					</div>
+				</div>
+			</div>
+			
+			<hr class = "divider">
+
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-notice" class="menu-list-sub-category"  href="/admin/listNotice.do">
+					<i class="fas fa-volume-up"></i>
+					<span class="menu-list-title">공지사항 관리</span>
+				</a>
+			</div>
+			<div class="menu-list-sub">
+				<a id="menu-list-sub-faq" class="menu-list-sub-category"  href="/admin/listFAQ.do">
+					<i class="fas fa-question-circle"></i>
+					<span class="menu-list-title">FAQ 관리</span>
+				</a>
+			</div>
 		</div>
 			<hr class = "divider">
 		</div>
-
 </body>
 </html>

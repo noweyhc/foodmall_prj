@@ -7,19 +7,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <title>반찬</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
 
     <div class="container">
-    <div class="jumbotron signUp">
+    <div class="signUp">
     	<div></div>
     	<div>
 	        <div class="page-header">
 	            <div>
-	                <h3>회원가입</h3>
+	                <h4>회원가입</h4>
 	            </div>
 	        </div>
         <div>
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <input class="form-control" placeholder="detail address" name="mem_detailAddress" id="mem_detailAddress" type="text" required />
                 </div>
-                <div class="form-group text-center">
+                <div class="form-group text-center button-group">
                     <button type="button" class="btn btn-dark singUpBtn" id="signUpBtn">회원가입</button>
                     <input type="reset" class="btn btn-dark" id="signUpReset" value="다시입력"></input>
                 </div>

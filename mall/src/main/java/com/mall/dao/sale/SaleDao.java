@@ -1,6 +1,9 @@
 package com.mall.dao.sale;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -38,10 +41,21 @@ public class SaleDao {
 	}
 	
 	//timesale 테이블에서 현재 시간상 유효기간에 속하는 상품의 데이터를 조회하고, List로 반환합니다 
-	public List<SaleProductVo> selectValid(String now){
+	public List<SaleProductVo> selectValid(){
 		SaleProductDao dao = sqlSession.getMapper(SaleProductDao.class);
-		List<SaleProductVo> list = dao.selectValid(now);
+		List<SaleProductVo> list = dao.selectValid(getNow());
 		return list;
+	}
+	
+	//timesale 테이블에서 현재 시간상 유효기간에 속하는 상품의 데이터를 조회하고, Map으로 반환합니다
+	public HashMap<Integer, SaleVo> selectValidMap(){
+		List<SaleVo> list = new ArrayList<>();
+		list = sqlSession.selectList("sale.selectValid", getNow());
+		HashMap<Integer, SaleVo> saleMap = new HashMap<>();
+		for(SaleVo sv : list) {
+			saleMap.put(sv.getProduct_no(), sv);
+		}
+		return saleMap;
 	}
 	
 	//timesale 테이블의 특정 데이터 조회 후 반환합니다
@@ -66,6 +80,14 @@ public class SaleDao {
 			sqlSession.commit();
 		}
 		return re;
+	}
+	
+	//db의 시간과 현재시간의 비교를 위해 현재시간을 원하는 포맷으로 추출
+	public String getNow() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = sdf.format(date);
+		return now;
 	}
 	
 	public void commit() {

@@ -1,71 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/adminSideMenu.jsp"%>
+<%@ include file="adminSideMenu.jsp"%>
+<%@ include file="adminToolbar.jsp"%>
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/static/css/adminStyle.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/admin/registerStyle.css">
 </head>
 <body>
-<div class="admin-body-wrapper">
-
-	<h2>상품 등록</h2>
-	<hr>
-	<input type="button" id="randomBtn" value="랜덤 생성" style="background-color:cyan">
-	등록 실패 시 상품번호 중복이니 재생성 후 등록하세요<br>
-	<div style="font-weigt:bold">
-	${result }<br>
-	</div>
+	<div class="admin-body-wrapper">
+		<div class = "register-wrap">
+			<div class = "register-title">
+				<h3>상품 등록</h3>
+			</div>
+			
+			<div class="container">
+			<div class = "register-form">
+				<form action="product-register"  onsubmit="return checkProductForm('register');" class="form-inline" id="product_register" method="post" enctype="multipart/form-data">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_no" class="inputtag">상품번호</label>
+							<input type="text" class="form-control inputbox" value="${nextNo }" name="product_no" id="product_no" readonly>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_category" class="inputtag">카테고리</label>
+							<input type="text" class="form-control inputbox" name="product_category" id="product_category" >
+						</div>
+						<div class="form-group">
+							<label for="product_stock" class="inputtag">재고</label>
+							<input type="text" class="form-control inputbox" name="product_stock" id="product_stock" >
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_title" class="inputtag">상품명</label>
+							<input type="text" class="form-control" name="product_title" id="product_title" style="width: 900px;">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_subtitle" class="inputtag">상품 부제</label>
+							<input type="text" class="form-control" name="product_subtitle" id="product_subtitle" style="width: 900px;" >
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_detail_text" class="inputtag">상세설명</label>
+							<textarea cols="100" rows="6" class="form-control inputbox" name="product_detail_text" id="product_detail_text" style="width: 900px; resize: none;"></textarea>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_caloies" class="inputtag">칼로리</label>
+							<input type="text" class="form-control inputbox" name="product_caloies" id="product_caloies">
+						</div>
+						<div class="form-group">
+							<label for="product_origin" class="inputtag">원산지</label>
+							<input type="text" class="form-control inputbox" name="product_origin" id="product_origin">
+						</div>
+						<div class="form-group">
+							<label for="product_storage" class="inputtag">보관방법</label>
+							<select name="product_storage" id="product_storage" class="form-control">
+								<option value="냉장" selected="selected">냉장</option>
+								<option value="냉동">냉동</option>
+								<option value="실온">실온</option>
+							</select><br>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_ingredient" class="inputtag">재료</label>
+							<input type="text" class="form-control inputbox" name="product_ingredient" id="product_ingredient">
+						</div>
+						<div class="form-group">
+							<label for="product_price" class="inputtag">가격</label>
+							<input type="text" class="form-control inputbox" name="product_price" id="product_price" ><br>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_main_img" class="sr_only"></label>
+							<input type="hidden" name="product_main_img" class="product_main_img">
+							<label for="mainImgFile" class="inputtag">메인이미지</label>
+							<input type="file" class="form-control inputbox" id="mainImgFile" name="mainImgFile" onchange="setImg(event, 'main_img');" style="width: 545px;">
+							<img src="" id="main_img" onerror="this.src='/img/empty.png'" class="img-thumbnail-box">
+						</div>							
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_detail_img1" class="sr-only"></label>
+							<input type="hidden" name="product_detail_img1" class="product_detail_img1">
+							<label for="detailImgFile1" class="inputtag">상세이미지1</label>
+							<input type="file"  class="form-control inputbox" id="detailImgFile1" name="detailImgFile1" onchange="setImg(event, 'detail_img1');" style="width: 545px;">
+							<img src="" id="detail_img1" onerror="this.src='/img/empty.png'" class="img-thumbnail-box">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="product_detail_img2" class="sr_only"></label>
+							<input type="hidden" name="product_detail_img2" class="product_detail_img2">
+							<label for="detailImgFile2" class="inputtag">상세이미지2</label>
+							<input type="file" class="form-control inputbox" id="detailImgFile2" name="detailImgFile2" onchange="setImg(event, 'detail_img2');" style="width: 545px;">
+							<img src="" id="detail_img2" onerror="this.src='/img/empty.png'" class="img-thumbnail-box">
+							<span style="color: gray; maring-left: 12px;">(선택사항)</span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="button-group" id="register-button-group">
+							<button type="submit" class="button submit" id="product-register-submit">등록</button>
+							<button type="reset" class="button erase" id="product-register-erase">재작성</button>
+						</div>
+					</div>
+				</form>
+				</div>
+				</div>
+		</div>
+			<input type="button" id="randomBtn" value="랜덤 생성" style="background-color:cyan">
+		
+			<div style="font-weigt:bold">
+			${result }
+			</div>
 	
-	<form action="product-register" id="product_register" method="post" enctype="multipart/form-data">
-			상품번호 : <input type="text" name="product_no" id="product_no" style="width:50px">
-			카테고리 : <input type="text" name="product_category" id="product_category" style="width:80px">
-			
-			
-			<!-- 
-			카테고리 : <select name="product_category" id="product_category" style="width:80px">
-				<option value="국/탕" selected="selected">국/탕</option>
-				<option value="찌개/전골">찌개/전골</option>
-				<option value="밀키트">밀키트</option>
-				<option value="밑반찬">밑반찬</option>
-				<option value="김치">김치</option>
-				<option value="기타">기타</option>
-			</select>
-			 -->
-			재고 : <input type="text" name="product_stock" id="product_stock" style="width:30px">
-			상품명 : <input type="text" name="product_title" id="product_title" style="width:100px">
-			상품부제 : <input type="text" name="product_subtitle" id="product_subtitle" style="width:140px"><br>
-			칼로리 : <input type="text" name="product_caloies" id="product_caloies">
-			원산지 : <input type="text" name="product_origin" id="product_origin">
-			보관방법 : <select name="product_storage" id="product_storage">
-				<option value="냉장" selected="selected">냉장</option>
-				<option value="냉동">냉동</option>
-				<option value="실온">실온</option>
-			</select><br>
-			상품 세부글 : <input type="text" name="product_detail_text" id="product_detail_text"  style="width:650px"><br>
-			재료 : <input type="text" name="product_ingredient" id="product_ingredient">
-			가격 : <input type="text" name="product_price" id="product_price"  style="width:100px"><br>
-			
-			<img src="" id="main_img" alt="이미지 없음"><br>
-			<input type="hidden" name="product_main_img" class="product_main_img">
-			메인이미지 : <input type="file" id="mainImgFile" name="mainImgFile" onchange="setImg(event, 'main_img');"><br>
-			
-			<img src="" id="detail_img1" alt="이미지 없음"><br>
-			<input type="hidden" name="product_detail_img1" class="product_detail_img1">
-			상세이미지1 : <input type="file" id="detailImgFile1" name="detailImgFile1" onchange="setImg(event, 'detail_img1');"><hr>
-			
-			상세이미지2는 필수가 아닙니다<br>
-			<img src="" id="detail_img2" alt="이미지 없음"><br>
-			<input type="hidden" name="product_detail_img2" class="product_detail_img2">
-			상세이미지2 : <input type="file" id="detailImgFile2" name="detailImgFile2" onchange="setImg(event, 'detail_img2');"><br>
-			<hr>
-			<br>
-			<input type="submit" value="등록">
-			<input type="reset" value="재작성">
-	</form>
-
-</div>
+	</div>
 
 <script type="text/javascript" src="/static/js/admin/generate_random.js"></script>
 <script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>

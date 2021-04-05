@@ -21,3 +21,16 @@ td {
 #page {
 	text-align: center;
 }
+
+#select-container {
+ width: 100px;
+}
+
+.iq-List-wrap {
+    display: flex;
+}
+
+
+#btn-container {
+    margin-top: 16px;
+}

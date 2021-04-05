@@ -26,26 +26,31 @@ public class InquiryDao {
 	}//InquiryDao
 
 	
-	public int totBoard(String mem_id) {
-		int total = sqlSession.selectOne("inquiry.totBoard",mem_id);
+	public int totBoard(String mem_id, String keyword, String searchFeild) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("mem_id", mem_id);
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
+		
+		int total = sqlSession.selectOne("inquiry.totBoard",map);
 		return total;
 	}
 	
-	public UserVO getMemberInfo(String id) {
+	public UserVO getMemberInfo(String mem_id) {
 		
-		UserVO uv = sqlSession.selectOne("inquiry.findAll",id);
+		UserVO uv = sqlSession.selectOne("inquiry.findAll",mem_id);
 		
 		return uv;
 	}//getMemberInfo
 
-	public int insertInquiry(InquiryVo ivo, String cs_email, String cs_phone) {
+	public int insertInquiry(InquiryVo ivo, String cs_email, String cs_phone, String mem_id) {
 		
 		Map<String, Object> map = new HashMap<String,Object>();
 		
-		String cs_mem_id = "leewooo";
-		
-		//아이디
-		map.put("cs_mem_id", cs_mem_id);
+		//회원 아이디
+		map.put("cs_mem_id", mem_id);
 		
 		// 1:1문의 내역
 		map.put("cs_title",ivo.getCs_title());
@@ -54,9 +59,6 @@ public class InquiryDao {
 		map.put("cs_category_two",ivo.getCs_category_two());
 		map.put("cs_response","미답변");
 		map.put("cs_respcheck",0);
-		
-		
-		System.out.println(ivo.getCs_category_one());
 		
 		// 연락받을 연락처
 		map.put("cs_email", cs_email);
@@ -73,15 +75,14 @@ public class InquiryDao {
 			commit();
 		}//end if
 		
-		System.out.println(re);
-		
 		return re;
 	}//insertInquiry
 	
-	public List<InquiryVo> findAllInquiry(int start, int end) {
+	public List<InquiryVo> findAllInquiry(int start, int end,String keyword, String searchFeild) {
 		
 		Map<String, Object> map = new HashMap<>();
-
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
 		map.put("start", start);
 		map.put("end", end);
 		
@@ -127,10 +128,12 @@ public class InquiryDao {
 	}//commit
 
 
-	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end) {
+	public List<MyInqListVo> findMyInq(String cs_mem_id, int start, int end, String keyword, String searchFeild) {
 		
 		Map<String, Object> map = new HashMap<>();
 		
+		map.put("searchFeild", searchFeild);
+		map.put("keyword", keyword);
 		map.put("cs_mem_id", cs_mem_id);
 		map.put("start", start);
 		map.put("end", end);
@@ -172,6 +175,19 @@ public class InquiryDao {
 		MyInqDetRespVo midr = sqlSession.selectOne("inquiry.findInqResp",cs_no);
 		
 		return midr;
+	}
+
+
+	public int cntTbCs(String keyword, String searchFeild) {
+
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("keyword", keyword);
+		map.put("searchFeild", searchFeild);
+		
+		int cntTbCs = sqlSession.selectOne("inquiry.cntTbCs",map);
+
+		return cntTbCs;
 	}
 
 

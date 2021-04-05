@@ -76,34 +76,29 @@ public class MypageDao {
 		return mVo;
 	}
 
-	public String getPwd(String currPassword, String mem_id) {
+	public int getPwd(String currPassword, String mem_id) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("mem_id", mem_id);
 		map.put("mem_pwd", currPassword);
 		
-		String pwd = sqlSession.selectOne("mypage.getPwd",map);
+		int pwd = sqlSession.selectOne("mypage.getPwd",map);
 		
 		return pwd;
 	}
 
-	public int updatePwd(String newPassword) {
-		
-		String admin = "leewooo";
+	public int updatePwd(String newPassword, String mem_id) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("mem_id", admin);
+		map.put("mem_id", mem_id);
 		map.put("mem_pwd", newPassword);
 		
-		System.out.println("bb"+map.get("mem_pwd")+"bb");
 		
 		int re = sqlSession.update("mypage.updatePwd",map);
 		
 		commit();
-		
-		System.out.println(re);
 		
 		return re;
 	}
@@ -163,9 +158,62 @@ public class MypageDao {
 		
 		return re;
 	}
+/*
+	public int phoneAuth(HashMap<String, Object> map) {
+		
+		Map<String, Object> phoneAuthMap = new HashMap<>();
+		
+		phoneAuthMap.put("mem_name", map.get("mem_name")); 
+		phoneAuthMap.put("mem_phone", map.get("mem_phone"));
+		
+		int cnt = sqlSession.selectOne("mypage.phoneAuth",phoneAuthMap);
+		
+		
+		return cnt;
+	}
+
+	public String phoneAuthGetId(HashMap<String, Object> map) {
+		
+		Map<String, Object> phoneAuthMap = new HashMap<>();
+		
+		phoneAuthMap.put("mem_name", map.get("mem_name")); 
+		phoneAuthMap.put("mem_phone", map.get("mem_phone"));
+		
+
+		String mem_id =sqlSession.selectOne("mypage.phoneAuthGetId",phoneAuthMap);
+				
+		return mem_id;
+	}
 	
+	public int emailAuth(HashMap<String, Object> map) {
+		
+		Map<String, Object> emailAuthMap = new HashMap<>();
+		
+		emailAuthMap.put("mem_name", map.get("mem_name")); 
+		emailAuthMap.put("mem_email", map.get("mem_email"));
+		
+		int cnt = sqlSession.selectOne("mypage.emailAuth",emailAuthMap);
+		
+		
+		return cnt;
+	}
+
+
+	public String EmailAuthGetId(HashMap<String, Object> map) {
+		
+		Map<String, Object> emailAuthMap = new HashMap<>();
+		
+		emailAuthMap.put("mem_name", map.get("mem_name")); 
+		emailAuthMap.put("mem_email", map.get("mem_email"));
+		
+		String mem_id = sqlSession.selectOne("mypage.emailAuthGetId",emailAuthMap);
+		
+		
+		return mem_id;
+	}
+	
+	*/
 	public void commit() {
-    	sqlSession.commit();
-    }
-	
+		sqlSession.commit();
+	}
 }

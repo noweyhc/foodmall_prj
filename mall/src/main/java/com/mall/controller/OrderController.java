@@ -1,13 +1,21 @@
 package com.mall.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.mall.dao.order.OrderDao;
 import com.mall.vo.Order.OrderProdListVo;
 import com.mall.vo.Order.OrderShippingVo;
@@ -15,16 +23,17 @@ import com.mall.vo.Order.OrderShippingVo;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("payment")
 @RequiredArgsConstructor
 public class OrderController {
 	
 	private final OrderDao dao;
 
 	// 결제페이지로 이동
-	@GetMapping("/order.do")
+	@GetMapping("/order")
 	public String paymentForm(Model model,HttpSession session) {
 		// 세션
-		String mem_id = "jangilkyu";
+		String mem_id = (String) session.getAttribute("login");
 		
 		// 고객이 담은 장바구니 상품 정보 (상품번호/제목/서브제목/이미지/고객 장바구니 상품 총 가격/고객 장바구니 상품 수량)
 		List<OrderProdListVo> cVoList = dao.findCartList(mem_id);
@@ -62,7 +71,29 @@ public class OrderController {
 		// 결제시 구매상품 외 x건
 		model.addAttribute("prodQty", prodQty);
 		
-		return "order";
+		// 주문금액 + 배송비
+		model.addAttribute("lastTot",totAmount +fee);
+		
+		// 회원아이디
+		model.addAttribute("mem_id",mem_id);
+		
+		return "/payment/order";
 	}//paymentForm
+	
+	@PostMapping("a.do")
+	@ResponseBody
+	public String a(Model model, @RequestBody HashMap<String, Object> map) {
+
+		
+		int re = dao.insertOrderInfo(map);
+		
+		String lastTot = (String) map.get("lastTot");
+		String name = (String)map.get("phone");
+		String addr = (String)map.get("addr");
+		String zipcode = (String)map.get("zipcode");
+		String detailAddr = (String)map.get("detailAddr");
+		
+		return "";
+	}
 	
 }//class

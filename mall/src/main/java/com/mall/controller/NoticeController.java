@@ -37,8 +37,6 @@ public class NoticeController {
 		totalRecord = dao.totBoard(map);
 		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
-		System.out.println("pageNUM:" + pageNUM);
-
 		// 우리는 한화면에 10개씩 보여주고 싶어요 ==> pageSIZE
 		// 만약 현재페이지가 1페이지라면 보여줘야 할 시작레코드는 1
 		// 만약 현재페이지가 2페이지라면 보여줘야 할 시작레코드는 11
@@ -48,11 +46,14 @@ public class NoticeController {
 		map.put("start", start);
 		map.put("end", end);
 
+<<<<<<< HEAD
 		System.out.println("시작레코드:" + start);
 		System.out.println("끝나는레코드:" + end);
 		System.out.println("-------------------------------");
 
 		
+=======
+>>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", dao.listNotice(map));
 		mav.addObject("totalPage", totalPage);
@@ -60,22 +61,23 @@ public class NoticeController {
 	}
 
 	// 글 쓰기
-	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.GET)
-	public void insertNoticeForm() {
+	@RequestMapping(value = "/admin/insertNotice.do", method = RequestMethod.GET)
+	public String insertNoticeForm() {
+		return "admin/insertNotice";
 	}
 
 	// 글 쓰기 완료
-	@RequestMapping(value = "/insertNotice.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insertNotice.do", method = RequestMethod.POST)
 	public ModelAndView insertNoticeSubmit(NoticeVo n) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.insertNotice(n);
 		if (re == 1) {
 			mav.setViewName("redirect:/listNotice.do");
-			System.out.println("등록 성공");
 		} else {
 			mav.addObject("msg", "게시물 등록에 실패하였습니다.");
 			mav.setViewName("error");
 		}
+		mav.setViewName("admin/insertNotice");
 		return mav;
 	}
 
@@ -89,17 +91,49 @@ public class NoticeController {
 		mav.addObject("n", dao.detailNotice(no));
 		return mav;
 	}
+	
+	// 관리자 페이지용 목록 조회+페이징
+	@RequestMapping("/admin/listNotice.do")
+	public ModelAndView listNoticeAdmin(HttpServletRequest request,
+			@RequestParam(value = "pageNUM", defaultValue = "1") int pageNUM) {
+		totalRecord = dao.totBoard();
+		totalPage = (int) Math.ceil(totalRecord / (double) pageSIZE);
 
+		// 우리는 한화면에 10개씩 보여주고 싶어요 ==> pageSIZE
+		// 만약 현재페이지가 1페이지라면 보여줘야 할 시작레코드는 1
+		// 만약 현재페이지가 2페이지라면 보여줘야 할 시작레코드는 11
+
+		int start = (pageNUM - 1) * pageSIZE + 1;
+		int end = start + pageSIZE - 1;
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", dao.listNotice(start, end));
+		mav.addObject("totalPage", totalPage);
+		mav.setViewName("admin/listNoticeAdmin");
+		return mav;
+	}
+	
+	// 관리자 페이지용 글 상세 조회
+	@RequestMapping("/admin/detailNotice.do")
+	public ModelAndView detailNoticeAdmin(int no) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("n", dao.detailNotice(no));
+		mav.setViewName("admin/detailNoticeAdmin");
+		return mav;
+	}
+		
+	
 	// 글 수정
-	@RequestMapping(value = "/updateNotice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/updateNotice.do", method = RequestMethod.GET)
 	public ModelAndView updateNoticeForm(HttpServletRequest request, int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("n", dao.detailNotice(no));
+		mav.setViewName("admin/updateNotice");
 		return mav;
 	}
 
 	// 글 수정완료
-	@RequestMapping(value = "/updateNotice.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/updateNotice.do", method = RequestMethod.POST)
 	public ModelAndView updateNoticeSubmit(NoticeVo n) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.updateNotice(n);
@@ -109,19 +143,21 @@ public class NoticeController {
 			mav.addObject("msg", "삭제에 실패하였습니다.");
 			mav.setViewName("error");
 		}
+		mav.setViewName("admin/updateNotice");
 		return mav;
 	}
 	
 	// 글 삭제
-	@RequestMapping(value = "/deleteNotice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/deleteNotice.do", method = RequestMethod.GET)
 	public ModelAndView deleteNoticeForm(int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("no", no);
+		mav.setViewName("admin/deleteNotice");
 		return mav;
 	}
 
 	// 글 삭제 완료
-	@RequestMapping(value = "/deleteNotice.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/deleteNotice.do", method = RequestMethod.POST)
 	public ModelAndView deleteSubmit(int no) {
 		ModelAndView mav = new ModelAndView();
 		int re = dao.deleteNotice(no);
@@ -131,6 +167,7 @@ public class NoticeController {
 			mav.addObject("msg", "삭제에 실패하였습니다.");
 			mav.setViewName("error");
 		}
+		mav.setViewName("admin/deleteNotice");
 		return mav;
 	}
 

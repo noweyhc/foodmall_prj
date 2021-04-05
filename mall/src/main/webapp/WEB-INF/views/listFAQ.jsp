@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="header.jsp" %>
 <%@ include file="menubar.jsp" %>
+=======
+<%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/menubar.jsp"%>
+
+>>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +73,7 @@
 					href="listFAQ.do?pageNUM=${i }">${i }</a></li>
 			</c:forEach>
 		</ul>
+<<<<<<< HEAD
 
 		<!-- 관리자로 갈 글쓰기
 		<div class="row">
@@ -99,6 +106,17 @@
 	</div>
 	
 	<%@ include file="footer.jsp"%>
+=======
+	</div>
+
+
+	<!-- <div id="input-field col s10">
+			<input type="text" id="keyword" placeholder="검색할 상품명을 입력">
+			<button id="searchBtn">검색</button>
+		</div> -->
+
+<%@ include file="footer.jsp"%>	
+>>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 </body>
 </body>
 </html>

@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/header.jsp"%>
+<%@ include file="/WEB-INF/views/menubar.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 
  
+=======
+<!-- Compiled and minified CSS -->
+>>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -53,6 +60,7 @@
 					href="listNotice.do?pageNUM=${i }">${i }</a></li>
 			</c:forEach>
 		</ul>
+<<<<<<< HEAD
 
 
 <!-- 		<div class="row">
@@ -77,14 +85,10 @@
 		</div>
 	</div>
 
+=======
+	</div>
+	
+<%@ include file="footer.jsp"%>	
+>>>>>>> 0fe2efd2f72586584fccf28cb9a99053acfc34ee
 </body>
 </html>
-
-
-
-
-
-
-
-
-

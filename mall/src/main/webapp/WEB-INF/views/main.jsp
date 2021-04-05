@@ -18,29 +18,21 @@
 </head>
 <body>
 
-    <!-- 이벤트 배너 영역 시작 -->
+    <!-- 이벤트 배너 영역 시작 eventList-->
     <div id="event-banner" class="event-banner">
 		<div class="viewbox">
 			<div class="track">
-				<div class = "slide active">
-					<img class="banner-image" src="static/img/banner01.PNG">
-				</div>
-				<div class = "slide">
-					<img class="banner-image" src="static/img/banner02.PNG">
-				</div>
-				<div class = "slide">
-					<img class="banner-image" src="static/img/banner03.PNG">
-				</div>
-				<div class = "slide">
-					<img class="banner-image" src="static/img/banner04.PNG">
-				</div>
+				<c:forEach var="e" items="${eventList }">
+					<div class = "slide">
+						<img class="banner-image" src="img/${e.event_img }">
+					</div>
+				</c:forEach>
 			</div>
 			
 			<div class="dot-indicator">
-				<div class="dot active"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
+				<c:forEach var="e" items="${eventList }">
+					<div class="dot"></div>
+				</c:forEach>
 			</div>
 			
 			<div class="arrow">

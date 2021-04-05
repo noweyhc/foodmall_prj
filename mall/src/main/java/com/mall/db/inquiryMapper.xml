@@ -7,6 +7,13 @@
 
   <select id="totBoard" resultType="java.lang.Integer">
   	select count(*) FROM tb_cs
+  	<if test="keyword != ''">
+  		<choose>
+  	  		<when test="searchFeild == 'cs_title'">
+		  		WHERE cs_title like '%' || #{keyword} || '%'
+  	  		</when>  			
+  		</choose>
+  	</if>  	
   </select>
 
   <select id="findAll" resultType="com.mall.vo.user.UserVO">
@@ -18,8 +25,20 @@
   </insert>
   
   <select id="findAllInquiry" resultType="com.mall.vo.inquiry.InquiryVo">
-      select cs_no, cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from (select rownum num, cs_no,cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from
-	(select * from tb_cs order by cs_no desc)) where num between #{start} and #{end}
+      SELECT
+       cs_no, cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from (select rownum num, cs_no,cs_mem_id ,cs_title,cs_content,cs_regdate,cs_category_one,cs_category_two,cs_fname,cs_email,cs_phone,cs_response from
+	(select * from tb_cs 
+	  <if test="keyword != ''">
+	    <choose>
+	    	<when test = "searchFeild == 'cs_title'">
+			  	WHERE cs_title like '%' || #{keyword} || '%'
+	    	</when>
+	  		<when test="searchFeild == 'cs_mem_id'">
+	  				where cs_mem_id like '%' || #{keyword} || '%'
+	  		</when>
+	    </choose>
+ 	 </if>
+	order by cs_no desc)) where num between #{start} and #{end}
   </select>
   
   <select id="selectInquiry" resultType="com.mall.vo.inquiry.InquiryVo">
@@ -31,10 +50,18 @@
   </select>
   
   <select id="findMyInq" resultType="com.mall.vo.mypage.MyInqListVo">
-	  	SELECT no,cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck FROM (SELECT ROWNUM no, cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck from
+	  SELECT no,cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck FROM (SELECT ROWNUM no, cs_no, cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck from
      (SELECT cs_no,cs_title,cs_category_two,cs_regdate,cs_response,cs_respcheck
   		FROM tb_cs
-  		WHERE cs_mem_id = #{cs_mem_id} ORDER BY CS_NO DESC))
+  		WHERE cs_mem_id = #{cs_mem_id}
+  		<if test="keyword != ''">
+  			<choose>
+  	  			<when test="searchFeild == 'cs_title'">
+		  			AND cs_title like '%' || #{keyword} || '%'
+  	  			</when>  			
+  			</choose>
+  		</if>
+  		ORDER BY CS_NO DESC))
       WHERE no between #{start} and #{end}
   </select>
 
@@ -60,6 +87,20 @@
   
   <select id="findInqResp" resultType="com.mall.vo.mypage.MyInqDetRespVo">
   		SELECT ans_title,ans_content,ans_regdate,ans_cs_no from tb_cs_answer WHERE ans_cs_no = #{ans_cs_no}
+  </select>
+  
+  <select id="cntTbCs" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM tb_cs
+  	  	<if test="keyword != ''">
+  	  		<choose>
+  	  			<when test="searchFeild == 'cs_title'">
+  	  				where cs_title like '%' || #{keyword} || '%'
+  	  			</when>
+  	  			<when test="searchFeild == 'cs_mem_id'">
+  	  				where cs_mem_id like '%' || #{keyword} || '%'
+  	  			</when>
+  	  		</choose>
+ 	 	</if>
   </select>
   
 </mapper>

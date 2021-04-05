@@ -1,58 +1,144 @@
-    	let code;
+let code;
 
-    	/* =============== 이메일 수정 클릭 시 visible =================*/
-        $("#btn-email").click(function(){
-           $("#emailForm").css("visibility",'visible'); 
-        });    
+let emailValid = {
 
-    	/* =============== 이메일 수정 취소 클릭 시 visible =================*/
+	init : function(){
+		let _this = this;
+		
+		$("#btn-email").on('click',function(){
+			_this.showEmailForm();
+		});
         $("#btnEmailCheckCancel").click(function(){
-		   $("#emailForm").css("visibility",'hidden');        
-        });
-        
-    	/* =============== 이메일 인증 =================*/
+			_this.btnChkCan();	
+		});
         $("#btnEmailSendCode").click(function(){
+			_this.sendEmaCode();		
+		});
+        $("#btnEmailCheck").click(function(){
+			_this.chckEmail();
+		});
+	},
+	
+	// 이메일 수정
+	showEmailForm : function(){
+       $("#emailForm").css("visibility",'visible'); 
+	   $('#email').focus();
+	},
+	
+	// 이메일 수정 취소
+	btnChkCan : function(){
+	   $("#emailForm").css("visibility",'hidden');       
+ 	   $('#email').val('');
+	   $('#inputEmail').val(''); 
+	},
+	
+	// 이메일 수정 버튼 클릭 시
+	sendEmaCode : function(){
            let email = $("#email").val();
-           
-            if (email == '') {
-            	$('#emailValidCheck').html('인증번호를 입력해주시기바랍니다.').css('color','red');
-            	$('#email').val('');
-            	$('#email').focus();
-            }
+            // 만약 email값이 공백이면 에러
+            if ($('#email').val() == '') {
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+				};
+					// 안내 문구
+					toastr.error('이메일을 정확히 입력해 주시기바랍니다.!');
+					// 이메일input으로 다시 포커스
+            		$('#email').focus();
+					return false;
+            }//end if
             
+			// 이메일 변경 위한 인증 코드 발송
             let data = {email:email};
             
             $.ajax({
-                url :"/sendEmailCode.do",
+                url :"/mypage/sendEmailCode",
                 data:data
             }).done(function(data){
                 code = data;
-                alert("인증코드를 발송하였습니다.");
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "100000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+				};
+				toastr.info('인증코드를 발송하였습니다.');
+	            $('#inputEmail').focus();
             });
             
-        });
-        
-        /*================이메일 인증완료 후 수정완료 클릭 시 이메일 변경====================*/
-        $("#btnEmailCheck").click(function(){
-        
-        	let userCode = $("#inputEmail").val();
+	},
+	// 수정 완료 버튼 클릭 시
+	chckEmail : function(){
+		    let userCode = $("#inputEmail").val();
         	let email = $('#email').val();
         	
         	let data = {email:email};
         
+			// 만약 고객이 input창에 입력한 인증 번호와 메일로 전송 된 인증코드가 일치 한다면
         	if(code == userCode){
         		$.ajax({
-        			url : "/updateEmail.do",
+        			url : "/mypage/updateEmail",
         			data:data,
 					type:'GET'
-        		}).done(function(data){
-					alert('성공적으로 이메일 변경이 완료되었습니다.');
-        			$("") // jstl문법 변수처리 가능한지 확인해보기
+        		}).done(function(){
+					// 인증 코드 일치 시 
+					alert('성공적으로 변경이 완료되었습니다.');
+					location.replace('/mypage/userInfoUpdate');
         		}).fail(function(){
 					alert("실패");
 				});
         	}else{
-        		alert("일치하지않습니다.");
-        		$('#validInput').val('');
+			// 인증 코드 불 일치 시
+				toastr.options = {
+						  "closeButton": false,
+						  "debug": false,
+						  "newestOnTop": false,
+						  "progressBar": false,
+						  "positionClass": "toast-bottom-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": "300",
+						  "hideDuration": "1000",
+						  "timeOut": "5000",
+						  "extendedTimeOut": "1000",
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+				};
+					// 안내 문구
+					toastr.error('인증번호가 일치하지 않습니다.');
+					// 인증코드 값 비우고 
+	        		$('#validInput').val('');
+					// 포커스 인증코드 input
+            		$('#validInput').focus();
+					return false;
         	}
-        });
+	}
+}
+
+emailValid.init();
