@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +78,6 @@
 	});
 */
 </script>
-
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

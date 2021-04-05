@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/mainPage/footerStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/footerStyle.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <title>footer</title>
 </head>

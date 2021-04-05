@@ -73,12 +73,7 @@
 
 			<!-- 전송 하기 버튼 -->
 			<div class="row">
-				<a class="waves-effect waves-light btn" id="btnsend"
-					href="updateFAQ.do?no=${f.faq_no }">수정</a> <a
-					class="waves-effect waves-light btn" id="btnsend"
-					href="deleteFAQ.do?no=${f.faq_no }">취소</a> <a
-					class="waves-effect waves-light btn" id="btnsend" href="listFAQ.do">목록보기</a>
-
+				<a class="waves-effect waves-light btn" id="btnsend" href="listFAQ.do">목록보기</a>
 			</div>
 
 		</div>

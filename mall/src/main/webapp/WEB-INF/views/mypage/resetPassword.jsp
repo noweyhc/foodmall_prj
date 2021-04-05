@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,45 +21,49 @@
     <link rel="stylesheet" href="/static/css/myPage/wrap.css">
 </head>
 <body>
-    
-    <h2>비밀번호 변경</h2>
-     <div class="pass-container">
-         <!-- 현재 비밀번호-->
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">vpn_key</i>
-              <input id="currPassword" name="currPassword"  type="password" class="validate">
-              <label for="password">현재 비밀번호</label>
-              <font id="currChkPwd" size="2"></font>
-            </div>
-          </div>
-          <!-- 새 비밀번호-->
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">https</i>
-              <input id="newPassword" name="newPassword"  type="password" class="validate">
-              <label for="password">새 비밀번호</label>
-            </div>
-          </div>
-          <!-- 새 비밀번호 확인-->
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">https</i>
-              <input id="newChkPassword" name="newChkPassword"  type="password" class="validate">
-              <label for="password">새 비밀번호 확인</label>
-            </div>
-          </div>
-         <font id="chkpwd" size="2"></font>
-	<!-- 비밀번호 변경 버튼-->
-	<div id="pwd-btn">
-	  <button class="btn waves-effect waves-light" id="sendPwd" type="submit" >Submit
-	    <i class="material-icons right">send</i>
-	  </button>      
-	    </div>
+   <div class="wrap">
+   <div style="margin-left: 70px;">
+    <h4>비밀번호 변경</h4>
+		    <form action="/mypage/resetPassword" method="post">
+			     <div class="pass-container">
+			         <!-- 현재 비밀번호-->
+			          <div class="row">
+			            <div class="input-field col s12">
+			              <i class="material-icons prefix">vpn_key</i>
+			              <input id="currPassword" name="currPassword"  type="password" class="validate">
+			              <label for="password">현재 비밀번호</label>
+			            </div>
+			          </div>
+			          <!-- 새 비밀번호-->
+			          <div class="row">
+			            <div class="input-field col s12">
+			              <i class="material-icons prefix">https</i>
+			              <input id="newPassword" name="newPassword"  type="password" class="validate">
+			              <label for="password">새 비밀번호</label>
+			            </div>
+			          </div>
+			          <!-- 새 비밀번호 확인-->
+			          <div class="row">
+			            <div class="input-field col s12">
+			              <i class="material-icons prefix">https</i>
+			              <input id="newChkPassword" name="newChkPassword"  type="password" class="validate">
+			              <label for="password">새 비밀번호 확인</label>
+			            </div>
+			          </div>
+			         <font id="chkpwd" size="2"></font>
+				<!-- 비밀번호 변경 버튼-->
+				<div id="pwd-btn">
+				  <button class="btn waves-effect waves-light" id="sendPwd" type="submit" >Submit
+				    <i class="material-icons right">send</i>
+				  </button>      
+				    </div>
+				</div>
+			</form>
+		</div>
 	</div>
-		    	<%@ include file="../footer.jsp" %>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/static/js/resetPassword.js"></script>
+<!-- <script src="/static/js/resetPassword.js"></script> -->
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

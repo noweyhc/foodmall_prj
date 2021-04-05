@@ -8,6 +8,9 @@ const dots = Array.from(dotIndicator.children);
 const slideSize = slides[0].getBoundingClientRect();
 const slideWidth = slideSize.width;
 
+slides[0].classList.add('active');
+dots[0].classList.add('active');
+
 const slidePosition = (slide, index) => {
 	slide.style.left = `${slideWidth * index}px`;
 }
@@ -44,7 +47,6 @@ rightBtn.addEventListener('click', (e) => {
 
 	slideToMove(track, currentSlide, nextSlide);
 	updateDots(currentDot, nextDot);
-	btnShowHide(nextIndex, leftBtn, rightBtn, slides);
 	if(e.detail > 1) return;
 });
 
@@ -69,7 +71,6 @@ leftBtn.addEventListener('click', (e) => {
 
 	slideToMove(track, currentSlide, prevSlide);
 	updateDots(currentDot, prevDot);
-	btnShowHide(prevIndex, leftBtn, rightBtn, slides)
 	if(e.detail > 1) return;
 });
 
@@ -85,7 +86,10 @@ dotIndicator.addEventListener('click', (e) => {
 
 	slideToMove(track, currentSlide, targetSlide)
 	updateDots(currentDot, targetDot);
-	btnShowHide(targetIndex, leftBtn, rightBtn, slides)
 	if(e.detail > 1) return;
 });
 
+window.onload = function(){
+	setInterval(function(){
+		rightBtn.click()}, 5000);	
+}

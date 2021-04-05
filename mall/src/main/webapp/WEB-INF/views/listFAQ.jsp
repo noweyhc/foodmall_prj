@@ -56,12 +56,6 @@
 					href="listFAQ.do?pageNUM=${i }">${i }</a></li>
 			</c:forEach>
 		</ul>
-
-
-		<div class="row">
-			<button class="btn waves-effect waves-light" type="button"
-				name="insert" onclick="location.href='insertFAQ.do' ">글쓰기</button>
-		</div>
 	</div>
 
 

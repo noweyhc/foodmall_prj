@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="/css/mainPage/menubarStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mainPage/menubarStyle.css">
 	<script src="https://kit.fontawesome.com/02a1ffc4ee.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -34,11 +34,10 @@
 			<div class=category-list>
 				<ul style="margin-top: 0px; margin-bottom: 0px;">
 					<li><a href='/listProducts.do'>전체상품</a></li>
-					<li><a href='#'>정기구독</a></li>
 					<li><a href='/set'>세트판매</a></li>
 					<li><a href='/timesale'>타임세일</a></li>
 					<li><a href='/reviewList'>회원리뷰</a></li>
-					<li><a href='#'>이벤트</a></li>
+					<li><a href='/events'>이벤트</a></li>
 				</ul>
 			</div>
 			<div class="search-wrap">
@@ -62,9 +61,9 @@
 	$(function(){
 	$(window).scroll(function(){  //스크롤하면 아래 코드 실행
 	       var num = $(this).scrollTop();  // 스크롤값
-	       if( num > 220 ){  // 스크롤을 36이상 했을 때
-	          $(".divide-line").css("top", "0px");
+	       if( num > 230 ){  // 스크롤을 36이상 했을 때
 	          $(".divide-line").css("position","fixed");
+	          $(".divide-line").css("top", "0px");
 	       }else{
 	           $(".divide-line").css("position","relative");
 	       }

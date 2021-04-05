@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,5 +34,6 @@
             <a class="waves-effect waves-light btn-small" href="/login/pwdInquiry"><i class="material-icons left">mood</i>비밀번호 찾기</a>
         </div>
     </div>    
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>
