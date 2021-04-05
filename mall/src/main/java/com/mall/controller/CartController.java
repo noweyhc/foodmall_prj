@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.cart.CartDao;
-import com.mall.util.AdminUtil;
 import com.mall.util.CookieUtil;
 import com.mall.vo.cart.CartVo;
 
