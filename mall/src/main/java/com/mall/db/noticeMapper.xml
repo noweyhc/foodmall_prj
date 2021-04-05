@@ -8,7 +8,18 @@
 	<select id="findAll" resultType="com.mall.vo.notice.NoticeVo">
 		select notice_no,notice_title,notice_content,notice_regdate,notice_hit,notice_manager  
   	  	from (select rownum num,notice_no,notice_title,notice_content,notice_regdate,notice_hit,notice_manager
-    	from (select * from tb_notice order by notice_no desc)) 
+    	from (select * from tb_notice 
+    	<if test="searchKeyword != null and searchKeyword != ''">
+  			<choose>
+		   	 	<when test="searchType == 'all'">
+   					where Notice_TITLE like '%' || #{searchKeyword} || '%' or Notice_CONTENT like '%' || #{searchKeyword} || '%' 
+			    </when>
+			    <otherwise>
+   					where ${searchType} like '%' || #{searchKeyword} || '%'
+			    </otherwise>
+		  	</choose>
+ 		</if>
+ 		 order by notice_no desc)) 
 		where num between #{start} and #{end}
 	</select>
 	
@@ -31,23 +42,22 @@
 	<!-- 페이징을 위한 총 글 수 -->
  	<select id="totBoard" resultType="java.lang.Integer">
   		select count(*) from tb_notice
+  		<if test="searchKeyword != null and searchKeyword != ''">
+  			<choose>
+		   	 	<when test="searchType == 'all'">
+   					where NOTICE_TITLE like '%' || #{searchKeyword} || '%' or NOTICE_CONTENT like '%' || #{searchKeyword} || '%' 
+			    </when>
+			    <otherwise>
+   					where ${searchType} like '%' || #{searchKeyword} || '%'
+			    </otherwise>
+		  	</choose>
+ 		</if>
   	</select>
   	
   	<!-- 조회수 증가 -->
   	<update id="updateHit">
   		update tb_notice set notice_hit=notice_hit+1 where notice_no=#{notice_no}
  	</update>
- 	
- 	<!-- 검색 기능 -->
- 	<select id="findTotalRecord" resultType="java.lang.Integer">
-		select * 
-		from tb_notice 
-		where notice_title like '%||#{keyword}||%' 
-		or notice_content '%||#{keyword}||%'
 
-select *
-from tb_notice
-where NOTICE_title like '%keyword%';
-	</select>
 
 </mapper>

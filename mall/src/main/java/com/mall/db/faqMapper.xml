@@ -8,7 +8,18 @@
 	<select id="findAll" resultType="com.mall.vo.faq.FaqVo">
 		select faq_no,faq_title,faq_regdate,faq_hit,faq_manager  
   	  	from (select rownum num,faq_no,faq_title,faq_regdate,faq_hit,faq_manager
-    	from (select * from tb_faq order by faq_no desc)) 
+    	from (select * from tb_faq 
+    	<if test="searchKeyword != null and searchKeyword != ''">
+  			<choose>
+		   	 	<when test="searchType == 'all'">
+   					where FAQ_TITLE like '%' || #{searchKeyword} || '%' or FAQ_CONTENT like '%' || #{searchKeyword} || '%' 
+			    </when>
+			    <otherwise>
+   					where ${searchType} like '%' || #{searchKeyword} || '%'
+			    </otherwise>
+		  	</choose>
+ 		</if>
+    	 order by faq_no desc)) 
 		where num between #{start} and #{end}
 	</select>
 	
@@ -30,14 +41,23 @@
   	</delete>
 
  	<select id="totBoard" resultType="java.lang.Integer">
-  		select count(*) from tb_faq
+  		select count(*) from tb_faq 
+  		<if test="searchKeyword != null and searchKeyword != ''">
+  			<choose>
+		   	 	<when test="searchType == 'all'">
+   					where FAQ_TITLE like '%' || #{searchKeyword} || '%' or FAQ_CONTENT like '%' || #{searchKeyword} || '%' 
+			    </when>
+			    <otherwise>
+   					where ${searchType} like '%' || #{searchKeyword} || '%'
+			    </otherwise>
+		  	</choose>
+ 		</if>
   	</select>
   	
   	<!-- 조회수 증가 -->
   	<update id="updateHit">
   		update tb_faq set faq_hit=faq_hit+1 where faq_no=#{faq_no}
  	</update>
-  	
   	
 
 </mapper>

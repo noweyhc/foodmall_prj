@@ -72,7 +72,7 @@
 
 			<!-- 전송 하기 버튼 -->
 			<div class="row">
-				<a class="waves-effect waves-light btn" id="btnsend"
+				<a class="btn waves-effect waves-light" id="btnsend"
 				href="listNotice.do">목록보기</a>
 			</div>
 
