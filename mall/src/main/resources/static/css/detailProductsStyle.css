@@ -209,3 +209,22 @@
 	margin-bottom: 40px;
 }
 
+.navi-button {
+	border: none;
+	background-color: #b7d9d4;
+}
+
+.navi-button:hover {
+	border: none;
+	background-color: #26A69A;
+}
+
+.navibar-line {
+	margin-top: 0px;
+	height: 2px !important;
+	color: #26a69a;
+}
+
+.product-reviews {
+	margin-bottom: 100px;
+}
