@@ -132,6 +132,7 @@
 </body>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="http://jsgetip.appspot.com"></script>
 	<script type="text/javascript">
 	/*
 		$(function(){
@@ -143,12 +144,22 @@
 		});
 	*/
 	
+
 	$("#input_cart").on('click',function(){
 			if($("#mem_id").val() == 0){
 					alert("로그인 후 이용가능합니다.");	
+					
+					/*
+					document.write(ip());
+					$.getJSON('http://jsonip.appspot.com/?callback=?', function(data){ 
+					// alert(data.ip);	
+					// document.getElementById("mem_id").innerHTML = data.ip;
+					});
 					location.href="/login/userLogin";			
+					*/
 			}
 	});
+	
 	
 	
 	// 상품 수량 선택 이벤트처리
