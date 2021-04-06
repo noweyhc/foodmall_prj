@@ -91,7 +91,7 @@
 		        <input type="file" name="uploadFile">
 		      </div>
 		      <div class="file-path-wrapper">
-		        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+		        <input class="file-path validate" type="text" placeholder="사진을 업로드해주시기 바랍니다.">
 		      </div>
 		    </div>        
 		    

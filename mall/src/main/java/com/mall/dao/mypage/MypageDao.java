@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.Order.OrderListVo;
 import com.mall.vo.mypage.MaskingVo;
 import com.mall.vo.mypage.MyInqDetailVo;
 import com.mall.vo.mypage.MyInqListVo;
@@ -167,9 +168,17 @@ public class MypageDao {
 		
 		return maskVo;
 	}
+
+	public List<OrderListVo> findOrderList(String order_mem_id) {
+
+		List<OrderListVo> odList = sqlSession.selectList("mypage.findOrderList",order_mem_id);
+		
+		return odList;
+	}
 	
 	public void commit() {
 		sqlSession.commit();
 	}
+
 
 }

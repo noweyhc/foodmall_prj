@@ -82,5 +82,9 @@
   <select id="getMaskInfo" resultType="com.mall.vo.mypage.MaskingVo">
   	SELECT mem_email, mem_phone FROM tb_member WHERE mem_id = #{mem_id}
   </select>
+    
+  <select id="findOrderList" resultType="com.mall.vo.Order.OrderListVo">
+  	SELECT * FROM tb_order WHERE order_mem_id = #{order_mem_id}
+  </select>
   
 </mapper>

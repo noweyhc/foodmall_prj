@@ -85,16 +85,23 @@
         </div>
       </div>      	
       <!-- 문의 첨부한 이미지 -->
-	  <div class="row">
-	  	<div class="input-field col s5">
-	  	<i class="material-icons prefix">image</i>
-	  	<label for="cs_fname">첨부 이미지</label>
-	  		<br>
-	  		<br>
-	  		<br>
-	  		<img src="../inquiry/${userIqVo.cs_fname }" id="cs_fname">
-        </div>   
-	  </div>   
+			<c:choose>
+				<c:when test="${userIqVo.cs_fname eq 'notExist'}">
+					<p>첨부 된 사진이 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+			  <div class="row">
+			  	<div class="input-field col s5">
+			  	<i class="material-icons prefix">image</i>
+			  	<label for="cs_fname">첨부 이미지</label>
+			  		<br>
+			  		<br>
+			  		<br>
+			  		<img src="../inquiry/${userIqVo.cs_fname }" id="cs_fname">
+		        </div>   
+			  </div>   
+				</c:otherwise>
+			</c:choose>
 	
 	  <!-- 답변 하기 버튼 -->
 	  <div class="row">

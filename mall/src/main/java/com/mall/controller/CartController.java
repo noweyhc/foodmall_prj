@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class CartController {
 
 	private final CartDao dao;
-	private final CookieUtil cookie;
+//	private final CookieUtil cookie;
 
 	// 장바구니에 상품 담기
 	@RequestMapping("/insert.do")

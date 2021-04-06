@@ -1,6 +1,6 @@
 package com.mall.vo.inquiry;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 
