@@ -78,4 +78,19 @@ public class SetDao {
 		return list;
 	}
 	
+	//세트 상품 정보를 수정하고 성공 여부를 반환합니다
+	public int updateSet(SetVo sv) {
+		int re = sqlSession.update("sets.update", sv);
+		return re;
+	}
+	
+	//세트 상품의 하위 상품 목록을 삭제하고 성공 여부를 반환합니다
+	public int deleteComponents(int no) {
+		int re = sqlSession.delete("sets.deleteComponents", no);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
 }

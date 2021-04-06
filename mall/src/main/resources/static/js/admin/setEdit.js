@@ -3,7 +3,7 @@ let setNo = document.getElementById('set_no').value;
 let ajaxUrl = '/admin/set-edit/' + setNo;
 
 $('#sale-register-submit').click(function(){
-	let updateData = new FormData(document.getElementById('set-edit'));	
+	let updateData = new FormData(document.getElementById('set-register'));	
 	
 	$.ajax({
 		url:ajaxUrl,

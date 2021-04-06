@@ -457,8 +457,34 @@ public class AdminController {
 	//POST 방식 접근, 세트 수정 페이지로 이동
 	@RequestMapping(value= "/set-edit/{setNo}", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateSet(SetVo sv, HttpServletRequest request) {
+	public String updateSet(@PathVariable int setNo, SetVo sv, HttpServletRequest request) {
+		String path = request.getRealPath("/img");
+		String imgName = "";
 		
+		if(sv.getImgFile().getSize() != 0) {
+			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
+			String oldImgPath = path + "/" + sv.getSet_img();
+			util.deleteImg(oldImgPath);			
+			imgName = util.renameSetImg(sv.getSet_no(), sv.getImgFile());
+			sv.setSet_img(imgName);
+			
+			try {
+				util.uploadImg(path, sv.getImgFile(), imgName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		int re = setdao.updateSet(sv);
+		
+		//하위 상품의 상품번호를 배열로 가져옴
+		String[] arr = request.getParameterValues("productNo");
+		re = setdao.deleteComponents(sv.getSet_no());
+		
+		for(String no: arr) {
+			SetComponentVo cv = new SetComponentVo(sv.getSet_no(), Integer.parseInt(no));
+			int re2 = setdao.registerSetComponent(cv);
+		}
+
 		return "";
 	}
 	
