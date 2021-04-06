@@ -24,7 +24,7 @@
 			<div class="track">
 				<c:forEach var="e" items="${eventList }">
 					<div class = "slide">
-						<img class="banner-image" src="img/${e.event_img }">
+						<a href="${e.event_link }"><img class="banner-image" src="img/${e.event_img }"></a>
 					</div>
 				</c:forEach>
 			</div>
