@@ -114,6 +114,7 @@ public class ProductDao {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("category", category_no);
 
 		List<ProductVo> list = sqlSession.selectList("products.category", map);
 		return list;

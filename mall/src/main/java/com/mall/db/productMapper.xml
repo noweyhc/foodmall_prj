@@ -67,6 +67,12 @@
 	</select>
 	
 	<!-- 카테고리 -->
+	<select id="category" resultType="productVo">
+		select * from TB_PRODUCT 
+		where category_no = #{category_no}
+		order by product_regdate
+	</select>	
+	
 	<select id="selectCategory" resultType="productVo">
 		select * from TB_PRODUCT
 		where product_category like #{keyword}

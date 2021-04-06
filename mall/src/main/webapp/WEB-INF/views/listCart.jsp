@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>listCart</title>
 	
+	<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 
     <link rel="stylesheet" href="static/css/mainpageStyle.css">
     <link rel="stylesheet" href="static/css/listCartStyle.css">
@@ -38,14 +39,16 @@
 				<hr>
 				
 				<c:choose>
-					<c:when test="${map.count==0 }">장바구니가 비어있습니다.</c:when>
+					<c:when test="${map.count==0 }">
+						장바구니가 비어있습니다.
+					</c:when>
 					
 					<c:otherwise>
 						<form name="form-cart" id="form-cart" method="post" action="/update.do">
 							<table border="1" class="table table-bordered" style="padding: 0 10px; text-align: center">
 								<thead class="thead-dark">
 								<tr>
-									<th>선택</th>
+									<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
 									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>단가</th>
@@ -53,12 +56,10 @@
 									<th>금액</th>
 									<th></th>
 								</tr>
-								<c:forEach var="c" items="${map.list}" varStatus="i">
+								<c:forEach var="c" items="${map.list}">
 								<tr>
 									<td>
-										<form name="cart-checkBox" method="post" action="">
-											<input type="checkbox" value="${c.cart_no }">
-										</form>
+										<input type="checkbox" name="checkBox" id="checkBox" data-cartNum="${c.cart_no }">
 									</td>
 									<td>
 										<a href="/detailProducts.do?no=${c.product_no }">
@@ -71,7 +72,7 @@
 										</a>
 									</td>
 									<td style="width: 100px">
-										<fmt:formatNumber value="${c.product_price }" pattern="#,###"/>원
+										<fmt:formatNumber value="${c.product_price }" pattern="###,###,###"/>원
 									</td>
 									<td>
 										<input type="number" style="width: 50px" name="product_qty" value="${c.product_qty }">
@@ -79,7 +80,7 @@
 										<button type="submit" id="btn_update">변경</button>
 									</td>
 									<td style="width: 100px">
-										<fmt:formatNumber value="${c.product_total }" pattern="#,###"/>원
+										<fmt:formatNumber value="${c.product_total }" pattern="###,###,###"/>원
 									</td>
 									<td>
 										<a href="/delete.do?cart_no=${c.cart_no }" style="color: blue;">삭제</a>
@@ -101,10 +102,11 @@
 					</c:otherwise>
 				</c:choose>
 				<br><br>
-				<button type="submit" id="btn_choice">선택상품 결제</button>
-				<button type="submit" id="btn_order">전체상품 결제</button><br><br>
-				<hr>
-				<button type="button" id="btn_list">상품 더보기</button><br><br>
+				<button type="button" id="btn_selectDelete" class="button">선택상품 삭제</button>
+				<button type="button" id="btn_selectOrder" class="button">선택상품 결제</button>
+				<button type="button" id="btn_order" class="button">전체상품 결제</button><br><br>
+				<hr>10만원 이상 구매시 무료배송
+				<button type="button" id="btn_list" class="button">상품 더보기</button><br><br>
 			</div>
 	</section>
 	
@@ -114,19 +116,34 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
+		// 상품 목록 페이지로 이동
 		$(function(){
-			// 상품 더보기: 상품 목록 페이지로 이동
 			$("#btn_list").click(function(){
 				location.href="/listProducts.do";
 			});	
 		});
 		
+		// 결제페이지 이동
 		$(function(){
-			// 결제
 			$("#btn_order").click(function(){
 				location.href="#";
 			});	
 		});
+				
+		// 상품 전체선택
+		$("#allCheck").click(function(){
+			 var chk = $("#allCheck").prop("checked");
+			 if(chk) {
+			  $(".checkBox").prop("checked", true);
+			 } else {
+			  $(".checkBox").prop("checked", false);
+			 }
+		});
+		
+		// 상품 개별선택
+		 $(".checkBox").click(function(){
+		  $("#allCheck").prop("checked", false);
+		 });
 		
 	</script>
 </html>

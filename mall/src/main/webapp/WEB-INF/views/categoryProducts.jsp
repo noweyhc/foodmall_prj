@@ -21,14 +21,7 @@
 <body>
 	<div id="list">
 		<div class="list-title">
-			<c:choose>
-				<c:when test="${title != null}">
-					<h4>${title }</h4>	
-				</c:when>
-				<c:otherwise>
-					<h4>상품 목록</h4>
-				</c:otherwise>
-			</c:choose>
+			<h4>상품목록</h4>	
 		</div>
 		
 		<div class="list-wrap">
@@ -38,17 +31,7 @@
 						<li><a href="/detailProducts.do?no=${p.product_no }"><img class="list-item-image" src="img/${p.product_main_img}"></a></li>	
 				    	<li class="list-product-title"><a href="/detailProducts.do?no=${p.product_no }" class="a">${p.product_title }</a></li>
 						<li class="list-product-subtitle">${p.product_subtitle }</li>
-						<c:choose>
-							<c:when test="${saleMap[p.product_no] != null}">
-								<li class="sale-origin-price" value="${p.product_price }"><fmt:formatNumber value="${p.product_price }" pattern="##,###"/>원</li>
-								<li class="sale-price" value="${saleMap[p.product_no].timesale_saleprice }">
-									<span class="sale-rate">-0%</span>
-									<fmt:formatNumber value="${saleMap[p.product_no].timesale_saleprice }" pattern="##,###"/>원</li>
-							</c:when>
-							<c:otherwise>
-								<li class="list-price"><fmt:formatNumber value="${p.product_price }" pattern="##,###"/>원</li>
-							</c:otherwise>
-						</c:choose>
+						<li class="list-price"><fmt:formatNumber value="${p.product_price }" pattern="#,###"/>원</li>
 					</ul>
 			</div>
 			</c:forEach>
@@ -63,6 +46,5 @@
 	</div>
 
 	<%@ include file="footer.jsp"%>
-	<script type="text/javascript" src="js/saleUtil.js"></script>
 </body>
 </html>
