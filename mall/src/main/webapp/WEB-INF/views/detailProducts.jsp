@@ -141,14 +141,15 @@
 				}
 			});	
 		});
+	*/
 	
-	
-	$('#input_cart').on('click',function(){
-			if($('#mem_id') == ''){
-					alert('a');			
+	$("#input_cart").on('click',function(){
+			if($("#mem_id").val() == 0){
+					alert("로그인 후 이용가능합니다.");	
+					location.href="/login/userLogin";			
 			}
 	});
-	*/
+	
 	
 	// 상품 수량 선택 이벤트처리
 	function getProductQTY(){
