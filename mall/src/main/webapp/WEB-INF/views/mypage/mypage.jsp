@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
-<%@ include file="menubar.jsp" %>
+<%@ include file="../header.jsp" %>
+<%@ include file="../menubar.jsp" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,14 +44,15 @@
             </p>            
             <a class="waves-effect waves-light btn" href="/mypage/updateShipping">배송지 관리</a>
             </div>
-            
+            <!-- 
             <div>
             <h2 class="mypage-h2">주문정보 확인</h2>
             <p class="context">
                 내가 결제한 구매 내역을 확인 할 수 있습니다.
             </p>
-            <a class="waves-effect waves-light btn" href="userInfoUpdate.do">주문정보 확인</a>
+            <a class="waves-effect waves-light btn" href="/mypage/orderList">주문정보 확인</a>
             </div>
+             -->
             <div>
             <h2 class="mypage-h2">내가 한 문의 확인</h2>
             <p class="context">
@@ -76,6 +77,6 @@
     </div>
 </div>   
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="../footer.jsp" %>
   </body>
 </html>

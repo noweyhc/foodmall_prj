@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class InquiryEmailPhoneVo {
 
-	private String cs_email; 
-	private String cs_phone;
+	private String cs_email; // 고객 이메일
+	private String cs_phone; // 고객 핸드폰 번호
 	
 }

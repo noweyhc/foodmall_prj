@@ -1,6 +1,6 @@
 package com.mall.interceptor;
 
-import java.util.Hashtable;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,27 +15,20 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Component
 public class LoginSessionListener extends HandlerInterceptorAdapter implements HttpSessionBindingListener{
 
-	private static Hashtable<HttpSession, String> loginUser = new Hashtable<HttpSession,String>();
-
 	// preHandle() : 컨트롤러보다 먼저 수행되는 메서드
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        // session 객체를 가져옴
-        HttpSession session = request.getSession();
-        // login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
-        Object obj = session.getAttribute("login");
         
-		/*
-		  if ( obj ==null ){ // 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
-		  response.sendRedirect("/login/userLogin");
-		  return false; 
-		  // 더이상 컨트롤러 요청으로 가지않도록false로 반환함 
-		  }
-		*/
-        // preHandle의return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
-        // 따라서true로하면 컨트롤러 uri로 가게 됨.
-        return true;
+		if(request.getSession().getAttribute("login") != null){
+			System.out.println("a");
+			return true;
+		}else {
+			System.out.println("b");
+			System.out.println(request.getSession().getAttribute("login"));
+			response.sendRedirect("/");
+			return false;
+		}
     }
  
     // 컨트롤러가 수행되고 화면이 보여지기 직전에 수행되는 메서드

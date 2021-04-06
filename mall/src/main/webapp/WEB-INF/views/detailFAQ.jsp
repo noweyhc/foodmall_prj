@@ -73,7 +73,9 @@
 
 			<!-- 전송 하기 버튼 -->
 			<div class="row">
-				<a class="waves-effect waves-light btn" id="btnsend" href="listFAQ.do">목록보기</a>
+				<a class="btn waves-effect waves-light" id="btnsend" href="listFAQ.do">목록보기
+				<i class="material-icons right">send</i></a>
+
 			</div>
 
 		</div>

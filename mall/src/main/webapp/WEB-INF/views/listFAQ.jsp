@@ -91,72 +91,10 @@
 			</div>
 		</form>
 	</div>
+	<script src="/static/js/faqValidation.js"></script>
 	
 	<%@ include file="footer.jsp"%>
-		
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	 <%-- <div>
-		<div class="row">
-			<div class="iq-List-wrap">
-				<form action="">
-					<input type="hidden" name="boardCode" value="${param.boardCode }">
-					<input type="hidden" name="page" value="1"> 
-					<select
-						name="searchType">
-						<option value="FAQ_TITLE">제목</option>
-						<option value="FAQ_CONTENT">내용</option>
-						<option value="all">제목+내용</option>
-					</select> 
-
-					<label>Materialize Select</label>
-					
-					<input type="text" name="searchKeyword" placeholder="검색어 입력"> 
-					<input class="btn waves-effect waves-light" type="submit" value="검색">
-				</form>
-			</div>
-		</div>
-	</div> --%> 
-
-
-
-
-
-		<!-- 관리자로 갈 글쓰기
-		<div class="row">
-			<button class="btn waves-effect waves-light" type="button"
-				name="insert" onclick="location.href='insertFAQ.do' ">글쓰기</button>
-		</div> -->
 </body>
 </body>
 </html>

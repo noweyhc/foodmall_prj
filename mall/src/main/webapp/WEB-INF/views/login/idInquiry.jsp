@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="/static/css/myPage/idInquiry.css">
 
     <link rel="stylesheet" href="viewIdList.css">
+    
+
 </head>
 <body>
     <div class="idInquiry-container">
@@ -90,7 +92,7 @@
                     </div>
                 </div>
 	            <form action="/login/viewIdList" method="POST" onsubmit="return CheckEmail()">
-			        <input type="hidden" id="mem_id" name="mem_id" value="">
+			        <input type="hidden" id="mem_id2" name="mem_id" value="">
 		       <div class="submitBtn">
 	    		  <button class="btn waves-effect waves-light nextBtn" type="submit" id="emailSubmit" name="action">다음
 	   				 <i class="material-icons right">send</i>

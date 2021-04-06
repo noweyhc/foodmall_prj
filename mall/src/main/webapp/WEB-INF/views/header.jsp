@@ -28,7 +28,7 @@
 				<ul>
 					<li><a href="/signUp.do">회원가입</a></li>               
 					<li><a href="/login/userLogin">로그인</a></li>      
-					<li id="mypageLink"><a href="/mypage">마이페이지</a></li>      
+					<li id="mypageLink"><a href="/mypage/mypage">마이페이지</a></li>      
 				</ul>
 			</div>
 		</c:if>
@@ -36,7 +36,7 @@
 			<div class="header menu-right" id="menu-right">		
 				<ul>
 					<li><a href="/login/logout">로그아웃</a></li>
-					<li id="mypageLink"><a href="/mypage">마이페이지</a></li>      
+					<li id="mypageLink"><a href="/mypage/mypage">마이페이지</a></li>      
 				</ul>
 			</div>
 		</c:if>

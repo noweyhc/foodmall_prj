@@ -17,8 +17,6 @@
 	<link rel="stylesheet" href="/static/css/myPage/myInqDetail.css">
 	<link rel="stylesheet" href="/static/css/myPage/wrap.css">
 	<link rel="stylesheet" href="css/mainPage/footerStyle.css">
-	
-	<link rel="stylesheet" href="myInqDetail.css">
 </head>
 <body>
 
@@ -81,10 +79,17 @@
 		  	<i class="material-icons prefix">image</i>
 		  	<br>
 		  	<br>
-		  	<label for="cs_fname">첨부 이미지</label>
-        <div class="img-wrap">
-		  		<img src="/inquiry/${detailVo.cs_fname }" id="cs_fname">
-		</div>
+			<c:choose>
+				<c:when test="${detailVo.cs_fname eq 'notExist'}">
+					<p>첨부 된 사진이 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+				  	<label for="cs_fname">첨부 이미지</label>
+		        <div class="img-wrap">
+				  		<img src="/inquiry/${detailVo.cs_fname }" id="cs_fname">
+				</div>
+				</c:otherwise>
+			</c:choose>
 	        </div>   
 		  </div>      
 	    </div>
@@ -99,11 +104,23 @@
  	  
  	  <c:if test="${midrVo ne null }">
 	        <div class="row">
+		      <div class="row">
+		        <div class="input-field col s6">
+		          <i class="material-icons prefix">mode_edit</i>
+		          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+		          <label for="icon_prefix2">First Name</label>
+		        </div>
+		      </div>
 	        <div class="input-field col s6">
-	         	 <span id="resp-content">
-                  	     ${midrVo.ans_content }
-	         	 </span>
+	        	<p id="resp-title">
+			         <!-- 문의 제목  -->
+			         ${midrVo.ans_title }<br>
+	         	</p>
 	        </div>
+	         	 <p id="resp-content">
+			      	<!-- 문의 내용 -->
+			      	${midrVo.ans_content }
+	         	 </p>
 	      </div> 
 	  </c:if>
 </div>
