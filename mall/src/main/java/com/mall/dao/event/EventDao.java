@@ -72,8 +72,18 @@ private SqlSession sqlSession;
 		return now;
 	}
 	
+	//이벤트 정보를 수정
 	public int updateEvent(EventVo ev) {
 		int re = sqlSession.update("event.update", ev);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
+	//이벤트 정보 삭제
+	public int deleteEvnet(int no) {
+		int re = sqlSession.delete("event.delete", no);
 		if(re == 1) {
 			sqlSession.commit();
 		}

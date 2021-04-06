@@ -488,6 +488,18 @@ public class AdminController {
 		return "";
 	}
 	
+	//특정 세트 상품의 DB 데이터와 하위 상품 DB 데이터 삭제
+	@RequestMapping("/set-edit/delete")
+	public String deleteSet(int no, HttpServletRequest request) {
+		SetVo sv = setdao.selectOne(no);
+		String path = request.getRealPath("/img") + "/" + sv.getSet_img();
+		util.deleteImg(path);
+		//DB에서 해당 세트의 데이터를 삭제
+		setdao.deleteComponents(no);
+		setdao.deleteSet(no);
+		return "redirect:/admin/set-edit";
+	}
+	
 	//GET 방식 접근, 이벤트 등록 페이지로 이동
 	@RequestMapping(value = "/event-register", method = RequestMethod.GET)
 	public String registerEventForm(HttpServletRequest request) {
@@ -578,6 +590,17 @@ public class AdminController {
 		int re = eventdao.updateEvent(ev);
 		
 		return "";
+	}
+	
+	// 이벤트 이미지와 DB 데이터 삭제
+	@RequestMapping("/event-edit/delete")
+	public String deleteEvent(int no, HttpServletRequest request) {
+		EventVo ev = eventdao.selectEvent(no);
+		String path = request.getRealPath("/img") + "/" + ev.getEvent_img();
+		util.deleteImg(path);
+		int re = eventdao.deleteEvnet(no);
+		
+		return "redirect:/admin/event-edit";
 	}
 	
 }

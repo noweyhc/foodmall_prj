@@ -123,6 +123,7 @@ function deleteConfirmProduct(no, productName){
 	}
 }
 
+
 //이미지 업로드 시 미리보기 기능 구현
 function setImg(event, imgId) {
 	let reader = new FileReader();

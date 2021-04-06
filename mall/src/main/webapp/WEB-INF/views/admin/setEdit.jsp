@@ -50,7 +50,7 @@
 							<td>${s.set_stock }</td>
 							<td><img src="/img/${s.set_img }" style="width: 90px; height: 45px; object-fit: cover;"></td>
 							<td><i class="fas fa-edit" id="edit-icon" onclick="location.href='/admin/set-edit/${s.set_no }'"></i></td>
-							<td><i class="fas fa-trash-alt" id="delete-icon" onclick="deleteConfirmProduct('${s.set_no }','${s.set_title }')"></i></td>
+							<td><i class="fas fa-trash-alt" id="delete-icon" onclick="deleteConfirm('${s.set_no }','${s.set_title }')"></i></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -60,5 +60,13 @@
 	</div>
 
 <script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>
+<script type="text/javascript">
+	function deleteConfirm(no, title){
+		let deleteConfirm = confirm(no +'번 세트 : ' + title + ' 삭제합니다');
+		if(deleteConfirm){
+			location.href = '/admin/set-edit/delete?no=' + no;
+		}
+	}
+</script>
 </body>
 </html>

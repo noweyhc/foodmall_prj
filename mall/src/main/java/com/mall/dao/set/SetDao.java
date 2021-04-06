@@ -84,6 +84,15 @@ public class SetDao {
 		return re;
 	}
 	
+	//세트 상품 정보를 삭제합니다
+	public int deleteSet(int no) {
+		int re = sqlSession.delete("sets.delete", no);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
 	//세트 상품의 하위 상품 목록을 삭제하고 성공 여부를 반환합니다
 	public int deleteComponents(int no) {
 		int re = sqlSession.delete("sets.deleteComponents", no);

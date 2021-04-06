@@ -51,4 +51,9 @@
 		delete from TB_SET_COMPONENT 
 		where set_no=#{no}
 	</delete>
+	
+	<delete id="delete">
+		delete from TB_SET 
+		where set_no=#{no}
+	</delete>
 </mapper>

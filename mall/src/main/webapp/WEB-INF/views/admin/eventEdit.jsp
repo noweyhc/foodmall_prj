@@ -44,7 +44,7 @@
 							<td>${e.event_end }</td>
 							<td><img src="/img/${e.event_img }" style="width: 150px; height: 35px; object-fit: cover;"></td>
 							<td><i class="fas fa-edit" id="edit-icon" onclick="location.href='/admin/event-edit/${e.event_no }'"></i></td>
-							<td><i class="fas fa-trash-alt" id="delete-icon"></i></td>
+							<td><i class="fas fa-trash-alt" id="delete-icon" onclick="deleteConfirm('${e.event_no}','${e.event_title}')"></i></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -54,5 +54,13 @@
 	</div>
 
 <script type="text/javascript" src="/static/js/admin/adminFuntions.js"></script>
+<script type="text/javascript">
+	function deleteConfirm(no, title){
+		let deleteConfirm = confirm(no +'번 이벤트 : ' + title + ' 삭제합니다');
+		if(deleteConfirm){
+			location.href = '/admin/event-edit/delete?no=' + no;
+		}
+	}
+</script>
 </body>
 </html>
