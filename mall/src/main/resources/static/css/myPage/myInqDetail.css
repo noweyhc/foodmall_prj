@@ -24,16 +24,29 @@
     margin-left: 40px;
 }
 
-#resp-content {
+#resp-title {
     background: none;
     width: 890px;
-    padding: 50px;
-    border: 1px solid #DFE1E5;
+    border: 2px solid #333;
     border-radius: 10px;	
     margin-bottom: 50px; 
     text-align: center;
     display: inline-block;
-    margin-left: 40px   
+    margin-left: 40px;   
+}
+
+
+
+#resp-content {
+    background: none;
+    width: 890px;
+    padding: 50px;
+    border: 2px solid #333;
+    border-radius: 10px;	
+    margin-bottom: 50px; 
+    text-align: center;
+    display: inline-block;
+    margin-left: 40px;   
 }
 
 img {

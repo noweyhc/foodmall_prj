@@ -199,7 +199,13 @@ let idInquiry = {
 				$('#mem_email_auth').focus();	
 				emailcode = data.code;
 				mem_id = data.mem_id;
-				$('#mem_id').val(mem_id);
+				$("#sist").html(mem_id);
+				$('#mem_id2').val(mem_id);
+				
+				
+				alert('인증된 회원번호' + mem_id);
+				
+				
 			}else{
 				$('mem_email_auth').attr('disabled',true);
 				toastr.options = {

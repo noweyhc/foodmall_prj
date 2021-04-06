@@ -137,8 +137,9 @@ public class InquiryDao {
 		map.put("start", start);
 		map.put("end", end);
 		
+		System.out.println("map:"+map);
 		List<MyInqListVo> list = sqlSession.selectList("inquiry.findMyInq",map);
-		
+		System.out.println("리스트의 첫번째 날짜:" + list.get(0).getCs_regdate());
 		return list;
 	}
 

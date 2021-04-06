@@ -103,7 +103,7 @@ public class LoginController {
 	@GetMapping("/idInquiry")
 	public String idInquiry(Model model) {
 		return "/login/idInquiry";
-	}
+	}//idInquiry
 	
 	// 아이디 찾기 [회원 정보에 등록한 [휴대전화]로 인증]
 	@PostMapping("/phoneAuth")
@@ -142,6 +142,9 @@ public class LoginController {
 	// [휴대전화 인증] 및 [이메일 인증]이 성공했다면 보이는 페이지
 	@PostMapping("/viewIdList")
 	public String viewIdList(Model model,String mem_id) {
+		
+		System.out.println("mem_id:"+mem_id);
+		
 		// 회원 아이디를 상태유지 후 
 		model.addAttribute("mem_id", mem_id);
 		// viewIdList로 전달
@@ -251,14 +254,13 @@ public class LoginController {
 			pVo.setMem_id(mem_id);
 		}else {
 			pVo.setResult(0);
-		}
+		}//end if
 		
 		return pVo;
 	}//pwdPhoneAuth
 	
 	@PostMapping("/viewInputPasswd")
 	public String viewInputPasswd(Model model, String mem_id) {
-		
 		model.addAttribute("mem_id",mem_id);
 		
 		return "/login/viewInputPasswd";
@@ -277,8 +279,8 @@ public class LoginController {
             out.println("<script>alert('성공적으로 비밀번호가 변경되었습니다.'); location.href='/';</script>");
             out.close();
             return null;			
+		}else {
+			return "";
 		}
-		
-		return "";
 	}
 }

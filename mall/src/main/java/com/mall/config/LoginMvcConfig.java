@@ -12,7 +12,7 @@ public class LoginMvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		
-		 registry.addInterceptor(new LoginSessionListener()) .addPathPatterns("/mypage/*") .addPathPatterns("/inquiry/*") .addPathPatterns("/login/*").addPathPatterns("/payment/*").addPathPatterns("/cart/*");
+		 registry.addInterceptor(new LoginSessionListener()) .addPathPatterns("/mypage/*") .addPathPatterns("/inquiry/*") .addPathPatterns("/payment/*").addPathPatterns("/cart/*");
 	}//addInterceptors
 	
 }//class

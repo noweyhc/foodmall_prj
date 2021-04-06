@@ -65,6 +65,8 @@ public class InquiryController {
 	// 고객이 1:1문의를 등록하는 페이지
 	@PostMapping("/inquiry")
 	public String inquirySubmit( Model model,InquiryVo ivo,String cs_email, String cs_phone,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		System.out.println("1:1 문의 post 방식 동작함. ==>" + ivo);
+		
 		// 세션
 		String mem_id = (String) session.getAttribute("login");
 		// 이미지를 저장할 경로
@@ -77,6 +79,7 @@ public class InquiryController {
 		String fname = uploadFile.getOriginalFilename();
 		// 만약 사용자가 올린 파일이 존재한다면
 		if(fname != null && !"".equals(fname)){
+			System.out.println("파일이 있어요!");
 			// 파일 복사 
 			try {
 				// 사용자가 올린 파일에 data를 가져온다.
@@ -93,19 +96,22 @@ public class InquiryController {
 				ivo.setCs_fname(fname);
 			} catch (IOException e) {
 				e.printStackTrace();
-			}//end catch
+			}//end catch			
 			
-			// 디비에 저장한다.
-			int re = dao.insertInquiry(ivo,cs_email,cs_phone,mem_id);
-			// 만약 정상적으로 저장이 완료 되었다면 alert 후 메인페이지로 이동한다.
-			if(re == 1) {
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('고객님께서 문의해주신 소중한 의견이 전달되었습니다.'); location.href='/'; </script>");
-				out.close();
-			}//end if
 		}//end if
-		return "";
+		
+		// 디비에 저장한다.
+		int re = dao.insertInquiry(ivo,cs_email,cs_phone,mem_id);
+		// 만약 정상적으로 저장이 완료 되었다면 alert 후 메인페이지로 이동한다.
+		if(re == 1) {
+			System.out.println("ok");
+			return "/inquiry/inquiryOk";			
+		}//end if
+		else {
+			System.out.println("no");
+			return "/inquiry/error";
+		}
+		
 	}//inquirySubmit
 	
 	// 고객이 작성한 1:1문의를 확인하는 페이지
@@ -124,6 +130,7 @@ public class InquiryController {
 		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end,keyword,searchFeild);
 		// 총 페이지 수를 상태유지 한다.
 		model.addAttribute("totalPage",totalPage);
+		System.out.println("날짜출력합니다. >>>>>> "+list.get(0).getCs_regdate());
 		// List<MyInqListVo>를 상태유지한다.
 		model.addAttribute("list",list);
 		// 페이지 변경 시 쿼리문 상태 유지
