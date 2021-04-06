@@ -63,6 +63,13 @@ public class CartDao {
 			sqlSession.commit();
 		}
 	}	
+	
+	public void selectDeleteCart(CartVo cv) {
+		int re = sqlSession.delete("cart.selectDelete", cv);
+		if (re == 1) {
+			sqlSession.commit();
+		}
+	}	
 
 	// 장바구니 동일 상품 레코드 검사
 	public int countCart(int product_no, String mem_id) {

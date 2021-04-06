@@ -31,3 +31,7 @@
 	cursor: pointer;
 	border-radius:10px;
 }
+
+.button:hover {
+	background-color: ffa62b;
+}

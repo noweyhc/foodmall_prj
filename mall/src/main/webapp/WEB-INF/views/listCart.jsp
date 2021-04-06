@@ -157,13 +157,15 @@
 				   var checkArr = new Array();
 				   
 				   $("input[class='checkBox']:checked").each(function(){
-				    checkArr.push($(this).attr("data-cartNum"));
+				   	checkArr.push($(this).attr("data-cartNum"));
 				   });
-				    
+				   
 				   $.ajax({
-				    url : "/deleteCart",
+				    url : "/selectDelete",
 				    type : "post",
-				    data : { chbox : checkArr }, success : function(){location.href = "/listCart";}
+				    data : { checkBox : checkArr }, success :function(){ 
+						location.href = "/listCart.do";
+				    }
 				   });
 				  } 
 			 });

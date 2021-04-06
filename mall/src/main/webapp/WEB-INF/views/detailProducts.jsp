@@ -141,13 +141,14 @@
 				}
 			});	
 		});
-	*/
+	
 	
 	$('#input_cart').on('click',function(){
 			if($('#mem_id') == ''){
 					alert('a');			
 			}
 	});
+	*/
 	
 	// 상품 수량 선택 이벤트처리
 	function getProductQTY(){
