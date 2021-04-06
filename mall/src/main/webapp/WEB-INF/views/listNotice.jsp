@@ -88,14 +88,10 @@
 			</div>
 		</form>
 	</div>
+<script src="/static/js/noticeValidation.js"></script>
+
 	
 <%@ include file="footer.jsp"%>	
 
-
-<!-- 관리자로 갈 글쓰기 -->
-<!-- 		<div class="row">
-			<button class="btn waves-effect waves-light" type="button"
-				name="insert" onclick="location.href='insertNotice.do' ">글쓰기</button>
-		</div> -->
 </body>
 </html>

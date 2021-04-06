@@ -1,11 +1,13 @@
 package com.mall.dao.set;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.product.ProductVo;
 import com.mall.vo.set.SetComponentVo;
 import com.mall.vo.set.SetProductVo;
 import com.mall.vo.set.SetVo;
@@ -60,6 +62,44 @@ public class SetDao {
 		SetPackageDao dao = sqlSession.getMapper(SetPackageDao.class);
 		List<SetProductVo> list = dao.findAllComponents();
 		return list;
+	}
+	
+	//세트 상품 하나의 정보를 반환합니다
+	public SetVo selectOne(int no) {
+		SetVo sv = new SetVo();
+		sv = sqlSession.selectOne("sets.selectOne", no);
+		return sv;
+	}
+	
+	//특정 세트 상품에 속하는 상품들을 반환합니다
+	public List<ProductVo> findComponents(int no){
+		List<ProductVo> list = new ArrayList<>();
+		list = sqlSession.selectList("sets.selectComponents", no);
+		return list;
+	}
+	
+	//세트 상품 정보를 수정하고 성공 여부를 반환합니다
+	public int updateSet(SetVo sv) {
+		int re = sqlSession.update("sets.update", sv);
+		return re;
+	}
+	
+	//세트 상품 정보를 삭제합니다
+	public int deleteSet(int no) {
+		int re = sqlSession.delete("sets.delete", no);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
+	//세트 상품의 하위 상품 목록을 삭제하고 성공 여부를 반환합니다
+	public int deleteComponents(int no) {
+		int re = sqlSession.delete("sets.deleteComponents", no);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
 	}
 	
 }

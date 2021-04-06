@@ -29,8 +29,14 @@ public class MainController {
 	private final EventDao eventDao;
 
 	@RequestMapping("/")
-	public ModelAndView mainpage() {
+	public ModelAndView mainpage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
+		//관리자 페이지에서 넘어왔자면 세션 초기화
+		if(request.getSession().getAttribute("admin") != null) {
+			request.getSession().invalidate();
+		}
+		
 		mav.addObject("eventList", eventDao.selectValid());
 		mav.addObject("newProducts", productDao.selectNew(8));
 		mav.setViewName("main");

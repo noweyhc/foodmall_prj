@@ -8,6 +8,7 @@ body {
 	width:230px;
 	height:100%;
 	position:fixed;
+	z-index: 10;
 	background-color: #26a69a;
 }
 
@@ -40,7 +41,7 @@ body {
 
 .side-menu .menu-list-sub {
 	height: 50px;
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 .side-menu .menu-list-sub .menu-list-sub-category{
@@ -51,13 +52,12 @@ body {
 	color: rgba(255,255,255,.7);
 }
 
-.side-menu .menu-list-sub .menu-list-sub-category .active{
+.side-menu .menu-list-sub .point{
 	color: white;
-	font-weight: bold;
 }
 
 .side-menu .menu-list-title{
-	margin-left: 16px;
+	margin-left: 12px;
 }
 
 
@@ -107,4 +107,29 @@ body {
 	margin-bottom: 5px;
 	margin-left: 1rem;
 	margin-right: 1rem;
+}
+
+.toolbar {
+	position: relative;
+	padding-left: 230px;
+	height: 60px; 
+	background-color: rgba(255,255,255,.5);
+	box-shadow: 0px 8px 8px -8px #DFD4CD;
+	display: flex;
+	align-items: center;
+}
+
+.message {
+	width: 70%;
+}
+
+.logout {
+	width: 30%;
+	text-align: right;
+	margin-right: 30px;
+	color: #26a69a;
+}
+
+.logout .fa-sign-out-alt {
+	font-size: 26px;
 }
