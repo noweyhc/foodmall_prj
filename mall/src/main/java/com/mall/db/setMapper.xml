@@ -5,7 +5,7 @@
 
 <mapper namespace="sets">
 	<insert id="register">
-		insert into TB_SET values(seq_set.nextval, #{set_title}, #{set_subtitle}, 
+		insert into TB_SET values(#{set_no}, #{set_title}, #{set_subtitle}, 
 	    	#{set_img}, #{set_detail_text}, #{set_stock}, #{set_price}, sysdate)
 	</insert>
 	
@@ -25,4 +25,35 @@
 	<select id="findAll" resultType="setVo">
 		select * from TB_SET
 	</select>
+	
+	<select id="selectOne" resultType="setVo">
+		select * from TB_SET
+		where	set_no = #{no} 
+	</select>
+	
+	<select id="selectComponents" resultType="productVo">
+		select * from TB_PRODUCT 
+		where	product_no in (
+			select product_no 
+			from tb_set_component 
+			where set_no = #{set_no})
+	</select>
+	
+	<update id="update">
+		update TB_SET 
+		set set_title=#{set_title}, set_subtitle=#{set_subtitle},
+			set_img=#{set_img}, set_detail_text=#{set_detail_text}, set_stock=#{set_stock}, 
+			set_price=#{set_price} 
+		where set_no=#{set_no} 
+	</update>
+	
+	<delete id="deleteComponents">
+		delete from TB_SET_COMPONENT 
+		where set_no=#{no}
+	</delete>
+	
+	<delete id="delete">
+		delete from TB_SET 
+		where set_no=#{no}
+	</delete>
 </mapper>

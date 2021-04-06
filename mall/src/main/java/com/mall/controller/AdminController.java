@@ -337,7 +337,6 @@ public class AdminController {
 	}
 	
 
-
 	//GET 방식 접근, 해당 세일 상품의 상세 정보를 보여줌
 	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.GET)
 	public ModelAndView editSaleDetail(@PathVariable String productNo) {
@@ -432,6 +431,75 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+	//GET 방식 접근, 세트 목록 페이지로 이동
+	@RequestMapping(value= "/set-edit", method = RequestMethod.GET)
+	public ModelAndView editSet(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "set");
+		request.getSession().setAttribute("function", "setEdit");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("setList", setdao.findAll());
+		mav.addObject("compList", setdao.findAllComponents());
+		mav.setViewName("/admin/setEdit");
+		return mav;
+	}
+	
+	//GET 방식 접근, 세트 수정 페이지로 이동
+	@RequestMapping(value= "/set-edit/{setNo}", method = RequestMethod.GET)
+	public ModelAndView editSetDetail(@PathVariable int setNo, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("set", setdao.selectOne(setNo));
+		mav.addObject("compList", setdao.findComponents(setNo));
+		mav.setViewName("/admin/setEditDetail");
+		return mav;
+	}
+	
+	//POST 방식 접근, 세트 수정 페이지로 이동
+	@RequestMapping(value= "/set-edit/{setNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateSet(@PathVariable int setNo, SetVo sv, HttpServletRequest request) {
+		String path = request.getRealPath("/img");
+		String imgName = "";
+		
+		if(sv.getImgFile().getSize() != 0) {
+			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
+			String oldImgPath = path + "/" + sv.getSet_img();
+			util.deleteImg(oldImgPath);			
+			imgName = util.renameSetImg(sv.getSet_no(), sv.getImgFile());
+			sv.setSet_img(imgName);
+			
+			try {
+				util.uploadImg(path, sv.getImgFile(), imgName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		int re = setdao.updateSet(sv);
+		
+		//하위 상품의 상품번호를 배열로 가져옴
+		String[] arr = request.getParameterValues("productNo");
+		re = setdao.deleteComponents(sv.getSet_no());
+		
+		for(String no: arr) {
+			SetComponentVo cv = new SetComponentVo(sv.getSet_no(), Integer.parseInt(no));
+			int re2 = setdao.registerSetComponent(cv);
+		}
+
+		return "";
+	}
+	
+	//특정 세트 상품의 DB 데이터와 하위 상품 DB 데이터 삭제
+	@RequestMapping("/set-edit/delete")
+	public String deleteSet(int no, HttpServletRequest request) {
+		SetVo sv = setdao.selectOne(no);
+		String path = request.getRealPath("/img") + "/" + sv.getSet_img();
+		util.deleteImg(path);
+		//DB에서 해당 세트의 데이터를 삭제
+		setdao.deleteComponents(no);
+		setdao.deleteSet(no);
+		return "redirect:/admin/set-edit";
+	}
+	
 	//GET 방식 접근, 이벤트 등록 페이지로 이동
 	@RequestMapping(value = "/event-register", method = RequestMethod.GET)
 	public String registerEventForm(HttpServletRequest request) {
@@ -471,4 +539,68 @@ public class AdminController {
 		
 		return "redirect:/admin/event-register";
 	}
+	
+	//GET 방식 접근, 이벤트 목록을 보여줌
+	@RequestMapping(value = "/event-edit", method = RequestMethod.GET)
+	public ModelAndView editEvent(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "event");
+		request.getSession().setAttribute("function", "eventEdit");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", eventdao.findAll());
+		mav.setViewName("/admin/eventEdit");
+		return mav;
+	}
+	
+	//GET 방식 접근, 이벤트 수정 페이지를 보여줌
+	@RequestMapping(value = "/event-edit/{eventNo}", method = RequestMethod.GET)
+	public ModelAndView editEventDetail(@PathVariable int eventNo, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("event", eventdao.selectEvent(eventNo));
+		mav.setViewName("/admin/eventEditDetail");
+		return mav;
+	}
+	
+	//POST 방식 접근, 입력된 이벤트 정보를 수정함
+	@RequestMapping(value = "/event-edit/{eventNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateEvent(@PathVariable int eventNo, EventVo ev, HttpServletRequest request) {
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		ev.setEvent_start(startDate);
+		ev.setEvent_end(endDate);
+		
+		String path = request.getRealPath("/img");
+		String imgName = "";
+		
+		if(ev.getImgFile().getSize() != 0) {
+			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
+			String oldImgPath = path + "/" + ev.getEvent_img();
+			util.deleteImg(oldImgPath);			
+			imgName = util.renameEventImg(ev.getEvent_no(), ev.getImgFile());
+			ev.setEvent_img(imgName);
+			
+			try {
+				util.uploadImg(path, ev.getImgFile(), imgName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int re = eventdao.updateEvent(ev);
+		
+		return "";
+	}
+	
+	// 이벤트 이미지와 DB 데이터 삭제
+	@RequestMapping("/event-edit/delete")
+	public String deleteEvent(int no, HttpServletRequest request) {
+		EventVo ev = eventdao.selectEvent(no);
+		String path = request.getRealPath("/img") + "/" + ev.getEvent_img();
+		util.deleteImg(path);
+		int re = eventdao.deleteEvnet(no);
+		
+		return "redirect:/admin/event-edit";
+	}
+	
 }

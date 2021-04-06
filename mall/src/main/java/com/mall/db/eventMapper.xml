@@ -34,4 +34,18 @@
   	select * from tb_event
   	where event_no = #{no}
   </select>
+  
+  <update id="update">
+  	update	TB_EVENT 
+  	set		event_title=#{event_title}, event_content=#{event_content}, event_img=#{event_img},
+  			event_start=to_date(#{event_start}, 'yyyy-mm-dd hh24:mi:ss'), 
+  			event_end=to_date(#{event_end}, 'yyyy-mm-dd hh24:mi:ss'), 
+  			event_link=#{event_link} 
+  	where event_no=#{event_no} 
+  </update>
+  
+  <delete id="delete">
+  	delete from TB_EVENT
+  	where event_no=#{no} 
+  </delete>
 </mapper>
