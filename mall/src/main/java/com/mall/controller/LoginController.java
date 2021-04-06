@@ -142,9 +142,6 @@ public class LoginController {
 	// [휴대전화 인증] 및 [이메일 인증]이 성공했다면 보이는 페이지
 	@PostMapping("/viewIdList")
 	public String viewIdList(Model model,String mem_id) {
-		
-		System.out.println("mem_id:"+mem_id);
-		
 		// 회원 아이디를 상태유지 후 
 		model.addAttribute("mem_id", mem_id);
 		// viewIdList로 전달
@@ -200,7 +197,6 @@ public class LoginController {
 	// [비밀번호 찾기] Process
 	@PostMapping("/pwdInquiry")
 	public String pwdInquiryPro(Model model,String mem_id,HttpServletResponse response) throws IOException {
-		// 
 		PwdInquiryVo pwdInquiry = dao.findPwdUserId(mem_id);
 		// 만약 
 		if(pwdInquiry == null) {
@@ -210,7 +206,6 @@ public class LoginController {
             out.close();
             return null;				
 		}
-		
 		
 		if(mem_id.equals(pwdInquiry.getMem_id())) {
 			System.out.println(mem_id);

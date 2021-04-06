@@ -144,12 +144,12 @@
                     <div class="row">
                         <!-- 새 우편번호 -->
                         <div class="input-field col s1">
-                          <input type="text" id="newZipcode" name="newZipcode" class="validate">
+                          <input type="text" id="mem_zipcode" name="newZipcode" class="validate">
                           <label for="newZipcode">우편번호</label>
                         </div>
                         <!-- 새 주소  -->
                         <div class="input-field col s3">
-                          <input type="text" id="newAddr" name="newAddr" class="validate">
+                          <input type="text" id="mem_address" name="newAddr" class="validate">
                           <label for="newAddr">주소</label>
                         </div>
                         <!-- 새 상세주소  -->
@@ -239,7 +239,8 @@
 <!-- 제이쿼리  -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- 지도 api  -->
-<script src="/static/js/ship.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/static/js/myposts.js"></script>
 <script src="/static/js/order.js"></script>
 
 <script>

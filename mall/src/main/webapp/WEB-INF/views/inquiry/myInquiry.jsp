@@ -56,7 +56,6 @@
 					  <select class="browser-default" id="searchFeild" name="searchFeild" >
 		    				<option value="" disabled selected>선택</option>
 							<option value="cs_title">제목</option>
-							<option value="cs_mem_id">작성자</option>
 		 			 </select>
 	          </div>
 	        </div>

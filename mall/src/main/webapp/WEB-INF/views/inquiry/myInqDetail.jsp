@@ -107,16 +107,13 @@
 		      <div class="row">
 		        <div class="input-field col s6">
 		          <i class="material-icons prefix">mode_edit</i>
-		          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-		          <label for="icon_prefix2">First Name</label>
+		          <textarea id="icon_prefix2" class="materialize-textarea" readonly="readonly">${midrVo.ans_title }</textarea>
+		          <label for="icon_prefix2">문의 제목</label>
 		        </div>
 		      </div>
 	        <div class="input-field col s6">
-	        	<p id="resp-title">
-			         <!-- 문의 제목  -->
-			         ${midrVo.ans_title }<br>
-	         	</p>
 	        </div>
+	        	문의 내용
 	         	 <p id="resp-content">
 			      	<!-- 문의 내용 -->
 			      	${midrVo.ans_content }
