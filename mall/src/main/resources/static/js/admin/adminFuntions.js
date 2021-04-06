@@ -153,7 +153,7 @@ function popupSearch(){
 	let height = 600;
 	let xpos = Math.ceil(( window.screen.width - width )/2);
 	let ypos = Math.ceil((window.screen.height - height)/2) - 80;
-	window.open('product-search', '상품 검색', 'width=800, height=600, left=' + xpos + ', top=' + ypos);
+	window.open('http://localhost:8080/admin/product-search', '상품 검색', 'width=800, height=600, left=' + xpos + ', top=' + ypos);
 }
 
 //상품명 검색 시 검색 결과를 바로바로 반영하는 기능
@@ -193,11 +193,9 @@ function search(searchBoxId){
 //상품 검색창을 호출한 부모창의 주소에 따라 갖고있는 상품 정보 처리
 function sendItem(item){
 	let target = window.opener.location.href
-	target = target.substr(target.lastIndexOf('/') + 1, target.length);
-	
-	switch(target){
+
 		// 세트 등록창의 경우, 구성품 목록에 추가시킴
-		case "set-register":
+		if(target.includes('set-register') || target.includes('set-edit')){
 			let productNoData = '<div class="form-group product-no-group" id="' +
 			item.product_no + '"> ' +
 			'<label for="productNo" class="sr-only">번호</label><input type="hidden" name="productNo" value=' + 
@@ -214,20 +212,20 @@ function sendItem(item){
 			$(opener.document).find('#component-list').append(tr);
 			$(opener.document).find('#set-register').append(productNoData);
 			window.close();
-			break;
+		}
+			
+
 
 		// 세일 등록창의 경우, 필요한 상품 정보를 골라 넘김
-		case "sale-register":
+		if(target.includes('sale-register')){
+			
 			opener.document.getElementById("productNo").value = item.product_no;
 			opener.document.getElementById("productTitle").value = item.product_title;
 			opener.document.getElementById("productPrice").value = item.product_price;
 			window.close();
-			break;
-			
-		default:
-			window.close();
-			break;
-	}
+		}
+
+
 }
 
 //세트 구성품 목록에서 테이블 행을 삭제하고 폼에서 hidden으로 전달되는 값도 삭제 

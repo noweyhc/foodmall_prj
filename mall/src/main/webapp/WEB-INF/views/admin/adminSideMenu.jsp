@@ -70,7 +70,7 @@
 						<a class="collapse-item ${function eq 'setRegister' ? 'active' : '' }" href="/admin/set-register">세트 등록</a>
 					</div>
 					<div class="item-wrapper">
-						<a class="collapse-item ${function eq 'setEdit' ? 'active' : '' }" href="">세트 수정 및 삭제</a>
+						<a class="collapse-item ${function eq 'setEdit' ? 'active' : '' }" href="/admin/set-edit">세트 수정 및 삭제</a>
 					</div>
 				</div>
 			</div>

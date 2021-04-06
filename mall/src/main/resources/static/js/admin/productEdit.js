@@ -1,15 +1,3 @@
-   
-/*
-let categoryBox = document.getElementById('product_category');
-let categoryOptions = Array.from(categoryBox.children);
-let category = document.getElementById('product_category_hidden').value;
-
-categoryOptions.forEach(function(option){
-	if(option.value == category){
-		option.setAttribute('selected', 'selected');
-	}	
-})
-*/
 
 //상품 수정 상세페이지 이동 시, 드랍박스 항복 값을 상품 정보에 맞춰 선택
 let storageBox = document.getElementById('product_storage');

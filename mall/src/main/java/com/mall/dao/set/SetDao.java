@@ -1,11 +1,13 @@
 package com.mall.dao.set;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mall.db.SqlSessionFactoryBean;
+import com.mall.vo.product.ProductVo;
 import com.mall.vo.set.SetComponentVo;
 import com.mall.vo.set.SetProductVo;
 import com.mall.vo.set.SetVo;
@@ -59,6 +61,20 @@ public class SetDao {
 	public List<SetProductVo> findAllComponents(){
 		SetPackageDao dao = sqlSession.getMapper(SetPackageDao.class);
 		List<SetProductVo> list = dao.findAllComponents();
+		return list;
+	}
+	
+	//세트 상품 하나의 정보를 반환합니다
+	public SetVo selectOne(int no) {
+		SetVo sv = new SetVo();
+		sv = sqlSession.selectOne("sets.selectOne", no);
+		return sv;
+	}
+	
+	//특정 세트 상품에 속하는 상품들을 반환합니다
+	public List<ProductVo> findComponents(int no){
+		List<ProductVo> list = new ArrayList<>();
+		list = sqlSession.selectList("sets.selectComponents", no);
 		return list;
 	}
 	

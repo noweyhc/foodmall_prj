@@ -25,4 +25,20 @@
 	<select id="findAll" resultType="setVo">
 		select * from TB_SET
 	</select>
+	
+	<select id="selectOne" resultType="setVo">
+		select * from TB_SET
+		where	set_no = #{no} 
+	</select>
+	
+	<select id="selectComponents" resultType="productVo">
+		select * from TB_PRODUCT 
+		where	product_no in (
+			select product_no 
+			from tb_set_component 
+			where set_no = #{no})
+	</select>
+	
+	<select id="">
+	</select>
 </mapper>

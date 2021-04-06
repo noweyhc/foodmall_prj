@@ -337,7 +337,6 @@ public class AdminController {
 	}
 	
 
-
 	//GET 방식 접근, 해당 세일 상품의 상세 정보를 보여줌
 	@RequestMapping(value = "/sale-edit/{productNo}", method = RequestMethod.GET)
 	public ModelAndView editSaleDetail(@PathVariable String productNo) {
@@ -432,6 +431,37 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+	//GET 방식 접근, 세트 목록 페이지로 이동
+	@RequestMapping(value= "/set-edit", method = RequestMethod.GET)
+	public ModelAndView editSet(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "set");
+		request.getSession().setAttribute("function", "setEdit");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("setList", setdao.findAll());
+		mav.addObject("compList", setdao.findAllComponents());
+		mav.setViewName("/admin/setEdit");
+		return mav;
+	}
+	
+	//GET 방식 접근, 세트 수정 페이지로 이동
+	@RequestMapping(value= "/set-edit/{setNo}", method = RequestMethod.GET)
+	public ModelAndView editSetDetail(@PathVariable int setNo, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("set", setdao.selectOne(setNo));
+		mav.addObject("compList", setdao.findComponents(setNo));
+		mav.setViewName("/admin/setEditDetail");
+		return mav;
+	}
+	
+	//POST 방식 접근, 세트 수정 페이지로 이동
+	@RequestMapping(value= "/set-edit/{setNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateSet(SetVo sv, HttpServletRequest request) {
+		
+		return "";
+	}
+	
 	//GET 방식 접근, 이벤트 등록 페이지로 이동
 	@RequestMapping(value = "/event-register", method = RequestMethod.GET)
 	public String registerEventForm(HttpServletRequest request) {
@@ -471,4 +501,5 @@ public class AdminController {
 		
 		return "redirect:/admin/event-register";
 	}
+	
 }
