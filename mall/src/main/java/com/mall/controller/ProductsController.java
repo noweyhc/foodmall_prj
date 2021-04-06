@@ -1,6 +1,7 @@
 package com.mall.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,9 +46,14 @@ public class ProductsController {
 	}
 
 	@RequestMapping("/detailProducts.do")
-	public ModelAndView detail(int no) {
+	public ModelAndView detail(int no,HttpSession session) {
+		
+		
+		String mem_id = (String)session.getAttribute("login");
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("p", dao.selectOne(no));
+		mav.addObject("mem_id",mem_id);
 		return mav;
 	}
 
