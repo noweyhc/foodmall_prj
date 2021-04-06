@@ -72,6 +72,14 @@ private SqlSession sqlSession;
 		return now;
 	}
 	
+	public int updateEvent(EventVo ev) {
+		int re = sqlSession.update("event.update", ev);
+		if(re == 1) {
+			sqlSession.commit();
+		}
+		return re;
+	}
+	
 	public void commit() {
     	sqlSession.commit();
     }

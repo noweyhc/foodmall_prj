@@ -106,6 +106,7 @@
 				<div class="form-row">
 					<div class="button-group" id="register-button-group">
 						<button type="button" class="button submit" id="sale-register-submit">등록</button>
+						<button type="button" class="button cancel" id="set_edit_cancel" onclick="location.href='/admin/set-edit'">취소</button>
 					</div>
 				</div>
 			</form>

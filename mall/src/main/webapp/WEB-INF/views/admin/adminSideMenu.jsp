@@ -88,7 +88,7 @@
 						<a class="collapse-item ${function eq 'eventRegister' ? 'active' : '' }" href="/admin/event-register">이벤트 등록</a>
 					</div>
 					<div class="item-wrapper">
-						<a class="collapse-item ${function eq 'eventEdit' ? 'active' : '' }" href="">이벤트 수정 및 삭제</a>
+						<a class="collapse-item ${function eq 'eventEdit' ? 'active' : '' }" href="/admin/event-edit">이벤트 수정 및 삭제</a>
 					</div>
 				</div>
 			</div>

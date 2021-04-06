@@ -528,4 +528,56 @@ public class AdminController {
 		return "redirect:/admin/event-register";
 	}
 	
+	//GET 방식 접근, 이벤트 목록을 보여줌
+	@RequestMapping(value = "/event-edit", method = RequestMethod.GET)
+	public ModelAndView editEvent(HttpServletRequest request) {
+		request.getSession().setAttribute("category", "event");
+		request.getSession().setAttribute("function", "eventEdit");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", eventdao.findAll());
+		mav.setViewName("/admin/eventEdit");
+		return mav;
+	}
+	
+	//GET 방식 접근, 이벤트 수정 페이지를 보여줌
+	@RequestMapping(value = "/event-edit/{eventNo}", method = RequestMethod.GET)
+	public ModelAndView editEventDetail(@PathVariable int eventNo, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("event", eventdao.selectEvent(eventNo));
+		mav.setViewName("/admin/eventEditDetail");
+		return mav;
+	}
+	
+	//POST 방식 접근, 입력된 이벤트 정보를 수정함
+	@RequestMapping(value = "/event-edit/{eventNo}", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateEvent(@PathVariable int eventNo, EventVo ev, HttpServletRequest request) {
+		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") + ":00";
+		String endDate = request.getParameter("endDate") + " " + request.getParameter("endTime") + ":00";
+		ev.setEvent_start(startDate);
+		ev.setEvent_end(endDate);
+		
+		String path = request.getRealPath("/img");
+		String imgName = "";
+		
+		if(ev.getImgFile().getSize() != 0) {
+			//메인이미지가 변경되었다면 파일 삭제 후 새로운 이미지 파일명 지정
+			String oldImgPath = path + "/" + ev.getEvent_img();
+			util.deleteImg(oldImgPath);			
+			imgName = util.renameEventImg(ev.getEvent_no(), ev.getImgFile());
+			ev.setEvent_img(imgName);
+			
+			try {
+				util.uploadImg(path, ev.getImgFile(), imgName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		int re = eventdao.updateEvent(ev);
+		
+		return "";
+	}
+	
 }
