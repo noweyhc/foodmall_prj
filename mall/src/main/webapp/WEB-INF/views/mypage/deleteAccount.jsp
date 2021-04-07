@@ -42,7 +42,7 @@
 탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.
 </div>
 
-<form action="deleteAccount.do" method="post" id="deleteForm">
+<form action="deleteAccount" method="post" id="deleteForm">
 
 <div class="delete-wrap">
 탈퇴 후에는 아이디 (<span class="del-text">아이디(${mVo.mem_id })</span>)에 데이터는 복구할 수 없습니다.

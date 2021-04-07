@@ -45,5 +45,9 @@
 	<delete id="deleteByNo">
 		delete from tb_review where review_no = #{review_no}
 	</delete>
+	
+	<select id="findProduct" resultType="com.mall.vo.review.ReviewVO">
+		select * from tb_review where product_no = #{no} 
+	</select>
 
 </mapper>

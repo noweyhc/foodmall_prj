@@ -1,5 +1,6 @@
 package com.mall.dao.review;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,12 @@ public class ReviewDao {
 	public void updateHit(int review_no) {
 		session.update("reviewMapper.updateHit",review_no);
 		session.commit();
+	}
+	
+	public List<ReviewVO> selectProductReview(int no) {
+		List<ReviewVO> list = new ArrayList<>();
+		list = session.selectList("reviewMapper.findProduct", no);
+		return list;
 	}
 
 }

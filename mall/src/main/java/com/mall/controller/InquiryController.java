@@ -2,7 +2,6 @@ package com.mall.controller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mall.dao.inquiry.InquiryDao;
-import com.mall.interceptor.LoginSessionListener;
 import com.mall.util.FileNameUtil;
 import com.mall.vo.answer.answerVo;
 import com.mall.vo.inquiry.InquiryEmailPhoneVo;
@@ -130,7 +128,6 @@ public class InquiryController {
 		List<MyInqListVo> list = dao.findMyInq(mem_id,start,end,keyword,searchFeild);
 		// 총 페이지 수를 상태유지 한다.
 		model.addAttribute("totalPage",totalPage);
-		System.out.println("날짜출력합니다. >>>>>> "+list.get(0).getCs_regdate());
 		// List<MyInqListVo>를 상태유지한다.
 		model.addAttribute("list",list);
 		// 페이지 변경 시 쿼리문 상태 유지

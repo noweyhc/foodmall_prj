@@ -50,14 +50,6 @@ public class MypageController {
 
 		String mem_id =null;
 		mem_id = (String) session.getAttribute("login");
-		/*
-		if(mem_id == null) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 후 마이페이지 이용이 가능합니다.!'); location.href='/'; </script>");
-			out.close();
-		}//end if
-		*/
 		// 마스킹
 		MaskingVo maskVo = new MaskingVo();
 		
@@ -74,23 +66,24 @@ public class MypageController {
 		}
 
 		// 핸드폰번호 마스킹
-		String phone = maskVo.getMem_phone();
-		String regex = "(\\d{2,3})(\\d{3,4})(\\d{4})$";
-		Matcher matcher2 = Pattern.compile(regex).matcher(phone);
-		
-		String maskPhone = "";
-		if(matcher2.find()) {
-			String replaceTarget = matcher.group(2);
-			char[] c = new char[replaceTarget.length()];
-			Arrays.fill(c, '*');
-			
-			maskPhone = phone.replace(replaceTarget, String.valueOf(c));
+		String replaceString = maskVo.getMem_phone();
+		String matchedStr ="";
+
+		String pattern1 ="(\\d{2,3})-?(\\d{3,4})-?(\\d{3,4})";
+		Matcher matcher2 = Pattern.compile(pattern1).matcher(replaceString);
+
+		if(matcher2.find()){
+			StringBuffer br = new StringBuffer();
+			for(int i = 1 ; i<=matcher2.groupCount(); i++){
+				matchedStr = matcher2.group(i);
+				for(int j = 0 ; j <matchedStr.length();j++){
+					br.append("*");
+				}
+			}
+			replaceString =matcher2.replaceAll(br.toString());
 		}
-		
-		System.out.println(phone);
-		System.out.println(matcher2);
 		model.addAttribute("email",email);
-		model.addAttribute("maskPhone",maskPhone);
+		model.addAttribute("maskPhone",replaceString);
 		
 		session.setAttribute("login", mem_id);
 		
@@ -244,18 +237,15 @@ public class MypageController {
 	public String deleteAccountSubmit(Model model,HttpServletResponse response,HttpSession session,HttpServletRequest request) throws IOException {
 			// 세션
 			String id = (String) session.getAttribute("login");
-
+			System.out.println("aaaaaaaaaaaaaaaaaaa");
 			// 아이디에 대한 정보를 찾아서 회원 탈퇴
 			int re = dao.deleteId(id);
 			// 성공적으로 주소가 변경이 되었다면
 			if(re == 1) {
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				// alert 안내 후 메인(초기)페이지로 이동
-				out.println("<script>alert('밥도둑 회원탈퇴가 정상적으로 완료되었습니다.\n 그동안 이용해주셔서 감사합니다.'); location.href='/'; </script>");
-				out.close();
+				session.invalidate();
+				return "/mypage/deleteOk";
 			}
-			return "mypage";
+			return "/mypage/deleteOk";
 	}//deleteAccountSubmit
 	
 	// 비밀번호 변경 뷰 페이지로 이동
