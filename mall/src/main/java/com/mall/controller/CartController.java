@@ -4,19 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.cart.CartDao;
-import com.mall.util.CookieUtil;
 import com.mall.vo.cart.CartVo;
+import com.mall.vo.user.UserVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class CartController {
 
 	private final CartDao dao;
-//	private final CookieUtil cookie;
 
 	// 장바구니에 상품 담기
 	@RequestMapping("/insert.do")
@@ -47,9 +45,7 @@ public class CartController {
 
 	// 장바구니 목록보기
 	@RequestMapping("/listCart.do")
-	public ModelAndView listCart(
-		//@CookieValue(value="cart", required=false) Cookie cookies,
-			HttpSession session, ModelAndView mav) {
+	public ModelAndView listCart(HttpSession session, ModelAndView mav) {
 		String mem_id = (String) session.getAttribute("login");
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = dao.listCart(mem_id); // 장바구니 정보
@@ -71,15 +67,16 @@ public class CartController {
 
 	// 장바구니 수량 변경
 	@RequestMapping("/update.do")
-	public String update(@RequestParam int[] product_qty, @RequestParam int[] product_no, HttpSession session) {
-		String mem_id = (String) session.getAttribute("login");
-		// 레코드 갯수만큼 반복문 실행
-		for (int i = 0; i < product_no.length; i++) {
-			CartVo cv = new CartVo();
-			cv.setMem_id(mem_id);
-			cv.setProduct_qty(product_qty[i]);
-			cv.setProduct_no(product_no[i]);
-			dao.modifyCart(cv);
+	public String update(@RequestParam int[] product_qty, 
+		@RequestParam int[] product_no, HttpSession session) {
+			String mem_id = (String) session.getAttribute("login");
+			// 레코드 갯수만큼 반복문 실행
+			for (int i = 0; i < product_no.length; i++) {
+				CartVo cv = new CartVo();
+				cv.setMem_id(mem_id);
+				cv.setProduct_qty(product_qty[i]);
+				cv.setProduct_no(product_no[i]);
+				dao.modifyCart(cv);
 		}
 		return "redirect:/listCart.do";
 	}
@@ -90,4 +87,24 @@ public class CartController {
 		dao.deleteCart(cart_no);
 		return "redirect:/listCart.do";
 	}
-}
+	
+	// 장바구니 선택 상품 삭제
+	@RequestMapping(value = "/selectDelete", method = RequestMethod.POST)
+	public String selectDelete(HttpSession session,
+	     @RequestParam(value = "checkBox[]") List<String> checkArr, CartVo cart) throws Exception {
+			String mem_id = (String) session.getAttribute("login");
+			int cart_no = 0;
+			 
+			if(mem_id != null) {
+				cart.setMem_id(mem_id);
+				  
+				for(String i : checkArr) {   
+					cart_no = Integer.parseInt(i);
+					cart.setCart_no(cart_no);
+					dao.selectDeleteCart(cart);
+				}   
+			}  
+		return "redirect:/listCart.do";
+		}
+	
+	}

@@ -1,6 +1,7 @@
 package com.mall.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mall.dao.product.ProductDao;
+import com.mall.dao.review.ReviewDao;
 import com.mall.dao.sale.SaleDao;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class ProductsController {
 
 	private final ProductDao dao;
 	private final SaleDao saleDao;
+	private final ReviewDao reviewDao;
 
 
 	public static int pageSIZE = 12; // 한 화면에 보여줄 게시물 수
@@ -45,9 +48,15 @@ public class ProductsController {
 	}
 
 	@RequestMapping("/detailProducts.do")
-	public ModelAndView detail(int no) {
+	public ModelAndView detail(int no,HttpSession session) {
+		
+		
+		String mem_id = (String)session.getAttribute("login");
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("reviews", reviewDao.selectProductReview(no));
 		mav.addObject("p", dao.selectOne(no));
+		mav.addObject("mem_id",mem_id);
 		return mav;
 	}
 

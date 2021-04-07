@@ -12,9 +12,8 @@
 	<title>detailProducts</title>
 	
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,600,700,800&amp;subset=korean" rel="stylesheet">
-	
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<meta charset="UTF-8">   
 	<link rel="stylesheet" href="static/css/detailProductsStyle.css">
 	
@@ -87,7 +86,7 @@
 			<div class="product-navi-var">
 				<button class="navi-button">상품 상세설명</button>
 				<button class="navi-button">상품 리뷰</button>
-				<button class="navi-button">1:1 문의</button>
+				<hr class="navibar-line">
 			</div>		
 			<div class="product-info max-width">
 				<div class="img-box max-width">
@@ -112,18 +111,37 @@
 			<div class="product-navi-var">
 				<button class="navi-button">상품 상세설명</button>
 				<button class="navi-button">상품 리뷰</button>
-				<button class="navi-button">1:1 문의</button>
+				<hr class="navibar-line">
 			</div>
 			<div class="product-reviews max-width">
-			</div>
-			<div class="product-navi-var">
-				<button class="navi-button">상품 상세설명</button>
-				<button class="navi-button">상품 리뷰</button>
-				<button class="navi-button">1:1 문의</button>
-			</div>
-			<div class="product-cs max-width">
+				<div class="table-container">
+					<div class="table-wrap">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td>글번호</td>
+								<td>제목</td>
+								<td>작성자</td>
+								<td>조회수</td>
+								<td>작성일</td>
+							</tr>
+						</thead>
+						
+						<c:forEach var="r" items="${reviews }">
+							<tr>
+								<td id="${r.review_no }">${r.review_no }</td>
+								<td>${r.review_title }</td>
+								<td>${r.mem_id }</td>
+								<td>${r.review_hit }</td>
+								<td>${r.review_regdate }</td>
+							</tr>
+						</c:forEach>
+					</table>
+					</div>
+				</div>
 			</div>
 		</div>
+		<input type="hidden" id="mem_id" value="${mem_id }">
 	</div>
 	</section>
 	<%@ include file="footer.jsp"%>
@@ -141,6 +159,14 @@
 			});	
 		});
 	*/
+	
+	$("#input_cart").on('click',function(){
+			if($("#mem_id").val() == 0){
+					alert("로그인 후 이용가능합니다.");	
+					location.href="/login/userLogin";			
+			}
+	});
+	
 	
 	// 상품 수량 선택 이벤트처리
 	function getProductQTY(){
