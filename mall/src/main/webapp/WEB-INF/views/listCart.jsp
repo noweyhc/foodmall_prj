@@ -126,7 +126,7 @@
 		// 결제페이지 이동
 		$(function(){
 			$("#btn_order").click(function(){
-				location.href="#";
+				location.href="/payment/order";
 			});	
 		});
 				
