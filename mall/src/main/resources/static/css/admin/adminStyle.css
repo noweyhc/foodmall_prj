@@ -133,3 +133,15 @@ body {
 .logout .fa-sign-out-alt {
 	font-size: 26px;
 }
+
+.main-hello {
+	margin-top: 300px;
+	text-align: center;
+}
+
+.main-hello .fa-cogs{
+	font-size: 200px;
+	color: white;
+	text-shadow: 0px 8px 8px #DFD4CD;
+	margin-bottom: 20px;
+}
