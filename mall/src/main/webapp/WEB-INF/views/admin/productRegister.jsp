@@ -119,12 +119,6 @@
 				</div>
 				</div>
 		</div>
-			<input type="button" id="randomBtn" value="랜덤 생성" style="background-color:cyan">
-		
-			<div style="font-weigt:bold">
-			${result }
-			</div>
-	
 	</div>
 
 <script type="text/javascript" src="/static/js/admin/generate_random.js"></script>

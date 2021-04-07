@@ -5,15 +5,17 @@
 <!DOCTYPE html>
 <html style="height: 100%; width:100%;">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/adminStyle.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/adminStyle.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<title>Insert title here</title>
 </head>
 <body>
-<div class="admin-body-wrapper">
-	관리자 페이지의 대문입니다.
-
-</div>
+	<div class="admin-body-wrapper">
+		<div class="main-hello">
+			<i class="fas fa-cogs"></i><br>
+			<span>관리자 님, 안녕하세요</span>
+		</div>
+	</div>
 </body>
 </html>

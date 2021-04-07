@@ -28,7 +28,9 @@
 					<a href="/category?key=밑반찬&key=김치">밑반찬/김치</a>
 					<a href="/category?key=면">면</a>  
 					<a href="/category?key=도시락">도시락</a>
+					<a href="/category?key=샐러드">샐러드</a>
 					<a href="/category?key=밀키트&key=기타">밀키트/기타</a>
+					<a href="/category?key=베이커리">베이커리</a>
 				</div>   
 			</div>
 			<div class=category-list>
