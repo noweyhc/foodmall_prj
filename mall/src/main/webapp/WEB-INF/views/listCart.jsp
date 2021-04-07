@@ -48,7 +48,7 @@
 							<table border="1" class="table table-bordered" style="padding: 0 10px; text-align: center">
 								<thead class="thead-dark">
 								<tr>
-									<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
+									<th><input type="checkbox" class="allCheck" name="allCheck" /></th>
 									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>단가</th>
@@ -59,7 +59,7 @@
 								<c:forEach var="c" items="${map.list}">
 								<tr>
 									<td>
-										<input type="checkbox" name="checkBox" id="checkBox" data-cartNum="${c.cart_no }">
+										<input type="checkbox" class="checkBox" name="checkBox" data-cartNum="${c.cart_no }">
 									</td>
 									<td>
 										<a href="/detailProducts.do?no=${c.product_no }">
@@ -126,24 +126,58 @@
 		// 결제페이지 이동
 		$(function(){
 			$("#btn_order").click(function(){
-				location.href="#";
+				location.href="/payment/order";
 			});	
 		});
 				
 		// 상품 전체선택
-		$("#allCheck").click(function(){
-			 var chk = $("#allCheck").prop("checked");
-			 if(chk) {
-			  $(".checkBox").prop("checked", true);
-			 } else {
-			  $(".checkBox").prop("checked", false);
-			 }
+		$(function(){
+			$(".allCheck").click(function(){
+				 var chk = $(".allCheck").prop("checked");
+				 if(chk) {
+				  $(".checkBox").prop("checked", true);
+				 } else {
+				  $(".checkBox").prop("checked", false);
+				 }
+			});
 		});
 		
 		// 상품 개별선택
-		 $(".checkBox").click(function(){
-		  $("#allCheck").prop("checked", false);
+		$(function(){
+			 $(".checkBox").click(function(){
+			  $(".allCheck").prop("checked", false);
+			 });
 		 });
-		
+		 		 
+		 // 선택상품 삭제
+		 $(function(){
+		 	$("#btn_selectDelete").click(function(){
+				var confirm_val = confirm("정말 삭제하시겠습니까?");
+				  if(confirm_val) {
+				   var checkArr = new Array();
+				   
+				   $("input[class='checkBox']:checked").each(function(){
+				   	checkArr.push($(this).attr("data-cartNum"));
+				   });
+				   
+				   $.ajax({
+				    url : "/selectDelete",
+				    type : "post",
+				    data : { checkBox : checkArr }, success :function(){ 
+						location.href = "/listCart.do";
+				    }
+				   });
+				  } 
+			 });
+		 });
+		 
+		 // 선택상품 결제
+		 $(function(){
+		 	$("#btn_selectOrder").click(function(){
+				alert("선택한 상품이 결제됩니다.");
+			 });
+		 });
+
+	
 	</script>
 </html>

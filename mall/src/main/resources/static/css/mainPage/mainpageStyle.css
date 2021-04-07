@@ -125,6 +125,7 @@
 	width: 260px;
 	height: 290px;
 	object-fit: cover;
+	border-radius: 5%;
 }
 
 .items .new-product-title{
